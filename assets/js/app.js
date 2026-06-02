@@ -180,7 +180,7 @@
         wrap.querySelectorAll("button").forEach(function (x) {
           x.setAttribute("aria-pressed", x === b ? "true" : "false");
         });
-        applyLevel(b.dataset.level);
+        applyLevel(b.dataset.setlevel);
         document.dispatchEvent(new CustomEvent("ppa:level"));
       });
     });
