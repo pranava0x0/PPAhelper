@@ -99,7 +99,24 @@ test("data-center structures include newcomer-level entries", () => {
   assert.ok(dc.structures.some(s => s.level === 1), "no level-1 structures for newcomers");
 });
 
+let persp;
+test("perspectives.json is valid; voices and resources are sourced", () => {
+  persp = load("perspectives.json");
+  assert.ok(Array.isArray(persp.voices) && persp.voices.length, "no voices");
+  persp.voices.forEach(p => {
+    assert.ok(p.name && p.role && p.angle && p.view && p.takeaway, p.name + ": incomplete voice");
+    assert.ok(/^https?:\/\//.test(p.url || ""), p.name + ": missing source url");
+    assert.ok(!/\/Users\//.test(p.url), p.name + ": local path in url");
+  });
+  assert.ok(Array.isArray(persp.resources) && persp.resources.length, "no resources");
+  persp.resources.forEach(x => {
+    assert.ok(x.label && x.kind, "resource incomplete");
+    assert.ok(/^https?:\/\//.test(x.url || ""), x.label + ": missing url");
+  });
+});
+
 console.log("\ndata.test.js: " + passed + " passed (" +
   data.terms.length + " terms, " +
   (examples ? examples.examples.length : 0) + " examples, " +
-  (dc ? dc.deals.length : 0) + " deals checked)");
+  (dc ? dc.deals.length : 0) + " deals, " +
+  (persp ? persp.voices.length : 0) + " voices checked)");
