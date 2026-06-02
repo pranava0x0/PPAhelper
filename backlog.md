@@ -2,6 +2,13 @@
 
 Ideas and deferred scope. Each: description + priority (low / medium / high).
 
+## Next up (agreed 2026-06-02)
+
+Build the newcomer **on-ramp trio** before deeper features (detail under "Curriculum completeness — newcomer journey"):
+1. **Electricity & markets 101** — grid (generation → transmission → distribution), supply/demand and why prices move, wholesale vs retail, ISO/RTO, baseload vs peaker, energy vs capacity.
+2. **Units primer** — MW vs MWh and capacity factor, tied to project size, output, and revenue.
+3. **"Why PPAs exist"** — the value proposition (buyer hedge, developer bankability, corporate clean-energy claim), placed *before* the mechanics in Foundations.
+
 ## Deferred from initial scope (2026-06-01)
 
 - **Legal clause-by-clause drafting & redlining module** — deep dive on drafting/reviewing legal terms, risk allocation, redline practice. Covered at foundational level in v1; expand into a dedicated lawyer-track module later. *Priority: medium*
