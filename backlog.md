@@ -6,6 +6,7 @@ Ideas and deferred scope. Each: description + priority (low / medium / high).
 
 - ✅ **Newcomer on-ramp trio — shipped 2026-06-02.** Foundations gained "Why sign a PPA?", an electricity primer, and the MW-vs-MWh rule.
 - ✅ **"From scratch" rung + Learn reorg — shipped 2026-06-02.** Closed the gap between "I know nothing" and "I know a little about electricity": added Step 1 "Electricity from scratch" (kW vs kWh / your bill, can't-store → instant balance, the plant→grid→you journey, who's who) below the market content. Restructured the tab (now "Learn") into an explicit **4-step path with a clickable stepper**: 1 Electricity from scratch → 2 How power is bought & sold → 3 Why PPAs exist → 4 How a PPA works. Added 3 grid-basics terms (kWh, Utility, T&D; 57 total).
+- ✅ **Fixed 2026-06-02: Newcomer level-filter bug.** The level-filter control buttons carried `data-level`, the same attribute the content filter targets — so clicking "Newcomer"/"Practitioner" hid the other filter buttons (you couldn't switch back). Moved the control to `data-setlevel`; added a static UI-integrity test suite (`test/ui.test.js`) that fails if the control ever filters itself, if an inline tooltip term doesn't resolve, or if nav tabs and views drift. Also compacted the mobile stepper (2×2, hide level cue) to cut scrolling.
 - **Now on deck:** the two verified quick fixes — focus management on view switch, and persist the level filter — then the **deal-lifecycle walkthrough** and **who's-who ecosystem map**.
 
 ### Information architecture — verdict (2026-06-02)
@@ -78,7 +79,8 @@ Walking the tabs as a true beginner: the **mechanics are taught well, but the on
 - **Deep-linkable sub-state.** Support `#glossary/basis-risk`-style links (shareable) and reflect the active example/deal filter in the URL. *Priority: medium*
 - **Mobile nav scroll affordance.** Seven tabs scroll horizontally with no cue; add an edge fade / "more" indicator so off-screen tabs are discoverable. *Priority: medium*
 - **Automated link-checker** (105 external links). Add a CI script (e.g., lychee) or make target to catch dead links; log rot to `issues.md`. *Priority: medium*
-- **Render smoke test in CI.** Tests cover math + data only; add a headless check that each view renders and key nodes exist, to catch UI regressions. *Priority: medium*
+- **Render smoke test in CI.** `test/ui.test.js` now statically checks nav/view consistency, inline-term resolution, and the self-filtering guard; a true headless render check (each view paints, key nodes exist) is still worth adding. *Priority: medium*
+- **Asset cache-busting.** `index.html` references `app.js`/`styles.css` with no version, so a returning visitor can pair new HTML with stale cached JS/CSS — observed in testing, where a cached old `app.js` broke the level filter. Add `?v=` query strings or hashed filenames on deploy. *Priority: medium*
 - **Create `issues.md`.** No bug log exists yet (CLAUDE.md expects one). *Priority: low*
 - **Per-view `<title>` + Open Graph meta** for sharing/SEO. *Priority: low*
 
