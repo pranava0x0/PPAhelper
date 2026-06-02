@@ -189,8 +189,36 @@
       });
   }
 
+  /* ============ PERSPECTIVES ============ */
+  function renderPerspectives(data) {
+    var v = document.getElementById("voices");
+    if (v) v.innerHTML = (data.voices || []).map(function (p) {
+      return '<article class="card voice-card" data-level="' + p.level + '">' +
+        '<p class="eyebrow">' + esc(p.angle) + "</p>" +
+        "<h3>" + esc(p.name) + "</h3>" +
+        '<div class="voice-role">' + esc(p.role) + "</div>" +
+        "<p>" + esc(p.view) + "</p>" +
+        '<p class="voice-takeaway"><strong>Takeaway.</strong> ' + esc(p.takeaway) + "</p>" +
+        '<p class="src"><a href="' + esc(p.url) + '">' + esc(p.source) + "</a></p>" +
+        "</article>";
+    }).join("");
+    var r = document.getElementById("resources");
+    if (r) r.innerHTML = (data.resources || []).map(function (x) {
+      return '<li class="resource" data-level="' + x.level + '">' +
+        '<span class="pill outline">' + esc(x.kind) + "</span> " +
+        '<a href="' + esc(x.url) + '">' + esc(x.label) + "</a></li>";
+    }).join("");
+  }
+  function loadPerspectives() {
+    return fetch("data/perspectives.json").then(function (r) { return r.json(); }).then(renderPerspectives)
+      .catch(function (e) {
+        var v = document.getElementById("voices");
+        if (v) v.innerHTML = '<p class="src" style="border:none">Could not load perspectives (' + e.message + ").</p>";
+      });
+  }
+
   function init() {
-    Promise.all([loadExamples(), loadDatacenter()]).then(reapplyLevel);
+    Promise.all([loadExamples(), loadDatacenter(), loadPerspectives()]).then(reapplyLevel);
     document.addEventListener("ppa:level", function () {
       // when a level hides the active example pill, fall back to the first visible one
       var active = document.querySelector('#example-pills .example-pill[aria-selected="true"]');

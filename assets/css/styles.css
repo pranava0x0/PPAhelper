@@ -89,8 +89,9 @@ p { margin: 0 0 14px; max-width: 68ch; }
 }
 .masthead-inner {
   max-width: 1180px; margin: 0 auto; padding: 10px 22px;
-  display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
 }
+.masthead-controls { display: flex; align-items: center; gap: 10px; }
 .wordmark { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
 .wordmark .spark { color: var(--accent); }
 .masthead-tag {
@@ -102,7 +103,7 @@ p { margin: 0 0 14px; max-width: 68ch; }
 .theme-toggle {
   font-family: var(--font-mono); font-size: 12px; background: none; border: 1px solid var(--border);
   color: var(--text-muted); border-radius: 8px; padding: 6px 10px; cursor: pointer;
-  min-height: 32px; min-width: 44px;
+  min-height: 32px; min-width: 64px; text-align: center;
 }
 .theme-toggle:hover { color: var(--text); border-color: var(--accent); }
 
@@ -275,6 +276,8 @@ button, a, input, [tabindex] { touch-action: manipulation; }
   main { padding: 20px 16px 70px; }
   .masthead-tag { display: none; }
   .lede { font-size: 1.06rem; }
+  .masthead-spacer { display: none; }
+  .masthead-controls { width: 100%; justify-content: space-between; }
 }
 
 /* ---- level filter + inline nav links ---- */
@@ -328,3 +331,12 @@ button, a, input, [tabindex] { touch-action: manipulation; }
 
 table.dc-table td, table.dc-table th { text-align: left; vertical-align: top; font-size: 13px; }
 table.dc-table td.mono { white-space: nowrap; }
+
+/* ---- perspectives ---- */
+.voice-card .eyebrow { color: var(--accent); }
+.voice-role { font-size: 12.5px; color: var(--text-muted); margin: 2px 0 10px; }
+.voice-card p { font-size: 14px; }
+.voice-takeaway { background: var(--accent-soft); border-radius: 8px; padding: 10px 12px; font-size: 13.5px; }
+.resource-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.resource { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); font-size: 14px; min-height: 44px; }
+.resource .pill { flex-shrink: 0; }

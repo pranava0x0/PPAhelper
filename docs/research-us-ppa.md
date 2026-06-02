@@ -190,6 +190,17 @@ The fastest-moving corner of the US PPA market. Sourced inline (government/natio
 
 ---
 
+## Round 4 — expert perspectives & load flexibility (2026-06-02)
+
+Named-expert framing (full data in `data/perspectives.json`) plus a load-flexibility structure in the data-center tab. Viewpoints are paraphrased summaries of public work, attributed with sources — not direct quotes.
+
+- **Jigar Shah** — invented the no-money-down solar PPA at SunEdison (2003); led DOE's Loan Programs Office (2021–25, ~$400B) financing first-of-a-kind clean tech. Lesson: a PPA is a financing instrument first. *([Canary Media](https://www.canarymedia.com/articles/climatetech-finance/solar-finance-pioneer-jigar-shah-to-lead-40-billion-doe-loan-programs-office))*
+- **Tyler Norris (Duke Nicholas Institute)** — "Rethinking Load Growth" (Feb 2025): the existing US grid can absorb ~76 GW of new load at 0.25% annual curtailment (~98 GW at 0.5%) — "curtailment-enabled headroom." Studied 22 balancing authorities (~95% of peak load); testified to House Energy & Commerce. *([PowerMag](https://www.powermag.com/duke-researchers-grid-flexibility-key-to-accommodate-load-growth/))*
+- **Lucia Tian (Google)** — scaling clean firm power (advanced nuclear, enhanced geothermal, CCS, long-duration storage) via offtake and investment to reach 24/7 CFE; funding the "missing middle." *([Utility Dive](https://www.utilitydive.com/news/google-firm-peaking-clean-energy-geothermal-nuclear-ccs-hydrogen/693787/))*
+- **Rich Powell (CEBA)** — 375+ corporate buyers; a record ~27 GW procured in 2025, broadening into clean firm power; buyers increasingly steer what gets built. *([Utility Dive](https://www.utilitydive.com/news/corporate-clean-energy-demand-remains-strong-ceba-ceo-rich-powell-2025-26-procurement-trends/819987/))*
+
+---
+
 ## Coverage scorecard (be honest in the UI)
 
 | Topic | Status |
@@ -208,6 +219,7 @@ The fastest-moving corner of the US PPA market. Sourced inline (government/natio
 | Bankability (creditworthy offtaker + tenor; lender risk view) | ✅ Verified (R2, primary) |
 | Data-center demand, structures & landmark deals | ✅ Verified (R3, LBNL/DOE + trade press) |
 | Annotated example term sheets (VPPA, utility, data-center nuclear) | ✅ Added (illustrative composites) |
+| Expert perspectives (Shah, Norris, Tian, Powell); load flexibility | ✅ Added (R4, paraphrased + cited) |
 | Originator role / day-to-day / skills | 🟡 Covered (R2, secondary — job postings) |
 | ISO/RTO per-market detail (ERCOT/PJM/CAISO/MISO/SPP) | ⚠️ Needs research |
 | Internal approval/signing (investment committee, board, PUC prudence) | ⚠️ Needs research |
