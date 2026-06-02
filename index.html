@@ -16,18 +16,21 @@
       <span class="wordmark">PPA&nbsp;<span class="spark">Helper</span></span>
       <span class="masthead-tag">US power purchase agreements · learn to originate</span>
       <span class="masthead-spacer"></span>
-      <div class="level-filter" id="level-filter" role="group" aria-label="Filter content by experience level">
-        <button type="button" data-level="all" aria-pressed="true">All</button>
-        <button type="button" data-level="1" aria-pressed="false">Newcomer</button>
-        <button type="button" data-level="2" aria-pressed="false">Practitioner</button>
+      <div class="masthead-controls">
+        <div class="level-filter" id="level-filter" role="group" aria-label="Filter content by experience level">
+          <button type="button" data-level="all" aria-pressed="true">All</button>
+          <button type="button" data-level="1" aria-pressed="false">Newcomer</button>
+          <button type="button" data-level="2" aria-pressed="false">Practitioner</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">dark</button>
       </div>
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">dark</button>
     </div>
     <nav class="views" role="tablist" aria-label="Sections">
       <button class="nav-btn" role="tab" id="tab-foundations" aria-controls="view-foundations" aria-selected="true" data-view="foundations">Foundations</button>
       <button class="nav-btn" role="tab" id="tab-examples" aria-controls="view-examples" aria-selected="false" data-view="examples">Example PPAs</button>
       <button class="nav-btn" role="tab" id="tab-simulator" aria-controls="view-simulator" aria-selected="false" data-view="simulator">Settlement simulator</button>
       <button class="nav-btn" role="tab" id="tab-datacenter" aria-controls="view-datacenter" aria-selected="false" data-view="datacenter">Data centers</button>
+      <button class="nav-btn" role="tab" id="tab-perspectives" aria-controls="view-perspectives" aria-selected="false" data-view="perspectives">Perspectives</button>
       <button class="nav-btn" role="tab" id="tab-glossary" aria-controls="view-glossary" aria-selected="false" data-view="glossary">Glossary</button>
       <button class="nav-btn" role="tab" id="tab-coverage" aria-controls="view-coverage" aria-selected="false" data-view="coverage">Coverage &amp; sources</button>
     </nav>
@@ -211,6 +214,17 @@
       <div class="table-wrap"><table class="settle dc-table" id="dc-deals"></table></div>
     </section>
 
+    <!-- ============ PERSPECTIVES ============ -->
+    <section class="view" id="view-perspectives" role="tabpanel" aria-labelledby="tab-perspectives" hidden>
+      <p class="eyebrow">Voices · learn more</p>
+      <h1>Expert perspectives</h1>
+      <p class="lede">How four people who shaped this market think about PPAs — paraphrased from their public work, each cited. Then a short path to keep learning.</p>
+      <div class="grid cols-2" id="voices"></div>
+      <h2 style="margin-top:30px">Keep learning</h2>
+      <p class="src" style="border:none">A short, ordered path — primers first, then reports and data.</p>
+      <ul class="resource-list" id="resources"></ul>
+    </section>
+
     <!-- ============ GLOSSARY ============ -->
     <section class="view" id="view-glossary" role="tabpanel" aria-labelledby="tab-glossary" hidden>
       <p class="eyebrow">Reference</p>
@@ -247,6 +261,7 @@
           <tr><td>Clauses: curtailment, force majeure, change-in-law, termination</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Bankability (creditworthy offtaker + tenor; lender risk view)</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Data-center demand &amp; deal structures (LBNL/DOE + company &amp; trade sources)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Load flexibility / curtailment-enabled headroom (Duke 2025)</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Annotated example term sheets (VPPA, utility physical, data-center nuclear)</td><td><span class="pill verified">verified</span></td></tr>
         </tbody>
       </table>
@@ -256,6 +271,7 @@
         <thead><tr><th>Topic</th><th>Status</th></tr></thead>
         <tbody>
           <tr><td>PPA originator role: responsibilities, skills, background (from job postings)</td><td><span class="pill secondary">secondary</span></td></tr>
+          <tr><td>Expert perspectives (Shah, Norris, Tian, Powell) — summaries of public work</td><td><span class="pill secondary">paraphrased</span></td></tr>
         </tbody>
       </table>
 
