@@ -170,6 +170,26 @@ A **PPA originator** (a.k.a. origination manager) **leads origination and negoti
 
 ---
 
+## Round 3 — data centers & generation (2026-06-01)
+
+The fastest-moving corner of the US PPA market. Sourced inline (government/national-lab + reputable trade press). Deals are point-in-time; full data in `data/datacenter.json`, annotated structures in `data/examples.json`.
+
+**Demand context.** US data-center electricity demand more than doubled (2.3x) 2018→2024 and could reach 325–580 TWh by 2028 — up to ~12% of US electricity. *([LBNL — 2024 Data Center Energy Usage Report](https://eta.lbl.gov/publications/2024-lbnl-data-center-energy-usage-report))*
+
+**Why structures are changing.** "Speed-to-power" — energizing megawatts faster than multi-year interconnection queues allow — is the binding constraint, pushing deals toward firm, on-site, and directly owned generation. *([Utility Dive](https://www.utilitydive.com/news/hyperscaler-data-center-power-companies-grid-utilities/820568/))*
+
+**Landmark deals (as of mid-2026):**
+- **Microsoft × Constellation** — restart Three Mile Island Unit 1 (Crane), ~835 MW, 20-yr PPA, online ~2027–28. *(Constellation; CNBC)*
+- **Amazon × Talen** — Susquehanna nuclear, up to 1,920 MW, 17-yr (~$18B); restructured from behind-the-meter co-location to front-of-meter retail after FERC rejected the co-location interconnection agreement (Nov 2024). *(PowerMag; Utility Dive)*
+- **Google × Kairos** — first corporate SMR fleet, up to 500 MW, first unit ~2030; **Google × Fervo** geothermal (115 MW) + **$4.75B Intersect Power** stake. *(Google; Utility Dive)*
+- **Meta** — up to 6.6 GW nuclear via Vistra / Oklo / TerraPower; ~300 MW geothermal (Sage / XGS). *(PowerMag)*
+- **Microsoft × Helion** — world's first fusion PPA (~50 MW, target 2028). *(Helion)*
+- **Neoclouds** — Crusoe on-site gas (~1 GW, Stargate / Abilene); CoreWeave acquired Core Scientific (~1.3 GW). *(DCD; SEC)*
+
+**Caveat.** Deal facts draw partly on company press releases and trade press (Data Center Dynamics, PowerMag, Utility Dive), not all primary or peer-reviewed; figures and statuses change quarterly. Demand and structural framing are LBNL/DOE-grounded. The annotated example term sheets are illustrative composites, not reproductions of signed contracts.
+
+---
+
 ## Coverage scorecard (be honest in the UI)
 
 | Topic | Status |
@@ -186,6 +206,8 @@ A **PPA originator** (a.k.a. origination manager) **leads origination and negoti
 | Other PPA types (sleeved, BTM, community, front/behind-meter) | ✅ Verified (R2, primary) |
 | Clauses: curtailment, force majeure, change-in-law, termination | ✅ Verified (R2, primary) |
 | Bankability (creditworthy offtaker + tenor; lender risk view) | ✅ Verified (R2, primary) |
+| Data-center demand, structures & landmark deals | ✅ Verified (R3, LBNL/DOE + trade press) |
+| Annotated example term sheets (VPPA, utility, data-center nuclear) | ✅ Added (illustrative composites) |
 | Originator role / day-to-day / skills | 🟡 Covered (R2, secondary — job postings) |
 | ISO/RTO per-market detail (ERCOT/PJM/CAISO/MISO/SPP) | ⚠️ Needs research |
 | Internal approval/signing (investment committee, board, PUC prudence) | ⚠️ Needs research |

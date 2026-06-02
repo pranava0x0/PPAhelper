@@ -274,4 +274,57 @@ button, a, input, [tabindex] { touch-action: manipulation; }
   h1 { font-size: 1.6rem; }
   main { padding: 20px 16px 70px; }
   .masthead-tag { display: none; }
+  .lede { font-size: 1.06rem; }
 }
+
+/* ---- level filter + inline nav links ---- */
+.lvl-hidden { display: none !important; }
+.level-filter { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.level-filter button { font-size: 12px; font-weight: 600; padding: 6px 10px; border: none; background: var(--surface); color: var(--text-muted); cursor: pointer; min-height: 32px; }
+.level-filter button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.nav-link-btn { background: none; border: none; color: var(--accent); font: inherit; cursor: pointer; padding: 0; text-decoration: underline; }
+
+/* ---- example PPAs (annotated) ---- */
+.example-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.example-pill { font-family: var(--font-serif); font-size: 15px; font-weight: 600; padding: 9px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); cursor: pointer; min-height: 44px; }
+.example-pill[aria-selected="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.example-summary { font-size: 15px; color: var(--text-muted); max-width: 72ch; margin: 0 0 18px; }
+
+.annotate { display: grid; gap: 16px; }
+@media (min-width: 860px) { .annotate { grid-template-columns: 304px 1fr; align-items: start; } }
+
+.clause-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.clause-row { width: 100%; text-align: left; display: flex; flex-direction: column; gap: 2px; padding: 9px 12px; border: 1px solid var(--border); border-left: 3px solid transparent; border-radius: 8px; background: var(--surface); color: var(--text); cursor: pointer; min-height: 44px; }
+.clause-row:hover { border-color: var(--accent); }
+.clause-row[aria-selected="true"] { border-left-color: var(--accent); background: var(--accent-soft); }
+.clause-label { font-size: 13px; font-weight: 600; }
+.clause-val { font-size: 11.5px; color: var(--text-muted); }
+
+.clause-detail { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.clause-detail h3 { margin: 8px 0 6px; }
+.clause-detail-val { font-size: 14px; color: var(--accent); margin: 0 0 12px; }
+@media (min-width: 860px) { .clause-detail { position: sticky; top: 116px; } }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.chip { font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); cursor: pointer; min-height: 32px; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.gloss-chip::before { content: "\21AA\00A0"; color: var(--accent); }
+
+/* ---- data centers ---- */
+.dc-structure { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; background: var(--surface); overflow: hidden; }
+.dc-structure > summary { list-style: none; cursor: pointer; padding: 13px 16px; display: flex; align-items: center; gap: 10px; min-height: 44px; }
+.dc-structure > summary::-webkit-details-marker { display: none; }
+.dc-structure > summary .pill { margin-left: auto; }
+.dc-structure > summary::after { content: "+"; color: var(--text-muted); font-size: 18px; width: 14px; text-align: center; }
+.dc-structure[open] > summary::after { content: "\2212"; }
+.dc-structure[open] > summary { border-bottom: 1px solid var(--border); }
+.dc-s-name { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 600; }
+.dc-s-body { padding: 14px 16px; }
+.dc-s-body p { font-size: 14px; margin: 0 0 10px; max-width: none; }
+
+.dc-filter { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 14px; }
+.dc-filter-btn { font-size: 12px; font-weight: 600; padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--text-muted); cursor: pointer; min-height: 36px; }
+.dc-filter-btn[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
+
+table.dc-table td, table.dc-table th { text-align: left; vertical-align: top; font-size: 13px; }
+table.dc-table td.mono { white-space: nowrap; }

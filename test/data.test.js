@@ -53,4 +53,53 @@ test("no machine-local paths leaked into URLs (policy)", () => {
   });
 });
 
-console.log("\ndata.test.js: " + passed + " passed (" + (data ? data.terms.length : 0) + " terms checked)");
+// ---- cross-file integrity: examples.json + datacenter.json ----
+function load(name) {
+  return JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", name), "utf8"));
+}
+const termSet = new Set(data.terms.map(t => t.term));
+let examples, dc;
+
+test("examples.json is valid and every clause cites real glossary terms", () => {
+  examples = load("examples.json");
+  assert.ok(Array.isArray(examples.examples) && examples.examples.length, "no examples");
+  examples.examples.forEach(ex => {
+    assert.ok(ex.id && ex.title && ex.summary, ex.id + ": missing fields");
+    assert.ok(Array.isArray(ex.clauses) && ex.clauses.length, ex.id + ": no clauses");
+    ex.clauses.forEach(c => {
+      assert.ok(c.label && c.value && c.annotation, ex.id + "/" + c.label + ": incomplete clause");
+      assert.ok(["buyer", "seller", "both"].includes(c.party), ex.id + "/" + c.label + ": bad party");
+      (c.glossaryRefs || []).forEach(r => {
+        assert.ok(termSet.has(r), ex.id + "/" + c.label + ": glossaryRef not in glossary -> " + r);
+      });
+    });
+  });
+});
+
+test("datacenter.json is valid; structures cite real terms; deals are sourced", () => {
+  dc = load("datacenter.json");
+  assert.ok(dc.demand && /^https?:\/\//.test(dc.demand.url || ""), "demand missing source url");
+  assert.ok(Array.isArray(dc.structures) && dc.structures.length, "no structures");
+  dc.structures.forEach(s => {
+    assert.ok(s.name && s.what && s.whyClever && s.tradeoffs, s.id + ": incomplete structure");
+    assert.ok([1, 2, 3].includes(s.level), s.id + ": bad level");
+    assert.ok(/^https?:\/\//.test(s.url || ""), s.id + ": missing source url");
+    (s.glossaryRefs || []).forEach(r => {
+      assert.ok(termSet.has(r), s.id + ": glossaryRef not in glossary -> " + r);
+    });
+  });
+  assert.ok(Array.isArray(dc.deals) && dc.deals.length, "no deals");
+  dc.deals.forEach(x => {
+    assert.ok(x.buyer && x.seller && x.tech && x.capacity, x.buyer + ": incomplete deal");
+    assert.ok(/^https?:\/\//.test(x.url || ""), x.buyer + ": deal missing source url");
+  });
+});
+
+test("data-center structures include newcomer-level entries", () => {
+  assert.ok(dc.structures.some(s => s.level === 1), "no level-1 structures for newcomers");
+});
+
+console.log("\ndata.test.js: " + passed + " passed (" +
+  data.terms.length + " terms, " +
+  (examples ? examples.examples.length : 0) + " examples, " +
+  (dc ? dc.deals.length : 0) + " deals checked)");

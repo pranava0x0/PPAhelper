@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  var VIEWS = ["foundations", "simulator", "glossary", "coverage"];
+  var VIEWS = ["foundations", "examples", "simulator", "datacenter", "glossary", "coverage"];
 
   /* ---------- view switcher ---------- */
   function showView(name) {
@@ -127,11 +127,7 @@
       el.setAttribute("role", "button");
       el.setAttribute("title", t.def + (t.source ? "  (Source: " + t.source + ")" : ""));
       el.setAttribute("aria-label", key + ": " + t.def);
-      el.addEventListener("click", function () {
-        showView("glossary");
-        var s = document.getElementById("glossary-search");
-        if (s) { s.value = key; searchTerm = key; activeCat = "All"; buildCatFilter(); renderGlossary(); }
-      });
+      el.addEventListener("click", function () { showGlossaryTerm(key); });
       el.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.click(); }
       });
@@ -157,9 +153,51 @@
       });
   }
 
+  /* ---------- glossary deep-link (inline terms + clause chips) ---------- */
+  function showGlossaryTerm(key) {
+    showView("glossary");
+    searchTerm = key; activeCat = "All";
+    buildCatFilter(); renderGlossary();
+    var input = document.getElementById("glossary-search");
+    if (input) { input.value = key; input.focus(); }
+  }
+
+  /* ---------- experience-level filter (newcomer → practitioner → all) ---------- */
+  var currentLevel = "all";
+  function applyLevel(level) {
+    currentLevel = level;
+    document.querySelectorAll("[data-level]").forEach(function (el) {
+      var lv = parseInt(el.getAttribute("data-level"), 10);
+      var show = level === "all" || (lv && lv <= parseInt(level, 10));
+      el.classList.toggle("lvl-hidden", !show);
+    });
+  }
+  function wireLevel() {
+    var wrap = document.getElementById("level-filter");
+    if (!wrap) return;
+    wrap.querySelectorAll("button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        wrap.querySelectorAll("button").forEach(function (x) {
+          x.setAttribute("aria-pressed", x === b ? "true" : "false");
+        });
+        applyLevel(b.dataset.level);
+        document.dispatchEvent(new CustomEvent("ppa:level"));
+      });
+    });
+  }
+
+  // exposed for the content renderers (assets/js/content.js)
+  window.PPA = {
+    showView: showView,
+    showGlossaryTerm: showGlossaryTerm,
+    reapplyLevel: function () { applyLevel(currentLevel); },
+    getLevel: function () { return currentLevel; }
+  };
+
   function init() {
     wireNav();
     wireTheme();
+    wireLevel();
     loadGlossary();
   }
 

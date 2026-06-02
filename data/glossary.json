@@ -281,6 +281,86 @@
       "status": "secondary",
       "source": "energyRe — VP PPA Origination (job description)",
       "url": "https://www.energyre.com/sites/g/files/ujywhv351/files/2022-09/VP,%20PPA%20Origination.pdf"
+    },
+    {
+      "term": "Speed-to-Power",
+      "category": "Data centers",
+      "def": "How fast a new load can get megawatts energized. With grid interconnection queues running multiple years, speed-to-power has become the binding constraint for AI data centers — and the main reason PPAs are shifting toward firm, on-site, and directly owned generation.",
+      "status": "verified",
+      "source": "Utility Dive",
+      "url": "https://www.utilitydive.com/news/hyperscaler-data-center-power-companies-grid-utilities/820568/"
+    },
+    {
+      "term": "Firm / Dispatchable Power",
+      "category": "Data centers",
+      "def": "Generation available on demand around the clock — nuclear, geothermal, hydro, or gas — as opposed to variable solar and wind. Data centers run 24/7, so they value firm power that variable renewables alone can't guarantee.",
+      "status": "verified",
+      "source": "DOE",
+      "url": "https://www.energy.gov/oe/clean-energy-resources-meet-data-center-electricity-demand"
+    },
+    {
+      "term": "24/7 Carbon-Free Energy (CFE)",
+      "category": "Data centers",
+      "def": "Matching electricity use with carbon-free generation every hour in every grid region, rather than netting it out across a year (annual/volumetric matching). A stricter clean-energy claim that forces procurement of firm and storage resources, not just cheap midday solar.",
+      "status": "verified",
+      "source": "DOE",
+      "url": "https://www.energy.gov/oe/clean-energy-resources-meet-data-center-electricity-demand"
+    },
+    {
+      "term": "Bring-Your-Own-Power (BYOP)",
+      "category": "Data centers",
+      "def": "Building dedicated on-site generation — often gas turbines, sometimes fuel cells — to energize a campus directly, ahead of or instead of a grid connection. The fastest route to firm megawatts, common among neoclouds, but with carbon and air-permit trade-offs.",
+      "status": "verified",
+      "source": "S&P Global",
+      "url": "https://www.spglobal.com/sustainable1/en/insights/special-editorial/hyperscaler-procurement-to-shape-us-power-investment"
+    },
+    {
+      "term": "Small Modular Reactor (SMR)",
+      "category": "Data centers",
+      "def": "A factory-built nuclear reactor, typically under ~300 MW, deployed in increments. Offers firm 24/7 carbon-free power that scales with load; first US units backed by corporate offtake are targeted around 2030.",
+      "status": "verified",
+      "source": "Google / Kairos Power",
+      "url": "https://blog.google/company-news/outreach-and-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/"
+    },
+    {
+      "term": "Enhanced Geothermal",
+      "category": "Data centers",
+      "def": "Next-generation geothermal that engineers heat reservoirs in places without natural hydrothermal resources, providing firm, dispatchable, carbon-free power that complements variable renewables.",
+      "status": "verified",
+      "source": "Carbon Credits",
+      "url": "https://carboncredits.com/google-taps-earths-heat-in-150mw-geothermal-deal-with-ormat-technologies-to-power-data-centers/"
+    },
+    {
+      "term": "Offtaker",
+      "category": "Foundations",
+      "def": "The buyer of a project's output under a PPA — a utility, a corporate (C&I) buyer, or a data-center operator. The offtaker's creditworthiness is central to whether the project can be financed.",
+      "status": "verified",
+      "source": "World Bank PPP",
+      "url": "https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements"
+    },
+    {
+      "term": "Independent Power Producer (IPP)",
+      "category": "Foundations",
+      "def": "A company that owns and operates generation to sell power, rather than a regulated utility. Talen, Vistra, NRG, and Constellation are large IPPs and common PPA sellers.",
+      "status": "verified",
+      "source": "PowerMag",
+      "url": "https://www.powermag.com/talen-amazon-launch-18b-nuclear-ppa-a-grid-connected-ipp-model-for-the-data-center-era/"
+    },
+    {
+      "term": "Hyperscaler",
+      "category": "Data centers",
+      "def": "A large cloud provider running massive data centers — Amazon (AWS), Microsoft, Google, and Meta. Collectively the biggest new driver of US electricity demand and corporate PPA volume.",
+      "status": "verified",
+      "source": "S&P Global",
+      "url": "https://www.spglobal.com/sustainable1/en/insights/special-editorial/hyperscaler-procurement-to-shape-us-power-investment"
+    },
+    {
+      "term": "Neocloud",
+      "category": "Data centers",
+      "def": "A newer, GPU-focused cloud provider built for AI workloads (e.g., CoreWeave, Crusoe, Lambda). Often races to secure power through on-site generation rather than long grid-tied PPAs.",
+      "status": "verified",
+      "source": "Utility Dive",
+      "url": "https://www.utilitydive.com/news/hyperscaler-data-center-power-companies-grid-utilities/820568/"
     }
   ]
 }

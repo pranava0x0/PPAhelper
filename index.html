@@ -14,13 +14,20 @@
   <header class="masthead" role="banner">
     <div class="masthead-inner">
       <span class="wordmark">PPA&nbsp;<span class="spark">Helper</span></span>
-      <span class="masthead-tag">US power purchase agreements · for originators</span>
+      <span class="masthead-tag">US power purchase agreements · learn to originate</span>
       <span class="masthead-spacer"></span>
+      <div class="level-filter" id="level-filter" role="group" aria-label="Filter content by experience level">
+        <button type="button" data-level="all" aria-pressed="true">All</button>
+        <button type="button" data-level="1" aria-pressed="false">Newcomer</button>
+        <button type="button" data-level="2" aria-pressed="false">Practitioner</button>
+      </div>
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">dark</button>
     </div>
     <nav class="views" role="tablist" aria-label="Sections">
       <button class="nav-btn" role="tab" id="tab-foundations" aria-controls="view-foundations" aria-selected="true" data-view="foundations">Foundations</button>
+      <button class="nav-btn" role="tab" id="tab-examples" aria-controls="view-examples" aria-selected="false" data-view="examples">Example PPAs</button>
       <button class="nav-btn" role="tab" id="tab-simulator" aria-controls="view-simulator" aria-selected="false" data-view="simulator">Settlement simulator</button>
+      <button class="nav-btn" role="tab" id="tab-datacenter" aria-controls="view-datacenter" aria-selected="false" data-view="datacenter">Data centers</button>
       <button class="nav-btn" role="tab" id="tab-glossary" aria-controls="view-glossary" aria-selected="false" data-view="glossary">Glossary</button>
       <button class="nav-btn" role="tab" id="tab-coverage" aria-controls="view-coverage" aria-selected="false" data-view="coverage">Coverage &amp; sources</button>
     </nav>
@@ -81,8 +88,22 @@
       <p class="src"><a href="https://www.epa.gov/green-power-markets/renewable-energy-certificates-recs">EPA — Renewable Energy Certificates</a></p>
 
       <div class="card" style="margin-top:24px">
-        <p style="margin:0"><strong>Where this is going.</strong> This is Phase&nbsp;0. Next come a pricing-structure payoff explorer, a basis-risk visualizer, an annotated term sheet, a deal-lifecycle walkthrough, quizzes, and a negotiation role-play. The <button class="nav-link-btn" data-view="coverage" style="background:none;border:none;color:var(--accent);font:inherit;cursor:pointer;padding:0;text-decoration:underline">coverage page</button> tracks exactly what's verified versus still being researched.</p>
+        <p style="margin:0"><strong>Where to go next.</strong> Walk through real deal structures clause by clause in <button class="nav-link-btn" data-view="examples">Example PPAs</button>, feel the settlement mechanic in the <button class="nav-link-btn" data-view="simulator">simulator</button>, and see how AI data centers are reshaping deals in <button class="nav-link-btn" data-view="datacenter">Data centers</button>. The <button class="nav-link-btn" data-view="coverage">coverage page</button> tracks what's verified versus still being researched.</p>
       </div>
+    </section>
+
+    <!-- ============ EXAMPLES ============ -->
+    <section class="view" id="view-examples" role="tabpanel" aria-labelledby="tab-examples" hidden>
+      <p class="eyebrow">Walkthroughs</p>
+      <h1>Example PPAs, annotated</h1>
+      <p class="lede">Pick a term sheet, then select any clause for what it means, why it matters, and the glossary terms behind it. Illustrative composites for learning — not a specific contract.</p>
+      <div class="example-pills" id="example-pills" role="tablist" aria-label="Choose an example"></div>
+      <p id="example-summary" class="example-summary"></p>
+      <div class="annotate">
+        <ul class="clause-list" id="clause-list" aria-label="Clauses"></ul>
+        <div class="clause-detail" id="clause-detail" aria-live="polite"></div>
+      </div>
+      <p class="src" id="example-realdocs" style="margin-top:16px"></p>
     </section>
 
     <!-- ============ SIMULATOR ============ -->
@@ -168,9 +189,26 @@
               </table>
             </div>
           </div>
-          <p class="hint">Settlement convention: each month, settlement = (LMP − strike) × volume. Positive means the generator pays the buyer; negative means the buyer pays the generator. <a href="https://www.leveltenenergy.com/post/power-purchase-agreement-terms">LevelTen terms</a></p>
+          <p class="hint">Settlement convention: each month, settlement = (LMP − strike) × volume. Positive means the generator pays the buyer; negative means the buyer pays the generator. This illustration assumes the buyer settles at the same price as the swap; in practice, <span class="gterm" data-term="Basis Risk">basis</span> between the settlement hub and the buyer's node shifts the effective price. <a href="https://www.leveltenenergy.com/post/power-purchase-agreement-terms">LevelTen terms</a></p>
         </div>
       </div>
+    </section>
+
+    <!-- ============ DATA CENTERS ============ -->
+    <section class="view" id="view-datacenter" role="tabpanel" aria-labelledby="tab-datacenter" hidden>
+      <p class="eyebrow">Applied · the fastest-moving corner of the market</p>
+      <h1>Clever PPAs for data centers &amp; generation</h1>
+      <p class="lede" id="dc-why">—</p>
+      <div class="kpi" id="dc-demand" style="max-width:600px"></div>
+
+      <h2 style="margin-top:28px">Structures — how the clever deals are built</h2>
+      <p class="src" style="border:none">Each is one answer to the same question: how do you get large, firm, often carbon-free power faster than the grid can build it? Select to expand.</p>
+      <div id="dc-structures"></div>
+
+      <h2 style="margin-top:30px">Recent deals</h2>
+      <p class="src" style="border:none">As of mid-2026 — worked examples of the structures above, not a live deal tracker. Each links to a source.</p>
+      <div class="dc-filter" id="dc-filter" role="group" aria-label="Filter deals by buyer type"></div>
+      <div class="table-wrap"><table class="settle dc-table" id="dc-deals"></table></div>
     </section>
 
     <!-- ============ GLOSSARY ============ -->
@@ -190,7 +228,7 @@
     <section class="view" id="view-coverage" role="tabpanel" aria-labelledby="tab-coverage" hidden>
       <p class="eyebrow">Honest scope</p>
       <h1>Coverage &amp; sources</h1>
-      <p class="lede">This tool only teaches what the research actually verified. Two passes are done: a fact-checked deep-research run, then a cheaper inline pass against government and national-lab sources (FERC, IRS, EPA, NREL, Berkeley Lab). Items still open are marked as gaps, not dressed up as fact.</p>
+      <p class="lede">This tool only teaches what the research actually verified, and it grows over time. Three passes are done: a fact-checked deep-research run, a government/national-lab pass (FERC, IRS, EPA, NREL, Berkeley Lab), and a data-center deals pass. Items still open are marked as gaps, not dressed up as fact.</p>
 
       <h2>Verified — primary / government sources</h2>
       <table class="coverage">
@@ -208,6 +246,8 @@
           <tr><td>Deal types: behind/front-of-meter, sleeved, community solar</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Clauses: curtailment, force majeure, change-in-law, termination</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Bankability (creditworthy offtaker + tenor; lender risk view)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Data-center demand &amp; deal structures (LBNL/DOE + company &amp; trade sources)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Annotated example term sheets (VPPA, utility physical, data-center nuclear)</td><td><span class="pill verified">verified</span></td></tr>
         </tbody>
       </table>
 
@@ -252,6 +292,16 @@
             <a href="https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements">World Bank — PPAs &amp; bankability</a>
           </p>
         </div>
+        <div class="card">
+          <h3>Data centers &amp; deals</h3>
+          <p style="margin:0">
+            <a href="https://eta.lbl.gov/publications/2024-lbnl-data-center-energy-usage-report">LBNL — Data Center Energy Usage Report</a><br>
+            <a href="https://www.energy.gov/oe/clean-energy-resources-meet-data-center-electricity-demand">DOE — Clean Energy for Data Centers</a><br>
+            <a href="https://www.constellationenergy.com/news/2024/Constellation-to-Launch-Crane-Clean-Energy-Center-Restoring-Jobs-and-Carbon-Free-Power-to-The-Grid.html">Constellation — Crane (Three Mile Island)</a><br>
+            <a href="https://www.utilitydive.com/news/talen-amazon-aws-susquehanna-nuclear-data-centert/750440/">Utility Dive — Amazon/Talen</a><br>
+            <a href="https://blog.google/company-news/outreach-and-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/">Google — Kairos SMR</a>
+          </p>
+        </div>
       </div>
     </section>
 
@@ -266,5 +316,6 @@
   <script src="assets/js/settle-core.js" defer></script>
   <script src="assets/js/simulator.js" defer></script>
   <script src="assets/js/app.js" defer></script>
+  <script src="assets/js/content.js" defer></script>
 </body>
 </html>
