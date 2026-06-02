@@ -41,6 +41,7 @@ assets/js/content.js     # renders Example PPAs + Data centers tabs from JSON
 data/glossary.json       # single source of truth for terms (feeds glossary + tooltips)
 data/examples.json       # annotated example term sheets (clause -> glossary links)
 data/datacenter.json     # data-center structures + recent hyperscaler/neocloud deals
+data/perspectives.json   # expert viewpoints + "keep learning" resources
 test/                    # dependency-free Node tests (math + data + cross-file integrity)
 docs/research-us-ppa.md  # fact-checked research the content is built on
 docs/research-methods.md # how to gather more data cheaply (cost vs. reliability)
@@ -50,6 +51,6 @@ backlog.md               # deferred scope and feature ideas
 
 ## Status
 
-**Six tabs live; three research passes done.** Foundations, Example PPAs (annotated), the settlement simulator, Data centers, the glossary (45 cited terms), and the coverage page. An experience-level filter (Newcomer / Practitioner / All) lets the same content serve newcomers and experts. Research has run in three passes — a fact-checked deep-research run, a government / national-lab pass (FERC, IRS, EPA, NREL, Berkeley Lab), and a data-center deals pass — all tracked in the in-app **Coverage & sources** view and `docs/research-us-ppa.md`. Next phases (pricing payoff explorer, basis-risk visualizer, deal-lifecycle walkthrough, quizzes) are in `backlog.md`.
+**Seven tabs live; four research passes done.** Foundations, Example PPAs (annotated), the settlement simulator, Data centers, Perspectives, the glossary (48 cited terms), and the coverage page. An experience-level filter (Newcomer / Practitioner / All) lets the same content serve newcomers and experts. Research has run in four passes — a fact-checked deep-research run, a government / national-lab pass (FERC, IRS, EPA, NREL, Berkeley Lab), a data-center deals pass, and an expert-perspectives pass (Jigar Shah, Tyler Norris, Lucia Tian, Rich Powell) — all tracked in the in-app **Coverage & sources** view and `docs/research-us-ppa.md`. Next phases (pricing payoff explorer, basis-risk visualizer, deal-lifecycle walkthrough, quizzes) are in `backlog.md`.
 
 The settlement simulator and example term sheets illustrate contract mechanics; they are not market data, legal advice, or financial advice. Data-center deals are point-in-time as of mid-2026.
