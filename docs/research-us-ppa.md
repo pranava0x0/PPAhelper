@@ -185,6 +185,7 @@ The fastest-moving corner of the US PPA market. Sourced inline (government/natio
 - **Meta** — up to 6.6 GW nuclear via Vistra / Oklo / TerraPower; ~300 MW geothermal (Sage / XGS). *(PowerMag)*
 - **Microsoft × Helion** — world's first fusion PPA (~50 MW, target 2028). *(Helion)*
 - **Neoclouds** — Crusoe on-site gas (~1 GW, Stargate / Abilene); CoreWeave acquired Core Scientific (~1.3 GW). *(DCD; SEC)*
+- **Added 2026-06-02** — Meta × Constellation (Clinton, 1,121 MW nuclear, 20-yr); Amazon × X-energy / Energy Northwest (SMRs, ~320→960 MW, WA); Microsoft × Brookfield (10.5 GW renewable framework — largest ever); Google × Brookfield (up to 3 GW hydro); Meta × Engie (600 MW solar, TX); xAI Colossus (on-site gas, Memphis); OpenAI/Oracle Stargate (700 MW off-grid gas microgrid, TX). Full data in `data/datacenter.json` (16 deals total). Also notable but not tabled: Google × Commonwealth Fusion Systems (200 MW fusion); Fermi America "Project Matador" (up to 11 GW behind-the-meter nuclear+gas+solar, Amarillo).
 
 **Caveat.** Deal facts draw partly on company press releases and trade press (Data Center Dynamics, PowerMag, Utility Dive), not all primary or peer-reviewed; figures and statuses change quarterly. Demand and structural framing are LBNL/DOE-grounded. The annotated example term sheets are illustrative composites, not reproductions of signed contracts.
 
