@@ -192,6 +192,55 @@
       "structure": "Acquire the power-secured data-center footprint outright rather than contract for it",
       "note": "Vertical integration to lock in gross power capacity.",
       "source": "CoreWeave (SEC 8-K)", "url": "https://www.sec.gov/Archives/edgar/data/0001769628/000176962825000019/coreweave-pressreleasepric.htm"
+    },
+    {
+      "buyer": "Meta", "buyerType": "Hyperscaler", "seller": "Constellation Energy",
+      "tech": "Nuclear (existing)", "capacity": "1,121 MW", "tenor": "20 years", "announced": "Jun 2025",
+      "structure": "Full-output PPA that keeps the Clinton, IL plant running (through 2047) and adds a ~30 MW uprate",
+      "note": "Takes effect mid-2027 when Illinois' state nuclear subsidy expires; grid-connected.",
+      "source": "Constellation", "url": "https://www.constellationenergy.com/newsroom/2025/constellation-meta-sign-20-year-deal-for-clean-reliable-nuclear-energy-in-illinois.html"
+    },
+    {
+      "buyer": "Amazon (AWS)", "buyerType": "Hyperscaler", "seller": "X-energy / Energy Northwest",
+      "tech": "Nuclear (SMR)", "capacity": "~320 MW (scaling to 960 MW)", "tenor": "investment + offtake", "announced": "Oct 2024",
+      "structure": "Anchors X-energy financing and offtakes SMR output in central Washington, early 2030s",
+      "note": "Part of plans for up to 5 GW of X-energy SMRs by 2039; separate SMR deal with Dominion in Virginia.",
+      "source": "Utility Dive", "url": "https://www.utilitydive.com/news/amazon-small-modular-reactor-deals-nuclear-dominion-x-energy-energy-northwest/730022/"
+    },
+    {
+      "buyer": "Microsoft", "buyerType": "Hyperscaler", "seller": "Brookfield Renewable",
+      "tech": "Solar + wind (framework)", "capacity": "10.5 GW", "tenor": "2026–2030 delivery", "announced": "May 2024",
+      "structure": "First-of-its-kind global renewable framework — roughly 8x the largest single corporate PPA ever signed",
+      "note": "Supports Microsoft's 100% 24/7 zero-carbon-by-2030 goal; a framework, not one contract.",
+      "source": "Brookfield", "url": "https://www.globenewswire.com/news-release/2024/05/01/2873042/0/en/Brookfield-and-Microsoft-Collaborating-to-Deliver-Over-10-5-GW-of-New-Renewable-Power-Capacity-Globally.html"
+    },
+    {
+      "buyer": "Google", "buyerType": "Hyperscaler", "seller": "Brookfield Renewable",
+      "tech": "Hydropower", "capacity": "up to 3,000 MW", "tenor": "framework", "announced": "2025",
+      "structure": "First-of-its-kind hydro framework — firm, dispatchable carbon-free power",
+      "note": "Adds large-scale firm hydro to Google's clean-firm mix alongside nuclear and geothermal.",
+      "source": "Power Technology", "url": "https://www.power-technology.com/news/google-brookfield-hydroelectric-power/"
+    },
+    {
+      "buyer": "Meta", "buyerType": "Hyperscaler", "seller": "Engie",
+      "tech": "Solar", "capacity": "600 MW", "tenor": "—", "announced": "2025",
+      "structure": "Solar PPA in Texas — Meta was 2025's largest corporate clean-energy offtaker (10+ GW)",
+      "note": "Variable renewables still anchor the portfolio alongside new nuclear and geothermal.",
+      "source": "Data Center Dynamics", "url": "https://www.datacenterdynamics.com/en/news/meta-signs-600mw-solar-ppa-with-engie-in-texas/"
+    },
+    {
+      "buyer": "xAI", "buyerType": "Neocloud", "seller": "On-site gas turbines (self-supplied)",
+      "tech": "On-site natural gas", "capacity": "~247 MW (permitted)", "tenor": "owned", "announced": "2025",
+      "structure": "Bring-your-own-power gas turbines for the Colossus supercomputer in Memphis — off-grid speed-to-power",
+      "note": "Drew air-permit scrutiny; a cautionary example of BYOP's environmental and community trade-offs.",
+      "source": "CNBC", "url": "https://www.cnbc.com/2025/07/03/musks-xai-gets-permit-for-turbines-to-power-supercomputer-in-memphis.html"
+    },
+    {
+      "buyer": "OpenAI / Oracle (Stargate)", "buyerType": "Neocloud", "seller": "Voltagrid / Vantage",
+      "tech": "Off-grid natural gas microgrid", "capacity": "700 MW", "tenor": "contracted", "announced": "2025",
+      "structure": "Off-grid 700 MW gas microgrid for the second Stargate campus (Shackelford County, TX)",
+      "note": "Off-grid BYOP at scale to bypass the interconnection queue entirely.",
+      "source": "Data Center Dynamics", "url": "https://www.datacenterdynamics.com/en/news/natural-gas-plant-planned-for-stargate-ai-data-center-campus-report/"
     }
   ]
 }
