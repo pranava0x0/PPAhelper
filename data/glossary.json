@@ -433,6 +433,30 @@
       "status": "verified",
       "source": "EIA — Electricity explained",
       "url": "https://www.eia.gov/energyexplained/electricity/"
+    },
+    {
+      "term": "Kilowatt-hour (kWh)",
+      "category": "Grid basics",
+      "def": "The unit on your electricity bill: using one kilowatt (1,000 watts) for one hour — e.g., a 1 kW space heater run for an hour. Watts measure power at a moment; watt-hours measure energy over time. A megawatt-hour (MWh), the PPA unit, is 1,000 kWh.",
+      "status": "verified",
+      "source": "EIA — Measuring electricity",
+      "url": "https://www.eia.gov/energyexplained/electricity/measuring-electricity.php"
+    },
+    {
+      "term": "Utility",
+      "category": "Grid basics",
+      "def": "The regulated company that delivers electricity to homes and businesses and sends the bill. Some utilities also own generation; in restructured markets they mainly deliver power that others generate. Distinct from an independent power producer, which only generates.",
+      "status": "verified",
+      "source": "EIA — Delivery to consumers",
+      "url": "https://www.eia.gov/energyexplained/electricity/delivery-to-consumers.php"
+    },
+    {
+      "term": "Transmission & Distribution (T&D)",
+      "category": "Grid basics",
+      "def": "The wires that move power: high-voltage transmission carries it long distances from plants; local distribution lines step it down and deliver it to customers. Transformers at substations raise and lower the voltage along the way.",
+      "status": "verified",
+      "source": "EIA — Delivery to consumers",
+      "url": "https://www.eia.gov/energyexplained/electricity/delivery-to-consumers.php"
     }
   ]
 }

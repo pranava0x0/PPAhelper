@@ -194,10 +194,23 @@
     getLevel: function () { return currentLevel; }
   };
 
+  /* ---------- in-page scroll links (learning-path stepper) ---------- */
+  function wireScrollLinks() {
+    document.querySelectorAll("[data-scroll-to]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var t = document.getElementById(b.dataset.scrollTo);
+        if (!t) return;
+        var smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        t.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+      });
+    });
+  }
+
   function init() {
     wireNav();
     wireTheme();
     wireLevel();
+    wireScrollLinks();
     loadGlossary();
   }
 
