@@ -1,0 +1,56 @@
+{
+  "updated": "2026-06-02",
+  "note": "Expert perspectives and further-learning resources. Viewpoints are summarized from each person's well-documented public work and attributed with a source; they are paraphrases, not direct quotes. 'level': 1=newcomer, 2=practitioner.",
+  "voices": [
+    {
+      "name": "Jigar Shah",
+      "role": "Founder, SunEdison; former Director, DOE Loan Programs Office",
+      "level": 1,
+      "angle": "The PPA business model itself was the innovation.",
+      "view": "At SunEdison (2003) Shah pioneered the 'no-money-down' solar PPA: the customer buys the power, not the panels, paying a predictable price over a long contract while a financier owns the system. That shifted solar from a capital purchase to a service and unlocked a multi-billion-dollar market. Running DOE's Loan Programs Office (2021–25), he applied the same logic to first-of-a-kind clean tech — finance is the lever that turns a technology into deployment.",
+      "takeaway": "A PPA is a financing instrument first. The contract exists to make a project bankable.",
+      "source": "Canary Media / Wikipedia",
+      "url": "https://www.canarymedia.com/articles/climatetech-finance/solar-finance-pioneer-jigar-shah-to-lead-40-billion-doe-loan-programs-office"
+    },
+    {
+      "name": "Tyler Norris",
+      "role": "Duke University, Nicholas Institute (former Cypress Creek Renewables)",
+      "level": 2,
+      "angle": "Flexible load is cheaper headroom than new wires.",
+      "view": "Norris's 2025 'Rethinking Load Growth' found the existing US grid could absorb ~76 GW of new load if large users curtail just 0.25% of their annual consumption during peaks (~98 GW at 0.5%). He calls this 'curtailment-enabled headroom.' For data-center PPAs, it reframes the problem: a load willing to flex can interconnect far faster and cheaper than one that insists on firm 24/7 grid service.",
+      "takeaway": "Willingness to curtail is a negotiating asset — it can be the difference between a multi-year queue and a fast connection.",
+      "source": "PowerMag / Duke Nicholas Institute",
+      "url": "https://www.powermag.com/duke-researchers-grid-flexibility-key-to-accommodate-load-growth/"
+    },
+    {
+      "name": "Lucia Tian",
+      "role": "Google, Head of Advanced Energy Technologies",
+      "level": 2,
+      "angle": "Buyers must fund the 'missing middle' of clean firm power.",
+      "view": "Tian leads Google's push beyond annual renewable matching toward 24/7 carbon-free energy, using offtake and investment to scale clean firm technologies — advanced nuclear (Kairos), enhanced geothermal (Fervo), carbon capture, and long-duration storage. Her thesis: large buyers should use demand to bridge the gap between a working pilot and a bankable, scalable product.",
+      "takeaway": "An offtake agreement can be a deliberate tool to commercialize a new technology, not just buy cheap power.",
+      "source": "Latitude Media / Utility Dive",
+      "url": "https://www.utilitydive.com/news/google-firm-peaking-clean-energy-geothermal-nuclear-ccs-hydrogen/693787/"
+    },
+    {
+      "name": "Rich Powell",
+      "role": "CEO, Clean Energy Buyers Association (CEBA)",
+      "level": 1,
+      "angle": "Corporate buyers now shape what gets built.",
+      "view": "Powell represents 375+ corporate buyers. Their procurement set records in 2025 (~27 GW), and the mix broadened from solar and wind into clean firm power — nuclear, geothermal, hydro, fusion, and gas with carbon capture. He argues buyers are now a primary driver of new generation and a force pushing for permitting and interconnection reform.",
+      "takeaway": "Aggregate corporate demand, not regulation, is increasingly steering the US generation mix.",
+      "source": "Utility Dive / CEBA",
+      "url": "https://www.utilitydive.com/news/corporate-clean-energy-demand-remains-strong-ceba-ceo-rich-powell-2025-26-procurement-trends/819987/"
+    }
+  ],
+  "resources": [
+    { "label": "EPA — Guide to Purchasing Green Power", "kind": "Primer", "level": 1, "url": "https://www.epa.gov/greenpower/guide-purchasing-green-power" },
+    { "label": "LevelTen — PPA glossary & terms", "kind": "Reference", "level": 1, "url": "https://www.leveltenenergy.com/post/power-purchase-agreement-glossary" },
+    { "label": "Duke Nicholas Institute — Rethinking Load Growth", "kind": "Report", "level": 2, "url": "https://www.ourenergypolicy.org/resources/rethinking-load-growth-assessing-the-potential-for-integration-of-large-flexible-loads-in-us-power-systems/" },
+    { "label": "Berkeley Lab — Utility-Scale Solar (PPA prices, LCOE)", "kind": "Data", "level": 2, "url": "https://emp.lbl.gov/utility-scale-solar" },
+    { "label": "RMI — Corporate Purchaser's Guide to Risk Mitigation", "kind": "Guide", "level": 2, "url": "https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/" },
+    { "label": "WBCSD — Pricing structures for corporate PPAs", "kind": "Guide", "level": 2, "url": "https://www.wbcsd.org/wp-content/uploads/2023/10/Pricing-structures-for-corporate-renewable-PPAs.pdf" },
+    { "label": "Stoel Rives — The Law of Solar", "kind": "Legal", "level": 2, "url": "https://www.stoel.com/insights/reports/the-law-of-solar/power-purchase-agreements-utility-scale-projects" },
+    { "label": "Latitude Media — Catalyst (data-center energy podcast)", "kind": "Podcast", "level": 1, "url": "https://www.latitudemedia.com/news/catalyst-the-potential-for-flexible-data-centers/" }
+  ]
+}

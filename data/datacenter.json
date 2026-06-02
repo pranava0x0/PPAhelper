@@ -105,6 +105,18 @@
       "url": "https://www.spglobal.com/sustainable1/en/insights/special-editorial/hyperscaler-procurement-to-shape-us-power-investment"
     },
     {
+      "id": "flexible-load",
+      "name": "Flexible / curtailable load (flexible interconnection)",
+      "level": 2,
+      "what": "Agree to curtail or shift the data center's consumption during grid peaks in exchange for a faster, cheaper interconnection.",
+      "whyClever": "Duke's 2025 'Rethinking Load Growth' found the existing US grid could absorb ~76 GW of new load if large users curtail just 0.25% of annual consumption — what the authors call 'curtailment-enabled headroom.' A load willing to flex skips much of the multi-year queue.",
+      "tradeoffs": "Requires on-site backup or workload scheduling to ride through curtailment; not every AI workload tolerates interruption; still an emerging contracting practice.",
+      "glossaryRefs": ["Curtailment", "Speed-to-Power", "Firm / Dispatchable Power"],
+      "example": "Duke / Tyler Norris — Rethinking Load Growth (2025); DOE data-center interconnection proposals",
+      "source": "PowerMag",
+      "url": "https://www.powermag.com/duke-researchers-grid-flexibility-key-to-accommodate-load-growth/"
+    },
+    {
       "id": "fusion",
       "name": "Frontier offtake (fusion)",
       "level": 3,

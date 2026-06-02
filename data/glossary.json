@@ -361,6 +361,30 @@
       "status": "verified",
       "source": "Utility Dive",
       "url": "https://www.utilitydive.com/news/hyperscaler-data-center-power-companies-grid-utilities/820568/"
+    },
+    {
+      "term": "Clean Firm Power",
+      "category": "Data centers",
+      "def": "Carbon-free generation available on demand around the clock — advanced nuclear, enhanced geothermal, hydro, long-duration storage, or gas with carbon capture. The 'missing middle' that large buyers fund to reach 24/7 carbon-free energy.",
+      "status": "verified",
+      "source": "Utility Dive",
+      "url": "https://www.utilitydive.com/news/google-firm-peaking-clean-energy-geothermal-nuclear-ccs-hydrogen/693787/"
+    },
+    {
+      "term": "Curtailment-Enabled Headroom",
+      "category": "Data centers",
+      "def": "Duke researcher Tyler Norris's term for how much new load the existing grid can absorb if that load curtails briefly during peaks. The 2025 'Rethinking Load Growth' study put it at ~76 GW for 0.25% annual curtailment (~98 GW at 0.5%).",
+      "status": "verified",
+      "source": "PowerMag / Duke Nicholas Institute",
+      "url": "https://www.powermag.com/duke-researchers-grid-flexibility-key-to-accommodate-load-growth/"
+    },
+    {
+      "term": "Clean Energy Buyers Association (CEBA)",
+      "category": "Foundations",
+      "def": "A trade association of 375+ corporate energy buyers whose collective procurement (a record ~27 GW in 2025) increasingly drives what new generation gets built in the US.",
+      "status": "verified",
+      "source": "Utility Dive / CEBA",
+      "url": "https://www.utilitydive.com/news/corporate-clean-energy-demand-remains-strong-ceba-ceo-rich-powell-2025-26-procurement-trends/819987/"
     }
   ]
 }
