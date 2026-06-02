@@ -341,6 +341,16 @@ table.dc-table td.mono { white-space: nowrap; }
 .resource { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); font-size: 14px; min-height: 44px; }
 .resource .pill { flex-shrink: 0; }
 
+/* ---- learning-path stepper ---- */
+.path { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; }
+.path li { flex: 1 1 200px; }
+.path-step { width: 100%; text-align: left; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 10px 12px; cursor: pointer; min-height: 44px; color: var(--text); }
+.path-step:hover { border-color: var(--accent); background: var(--accent-soft); }
+.path-n { font-family: var(--font-serif); font-weight: 700; color: var(--accent); font-size: 1.15rem; }
+.path-t { font-weight: 600; font-size: 13.5px; }
+.path-lvl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); margin-left: auto; }
+.stage-n { display: inline-flex; align-items: center; justify-content: center; width: 1.5em; height: 1.5em; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-size: 0.78em; margin-right: 10px; vertical-align: middle; }
+
 /* ---- generic accordion (foundations on-ramp) ---- */
 details.acc { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; background: var(--surface); overflow: hidden; }
 details.acc > summary { list-style: none; cursor: pointer; padding: 12px 16px; min-height: 44px; display: flex; align-items: center; font-family: var(--font-serif); font-weight: 600; font-size: 1.02rem; }

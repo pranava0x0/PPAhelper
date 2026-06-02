@@ -26,7 +26,7 @@
       </div>
     </div>
     <nav class="views" role="tablist" aria-label="Sections">
-      <button class="nav-btn" role="tab" id="tab-foundations" aria-controls="view-foundations" aria-selected="true" data-view="foundations">Foundations</button>
+      <button class="nav-btn" role="tab" id="tab-foundations" aria-controls="view-foundations" aria-selected="true" data-view="foundations">Learn</button>
       <button class="nav-btn" role="tab" id="tab-examples" aria-controls="view-examples" aria-selected="false" data-view="examples">Example PPAs</button>
       <button class="nav-btn" role="tab" id="tab-simulator" aria-controls="view-simulator" aria-selected="false" data-view="simulator">Settlement simulator</button>
       <button class="nav-btn" role="tab" id="tab-datacenter" aria-controls="view-datacenter" aria-selected="false" data-view="datacenter">Data centers</button>
@@ -40,11 +40,67 @@
 
     <!-- ============ FOUNDATIONS ============ -->
     <section class="view" id="view-foundations" role="tabpanel" aria-labelledby="tab-foundations">
-      <p class="eyebrow">Start here</p>
-      <h1>What a PPA is, and the one mechanic to master first</h1>
-      <p class="lede">A power purchase agreement (PPA) is a long-term contract for the sale of electricity — and its clean-energy attributes — from a generator to a buyer. New to power markets? Start with the three blocks below; the mechanics build from there.</p>
+      <p class="eyebrow">Start here · your learning path</p>
+      <h1>Power purchase agreements, from scratch</h1>
+      <p class="lede">A PPA is a long-term contract to buy electricity — and its clean-energy attributes — from a generator. This page takes you from "I know nothing about power" to understanding how a PPA works, in four steps.</p>
 
-      <h2>Why sign a PPA?</h2>
+      <ol class="path" aria-label="Learning path">
+        <li><button type="button" class="path-step" data-scroll-to="stage-1"><span class="path-n">1</span> <span class="path-t">Electricity from scratch</span> <span class="path-lvl">know nothing</span></button></li>
+        <li><button type="button" class="path-step" data-scroll-to="stage-2"><span class="path-n">2</span> <span class="path-t">How power is bought &amp; sold</span> <span class="path-lvl">know a little</span></button></li>
+        <li><button type="button" class="path-step" data-scroll-to="stage-3"><span class="path-n">3</span> <span class="path-t">Why PPAs exist</span> <span class="path-lvl">the point</span></button></li>
+        <li><button type="button" class="path-step" data-scroll-to="stage-4"><span class="path-n">4</span> <span class="path-t">How a PPA works</span> <span class="path-lvl">the mechanics</span></button></li>
+      </ol>
+
+      <hr class="rule">
+
+      <h2 id="stage-1"><span class="stage-n">1</span>Electricity from scratch</h2>
+      <p>Electricity is a <strong>secondary</strong> energy source — power plants make it by converting coal, gas, nuclear, sun, or wind into electric current. It's the product every PPA buys and sells. Four things to know before anything else:</p>
+      <details class="acc">
+        <summary>What you actually buy: kW vs kWh</summary>
+        <div class="acc-body"><p>Watts measure power <em>right now</em>; a <span class="gterm" data-term="Kilowatt-hour (kWh)">kilowatt-hour (kWh)</span> measures energy <em>used over time</em> — running 1 kilowatt for one hour (think a 1 kW space heater for an hour). Your home bill is in kWh. Scale that up by 1,000 and you get the megawatt-hour (MWh) a PPA is priced in.</p></div>
+      </details>
+      <details class="acc">
+        <summary>It can't be stored — so supply must match demand every second</summary>
+        <div class="acc-body"><p>The grid has almost no large-scale storage, so operators must generate exactly as much as is being used at every instant — calling on the cheapest plants first and pricier ones as demand climbs. If supply and demand fall out of balance, the result is blackouts. This one fact is why wholesale prices swing, why "firm" power is valuable, and why PPAs exist to lock in a price.</p></div>
+      </details>
+      <details class="acc">
+        <summary>The journey: plant → grid → you</summary>
+        <div class="acc-body"><p>A power plant generates electricity; high-voltage <span class="gterm" data-term="Transmission & Distribution (T&D)">transmission</span> lines carry it long distances; substation transformers step the voltage down; local distribution lines deliver it to your meter — all in an instant.</p></div>
+      </details>
+      <details class="acc">
+        <summary>Who's who</summary>
+        <div class="acc-body"><p><strong>Generators</strong> make the power, a <strong>grid operator</strong> moves and balances it, a <span class="gterm" data-term="Utility">utility</span> delivers it and bills you, regulators set the rules, and you are the <span class="gterm" data-term="Load">load</span>. A PPA is a contract between a generator (the seller) and a buyer.</p></div>
+      </details>
+      <p class="src"><a href="https://www.eia.gov/energyexplained/electricity/measuring-electricity.php">EIA — Measuring electricity</a> · <a href="https://www.eia.gov/energyexplained/electricity/delivery-to-consumers.php">EIA — Delivery to consumers</a></p>
+
+      <hr class="rule">
+
+      <h2 id="stage-2"><span class="stage-n">2</span>How power is bought &amp; sold</h2>
+      <p>Once you know power must be balanced instantly, the market makes sense: prices reflect what it costs to meet demand at each moment and place.</p>
+      <details class="acc">
+        <summary>Wholesale vs retail, and the ISO/RTO</summary>
+        <div class="acc-body"><p><span class="gterm" data-term="Wholesale vs Retail">Wholesale</span> power (generators selling for resale) is regulated federally by FERC; retail (your utility bill) is state-regulated. Across much of the US an <span class="gterm" data-term="ISO / RTO">ISO/RTO</span> runs the wholesale market and sets prices in real time. Most PPAs are wholesale.</p></div>
+      </details>
+      <details class="acc">
+        <summary>Why prices move</summary>
+        <div class="acc-body"><p>Operators stack plants cheapest-first to meet demand; the last one needed sets the price. When demand spikes or the grid is congested, that price can jump enormously. The <span class="gterm" data-term="Locational Marginal Price (LMP)">locational marginal price (LMP)</span> at each point on the grid is exactly this number — and it's what a PPA settles against.</p></div>
+      </details>
+      <details class="acc">
+        <summary>Baseload, peakers, and "firm" power</summary>
+        <div class="acc-body"><p><span class="gterm" data-term="Baseload vs Peaker">Baseload</span> plants run continuously; peakers run only at demand spikes; solar and wind run only when the resource is there. A 24/7 <span class="gterm" data-term="Load">load</span> like a data center values <em>firm</em> power it can count on around the clock.</p></div>
+      </details>
+      <details class="acc">
+        <summary>Energy vs capacity</summary>
+        <div class="acc-body"><p><strong>Capacity</strong> is how much a plant <em>could</em> deliver at once (MW); <strong>energy</strong> is how much it actually delivers over time (MWh). Some markets pay separately for each; PPAs mostly buy energy.</p></div>
+      </details>
+      <div class="card" style="margin-top:14px">
+        <p style="max-width:none"><strong>The units rule: MW vs MWh.</strong> A megawatt (MW) is 1,000 kW — power. A megawatt-hour (MWh) is energy. A 100 MW solar farm hits 100 MW only at full sun; over a year its <span class="gterm" data-term="Capacity Factor">capacity factor</span> (~25% for solar) means it makes about <span class="mono">219,000 MWh</span>, not 876,000. PPAs price that energy in <span class="gterm" data-term="Megawatt-hour (MWh)">$/MWh</span>.</p>
+        <p class="src"><a href="https://www.eia.gov/energyexplained/electricity/measuring-electricity.php">EIA — Measuring electricity</a></p>
+      </div>
+
+      <hr class="rule">
+
+      <h2 id="stage-3"><span class="stage-n">3</span>Why PPAs exist</h2>
       <div class="grid cols-3">
         <div class="card">
           <p class="eyebrow">Buyer</p>
@@ -66,36 +122,7 @@
 
       <hr class="rule">
 
-      <h2>Electricity in 90 seconds</h2>
-      <p class="src" style="border:none">The grid literacy a PPA conversation assumes. Expand any card.</p>
-      <details class="acc">
-        <summary>How the grid works</summary>
-        <div class="acc-body"><p>Power flows <strong>generation → transmission</strong> (high-voltage lines) <strong>→ distribution</strong> (local wires) <strong>→ load</strong>. Supply must equal demand every instant — which is why wholesale prices swing with weather, demand, and congestion.</p></div>
-      </details>
-      <details class="acc">
-        <summary>Wholesale vs retail, and the ISO/RTO</summary>
-        <div class="acc-body"><p><span class="gterm" data-term="Wholesale vs Retail">Wholesale</span> power (generators selling for resale) is regulated federally by FERC; retail (your utility bill) is state-regulated. Across much of the US an <span class="gterm" data-term="ISO / RTO">ISO/RTO</span> runs the wholesale market and sets prices in real time. Most PPAs are wholesale.</p></div>
-      </details>
-      <details class="acc">
-        <summary>Baseload, peakers, and "firm" power</summary>
-        <div class="acc-body"><p><span class="gterm" data-term="Baseload vs Peaker">Baseload</span> plants run continuously; peakers run only at demand spikes; solar and wind run only when the resource is there. A 24/7 <span class="gterm" data-term="Load">load</span> like a data center values <em>firm</em> power it can count on around the clock.</p></div>
-      </details>
-      <details class="acc">
-        <summary>Energy vs capacity</summary>
-        <div class="acc-body"><p><strong>Capacity</strong> is how much a plant <em>could</em> deliver at once (MW); <strong>energy</strong> is how much it actually delivers over time (MWh). Some markets pay separately for each; PPAs mostly buy energy.</p></div>
-      </details>
-
-      <hr class="rule">
-
-      <h2>The one units rule: MW vs MWh</h2>
-      <div class="card">
-        <p style="max-width:none"><strong>MW is power (the rate); MWh is energy (the amount).</strong> A 100 MW solar farm hits 100 MW only at full sun — it doesn't make 100 MWh every hour. Over a year its <span class="gterm" data-term="Capacity Factor">capacity factor</span> (~25% for solar) means it generates about <span class="mono">219,000 MWh</span>, not 876,000. PPAs price that energy in <span class="gterm" data-term="Megawatt-hour (MWh)">$/MWh</span>.</p>
-        <p class="src"><a href="https://www.eia.gov/energyexplained/electricity/">EIA — Electricity explained</a></p>
-      </div>
-
-      <hr class="rule">
-
-      <h2>The core question: electrons, or just money?</h2>
+      <h2 id="stage-4"><span class="stage-n">4</span>How a PPA works — electrons, or just money?</h2>
       <p>Almost everything you negotiate hangs off one distinction — whether the buyer takes physical delivery of power, or just settles the difference financially.</p>
 
       <div class="grid cols-2">

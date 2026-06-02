@@ -4,8 +4,15 @@ Ideas and deferred scope. Each: description + priority (low / medium / high).
 
 ## Next up
 
-- ✅ **Newcomer on-ramp trio — shipped 2026-06-02.** Foundations now opens with "Why sign a PPA?" (value prop), "Electricity in 90 seconds" (grid / wholesale-vs-retail / ISO-RTO / baseload-vs-peaker / energy-vs-capacity accordions), and the MW-vs-MWh units rule — then the mechanics. Added 6 "Grid basics" glossary terms (54 total), cited to EIA/FERC.
+- ✅ **Newcomer on-ramp trio — shipped 2026-06-02.** Foundations gained "Why sign a PPA?", an electricity primer, and the MW-vs-MWh rule.
+- ✅ **"From scratch" rung + Learn reorg — shipped 2026-06-02.** Closed the gap between "I know nothing" and "I know a little about electricity": added Step 1 "Electricity from scratch" (kW vs kWh / your bill, can't-store → instant balance, the plant→grid→you journey, who's who) below the market content. Restructured the tab (now "Learn") into an explicit **4-step path with a clickable stepper**: 1 Electricity from scratch → 2 How power is bought & sold → 3 Why PPAs exist → 4 How a PPA works. Added 3 grid-basics terms (kWh, Utility, T&D; 57 total).
 - **Now on deck:** the two verified quick fixes — focus management on view switch, and persist the level filter — then the **deal-lifecycle walkthrough** and **who's-who ecosystem map**.
+
+### Information architecture — verdict (2026-06-02)
+**Does the whole site need reorganizing? No full teardown.** The tab order already follows a sensible arc — Learn → Examples → Simulator → Data centers → Perspectives → Glossary → Coverage (learn → apply → explore → reference). The real flow problem was *inside* the learn page: a missing absolute-beginner rung and no visible sequence. Both are now fixed (the "from scratch" step + the 4-step stepper + renaming the tab "Learn" to signal the entry point). Deferred IA ideas, lower priority:
+- **Cross-tab "next step" links** so the path continues past Learn (Learn → Examples → Simulator → …) — a guided sequence across the whole site, not just within one tab. *Priority: medium*
+- **Progress tracking** (localStorage checkmarks per step/tab) so a returning learner sees where they left off. *Priority: low*
+- **A persistent "where am I in the path" indicator** in the masthead or a slim sidebar on desktop. *Priority: low*
 
 ## Deferred from initial scope (2026-06-01)
 
