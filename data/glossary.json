@@ -457,6 +457,22 @@
       "status": "verified",
       "source": "EIA — Delivery to consumers",
       "url": "https://www.eia.gov/energyexplained/electricity/delivery-to-consumers.php"
+    },
+    {
+      "term": "Term Sheet",
+      "category": "Contract",
+      "def": "A short, mostly non-binding document that captures the commercial core of a deal — price, quantity, location, term, product — before lawyers draft the full agreement. Agreeing the term sheet first focuses the negotiation that follows.",
+      "status": "verified",
+      "source": "EEI",
+      "url": "https://www.eei.org/en/resources-and-media/master-contract"
+    },
+    {
+      "term": "Conditions Precedent (CP)",
+      "category": "Contract",
+      "def": "Things that must happen before the contract becomes fully effective or delivery begins — financing close, permits, regulatory approvals, interconnection. A PPA isn't 'done' at signing; the CPs gate the path to commercial operation.",
+      "status": "verified",
+      "source": "World Bank PPP",
+      "url": "https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements"
     }
   ]
 }
