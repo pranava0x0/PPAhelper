@@ -13,7 +13,7 @@ Ideas and deferred scope. Each: description + priority (low / medium / high).
 **Does the whole site need reorganizing? No full teardown.** The tab order already follows a sensible arc — Learn → Examples → Simulator → Data centers → Perspectives → Glossary → Coverage (learn → apply → explore → reference). The real flow problem was *inside* the learn page: a missing absolute-beginner rung and no visible sequence. Both are now fixed (the "from scratch" step + the 4-step stepper + renaming the tab "Learn" to signal the entry point). Deferred IA ideas, lower priority:
 - **Cross-tab "next step" links** so the path continues past Learn (Learn → Examples → Simulator → …) — a guided sequence across the whole site, not just within one tab. *Priority: medium*
 - **Progress tracking** (localStorage checkmarks per step/tab) so a returning learner sees where they left off. *Priority: low*
-- **A persistent "where am I in the path" indicator** in the masthead or a slim sidebar on desktop. *Priority: low*
+- **Sticky / persistent learning-path stepper.** The Learn page is ~6 screens; the stepper only appears at the top, so jumping between stages mid-page means scrolling back up. A slim sticky stepper (or a desktop side rail) would let learners jump from anywhere and further cut scrolling. *Priority: medium*
 
 ## Deferred from initial scope (2026-06-01)
 
