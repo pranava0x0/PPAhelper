@@ -1,0 +1,286 @@
+{
+  "updated": "2026-06-01",
+  "note": "Single source of truth for terms. Feeds the glossary view and inline tooltips. Every entry is from a research finding (see docs/research-us-ppa.md). status: 'verified' = cited primary/government source; 'secondary' = cited but non-primary (e.g. job postings for the originator role); 'needs-research' = placeholder.",
+  "terms": [
+    {
+      "term": "Power Purchase Agreement (PPA)",
+      "category": "Foundations",
+      "def": "The long-term contract governing the sale of electricity, and/or its environmental attributes, from a generator to an offtaker.",
+      "status": "verified",
+      "source": "LevelTen glossary",
+      "url": "https://www.leveltenenergy.com/post/power-purchase-agreement-glossary"
+    },
+    {
+      "term": "Physical PPA",
+      "category": "Types",
+      "def": "A PPA where electrons and legal title actually flow from the project to the buyer's meter or account.",
+      "status": "verified",
+      "source": "LevelTen glossary",
+      "url": "https://www.leveltenenergy.com/post/power-purchase-agreement-glossary"
+    },
+    {
+      "term": "Virtual / Financial PPA (VPPA)",
+      "category": "Types",
+      "def": "A PPA where no electrons are delivered to the buyer. It settles purely financially as a contract-for-differences. The most common corporate PPA model in the US.",
+      "status": "verified",
+      "source": "WBCSD; LevelTen",
+      "url": "https://www.wbcsd.org/wp-content/uploads/2023/10/Pricing-structures-for-corporate-renewable-PPAs.pdf"
+    },
+    {
+      "term": "Contract for Differences (CfD)",
+      "category": "Settlement",
+      "def": "The settlement mechanism of a VPPA: each period, compare the fixed strike price against the floating market price (LMP). Market above strike, generator pays buyer; market below strike, buyer pays generator. Economically a fixed-for-floating swap.",
+      "status": "verified",
+      "source": "Stoel Rives; Norton Rose Fulbright; LevelTen",
+      "url": "https://www.stoel.com/insights/reports/the-law-of-solar/power-purchase-agreements-utility-scale-projects"
+    },
+    {
+      "term": "Strike Price (Fixed Price)",
+      "category": "Pricing",
+      "def": "The fixed $/MWh price the buyer agrees to in a VPPA. It is the reference price for settlement and the consideration for the renewable energy certificates conveyed to the buyer.",
+      "status": "verified",
+      "source": "LevelTen terms",
+      "url": "https://www.leveltenenergy.com/post/power-purchase-agreement-terms"
+    },
+    {
+      "term": "Locational Marginal Price (LMP)",
+      "category": "Market",
+      "def": "The wholesale price of electricity at a specific grid location in an ISO/RTO market, reflecting energy, congestion, and losses. The 'floating' price in a VPPA settlement.",
+      "status": "verified",
+      "source": "Norton Rose Fulbright",
+      "url": "https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities"
+    },
+    {
+      "term": "Node",
+      "category": "Market",
+      "def": "The specific grid location (where a generator connects) at which an LMP is set. Nodal prices are more volatile than hub prices.",
+      "status": "verified",
+      "source": "WBCSD; American Cities Climate Challenge",
+      "url": "https://cityrenewables.org/vppa/research-and-build-team/understand-basis-risk/"
+    },
+    {
+      "term": "Hub",
+      "category": "Market",
+      "def": "A regional trading point whose price is a weighted average of many nodes. Less volatile than any single node. Most corporate VPPA buyers negotiate to settle at the hub.",
+      "status": "verified",
+      "source": "WBCSD",
+      "url": "https://www.wbcsd.org/wp-content/uploads/2023/10/Pricing-structures-for-corporate-renewable-PPAs.pdf"
+    },
+    {
+      "term": "Settlement Location",
+      "category": "Settlement",
+      "def": "The trading hub, pricing node, or zone at which the PPA settles financially. One of the most consequential terms in the contract because it determines who bears basis risk.",
+      "status": "verified",
+      "source": "LevelTen glossary",
+      "url": "https://www.leveltenenergy.com/post/power-purchase-agreement-glossary"
+    },
+    {
+      "term": "Basis Risk",
+      "category": "Risk",
+      "def": "The risk that the relationship between the project's local nodal price and the settlement hub price changes over time. In a hub-settled VPPA the developer earns the node price but settles at the hub, absorbing the node-to-hub gap. When hub price exceeds node price, the project loses money.",
+      "status": "verified",
+      "source": "WBCSD; Norton Rose Fulbright",
+      "url": "https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities"
+    },
+    {
+      "term": "Renewable Energy Certificate (REC)",
+      "category": "RECs",
+      "def": "A market-based instrument representing the property rights to the environmental and non-power attributes of renewable generation. One REC is issued per MWh generated and delivered to the grid.",
+      "status": "verified",
+      "source": "EPA",
+      "url": "https://www.epa.gov/green-power-markets/renewable-energy-certificates-recs"
+    },
+    {
+      "term": "Shape Risk",
+      "category": "Risk",
+      "def": "The risk that a renewable project's output profile (when it generates) does not match the hours when prices or demand are highest, eroding the value captured versus a flat block.",
+      "status": "verified",
+      "source": "RMI",
+      "url": "https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/"
+    },
+    {
+      "term": "Volume Risk",
+      "category": "Risk",
+      "def": "The risk that actual generation differs from forecast, changing the quantity settled under the PPA. Mitigated by volume firming agreements and fixed-volume swaps.",
+      "status": "verified",
+      "source": "RMI",
+      "url": "https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/"
+    },
+    {
+      "term": "Collar (Floor + Cap)",
+      "category": "Pricing",
+      "def": "A pricing structure with a price floor and cap. The producer bears price risk within the collar; the buyer is at risk below the floor but caps its exposure above the cap.",
+      "status": "verified",
+      "source": "WBCSD",
+      "url": "https://www.wbcsd.org/wp-content/uploads/2023/10/Pricing-structures-for-corporate-renewable-PPAs.pdf"
+    },
+    {
+      "term": "Commercial Operation Date (COD)",
+      "category": "Contract",
+      "def": "The date the project is complete and begins commercial delivery. Missing the targeted COD triggers delay damages.",
+      "status": "verified",
+      "source": "LevelTen glossary",
+      "url": "https://www.leveltenenergy.com/post/power-purchase-agreement-glossary"
+    },
+    {
+      "term": "Delay Damages",
+      "category": "Contract",
+      "def": "Payments due to the buyer if the seller misses its targeted COD. Penalize the seller for late delivery.",
+      "status": "verified",
+      "source": "LevelTen glossary",
+      "url": "https://www.leveltenenergy.com/post/power-purchase-agreement-glossary"
+    },
+    {
+      "term": "Capacity Buydown",
+      "category": "Contract",
+      "def": "Payments due to the buyer if the seller does not complete the project to the expected size. Penalize the seller for underbuilding.",
+      "status": "verified",
+      "source": "LevelTen glossary",
+      "url": "https://www.leveltenenergy.com/post/power-purchase-agreement-glossary"
+    },
+    {
+      "term": "Credit Support",
+      "category": "Contract",
+      "def": "Security posted to guarantee performance. In utility PPAs it is typically one-way: the seller posts cash escrow, a letter of credit from an A-or-better bank, or a creditworthy guarantee, usually 6 to 18 months of expected payments post-COD. The investment-grade utility offtaker rarely posts security in return.",
+      "status": "verified",
+      "source": "Stoel Rives",
+      "url": "https://www.stoel.com/insights/reports/the-law-of-solar/power-purchase-agreements-utility-scale-projects"
+    },
+    {
+      "term": "EEI Master Power Purchase & Sale Agreement",
+      "category": "Forms",
+      "def": "The standard model bilateral contract for forward purchases and sales of wholesale electricity in the US, published by the Edison Electric Institute. Focuses negotiation on price, quantity, location, and duration. Current version 2.1 (2000). Corporate VPPAs often replace it with ISDA confirmations.",
+      "status": "verified",
+      "source": "EEI",
+      "url": "https://www.eei.org/en/resources-and-media/master-contract"
+    },
+    {
+      "term": "FERC (Federal Energy Regulatory Commission)",
+      "category": "Regulatory",
+      "def": "The federal regulator of wholesale electricity sales (sales for resale) and interstate transmission. Retail sales stay with state regulators. Wholesale sellers generally need market-based rate authority from FERC.",
+      "status": "verified",
+      "source": "FERC",
+      "url": "https://ferc.gov/power-sales-and-markets"
+    },
+    {
+      "term": "Market-Based Rate (MBR) Authority",
+      "category": "Regulatory",
+      "def": "FERC authorization to sell wholesale power at negotiated (not cost-of-service) rates. Granted to sellers who show they and their affiliates lack or have mitigated market power.",
+      "status": "verified",
+      "source": "FERC MBR FAQ",
+      "url": "https://www.ferc.gov/power-sales-and-markets/electric-market-based-rates/frequently-asked-questions-faqs-market-based"
+    },
+    {
+      "term": "PURPA Qualifying Facility (QF)",
+      "category": "Regulatory",
+      "def": "A small power production or cogeneration facility certified under PURPA. Facilities over 1 MW can self-certify; QFs of 20 MW or less are exempt from key Federal Power Act rate requirements. PURPA created the utility obligation to purchase from QFs.",
+      "status": "verified",
+      "source": "FERC — QF",
+      "url": "https://www.ferc.gov/qf"
+    },
+    {
+      "term": "Investment Tax Credit (ITC)",
+      "category": "Tax",
+      "def": "A federal tax credit worth a percentage of a clean-energy project's qualified investment (base 6%, rising with prevailing-wage/apprenticeship compliance plus domestic-content and energy-community adders). Lowers the developer's net cost, which lowers the achievable PPA price.",
+      "status": "verified",
+      "source": "IRS",
+      "url": "https://www.irs.gov/credits-deductions/clean-electricity-investment-credit"
+    },
+    {
+      "term": "Production Tax Credit (PTC)",
+      "category": "Tax",
+      "def": "A per-kWh federal tax credit on electricity produced and sold (base 0.3 cents/kWh, inflation-adjusted, with the same bonus rates and adders as the ITC). An alternative to the ITC; developers model both to minimize the PPA price.",
+      "status": "verified",
+      "source": "IRS",
+      "url": "https://www.irs.gov/credits-deductions/clean-electricity-production-credit"
+    },
+    {
+      "term": "Tax-Credit Transferability",
+      "category": "Tax",
+      "def": "Post-2022 rule letting a project transfer all or part of its eligible credits to unrelated taxpayers for cash. The cash is not taxable to the seller and not deductible to the buyer; a mandatory IRS pre-filing registration is required. A simpler alternative to traditional tax-equity financing.",
+      "status": "verified",
+      "source": "IRS — Elective pay & transferability",
+      "url": "https://www.irs.gov/credits-deductions/elective-pay-and-transferability"
+    },
+    {
+      "term": "Behind-the-Meter (BTM)",
+      "category": "Types",
+      "def": "Generation on the customer's side of the utility meter. The output directly offsets the customer's electricity bill rather than being sold to the grid.",
+      "status": "verified",
+      "source": "EPA",
+      "url": "https://www.epa.gov/statelocalenergy/customer-power-purchase-agreements"
+    },
+    {
+      "term": "Front-of-Meter / Offsite PPA",
+      "category": "Types",
+      "def": "A project located away from the buyer that delivers power to the grid. The buyer keeps buying grid power but uses the project's RECs to cut its market-based Scope 2 emissions. Most corporate VPPAs are offsite.",
+      "status": "verified",
+      "source": "EPA",
+      "url": "https://www.epa.gov/statelocalenergy/customer-power-purchase-agreements"
+    },
+    {
+      "term": "Sleeved PPA",
+      "category": "Types",
+      "def": "An offsite physical PPA where the local utility acts as intermediary between developer and buyer, absorbs price-fluctuation risk, and delivers a fixed price. Useful for buyers not versed in power markets; available in deregulated markets.",
+      "status": "verified",
+      "source": "EPA Green Power",
+      "url": "https://www.epa.gov/sites/default/files/2018-08/documents/guide-purchasing-green-power-4.pdf"
+    },
+    {
+      "term": "Community Solar",
+      "category": "Types",
+      "def": "A shared local renewable project where an organization buys a share and receives utility bill credits (and possibly RECs) for its portion of the output, at lower upfront cost than owning a system.",
+      "status": "verified",
+      "source": "DOE / NREL",
+      "url": "https://docs.nrel.gov/docs/fy12osti/54570.pdf"
+    },
+    {
+      "term": "Curtailment",
+      "category": "Contract",
+      "def": "When a project's output cannot be physically taken (grid congestion, oversupply). PPAs often pay on a 'deemed delivered / deemed generation' basis, but compensation varies by cause — many contracts do not pay for transmission-related curtailment outside the offtaker's control.",
+      "status": "verified",
+      "source": "NREL — Curtailment",
+      "url": "https://docs.nrel.gov/docs/fy14osti/60983.pdf"
+    },
+    {
+      "term": "Force Majeure",
+      "category": "Contract",
+      "def": "A clause excusing performance during events beyond a party's control. The allocation of loss depends largely on insurance availability (and, in some regions, political risk).",
+      "status": "verified",
+      "source": "DOE ETI",
+      "url": "https://www.eere.energy.gov/etiplaybook/pdfs/phase3-sample-10-important-features.pdf"
+    },
+    {
+      "term": "Change in Law",
+      "category": "Contract",
+      "def": "A clause stating which party bears the risk that a change in law or tax regime after signing diminishes the deal's economics. A core risk-allocation term in any PPA.",
+      "status": "verified",
+      "source": "DOE ETI",
+      "url": "https://www.eere.energy.gov/etiplaybook/pdfs/phase3-sample-10-important-features.pdf"
+    },
+    {
+      "term": "Bankability",
+      "category": "Finance",
+      "def": "Whether a PPA can support project-finance debt. A bankable PPA pairs a creditworthy offtaker with a tenor long enough to repay the debt, with project cash flows covering debt service plus margin. Lenders shrink the loan if too much risk sits on the developer.",
+      "status": "verified",
+      "source": "World Bank PPP",
+      "url": "https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements"
+    },
+    {
+      "term": "Levelized Cost of Energy (LCOE)",
+      "category": "Market",
+      "def": "The per-MWh lifetime cost of building and running a generator, used as a price benchmark. Berkeley Lab put US utility-scale solar near $46/MWh before tax credits and about $31/MWh after (2023 data) — a direct illustration of how IRA credits pull PPA prices down.",
+      "status": "verified",
+      "source": "LBNL — Utility-Scale Solar",
+      "url": "https://emp.lbl.gov/utility-scale-solar"
+    },
+    {
+      "term": "PPA Originator",
+      "category": "Role",
+      "def": "The commercial lead who sources and negotiates PPAs with developers, IPPs, and corporate offtakers — structuring deal type, pricing, and risk allocation, coordinating legal/finance/technical teams, and driving the deal to commercial close. Typical background: 5+ years in energy trading, origination, or PPA structuring.",
+      "status": "secondary",
+      "source": "energyRe — VP PPA Origination (job description)",
+      "url": "https://www.energyre.com/sites/g/files/ujywhv351/files/2022-09/VP,%20PPA%20Origination.pdf"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# editors
+.vscode/
+.idea/
+
+# local agent/preview tooling (not part of the published site)
+.claude/
+
+# env / secrets (none used yet, but per policy)
+.env
+.env.local
+credentials.json
+secrets/
+
+# build / deps (none yet — static site, no build step)
+node_modules/
+dist/
+__pycache__/
+*.pyc

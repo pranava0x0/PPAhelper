@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PPA Helper — learn US power purchase agreements</title>
+  <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
+  <link rel="preload" href="data/glossary.json" as="fetch" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="masthead" role="banner">
+    <div class="masthead-inner">
+      <span class="wordmark">PPA&nbsp;<span class="spark">Helper</span></span>
+      <span class="masthead-tag">US power purchase agreements · for originators</span>
+      <span class="masthead-spacer"></span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">dark</button>
+    </div>
+    <nav class="views" role="tablist" aria-label="Sections">
+      <button class="nav-btn" role="tab" id="tab-foundations" aria-controls="view-foundations" aria-selected="true" data-view="foundations">Foundations</button>
+      <button class="nav-btn" role="tab" id="tab-simulator" aria-controls="view-simulator" aria-selected="false" data-view="simulator">Settlement simulator</button>
+      <button class="nav-btn" role="tab" id="tab-glossary" aria-controls="view-glossary" aria-selected="false" data-view="glossary">Glossary</button>
+      <button class="nav-btn" role="tab" id="tab-coverage" aria-controls="view-coverage" aria-selected="false" data-view="coverage">Coverage &amp; sources</button>
+    </nav>
+  </header>
+
+  <main id="main" role="main">
+
+    <!-- ============ FOUNDATIONS ============ -->
+    <section class="view" id="view-foundations" role="tabpanel" aria-labelledby="tab-foundations">
+      <p class="eyebrow">Start here</p>
+      <h1>What a PPA is, and the one mechanic to master first</h1>
+      <p class="lede">A power purchase agreement is the long-term contract that governs the sale of electricity — and its renewable attributes — from a generator to a buyer. In the US, almost everything you negotiate hangs off one question: do the electrons move, or just the money?</p>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Physical PPA <span class="pill verified">verified</span></h3>
+          <p>Electrons and legal title flow from the project to the buyer's meter or account. The buyer actually takes delivery of power.</p>
+          <p class="src"><a href="https://www.leveltenenergy.com/post/power-purchase-agreement-glossary">LevelTen glossary</a></p>
+        </div>
+        <div class="card">
+          <h3>Virtual / financial PPA (VPPA) <span class="pill verified">verified</span></h3>
+          <p>No electrons reach the buyer. The deal settles purely financially as a contract-for-differences, and the renewable energy certificates transfer to the buyer. This has been the most common corporate PPA model in the US.</p>
+          <p class="src"><a href="https://www.wbcsd.org/wp-content/uploads/2023/10/Pricing-structures-for-corporate-renewable-PPAs.pdf">WBCSD</a></p>
+        </div>
+      </div>
+
+      <hr class="rule">
+
+      <h2>The VPPA settlement mechanic</h2>
+      <p>A VPPA is a <strong>fixed-for-floating swap</strong>. Each month, compare the buyer's fixed <span class="gterm" data-term="Strike Price (Fixed Price)">strike price</span> against the floating market price (<span class="gterm" data-term="Locational Marginal Price (LMP)">LMP</span>):</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <p class="eyebrow">Market price &gt; strike</p>
+          <p>The generator pays the buyer the difference. The buyer is made whole against high power prices.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Market price &lt; strike</p>
+          <p>The buyer pays the generator the difference. The generator gets its fixed revenue regardless of the market.</p>
+        </div>
+      </div>
+      <p style="margin-top:16px">Net effect: the buyer locks in the strike as its effective power price, and the generator locks in stable revenue to finance the project. Don't just read it — <button class="nav-link-btn" data-view="simulator" style="background:none;border:none;color:var(--accent);font:inherit;cursor:pointer;padding:0;text-decoration:underline">run the settlement simulator</button> and watch the cash change direction.</p>
+      <p class="src"><a href="https://www.stoel.com/insights/reports/the-law-of-solar/power-purchase-agreements-utility-scale-projects">Stoel Rives, "Law of Solar"</a> · <a href="https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities">Norton Rose Fulbright</a></p>
+
+      <hr class="rule">
+
+      <h2>Basis risk — the #1 structural risk to understand</h2>
+      <p>Wholesale prices are set at thousands of <span class="gterm" data-term="Node">nodes</span> (where generators connect) and averaged into less-volatile regional <span class="gterm" data-term="Hub">hubs</span>. Most corporate buyers settle the VPPA at the hub. But the generator earns its local node price — so the developer absorbs the node-to-hub gap. That gap is <span class="gterm" data-term="Basis Risk">basis risk</span>, and it can be brutal.</p>
+      <div class="card" style="border-left:3px solid var(--warn)">
+        <p class="eyebrow">The canonical horror story</p>
+        <p style="margin-bottom:0">In an August 2019 ERCOT congestion event, the North hub hit roughly <span class="mono">$9,000/MWh</span> while the project's node sat near <span class="mono">$1,000/MWh</span>. A 300-MW project settling at the hub lost about <span class="mono">$2.4M</span> in a single hour.</p>
+      </div>
+      <p class="src" style="margin-top:12px"><a href="https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities">Norton Rose Fulbright</a> · <a href="https://cityrenewables.org/vppa/research-and-build-team/understand-basis-risk/">American Cities Climate Challenge</a></p>
+
+      <hr class="rule">
+
+      <h2>RECs — what the buyer is really paying for</h2>
+      <p>A <span class="gterm" data-term="Renewable Energy Certificate (REC)">renewable energy certificate</span> represents the environmental attributes of renewable generation — one REC per MWh delivered to the grid. In a VPPA the fixed price is the consideration for those RECs, which the seller conveys to the buyer. The buyer can then claim the clean-energy use.</p>
+      <p class="src"><a href="https://www.epa.gov/green-power-markets/renewable-energy-certificates-recs">EPA — Renewable Energy Certificates</a></p>
+
+      <div class="card" style="margin-top:24px">
+        <p style="margin:0"><strong>Where this is going.</strong> This is Phase&nbsp;0. Next come a pricing-structure payoff explorer, a basis-risk visualizer, an annotated term sheet, a deal-lifecycle walkthrough, quizzes, and a negotiation role-play. The <button class="nav-link-btn" data-view="coverage" style="background:none;border:none;color:var(--accent);font:inherit;cursor:pointer;padding:0;text-decoration:underline">coverage page</button> tracks exactly what's verified versus still being researched.</p>
+      </div>
+    </section>
+
+    <!-- ============ SIMULATOR ============ -->
+    <section class="view" id="view-simulator" role="tabpanel" aria-labelledby="tab-simulator" hidden>
+      <p class="eyebrow">Interactive</p>
+      <h1>VPPA settlement simulator</h1>
+      <p class="lede">Set a strike price and a year of market prices, and watch the contract-for-differences settle month by month. Green is money flowing to a party; clay is money flowing out. This is an illustration of the mechanic, not market data.</p>
+
+      <div class="sim-layout">
+        <form class="controls" id="sim-controls" aria-label="Simulator inputs">
+          <fieldset>
+            <legend>Contract</legend>
+            <div class="field">
+              <label for="strike">Strike price <span class="hint">$/MWh</span></label>
+              <input type="number" id="strike" value="45" min="0" max="200" step="1">
+            </div>
+            <div class="field">
+              <label for="volume">Monthly generation <span class="hint">MWh / month</span></label>
+              <input type="number" id="volume" value="25000" min="0" max="500000" step="1000">
+            </div>
+            <div class="field">
+              <label for="perspective">Show settlement from the perspective of</label>
+              <div class="toggle-row" id="perspective" role="group" aria-label="Perspective">
+                <button type="button" data-side="buyer" aria-pressed="true">Buyer</button>
+                <button type="button" data-side="seller" aria-pressed="false">Generator</button>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Market scenario (12 months of LMP)</legend>
+            <div class="scenario-row" id="scenarios">
+              <button type="button" class="scenario-btn" data-scenario="calm" aria-pressed="true">Calm market</button>
+              <button type="button" class="scenario-btn" data-scenario="rising">Rising prices</button>
+              <button type="button" class="scenario-btn" data-scenario="falling">Falling prices</button>
+              <button type="button" class="scenario-btn" data-scenario="spike">Summer spike</button>
+            </div>
+            <p class="hint" style="margin:10px 0 0">Average LMP this scenario: <span class="mono" id="avg-lmp">—</span>. Edit any month in the table below to build a custom curve.</p>
+          </fieldset>
+        </form>
+
+        <div class="readout">
+          <div class="direction-banner" id="banner" role="status" aria-live="polite">—</div>
+
+          <div class="kpis">
+            <div class="kpi">
+              <div class="k-label">Net annual settlement</div>
+              <div class="k-val" id="kpi-net">—</div>
+              <div class="k-sub" id="kpi-net-sub">to the selected party</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">Buyer's effective price</div>
+              <div class="k-val mono" id="kpi-eff">—</div>
+              <div class="k-sub">$/MWh, all-in after the hedge</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">Months in the money</div>
+              <div class="k-val mono" id="kpi-months">—</div>
+              <div class="k-sub" id="kpi-months-sub">for the buyer</div>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <svg id="chart" viewBox="0 0 720 260" role="img" aria-label="LMP versus strike price over 12 months"></svg>
+            <div class="chart-legend">
+              <span><span class="swatch" style="background:var(--accent)"></span> LMP (market)</span>
+              <span><span class="swatch" style="background:var(--text-muted)"></span> Strike (fixed)</span>
+              <span><span class="swatch" style="background:var(--flow-credit)"></span> Buyer receives</span>
+              <span><span class="swatch" style="background:var(--flow-debit)"></span> Buyer pays</span>
+            </div>
+          </div>
+
+          <div class="card flush">
+            <div class="table-wrap">
+              <table class="settle" id="settle-table">
+                <thead>
+                  <tr><th>Month</th><th>LMP ($/MWh)</th><th>Strike</th><th>Diff</th><th>Volume (MWh)</th><th>Settlement</th></tr>
+                </thead>
+                <tbody id="settle-body"></tbody>
+                <tfoot>
+                  <tr><td>Year</td><td class="num" id="foot-lmp"></td><td class="num" id="foot-strike"></td><td></td><td class="num" id="foot-vol"></td><td class="num" id="foot-net"></td></tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+          <p class="hint">Settlement convention: each month, settlement = (LMP − strike) × volume. Positive means the generator pays the buyer; negative means the buyer pays the generator. <a href="https://www.leveltenenergy.com/post/power-purchase-agreement-terms">LevelTen terms</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GLOSSARY ============ -->
+    <section class="view" id="view-glossary" role="tabpanel" aria-labelledby="tab-glossary" hidden>
+      <p class="eyebrow">Reference</p>
+      <h1>Glossary</h1>
+      <p class="lede">Every term here is drawn from a verified, cited source. Search or filter by category.</p>
+      <div class="glossary-controls">
+        <input type="search" id="glossary-search" placeholder="Search terms…" aria-label="Search glossary">
+        <div class="cat-filter" id="cat-filter" role="group" aria-label="Filter by category"></div>
+      </div>
+      <p class="src" style="border:none" aria-live="polite"><span id="glossary-count">—</span></p>
+      <div class="grid" id="glossary-list"></div>
+    </section>
+
+    <!-- ============ COVERAGE ============ -->
+    <section class="view" id="view-coverage" role="tabpanel" aria-labelledby="tab-coverage" hidden>
+      <p class="eyebrow">Honest scope</p>
+      <h1>Coverage &amp; sources</h1>
+      <p class="lede">This tool only teaches what the research actually verified. Two passes are done: a fact-checked deep-research run, then a cheaper inline pass against government and national-lab sources (FERC, IRS, EPA, NREL, Berkeley Lab). Items still open are marked as gaps, not dressed up as fact.</p>
+
+      <h2>Verified — primary / government sources</h2>
+      <table class="coverage">
+        <thead><tr><th>Topic</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Physical vs. virtual PPA; CfD settlement</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>RECs: definition, 1 MWh = 1 REC, conveyance</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Basis risk; node / hub / LMP mechanics</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Risk taxonomy + mitigants (price, shape, basis, volume, operational)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Price-risk allocation by pricing structure</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Term lengths; delay damages; capacity buydowns; credit support</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>EEI master; LevelTen index; EPA guide</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>FERC role; market-based rates; PURPA qualifying facilities</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>IRA ITC/PTC, transferability → pricing; Berkeley Lab LCOE data</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Deal types: behind/front-of-meter, sleeved, community solar</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Clauses: curtailment, force majeure, change-in-law, termination</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Bankability (creditworthy offtaker + tenor; lender risk view)</td><td><span class="pill verified">verified</span></td></tr>
+        </tbody>
+      </table>
+
+      <h2 style="margin-top:28px">Covered — secondary sources</h2>
+      <table class="coverage">
+        <thead><tr><th>Topic</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>PPA originator role: responsibilities, skills, background (from job postings)</td><td><span class="pill secondary">secondary</span></td></tr>
+        </tbody>
+      </table>
+
+      <h2 style="margin-top:28px">Still open</h2>
+      <table class="coverage">
+        <thead><tr><th>Topic</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>ISO/RTO per-market detail (ERCOT, PJM, CAISO, MISO, SPP)</td><td><span class="pill gap">needs research</span></td></tr>
+          <tr><td>Internal approval &amp; signing (investment committee, board, PUC prudence)</td><td><span class="pill gap">needs research</span></td></tr>
+          <tr><td>Clause-level: conditions precedent, assignment / lender step-in, dispute resolution</td><td><span class="pill gap">needs research</span></td></tr>
+          <tr><td>Time-of-delivery / hourly pricing; 24/7 carbon-free matching</td><td><span class="pill gap">needs research</span></td></tr>
+        </tbody>
+      </table>
+
+      <h2 style="margin-top:28px">Sources</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Government &amp; national labs</h3>
+          <p style="margin:0">
+            <a href="https://www.ferc.gov/qf">FERC — PURPA Qualifying Facilities</a><br>
+            <a href="https://www.irs.gov/credits-deductions/elective-pay-and-transferability">IRS — Elective Pay &amp; Transferability</a><br>
+            <a href="https://emp.lbl.gov/utility-scale-solar">Berkeley Lab — Utility-Scale Solar</a><br>
+            <a href="https://www.epa.gov/statelocalenergy/customer-power-purchase-agreements">EPA — Customer PPAs</a><br>
+            <a href="https://docs.nrel.gov/docs/fy14osti/60983.pdf">NREL — Wind &amp; Solar Curtailment</a>
+          </p>
+        </div>
+        <div class="card">
+          <h3>Standards &amp; practitioner guidance</h3>
+          <p style="margin:0">
+            <a href="https://www.eei.org/en/resources-and-media/master-contract">EEI Master P&amp;S Agreement</a><br>
+            <a href="https://www.leveltenenergy.com/ppa">LevelTen PPA Price Index</a><br>
+            <a href="https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/">RMI — Risk Mitigation Guide</a><br>
+            <a href="https://www.wbcsd.org/wp-content/uploads/2023/10/Pricing-structures-for-corporate-renewable-PPAs.pdf">WBCSD — Pricing Structures</a><br>
+            <a href="https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements">World Bank — PPAs &amp; bankability</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <p style="margin:0">PPA Helper · a learning tool for US power purchase agreements. Content as of <span class="mono">2026-06-01</span>, built on a fact-checked research pass (<a href="docs/research-us-ppa.md">research notes</a>). The settlement simulator is an illustration of contract mechanics, not market data or financial advice.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/settle-core.js" defer></script>
+  <script src="assets/js/simulator.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>

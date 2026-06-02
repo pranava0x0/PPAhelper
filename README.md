@@ -1,0 +1,52 @@
+# PPA Helper
+
+A hands-on tool for learning to originate, negotiate, and approve **US power purchase agreements**. Built around a virtual-PPA settlement simulator, with cited foundations, a glossary, and an honest coverage scorecard.
+
+Static site — plain HTML, CSS, and vanilla JS. No build step, no dependencies, no backend. Deploys to GitHub Pages as-is.
+
+## Run locally
+
+The page fetches `data/glossary.json`, so it must be served over HTTP (opening `index.html` with `file://` will block the fetch).
+
+```bash
+cd PPAhelper
+python3 -m http.server 8000
+# then open http://localhost:8000
+```
+
+## Run tests
+
+No dependencies — plain Node, no install.
+
+```bash
+node test/settle.test.js   # VPPA settlement math (11 cases)
+node test/data.test.js     # glossary single-source-of-truth integrity
+```
+
+## Deploy to GitHub Pages
+
+1. Push the repo to GitHub.
+2. Settings → Pages → Build and deployment → **Deploy from a branch**, branch = your default, folder = **`/ (root)`**.
+3. The `.nojekyll` file makes Pages serve the files as-is (no Jekyll processing).
+
+## Layout
+
+```
+index.html               # masthead, view-switcher, the four views
+assets/css/styles.css    # copper-on-paper terminal/broadsheet identity (see docs/design.md)
+assets/js/settle-core.js # pure VPPA settlement math (shared by browser + tests)
+assets/js/simulator.js   # simulator UI: scenarios, SVG chart, editable table
+assets/js/app.js         # view switching, theme toggle, glossary, inline tooltips
+data/glossary.json       # single source of truth for terms (feeds glossary + tooltips)
+test/                    # dependency-free Node tests (settlement math + data integrity)
+docs/research-us-ppa.md  # fact-checked research the content is built on
+docs/research-methods.md # how to gather more data cheaply (cost vs. reliability)
+docs/design.md           # project visual identity (extends DESIGN.md)
+backlog.md               # deferred scope and feature ideas
+```
+
+## Status
+
+**Phase 0 (MVP) + two research passes done.** Foundations, the settlement simulator, the glossary (35 cited terms), and the coverage page ship. Research round 2 added government / national-lab sourcing (FERC, IRS, EPA, NREL, Berkeley Lab) for the originator role, deal types, clauses, FERC, IRA tax credits, and bankability — see the in-app **Coverage & sources** view and `docs/research-us-ppa.md`. Next phases (pricing payoff explorer, basis-risk visualizer, annotated term sheet, quizzes) are in `backlog.md`.
+
+The settlement simulator is an illustration of contract mechanics, not market data or financial advice.
