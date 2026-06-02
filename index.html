@@ -27,7 +27,7 @@
     </div>
     <nav class="views" role="tablist" aria-label="Sections">
       <button class="nav-btn" role="tab" id="tab-foundations" aria-controls="view-foundations" aria-selected="true" data-view="foundations">Learn</button>
-      <button class="nav-btn" role="tab" id="tab-examples" aria-controls="view-examples" aria-selected="false" data-view="examples">Example PPAs</button>
+      <button class="nav-btn" role="tab" id="tab-examples" aria-controls="view-examples" aria-selected="false" data-view="examples">Drafting</button>
       <button class="nav-btn" role="tab" id="tab-simulator" aria-controls="view-simulator" aria-selected="false" data-view="simulator">Settlement simulator</button>
       <button class="nav-btn" role="tab" id="tab-datacenter" aria-controls="view-datacenter" aria-selected="false" data-view="datacenter">Data centers</button>
       <button class="nav-btn" role="tab" id="tab-perspectives" aria-controls="view-perspectives" aria-selected="false" data-view="perspectives">Perspectives</button>
@@ -172,15 +172,48 @@
       <p class="src"><a href="https://www.epa.gov/green-power-markets/renewable-energy-certificates-recs">EPA — Renewable Energy Certificates</a></p>
 
       <div class="card" style="margin-top:24px">
-        <p style="margin:0"><strong>Where to go next.</strong> Walk through real deal structures clause by clause in <button class="nav-link-btn" data-view="examples">Example PPAs</button>, feel the settlement mechanic in the <button class="nav-link-btn" data-view="simulator">simulator</button>, and see how AI data centers are reshaping deals in <button class="nav-link-btn" data-view="datacenter">Data centers</button>. The <button class="nav-link-btn" data-view="coverage">coverage page</button> tracks what's verified versus still being researched.</p>
+        <p style="margin:0"><strong>Where to go next.</strong> Learn to draft one, clause by clause, in <button class="nav-link-btn" data-view="examples">Drafting</button>, feel the settlement mechanic in the <button class="nav-link-btn" data-view="simulator">simulator</button>, and see how AI data centers are reshaping deals in <button class="nav-link-btn" data-view="datacenter">Data centers</button>. The <button class="nav-link-btn" data-view="coverage">coverage page</button> tracks what's verified versus still being researched.</p>
       </div>
     </section>
 
     <!-- ============ EXAMPLES ============ -->
     <section class="view" id="view-examples" role="tabpanel" aria-labelledby="tab-examples" hidden>
-      <p class="eyebrow">Walkthroughs</p>
-      <h1>Example PPAs, annotated</h1>
-      <p class="lede">Pick a term sheet, then select any clause for what it means, why it matters, and the glossary terms behind it. Illustrative composites for learning — not a specific contract.</p>
+      <p class="eyebrow">Practice</p>
+      <h1>How to draft a PPA</h1>
+      <p class="lede">You almost never draft a PPA from a blank page — you start from a standard form and negotiate the commercial terms onto it. Here's the process, what every PPA must define, and the principles that keep a draft bankable. Then study the worked examples below.</p>
+
+      <h2>The drafting process</h2>
+      <ol class="steps">
+        <li><strong>Start from a standard form.</strong> Use the <span class="gterm" data-term="EEI Master Power Purchase &amp; Sale Agreement">EEI Master P&amp;S Agreement</span> for wholesale physical deals, a SEIA model for C&amp;I, or an ISDA confirmation for a financial VPPA. Don't reinvent boilerplate.</li>
+        <li><strong>Agree the commercial core in a <span class="gterm" data-term="Term Sheet">term sheet</span> first.</strong> Nail down price, quantity, location, term, and product before lawyers draft the full agreement.</li>
+        <li><strong>Define every key term precisely.</strong> Ambiguity is risk — work the checklist below.</li>
+        <li><strong>Allocate each risk explicitly.</strong> For price, basis, shape, volume, curtailment, credit, and change-in-law, name who bears it. The <span class="gterm" data-term="Settlement Location">settlement location</span> decides <span class="gterm" data-term="Basis Risk">basis risk</span> — the most consequential single choice.</li>
+        <li><strong>Keep it <span class="gterm" data-term="Bankability">bankable</span>.</strong> A creditworthy offtaker, a tenor long enough to repay debt, and lender step-in rights are what let the project get financed.</li>
+        <li><strong>Negotiate, execute, then clear the <span class="gterm" data-term="Conditions Precedent (CP)">conditions precedent</span></strong> (financing, permits, interconnection) to reach the <span class="gterm" data-term="Commercial Operation Date (COD)">commercial operation date</span>.</li>
+      </ol>
+
+      <h2>What every PPA must define</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <p class="eyebrow">Commercial</p>
+          <p style="max-width:none">Term · <span class="gterm" data-term="Strike Price (Fixed Price)">price / strike</span> · contract quantity &amp; shape · <span class="gterm" data-term="Settlement Location">settlement location</span> · <span class="gterm" data-term="Renewable Energy Certificate (REC)">REC</span> ownership · settlement mechanics</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Performance &amp; risk</p>
+          <p style="max-width:none"><span class="gterm" data-term="Commercial Operation Date (COD)">COD</span> &amp; <span class="gterm" data-term="Delay Damages">delay damages</span> · availability guarantees · <span class="gterm" data-term="Curtailment">curtailment</span> · <span class="gterm" data-term="Credit Support">credit support</span> · <span class="gterm" data-term="Force Majeure">force majeure</span> · <span class="gterm" data-term="Change in Law">change in law</span> · termination &amp; default · assignment / lender step-in · dispute resolution</p>
+        </div>
+      </div>
+      <p class="src"><a href="https://www.eei.org/en/resources-and-media/master-contract">EEI Master P&amp;S Agreement</a> · <a href="https://www.nrel.gov/analysis/standard-contracts-downloads">NREL standard contracts</a> · <a href="https://www.stoel.com/insights/reports/the-law-of-solar/power-purchase-agreements-utility-scale-projects">Stoel Rives — Law of Solar</a></p>
+
+      <div class="card" style="border-left:3px solid var(--warn);margin-top:14px">
+        <p class="eyebrow">Drafting principles &amp; deal-killers</p>
+        <p style="max-width:none;margin-bottom:0">Define your defined terms — a vague clause is an unallocated risk. Every clause assigns a risk to someone; know which. Start from the market-standard form; don't over-engineer. The usual deal-killers: the <strong>wrong settlement point</strong> (basis), a <strong>weak offtaker credit</strong>, a <strong>tenor too short to finance</strong>, and <strong>uncapped liabilities</strong>.</p>
+      </div>
+
+      <hr class="rule">
+
+      <h2>Annotated examples</h2>
+      <p class="lede">Pick a term sheet, then select any clause for what it means, why it matters, and the glossary terms behind it. Illustrative composites — not a specific contract.</p>
       <div class="example-pills" id="example-pills" role="tablist" aria-label="Choose an example"></div>
       <p id="example-summary" class="example-summary"></p>
       <div class="annotate">
