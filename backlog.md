@@ -2,12 +2,10 @@
 
 Ideas and deferred scope. Each: description + priority (low / medium / high).
 
-## Next up (agreed 2026-06-02)
+## Next up
 
-Build the newcomer **on-ramp trio** before deeper features (detail under "Curriculum completeness — newcomer journey"):
-1. **Electricity & markets 101** — grid (generation → transmission → distribution), supply/demand and why prices move, wholesale vs retail, ISO/RTO, baseload vs peaker, energy vs capacity.
-2. **Units primer** — MW vs MWh and capacity factor, tied to project size, output, and revenue.
-3. **"Why PPAs exist"** — the value proposition (buyer hedge, developer bankability, corporate clean-energy claim), placed *before* the mechanics in Foundations.
+- ✅ **Newcomer on-ramp trio — shipped 2026-06-02.** Foundations now opens with "Why sign a PPA?" (value prop), "Electricity in 90 seconds" (grid / wholesale-vs-retail / ISO-RTO / baseload-vs-peaker / energy-vs-capacity accordions), and the MW-vs-MWh units rule — then the mechanics. Added 6 "Grid basics" glossary terms (54 total), cited to EIA/FERC.
+- **Now on deck:** the two verified quick fixes — focus management on view switch, and persist the level filter — then the **deal-lifecycle walkthrough** and **who's-who ecosystem map**.
 
 ## Deferred from initial scope (2026-06-01)
 

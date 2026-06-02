@@ -385,6 +385,54 @@
       "status": "verified",
       "source": "Utility Dive / CEBA",
       "url": "https://www.utilitydive.com/news/corporate-clean-energy-demand-remains-strong-ceba-ceo-rich-powell-2025-26-procurement-trends/819987/"
+    },
+    {
+      "term": "Megawatt-hour (MWh)",
+      "category": "Grid basics",
+      "def": "A unit of energy: one megawatt of power delivered for one hour. A megawatt (MW) is the rate (power); a megawatt-hour (MWh) is the amount (energy). PPAs price energy in dollars per MWh.",
+      "status": "verified",
+      "source": "EIA — Electricity explained",
+      "url": "https://www.eia.gov/energyexplained/electricity/"
+    },
+    {
+      "term": "Capacity Factor",
+      "category": "Grid basics",
+      "def": "The share of a plant's maximum possible output it actually produces over time. US solar runs roughly 25%, onshore wind ~35%, nuclear ~90%+. A 100 MW solar farm at 25% generates about 219,000 MWh a year, not 876,000.",
+      "status": "verified",
+      "source": "EIA — Electricity explained",
+      "url": "https://www.eia.gov/energyexplained/electricity/"
+    },
+    {
+      "term": "ISO / RTO",
+      "category": "Grid basics",
+      "def": "Independent System Operators / Regional Transmission Organizations — the nonprofit operators that run the wholesale grid and markets across much of the US (ERCOT, PJM, CAISO, MISO, SPP, ISO-NE, NYISO), balancing supply and demand and setting prices in real time.",
+      "status": "verified",
+      "source": "FERC",
+      "url": "https://ferc.gov/power-sales-and-markets"
+    },
+    {
+      "term": "Baseload vs Peaker",
+      "category": "Grid basics",
+      "def": "Baseload plants (nuclear, large gas) run nearly continuously; peakers run only when demand spikes. Variable renewables (solar, wind) generate only when the resource is available — which is why firm, around-the-clock power matters for a 24/7 load like a data center.",
+      "status": "verified",
+      "source": "EIA — Electricity explained",
+      "url": "https://www.eia.gov/energyexplained/electricity/"
+    },
+    {
+      "term": "Wholesale vs Retail",
+      "category": "Grid basics",
+      "def": "Wholesale is the sale of power for resale (generators to utilities or marketers), regulated federally by FERC; retail is the final sale to homes and businesses, regulated by states. Most PPAs are wholesale transactions.",
+      "status": "verified",
+      "source": "FERC",
+      "url": "https://ferc.gov/power-sales-and-markets"
+    },
+    {
+      "term": "Load",
+      "category": "Grid basics",
+      "def": "Electricity demand — the power being consumed at a given moment, measured in MW. A data center is a 'large load.' The grid must match generation to load every instant.",
+      "status": "verified",
+      "source": "EIA — Electricity explained",
+      "url": "https://www.eia.gov/energyexplained/electricity/"
     }
   ]
 }
