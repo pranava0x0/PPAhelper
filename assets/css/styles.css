@@ -278,6 +278,8 @@ button, a, input, [tabindex] { touch-action: manipulation; }
   .lede { font-size: 1.06rem; }
   .masthead-spacer { display: none; }
   .masthead-controls { width: 100%; justify-content: space-between; }
+  .path { display: grid; grid-template-columns: 1fr 1fr; }
+  .path-lvl { display: none; }
 }
 
 /* ---- level filter + inline nav links ---- */
