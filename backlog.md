@@ -31,6 +31,32 @@ Sourced from 25 active job postings at Amazon, Google, Microsoft, Meta, Apple, O
 - **Power flow studies / transmission planning** — PSS-E, PowerWorld, PSLF; steady-state and contingency analysis. Meta's Transmission Energy Manager role. Very technical; not core to PPA/utility contract knowledge. *Priority: low*
 - **Behind-the-meter / onsite generation track** — Permitting BTM solar/storage, IPP co-location agreements, fuel cells. Meta's Onsite Generation Solutions role. *Priority: low*
 
+## UAT findings — 2026-06-05
+
+Full walkthrough as newcomer and practitioner. Generator works fine (static-analysis report was wrong). Real findings below, ranked by impact on actual learning.
+
+### Confirmed bugs / broken experiences
+- ✅ **Newcomer vs. Practitioner filter — fixed 2026-06-05.** Was hiding <5% of content (only the basis-risk and risk-allocation sections). Now also gates Who's-who and Deal lifecycle behind Practitioner, adds "Practitioner" pills to all four section headings. 18 elements hidden for Newcomer vs 0 for Practitioner; the filter is now meaningfully different.
+
+### High-impact gaps — should build next
+- **End-to-end worked narrative** — The site teaches all the pieces but never threads them together. A single short story ("100 MW ERCOT solar VPPA: Amazon buyer, Sunridge developer, 3 sample months, where the settlement math lands, which risks were negotiated how") would make everything click. UAT confirmed this is the single biggest newcomer gap. *Priority: **high** (was medium — bumping).*
+- **Simulator: basis-risk mode** — The site opens with "basis risk is the #1 structural risk," then the simulator explicitly assumes no basis. A practitioner immediately notices. Add a ±spread slider (node vs hub) and show how it shifts the developer's P&L. *Priority: **high** (already Phase 1 — confirming).*
+- **Self-check: quizzes and flashcards** — Newcomers learn by testing, not reading. A 5-question scenario quiz per tab ("market $55, strike $45 — who pays whom? How much?") would reinforce the simulator. Spaced-repetition flashcards from the glossary would help retention. This is the site's biggest pedagogical gap. *Priority: **high** (was medium — bumping).*
+- **PPA Originator role page** — Still just a glossary entry. A short page: day-in-the-life, who hires (developers/IPPs, utilities, advisors, corporates), how to break in, what to study. The stated goal of the tool is "learn to originate" — this is missing. *Priority: **high** (was high — confirming).*
+
+### Medium-impact gaps — build after above
+- **ISO/RTO market comparison** — ERCOT energy-only nodal vs PJM/MISO capacity markets vs CAISO CRRs. Why it matters for basis risk and deal structure. Already in backlog, UAT confirms it's a real practitioner gap. *Priority: medium (confirmed).*
+- **Pricing-structure payoff explorer (Phase 1)** — Flat-strike-only simulator. Real deals use escalators, collars, discount-to-market + floor. A side-by-side payoff comparison tool. *Priority: medium (confirming Phase 1).*
+- **REC → Scope 2 / additionality primer** — The site says RECs transfer but doesn't explain how they map to GHG Protocol Scope 2, what additionality means, or why 24/7 hourly matching is stricter than annual. Corporate buyers need this. *Priority: medium (confirmed).*
+- **Annotated clause depth** — 3 example term sheets with ~10 clauses each. Real due diligence needs: conditions precedent mechanics, assignment/lender step-in carve-outs, curtailment "deemed generation" triggers, CIL haircut formulas. *Priority: medium.*
+- **Interconnection deep-dive** — Why 3–7 years, LGIA vs SGIA, how queue position affects buyers. Already in backlog; UAT confirms practitioners ask about this. *Priority: medium (confirmed).*
+
+### Low-impact / deferred
+- Progress tracking (localStorage checkmarks per step). *Priority: low.*
+- Cross-tab "next step" breadcrumb. *Priority: low.*
+- Per-view `<title>` + Open Graph meta. *Priority: low.*
+- `issues.md` creation. *Priority: low.*
+
 ## Next up
 
 - ✅ **Newcomer on-ramp trio — shipped 2026-06-02.** Foundations gained "Why sign a PPA?", an electricity primer, and the MW-vs-MWh rule.
