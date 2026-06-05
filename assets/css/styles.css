@@ -367,6 +367,37 @@ ol.steps li { counter-increment: step; position: relative; padding: 9px 0 9px 40
 ol.steps li:last-child { border-bottom: none; }
 ol.steps li::before { content: counter(step); position: absolute; left: 0; top: 8px; width: 26px; height: 26px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-family: var(--font-serif); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
 
+/* ---- PPA draft generator ---- */
+.draft-layout { display: grid; gap: 22px; }
+@media (min-width: 1024px) { .draft-layout { grid-template-columns: 340px 1fr; align-items: start; } }
+
+.draft-output {
+  font-family: var(--font-mono); font-size: 12.5px; line-height: 1.6;
+  white-space: pre-wrap; word-break: break-word;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 20px 22px; min-height: 400px; max-height: 72vh; overflow-y: auto;
+  color: var(--text);
+}
+.draft-output:empty::before {
+  content: "Fill the form and click Generate PPA →";
+  color: var(--text-muted); font-style: italic;
+}
+.draft-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.draft-actions button { font-size: 13px; font-weight: 600; padding: 9px 16px; border-radius: 8px; cursor: pointer; min-height: 40px; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); border: none; }
+.btn-primary:hover { opacity: 0.9; }
+.btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { border-color: var(--accent); }
+.btn-secondary:disabled { opacity: 0.4; cursor: default; }
+
+/* mobile nav scroll affordance — fade right edge to hint at off-screen tabs */
+@media (max-width: 860px) {
+  nav.views {
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%);
+    mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%);
+  }
+}
+
 /* mobile overrides placed last so they win over later base component rules */
 @media (max-width: 639px) {
   .path { display: grid; grid-template-columns: 1fr 1fr; }
