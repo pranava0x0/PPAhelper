@@ -212,6 +212,125 @@
 
       <hr class="rule">
 
+      <h2>Risk allocation — who bears what</h2>
+      <p>Every clause assigns a risk to one party. These are the eight risks that shape every deal, and where buyers and sellers typically start their negotiations. Knowing this table is what Google, Amazon, and Meta interviewers test.</p>
+      <div class="table-wrap">
+        <table class="coverage" style="width:100%;table-layout:auto">
+          <thead>
+            <tr>
+              <th style="width:18%">Risk</th>
+              <th style="width:30%">Developer typically wants</th>
+              <th style="width:30%">Buyer typically wants</th>
+              <th style="width:22%">Physical PPA difference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong><span class="gterm" data-term="Basis Risk">Basis</span></strong></td>
+              <td>Hub settlement — developer absorbs the node-to-hub gap rather than exposing the buyer to nodal volatility</td>
+              <td>Hub settlement too — cleaner accounting, though buyer then loses the hedge if congestion inverts</td>
+              <td>Settled at the delivery node or zone; basis risk is embedded in the delivery price, not a separate exposure</td>
+            </tr>
+            <tr>
+              <td><strong>Price (strike vs. LMP)</strong></td>
+              <td>Strike high enough to service project debt; escalated strike that keeps pace with inflation</td>
+              <td>Strike as low as possible; flat or modestly escalating to budget predictably</td>
+              <td>Buyer pays a fixed price per MWh; no ongoing settlement against a market index</td>
+            </tr>
+            <tr>
+              <td><strong><span class="gterm" data-term="Curtailment">Curtailment</span></strong></td>
+              <td>"Deemed generation" — paid on expected output even if the grid curtails the project</td>
+              <td>Pay only for actual delivered MWhs; developer should bear curtailment caused by their own project</td>
+              <td>Same negotiation; which party instructed the curtailment (grid vs. buyer) usually determines who bears the loss</td>
+            </tr>
+            <tr>
+              <td><strong><span class="gterm" data-term="Credit Support">Credit support</span></strong></td>
+              <td>One-way: only the developer posts security (cash or <span class="gterm" data-term="Letter of Credit (LC)">LC</span>); corporate offtaker's balance sheet is the guarantee</td>
+              <td>One-way for utilities; two-way for corporate VPPAs so both parties are covered if either defaults</td>
+              <td>Utility offtake: one-way (seller posts). Corporate VPPA: usually two-way — both parties post an LC</td>
+            </tr>
+            <tr>
+              <td><strong><span class="gterm" data-term="Change in Law">Change in law</span> (IRA)</strong></td>
+              <td>Buyer shares the risk if ITC/PTC credits are cut after signing — developer can't re-price for a regime change</td>
+              <td>Tax risk stays with the developer; buyer will not agree to re-open pricing if Congress changes credits</td>
+              <td>Same; often split — developer bears the risk but a pricing re-opener is triggered above a threshold cut</td>
+            </tr>
+            <tr>
+              <td><strong><span class="gterm" data-term="Delay Damages">Delay damages</span></strong></td>
+              <td>Low per-day rate, hard cap (3 months of expected payments), and no liability for delays caused by supply-chain or permitting factors outside developer's control</td>
+              <td>High per-day rate; uncapped or high cap; broad cause list (developer bears supply-chain risk)</td>
+              <td>Same negotiation; cap size is the key deal point</td>
+            </tr>
+            <tr>
+              <td><strong>Volume / shape</strong></td>
+              <td>As-generated: developer delivers whatever the project produces, no volume guarantee</td>
+              <td>Minimum delivery obligation or volume firming so the hedge is reliable</td>
+              <td>Physical PPAs more often include minimum delivery; VPPAs almost always as-generated</td>
+            </tr>
+            <tr>
+              <td><strong><span class="gterm" data-term="Counterparty Credit Risk">Counterparty credit</span></strong></td>
+              <td>Buyer's credit rating assessed upfront; parent guarantee required if buyer is a subsidiary</td>
+              <td>Developer's sponsor credit assessed; step-in rights for lenders if developer defaults</td>
+              <td>Same; the investment-grade test is the same — weak offtaker credit is a common deal-killer</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src"><a href="https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities">Norton Rose Fulbright — VPPA risks</a> · <a href="https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/">RMI risk-mitigation guide</a> · <a href="https://www.stoel.com/insights/reports/the-law-of-solar/power-purchase-agreements-utility-scale-projects">Stoel Rives — Law of Solar</a></p>
+
+      <h2 style="margin-top:28px">Physical vs. virtual — when to use which</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <p class="eyebrow">Physical PPA — use when</p>
+          <ul style="margin:0 0 10px;padding-left:20px">
+            <li>You want actual electrons at your meter or delivery point</li>
+            <li>The project is in a regulated state (VPPAs require retail access)</li>
+            <li>You need co-located or behind-the-meter generation</li>
+            <li>You want to eliminate <span class="gterm" data-term="Basis Risk">basis risk</span> by fixing the delivery point</li>
+          </ul>
+          <p style="margin:0"><strong>Common forms:</strong> utility offtake (20-year wholesale), <span class="gterm" data-term="Sleeved PPA">sleeved PPA</span>, behind-the-meter, community solar</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Virtual / Financial PPA — use when</p>
+          <ul style="margin:0 0 10px;padding-left:20px">
+            <li>Project is in a different ISO region or state from where you consume power</li>
+            <li>You want RECs and a price hedge without physical delivery logistics</li>
+            <li>You operate loads across many ISOs and want a portfolio hedge</li>
+            <li>The state has retail choice — VPPA is the standard corporate model there</li>
+          </ul>
+          <p style="margin:0"><strong>Common forms:</strong> hub-settled CfD (most common), node-settled CfD, fixed-volume swap</p>
+        </div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--accent);margin-top:12px">
+        <p class="eyebrow">The regulated-state constraint</p>
+        <p style="margin:0">VPPAs require retail access — the ability to buy electricity from any supplier. In regulated states where the local utility is the sole supplier, buyers use <span class="gterm" data-term="Green Tariff">green tariffs</span> or <span class="gterm" data-term="Energy Supply Agreement (ESA)">utility ESAs</span> instead. In deregulated states (ERCOT, PJM, CAISO, MISO, ISO-NE, NYISO), direct PPAs are available. This is why geography is the first question in any procurement conversation.</p>
+      </div>
+      <p class="src"><a href="https://www.wbcsd.org/wp-content/uploads/2023/10/Pricing-structures-for-corporate-renewable-PPAs.pdf">WBCSD — Pricing structures for corporate PPAs</a> · <a href="https://www.epa.gov/statelocalenergy/customer-power-purchase-agreements">EPA — Customer PPAs</a></p>
+
+      <h2 style="margin-top:28px">Utility contract types</h2>
+      <p>In regulated states buyers can't contract directly with a developer. These are the four contract structures they use instead — and which hyperscaler energy roles explicitly require knowledge of.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <p class="eyebrow">Standard offer / default service</p>
+          <p style="max-width:none;margin:0">The regulated utility's tariff-rate supply: no commitment, no renewable attributes, maximum spot price exposure. The baseline all other options are compared against. If you can beat it on cost or carbon, you have a deal.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow"><span class="gterm" data-term="Green Tariff">Green tariff</span></p>
+          <p style="max-width:none;margin:0">A utility-sponsored renewable product requiring state PUC approval. Buyer pays the utility a premium; the utility procures renewable generation on the buyer's behalf. Available where retail choice doesn't exist. Google and Microsoft have used green tariffs across the Southeast and Midwest.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow"><span class="gterm" data-term="Energy Supply Agreement (ESA)">Energy Supply Agreement (ESA)</span></p>
+          <p style="max-width:none;margin:0">A bilateral supply contract with a competitive supplier in a deregulated market — sets a fixed or indexed price for electricity, often including renewable attributes. Amazon, Oracle, and Microsoft energy managers cite negotiating and executing ESAs as a core day-to-day responsibility.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow"><span class="gterm" data-term="Sleeved PPA">Sleeved PPA</span></p>
+          <p style="max-width:none;margin:0">A physical PPA where the local utility acts as intermediary between developer and buyer — useful where direct contracting isn't allowed but the buyer wants a specific project's RECs and a fixed price. The utility absorbs the price-fluctuation risk.</p>
+        </div>
+      </div>
+      <p class="src"><a href="https://www.epa.gov/green-power-markets/green-power-partnership-purchasing-guide">EPA — Green Power Purchasing Guide</a> · <a href="https://www.wbcsd.org/wp-content/uploads/2023/10/Pricing-structures-for-corporate-renewable-PPAs.pdf">WBCSD — Pricing structures</a></p>
+
+      <hr class="rule">
+
       <h2>Annotated examples</h2>
       <p class="lede">Pick a term sheet, then select any clause for what it means, why it matters, and the glossary terms behind it. Illustrative composites — not a specific contract.</p>
       <div class="example-pills" id="example-pills" role="tablist" aria-label="Choose an example"></div>

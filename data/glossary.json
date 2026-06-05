@@ -473,6 +473,46 @@
       "status": "verified",
       "source": "World Bank PPP",
       "url": "https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements"
+    },
+    {
+      "term": "Energy Supply Agreement (ESA)",
+      "category": "Contract",
+      "def": "A bilateral supply contract between a buyer and a competitive electricity supplier in a deregulated market, setting the price, term, and renewable content for electricity supply. Amazon, Oracle, and Microsoft energy procurement roles cite negotiating and executing ESAs as a core responsibility.",
+      "status": "secondary",
+      "source": "Amazon/Oracle energy job descriptions (2025–2026)",
+      "url": "https://www.amazon.jobs/en/jobs/10379535/energy-procurement-manager-aws-east-energy-and-water-team"
+    },
+    {
+      "term": "Green Tariff",
+      "category": "Contract",
+      "def": "A utility-sponsored renewable energy product approved by a state Public Utility Commission (PUC). The buyer pays the utility a premium; the utility procures renewable generation on the buyer's behalf. The main mechanism for corporate buyers to access renewables in regulated states where direct PPAs are unavailable.",
+      "status": "secondary",
+      "source": "EPA Green Power Markets; Amazon/Google/Oracle energy job descriptions (2025–2026)",
+      "url": "https://www.epa.gov/green-power-markets/green-power-partnership-purchasing-guide"
+    },
+    {
+      "term": "Letter of Credit (LC)",
+      "category": "Contract",
+      "def": "A bank-issued guarantee that the issuing bank will pay a specified amount if the counterparty defaults. The most common form of credit support in corporate PPAs — typically an irrevocable standby LC from an A-or-better rated bank. Preferred because it is liquid and not subject to the posting party's bankruptcy.",
+      "status": "verified",
+      "source": "Stoel Rives — Law of Solar",
+      "url": "https://www.stoel.com/insights/reports/the-law-of-solar/power-purchase-agreements-utility-scale-projects"
+    },
+    {
+      "term": "Counterparty Credit Risk",
+      "category": "Risk",
+      "def": "The risk that the other party to a PPA cannot meet its financial obligations — the developer can't build or operate the project, or the buyer can't make settlement payments. Managed through credit support (LCs, parent guarantees, cash collateral) and offtaker credit ratings. Explicitly tested in Google energy negotiator interviews.",
+      "status": "secondary",
+      "source": "Norton Rose Fulbright; Google energy job interview analysis (2025–2026)",
+      "url": "https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities"
+    },
+    {
+      "term": "Large Generator Interconnection Agreement (LGIA)",
+      "category": "Contract",
+      "def": "The contract between a generator and the grid operator (ISO/RTO or utility) that defines the technical and financial terms for connecting a new power plant to the transmission grid. Negotiating LGIAs and managing the multi-year interconnection queue is an explicit requirement in Amazon and Meta energy roles.",
+      "status": "secondary",
+      "source": "FERC Order 2003; Amazon/Meta energy job descriptions (2025–2026)",
+      "url": "https://www.ferc.gov/industries-data/electric/electric-transmission/interconnection-rules-and-procedures"
     }
   ]
 }
