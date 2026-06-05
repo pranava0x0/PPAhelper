@@ -6,7 +6,7 @@
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
   <link rel="preload" href="data/glossary.json" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260605">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -28,6 +28,7 @@
     <nav class="views" role="tablist" aria-label="Sections">
       <button class="nav-btn" role="tab" id="tab-foundations" aria-controls="view-foundations" aria-selected="true" data-view="foundations">Learn</button>
       <button class="nav-btn" role="tab" id="tab-examples" aria-controls="view-examples" aria-selected="false" data-view="examples">Drafting</button>
+      <button class="nav-btn" role="tab" id="tab-ppadraft" aria-controls="view-ppadraft" aria-selected="false" data-view="ppadraft">Draft PPA</button>
       <button class="nav-btn" role="tab" id="tab-simulator" aria-controls="view-simulator" aria-selected="false" data-view="simulator">Settlement simulator</button>
       <button class="nav-btn" role="tab" id="tab-datacenter" aria-controls="view-datacenter" aria-selected="false" data-view="datacenter">Data centers</button>
       <button class="nav-btn" role="tab" id="tab-perspectives" aria-controls="view-perspectives" aria-selected="false" data-view="perspectives">Perspectives</button>
@@ -155,15 +156,17 @@
       <p style="margin-top:16px">Net effect: the buyer locks in the strike as its effective power price, and the generator locks in stable revenue to finance the project. Don't just read it — <button class="nav-link-btn" data-view="simulator" style="background:none;border:none;color:var(--accent);font:inherit;cursor:pointer;padding:0;text-decoration:underline">run the settlement simulator</button> and watch the cash change direction.</p>
       <p class="src"><a href="https://www.stoel.com/insights/reports/the-law-of-solar/power-purchase-agreements-utility-scale-projects">Stoel Rives, "Law of Solar"</a> · <a href="https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities">Norton Rose Fulbright</a></p>
 
-      <hr class="rule">
+      <div data-level="2">
+        <hr class="rule">
 
-      <h2>Basis risk — the #1 structural risk to understand</h2>
-      <p>Wholesale prices are set at thousands of <span class="gterm" data-term="Node">nodes</span> (where generators connect) and averaged into less-volatile regional <span class="gterm" data-term="Hub">hubs</span>. Most corporate buyers settle the VPPA at the hub. But the generator earns its local node price — so the developer absorbs the node-to-hub gap. That gap is <span class="gterm" data-term="Basis Risk">basis risk</span>, and it can be brutal.</p>
-      <div class="card" style="border-left:3px solid var(--warn)">
-        <p class="eyebrow">The canonical horror story</p>
-        <p style="margin-bottom:0">In an August 2019 ERCOT congestion event, the North hub hit roughly <span class="mono">$9,000/MWh</span> while the project's node sat near <span class="mono">$1,000/MWh</span>. A 300-MW project settling at the hub lost about <span class="mono">$2.4M</span> in a single hour.</p>
+        <h2>Basis risk — the #1 structural risk to understand</h2>
+        <p>Wholesale prices are set at thousands of <span class="gterm" data-term="Node">nodes</span> (where generators connect) and averaged into less-volatile regional <span class="gterm" data-term="Hub">hubs</span>. Most corporate buyers settle the VPPA at the hub. But the generator earns its local node price — so the developer absorbs the node-to-hub gap. That gap is <span class="gterm" data-term="Basis Risk">basis risk</span>, and it can be brutal.</p>
+        <div class="card" style="border-left:3px solid var(--warn)">
+          <p class="eyebrow">The canonical horror story</p>
+          <p style="margin-bottom:0">In an August 2019 ERCOT congestion event, the North hub hit roughly <span class="mono">$9,000/MWh</span> while the project's node sat near <span class="mono">$1,000/MWh</span>. A 300-MW project settling at the hub lost about <span class="mono">$2.4M</span> in a single hour.</p>
+        </div>
+        <p class="src" style="margin-top:12px"><a href="https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities">Norton Rose Fulbright</a> · <a href="https://cityrenewables.org/vppa/research-and-build-team/understand-basis-risk/">American Cities Climate Challenge</a></p>
       </div>
-      <p class="src" style="margin-top:12px"><a href="https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities">Norton Rose Fulbright</a> · <a href="https://cityrenewables.org/vppa/research-and-build-team/understand-basis-risk/">American Cities Climate Challenge</a></p>
 
       <hr class="rule">
 
@@ -171,8 +174,61 @@
       <p>A <span class="gterm" data-term="Renewable Energy Certificate (REC)">renewable energy certificate</span> represents the environmental attributes of renewable generation — one REC per MWh delivered to the grid. In a VPPA the fixed price is the consideration for those RECs, which the seller conveys to the buyer. The buyer can then claim the clean-energy use.</p>
       <p class="src"><a href="https://www.epa.gov/green-power-markets/renewable-energy-certificates-recs">EPA — Renewable Energy Certificates</a></p>
 
+      <hr class="rule">
+
+      <h2>Who's who — the parties behind every deal</h2>
+      <p>A utility-scale PPA involves at least six parties, each with different interests, timelines, and risk appetites. Knowing who each one is changes how you read every clause.</p>
+      <div class="grid cols-3">
+        <div class="card">
+          <p class="eyebrow">Seller</p>
+          <h3><span class="gterm" data-term="Independent Power Producer (IPP)">Developer / IPP</span></h3>
+          <p>Originates, finances, and builds the project. The seller in the PPA; holds the interconnection queue position; takes development and construction risk.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Build</p>
+          <h3>EPC Contractor</h3>
+          <p>Engineers, procures, and constructs the plant under a fixed-price contract. Absorbs construction risk from the developer; delivers the project to <span class="gterm" data-term="Commercial Operation Date (COD)">COD</span>.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Operate</p>
+          <h3>O&amp;M Provider</h3>
+          <p>Operates and maintains the plant post-COD. Responsible for meeting the availability guarantees in the PPA; often the developer's subsidiary or a specialist firm.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Debt</p>
+          <h3>Project Lender</h3>
+          <p>Provides 50–70% of the project's capital as non-recourse debt. Requires a <span class="gterm" data-term="Bankability">bankable PPA</span>, lender step-in rights, and an investment-grade <span class="gterm" data-term="Offtaker">offtaker</span>.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Tax equity</p>
+          <h3>Tax-Equity Investor</h3>
+          <p>A bank or institution that owns a project tranche to monetize the <span class="gterm" data-term="Investment Tax Credit (ITC)">ITC</span> or <span class="gterm" data-term="Production Tax Credit (PTC)">PTC</span>. Often the largest capital source post-IRA; paid before the developer sponsor.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Buyer</p>
+          <h3><span class="gterm" data-term="Offtaker">Offtaker / Corporate Buyer</span></h3>
+          <p>Signs the PPA and provides the long-term revenue that makes the project financeable. Their credit rating and term commitment are reviewed by lenders before financing closes.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Regulated markets</p>
+          <h3><span class="gterm" data-term="Utility">Utility</span></h3>
+          <p>Delivers power in regulated markets; counterparty in utility-scale PPAs; intermediary in sleeved deals; operates the green-tariff programs where direct PPAs aren't available.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Market operator</p>
+          <h3><span class="gterm" data-term="ISO / RTO">ISO / RTO</span></h3>
+          <p>Runs the wholesale electricity market (PJM, ERCOT, CAISO, MISO); dispatches generators every 5 minutes; posts the nodal <span class="gterm" data-term="Locational Marginal Price (LMP)">LMP</span> prices that VPPAs settle against.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Advisory</p>
+          <h3>Broker / Advisor</h3>
+          <p>Energy consultants (LevelTen, Schneider Electric), law firms (Stoel Rives, Norton Rose), and investment banks that structure tax equity, broker deals, and advise buyers on market conditions.</p>
+        </div>
+      </div>
+      <p class="src"><a href="https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/">RMI — Risk Mitigation Guide</a> · <a href="https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements">World Bank — PPAs &amp; bankability</a></p>
+
       <div class="card" style="margin-top:24px">
-        <p style="margin:0"><strong>Where to go next.</strong> Learn to draft one, clause by clause, in <button class="nav-link-btn" data-view="examples">Drafting</button>, feel the settlement mechanic in the <button class="nav-link-btn" data-view="simulator">simulator</button>, and see how AI data centers are reshaping deals in <button class="nav-link-btn" data-view="datacenter">Data centers</button>. The <button class="nav-link-btn" data-view="coverage">coverage page</button> tracks what's verified versus still being researched.</p>
+        <p style="margin:0"><strong>Where to go next.</strong> Learn to draft one, clause by clause, in <button class="nav-link-btn" data-view="examples">Drafting</button> — including the full deal lifecycle — feel the settlement mechanic in the <button class="nav-link-btn" data-view="simulator">simulator</button>, and see how AI data centers are reshaping deals in <button class="nav-link-btn" data-view="datacenter">Data centers</button>. The <button class="nav-link-btn" data-view="coverage">coverage page</button> tracks what's verified versus still being researched.</p>
       </div>
     </section>
 
@@ -210,73 +266,75 @@
         <p style="max-width:none;margin-bottom:0">Define your defined terms — a vague clause is an unallocated risk. Every clause assigns a risk to someone; know which. Start from the market-standard form; don't over-engineer. The usual deal-killers: the <strong>wrong settlement point</strong> (basis), a <strong>weak offtaker credit</strong>, a <strong>tenor too short to finance</strong>, and <strong>uncapped liabilities</strong>.</p>
       </div>
 
-      <hr class="rule">
+      <div data-level="2">
+        <hr class="rule">
 
-      <h2>Risk allocation — who bears what</h2>
-      <p>Every clause assigns a risk to one party. These are the eight risks that shape every deal, and where buyers and sellers typically start their negotiations. Knowing this table is what Google, Amazon, and Meta interviewers test.</p>
-      <div class="table-wrap">
-        <table class="coverage" style="width:100%;table-layout:auto">
-          <thead>
-            <tr>
-              <th style="width:18%">Risk</th>
-              <th style="width:30%">Developer typically wants</th>
-              <th style="width:30%">Buyer typically wants</th>
-              <th style="width:22%">Physical PPA difference</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong><span class="gterm" data-term="Basis Risk">Basis</span></strong></td>
-              <td>Hub settlement — developer absorbs the node-to-hub gap rather than exposing the buyer to nodal volatility</td>
-              <td>Hub settlement too — cleaner accounting, though buyer then loses the hedge if congestion inverts</td>
-              <td>Settled at the delivery node or zone; basis risk is embedded in the delivery price, not a separate exposure</td>
-            </tr>
-            <tr>
-              <td><strong>Price (strike vs. LMP)</strong></td>
-              <td>Strike high enough to service project debt; escalated strike that keeps pace with inflation</td>
-              <td>Strike as low as possible; flat or modestly escalating to budget predictably</td>
-              <td>Buyer pays a fixed price per MWh; no ongoing settlement against a market index</td>
-            </tr>
-            <tr>
-              <td><strong><span class="gterm" data-term="Curtailment">Curtailment</span></strong></td>
-              <td>"Deemed generation" — paid on expected output even if the grid curtails the project</td>
-              <td>Pay only for actual delivered MWhs; developer should bear curtailment caused by their own project</td>
-              <td>Same negotiation; which party instructed the curtailment (grid vs. buyer) usually determines who bears the loss</td>
-            </tr>
-            <tr>
-              <td><strong><span class="gterm" data-term="Credit Support">Credit support</span></strong></td>
-              <td>One-way: only the developer posts security (cash or <span class="gterm" data-term="Letter of Credit (LC)">LC</span>); corporate offtaker's balance sheet is the guarantee</td>
-              <td>One-way for utilities; two-way for corporate VPPAs so both parties are covered if either defaults</td>
-              <td>Utility offtake: one-way (seller posts). Corporate VPPA: usually two-way — both parties post an LC</td>
-            </tr>
-            <tr>
-              <td><strong><span class="gterm" data-term="Change in Law">Change in law</span> (IRA)</strong></td>
-              <td>Buyer shares the risk if ITC/PTC credits are cut after signing — developer can't re-price for a regime change</td>
-              <td>Tax risk stays with the developer; buyer will not agree to re-open pricing if Congress changes credits</td>
-              <td>Same; often split — developer bears the risk but a pricing re-opener is triggered above a threshold cut</td>
-            </tr>
-            <tr>
-              <td><strong><span class="gterm" data-term="Delay Damages">Delay damages</span></strong></td>
-              <td>Low per-day rate, hard cap (3 months of expected payments), and no liability for delays caused by supply-chain or permitting factors outside developer's control</td>
-              <td>High per-day rate; uncapped or high cap; broad cause list (developer bears supply-chain risk)</td>
-              <td>Same negotiation; cap size is the key deal point</td>
-            </tr>
-            <tr>
-              <td><strong>Volume / shape</strong></td>
-              <td>As-generated: developer delivers whatever the project produces, no volume guarantee</td>
-              <td>Minimum delivery obligation or volume firming so the hedge is reliable</td>
-              <td>Physical PPAs more often include minimum delivery; VPPAs almost always as-generated</td>
-            </tr>
-            <tr>
-              <td><strong><span class="gterm" data-term="Counterparty Credit Risk">Counterparty credit</span></strong></td>
-              <td>Buyer's credit rating assessed upfront; parent guarantee required if buyer is a subsidiary</td>
-              <td>Developer's sponsor credit assessed; step-in rights for lenders if developer defaults</td>
-              <td>Same; the investment-grade test is the same — weak offtaker credit is a common deal-killer</td>
-            </tr>
-          </tbody>
-        </table>
+        <h2>Risk allocation — who bears what</h2>
+        <p>Every clause assigns a risk to one party. These are the eight risks that shape every deal, and where buyers and sellers typically start their negotiations. Knowing this table is what Google, Amazon, and Meta interviewers test.</p>
+        <div class="table-wrap">
+          <table class="coverage" style="width:100%;table-layout:auto">
+            <thead>
+              <tr>
+                <th style="width:18%">Risk</th>
+                <th style="width:30%">Developer typically wants</th>
+                <th style="width:30%">Buyer typically wants</th>
+                <th style="width:22%">Physical PPA difference</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><span class="gterm" data-term="Basis Risk">Basis</span></strong></td>
+                <td>Hub settlement — developer absorbs the node-to-hub gap rather than exposing the buyer to nodal volatility</td>
+                <td>Hub settlement too — cleaner accounting, though buyer then loses the hedge if congestion inverts</td>
+                <td>Settled at the delivery node or zone; basis risk is embedded in the delivery price, not a separate exposure</td>
+              </tr>
+              <tr>
+                <td><strong>Price (strike vs. LMP)</strong></td>
+                <td>Strike high enough to service project debt; escalated strike that keeps pace with inflation</td>
+                <td>Strike as low as possible; flat or modestly escalating to budget predictably</td>
+                <td>Buyer pays a fixed price per MWh; no ongoing settlement against a market index</td>
+              </tr>
+              <tr>
+                <td><strong><span class="gterm" data-term="Curtailment">Curtailment</span></strong></td>
+                <td>"Deemed generation" — paid on expected output even if the grid curtails the project</td>
+                <td>Pay only for actual delivered MWhs; developer should bear curtailment caused by their own project</td>
+                <td>Same negotiation; which party instructed the curtailment (grid vs. buyer) usually determines who bears the loss</td>
+              </tr>
+              <tr>
+                <td><strong><span class="gterm" data-term="Credit Support">Credit support</span></strong></td>
+                <td>One-way: only the developer posts security (cash or <span class="gterm" data-term="Letter of Credit (LC)">LC</span>); corporate offtaker's balance sheet is the guarantee</td>
+                <td>One-way for utilities; two-way for corporate VPPAs so both parties are covered if either defaults</td>
+                <td>Utility offtake: one-way (seller posts). Corporate VPPA: usually two-way — both parties post an LC</td>
+              </tr>
+              <tr>
+                <td><strong><span class="gterm" data-term="Change in Law">Change in law</span> (IRA)</strong></td>
+                <td>Buyer shares the risk if ITC/PTC credits are cut after signing — developer can't re-price for a regime change</td>
+                <td>Tax risk stays with the developer; buyer will not agree to re-open pricing if Congress changes credits</td>
+                <td>Same; often split — developer bears the risk but a pricing re-opener is triggered above a threshold cut</td>
+              </tr>
+              <tr>
+                <td><strong><span class="gterm" data-term="Delay Damages">Delay damages</span></strong></td>
+                <td>Low per-day rate, hard cap (3 months of expected payments), and no liability for delays caused by supply-chain or permitting factors outside developer's control</td>
+                <td>High per-day rate; uncapped or high cap; broad cause list (developer bears supply-chain risk)</td>
+                <td>Same negotiation; cap size is the key deal point</td>
+              </tr>
+              <tr>
+                <td><strong>Volume / shape</strong></td>
+                <td>As-generated: developer delivers whatever the project produces, no volume guarantee</td>
+                <td>Minimum delivery obligation or volume firming so the hedge is reliable</td>
+                <td>Physical PPAs more often include minimum delivery; VPPAs almost always as-generated</td>
+              </tr>
+              <tr>
+                <td><strong><span class="gterm" data-term="Counterparty Credit Risk">Counterparty credit</span></strong></td>
+                <td>Buyer's credit rating assessed upfront; parent guarantee required if buyer is a subsidiary</td>
+                <td>Developer's sponsor credit assessed; step-in rights for lenders if developer defaults</td>
+                <td>Same; the investment-grade test is the same — weak offtaker credit is a common deal-killer</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="src"><a href="https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities">Norton Rose Fulbright — VPPA risks</a> · <a href="https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/">RMI risk-mitigation guide</a> · <a href="https://www.stoel.com/insights/reports/the-law-of-solar/power-purchase-agreements-utility-scale-projects">Stoel Rives — Law of Solar</a></p>
       </div>
-      <p class="src"><a href="https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities">Norton Rose Fulbright — VPPA risks</a> · <a href="https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/">RMI risk-mitigation guide</a> · <a href="https://www.stoel.com/insights/reports/the-law-of-solar/power-purchase-agreements-utility-scale-projects">Stoel Rives — Law of Solar</a></p>
 
       <h2 style="margin-top:28px">Physical vs. virtual — when to use which</h2>
       <div class="grid cols-2">
@@ -331,6 +389,47 @@
 
       <hr class="rule">
 
+      <h2>Deal lifecycle — origination to operations</h2>
+      <p>A utility-scale PPA takes 3–5 years from first conversation to first MWh of settlement. Here are the six stages every deal goes through, with who's involved and typical timelines.</p>
+      <ol class="steps">
+        <li>
+          <strong>Origination &amp; RFP</strong> <em style="font-size:0.88em;color:var(--text-muted);font-weight:400">(6–18 months)</em><br>
+          Developer identifies a site, completes resource assessment, and enters the <span class="gterm" data-term="Large Generator Interconnection Agreement (LGIA)">interconnection queue</span>. Buyer issues an RFP or evaluates an unsolicited proposal — comparing projects on price, location, and counterparty credit.<br>
+          <em style="font-size:12.5px;color:var(--text-muted)">Parties: developer's origination team · buyer's procurement lead · advisor/broker</em>
+        </li>
+        <li>
+          <strong>Term sheet</strong> <em style="font-size:0.88em;color:var(--text-muted);font-weight:400">(1–3 months)</em><br>
+          Parties agree the commercial core in a non-binding <span class="gterm" data-term="Term Sheet">term sheet</span>: price structure, contract quantity, settlement location, term, and <span class="gterm" data-term="Renewable Energy Certificate (REC)">REC</span> ownership. The last moment to walk away cheaply before legal fees mount.<br>
+          <em style="font-size:12.5px;color:var(--text-muted)">Parties: senior deal leads on both sides</em>
+        </li>
+        <li>
+          <strong>Due diligence &amp; negotiation</strong> <em style="font-size:0.88em;color:var(--text-muted);font-weight:400">(2–6 months)</em><br>
+          Lawyers draft the full PPA from a standard form. Both sides review credit, permits, and interconnection status. The risk table — basis, <span class="gterm" data-term="Curtailment">curtailment</span>, <span class="gterm" data-term="Credit Support">credit support</span>, <span class="gterm" data-term="Change in Law">change in law</span> — gets negotiated clause by clause.<br>
+          <em style="font-size:12.5px;color:var(--text-muted)">Parties: legal counsel both sides · credit/risk teams · buyer's technical advisor</em>
+        </li>
+        <li>
+          <strong>Execution &amp; conditions precedent</strong> <em style="font-size:0.88em;color:var(--text-muted);font-weight:400">(6–24 months)</em><br>
+          PPA is signed. Developer clears the <span class="gterm" data-term="Conditions Precedent (CP)">conditions precedent</span> to reach Notice to Proceed: project financing (debt + tax equity), final permits, and a signed <span class="gterm" data-term="Large Generator Interconnection Agreement (LGIA)">LGIA</span>. Buyer clears internal approvals — investment committee, board, sometimes a PUC prudence finding.<br>
+          <em style="font-size:12.5px;color:var(--text-muted)">Parties: developer + lender + tax-equity investor + permitting counsel · buyer's finance and legal teams</em>
+        </li>
+        <li>
+          <strong>Construction</strong> <em style="font-size:0.88em;color:var(--text-muted);font-weight:400">(12–24 months)</em><br>
+          EPC contractor builds the plant. Developer manages milestones; lenders watch completion risk through an independent engineer. Commissioning and testing required before <span class="gterm" data-term="Commercial Operation Date (COD)">COD</span>.<br>
+          <em style="font-size:12.5px;color:var(--text-muted)">Parties: EPC contractor · developer's project management · lenders' independent engineer</em>
+        </li>
+        <li>
+          <strong>Operations</strong> <em style="font-size:0.88em;color:var(--text-muted);font-weight:400">(10–25 years)</em><br>
+          Monthly <span class="gterm" data-term="Locational Marginal Price (LMP)">LMP</span> settlement begins. RECs are issued in a registry (WREGIS, PJM-GATS) and transferred to the buyer. O&amp;M provider maintains the plant; developer's asset management team handles reporting, credit support, and end-of-term planning.<br>
+          <em style="font-size:12.5px;color:var(--text-muted)">Parties: developer's asset management · O&amp;M provider · buyer's energy management team</em>
+        </li>
+      </ol>
+      <div class="card" style="border-left:3px solid var(--accent);margin-top:8px">
+        <p style="margin:0"><strong>The bottleneck.</strong> The interconnection queue is usually the longest single variable. Projects in PJM or CAISO have waited 4–7 years for a final interconnection agreement — often longer than the legal negotiation and construction combined.</p>
+      </div>
+      <p class="src"><a href="https://www.nrel.gov/analysis/standard-contracts-downloads">NREL standard contracts</a> · <a href="https://www.stoel.com/insights/reports/the-law-of-solar/power-purchase-agreements-utility-scale-projects">Stoel Rives — Law of Solar</a></p>
+
+      <hr class="rule">
+
       <h2>Annotated examples</h2>
       <p class="lede">Pick a term sheet, then select any clause for what it means, why it matters, and the glossary terms behind it. Illustrative composites — not a specific contract.</p>
       <div class="example-pills" id="example-pills" role="tablist" aria-label="Choose an example"></div>
@@ -340,6 +439,123 @@
         <div class="clause-detail" id="clause-detail" aria-live="polite"></div>
       </div>
       <p class="src" id="example-realdocs" style="margin-top:16px"></p>
+    </section>
+
+    <!-- ============ DRAFT PPA ============ -->
+    <section class="view" id="view-ppadraft" role="tabpanel" aria-labelledby="tab-ppadraft" hidden>
+      <p class="eyebrow">Generator · practice template</p>
+      <h1>Draft a Virtual PPA</h1>
+      <p class="lede">Fill in the commercial terms and get a full VPPA draft in seconds. Every negotiable position is marked <span class="mono">[IN BRACKETS]</span> so you know exactly what to fill in.</p>
+      <div class="card" style="border-left:3px solid var(--warn);margin-bottom:20px">
+        <p style="margin:0;font-size:13.5px"><strong>Practice template only.</strong> This generator is for learning and as a starting-point draft. Do not sign or rely on this output for a real transaction without review by a qualified energy attorney.</p>
+      </div>
+
+      <div class="draft-layout">
+        <form class="controls" id="draft-form" aria-label="PPA inputs" onsubmit="return false">
+          <fieldset>
+            <legend>Parties</legend>
+            <div class="field">
+              <label for="d-buyer">Buyer name</label>
+              <input type="text" id="d-buyer" placeholder="e.g. Acme Data Centers LLC">
+            </div>
+            <div class="field">
+              <label for="d-buyer-state">Buyer state of formation</label>
+              <input type="text" id="d-buyer-state" placeholder="e.g. Delaware">
+            </div>
+            <div class="field">
+              <label for="d-seller">Seller / Developer name</label>
+              <input type="text" id="d-seller" placeholder="e.g. Sunridge Energy LLC">
+            </div>
+            <div class="field">
+              <label for="d-seller-state">Seller state of formation</label>
+              <input type="text" id="d-seller-state" placeholder="e.g. Texas">
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Project</legend>
+            <div class="field">
+              <label for="d-project">Project name</label>
+              <input type="text" id="d-project" placeholder="e.g. Sunridge Solar I">
+            </div>
+            <div class="field">
+              <label for="d-location">Location <span class="hint">county, state</span></label>
+              <input type="text" id="d-location" placeholder="e.g. Pecos County, TX">
+            </div>
+            <div class="field">
+              <label for="d-tech">Technology</label>
+              <select id="d-tech">
+                <option value="solar PV">Solar PV</option>
+                <option value="wind">Wind</option>
+                <option value="solar + battery storage">Solar + Storage</option>
+                <option value="nuclear">Nuclear</option>
+                <option value="geothermal">Geothermal</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="d-capacity">Nameplate capacity <span class="hint">MW AC</span></label>
+              <input type="number" id="d-capacity" placeholder="150" min="1" max="5000" step="1">
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Commercial terms</legend>
+            <div class="field">
+              <label for="d-iso">ISO / RTO</label>
+              <select id="d-iso">
+                <option value="ERCOT">ERCOT</option>
+                <option value="PJM">PJM</option>
+                <option value="CAISO">CAISO</option>
+                <option value="MISO">MISO</option>
+                <option value="ISO-NE">ISO-NE</option>
+                <option value="NYISO">NYISO</option>
+                <option value="SPP">SPP</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="d-settle-point">Settlement point</label>
+              <input type="text" id="d-settle-point" placeholder="Auto-filled from ISO">
+            </div>
+            <div class="field">
+              <label for="d-strike">Strike price <span class="hint">$/MWh</span></label>
+              <input type="number" id="d-strike" placeholder="45" min="0" max="300" step="0.5">
+            </div>
+            <div class="field">
+              <label for="d-escalation">Price escalation</label>
+              <select id="d-escalation">
+                <option value="flat">Flat (no escalation)</option>
+                <option value="1pct">1% per year</option>
+                <option value="2pct">2% per year</option>
+                <option value="cpi">CPI-indexed</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="d-term">Contract term <span class="hint">years</span></label>
+              <input type="number" id="d-term" placeholder="15" min="1" max="30" step="1">
+            </div>
+            <div class="field">
+              <label for="d-cod">Target COD date</label>
+              <input type="text" id="d-cod" placeholder="e.g. December 31, 2027">
+            </div>
+            <div class="field">
+              <label for="d-gov-law">Governing law state</label>
+              <input type="text" id="d-gov-law" placeholder="e.g. Texas">
+            </div>
+          </fieldset>
+
+          <div class="draft-actions">
+            <button type="button" id="draft-generate" class="btn-primary">Generate PPA</button>
+          </div>
+        </form>
+
+        <div>
+          <div class="draft-actions" style="margin-top:0;margin-bottom:10px">
+            <button type="button" id="draft-copy" class="btn-secondary" disabled>Copy text</button>
+            <button type="button" id="draft-download" class="btn-secondary" disabled>Download .txt</button>
+          </div>
+          <pre class="draft-output" id="draft-output" aria-live="polite" aria-label="Generated PPA draft"></pre>
+        </div>
+      </div>
     </section>
 
     <!-- ============ SIMULATOR ============ -->
@@ -562,9 +778,10 @@
     </div>
   </footer>
 
-  <script src="assets/js/settle-core.js" defer></script>
-  <script src="assets/js/simulator.js" defer></script>
-  <script src="assets/js/app.js" defer></script>
-  <script src="assets/js/content.js" defer></script>
+  <script src="assets/js/draft.js?v=20260605" defer></script>
+  <script src="assets/js/settle-core.js?v=20260605" defer></script>
+  <script src="assets/js/simulator.js?v=20260605" defer></script>
+  <script src="assets/js/app.js?v=20260605" defer></script>
+  <script src="assets/js/content.js?v=20260605" defer></script>
 </body>
 </html>
