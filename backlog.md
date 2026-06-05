@@ -2,6 +2,35 @@
 
 Ideas and deferred scope. Each: description + priority (low / medium / high).
 
+## From hyperscaler/AI-lab job research (June 2026)
+
+Sourced from 25 active job postings at Amazon, Google, Microsoft, Meta, Apple, Oracle, and Salesforce (2025–2026). Items ranked by hiring frequency across postings. PPA/utility-contract items were implemented; the rest are logged here.
+
+### Implemented (shipped June 2026)
+- ✅ **Risk allocation matrix** — Drafting tab. 8 key PPA risks, developer vs. buyer typical positions, physical vs. VPPA difference. Directly maps to Google/Amazon interview question "explain PPA risk allocation provisions."
+- ✅ **Physical vs. VPPA decision framework** — Drafting tab. When to use each structure, the regulated-state constraint. Amazon and Google explicitly test this.
+- ✅ **Utility contract types** — Drafting tab. ESA, green tariff, standard offer, sleeved PPA. Amazon (5 postings), Oracle (2), and Meta (2) require this knowledge.
+- ✅ **5 new glossary terms** — ESA, Green Tariff, Letter of Credit (LC), Counterparty Credit Risk, LGIA.
+
+### PPA / utility contract depth — not yet built (high priority)
+- **ISO/RTO market-by-market comparison** — PJM vs. ERCOT vs. CAISO vs. MISO key differences: capacity markets (PJM/MISO) vs. energy-only (ERCOT), nodal settlement details, CAISO congestion revenue rights. Amazon explicitly requires PJM/MISO/SPP/SERC knowledge by region. *Priority: high*
+- **Interconnection deep dive** — How LGIA/SGIA queue works, why it takes 3–7 years, what creates congestion constraints, how a buyer navigates queue position. Amazon, Google, and Meta all require interconnection knowledge. *Priority: high*
+- **Counterparty credit provisions — worked example** — One-way vs. two-way CSA mechanics, sizing an LC (6–18 months of expected payments), when a parent guarantee is required vs. a cash deposit. *Priority: medium*
+- **Curtailment clause variants** — Deemed generation vs. actual, who-caused-it carve-outs, the ERCOT example where curtailment risk wiped a deal's economics. *Priority: medium*
+- **Deal lifecycle walkthrough** (already in backlog as Phase 2, confirmed high-priority by 8+ job postings) — origination → RFP → term sheet → due diligence → CPs → execution → COD → operations, with who does what and timelines. *Priority: high*
+
+### Energy portfolio / analytics — not yet built (medium priority)
+- **REC registry operations** — PJM-GATS, WREGIS, NAR, European GoO tracking. Microsoft's Renewable Energy Analyst role lists these registries as explicit requirements. *Priority: medium*
+- **Mark-to-market / portfolio risk** — How energy portfolios are valued, VaR basics, how a portfolio manager monitors exposure. Amazon's Energy Portfolio Manager role requires this. *Priority: medium*
+- **Load forecasting basics** — How buyers forecast their own data center energy load; why accurate load forecasts matter for contract sizing. *Priority: medium*
+
+### Technical / specialized — backlog (low priority for this tool)
+- **ASC 815 hedge accounting for VPPAs** — Whether a VPPA qualifies for hedge accounting vs. mark-to-market treatment, and why it matters for the buyer's P&L. Very specialized; relevant for finance/accounting track. *Priority: low*
+- **24/7 CFE methodology** — Hourly vs. annual/volumetric REC matching, Google's 2030 goal, what additionality means at hourly granularity. *Priority: low*
+- **Tax equity / ITC-PTC project finance** — Partnership flip, sale-leaseback, how ITC transferability changed the market post-IRA. Apple's Senior RE Specialist role requires this. *Priority: low*
+- **Power flow studies / transmission planning** — PSS-E, PowerWorld, PSLF; steady-state and contingency analysis. Meta's Transmission Energy Manager role. Very technical; not core to PPA/utility contract knowledge. *Priority: low*
+- **Behind-the-meter / onsite generation track** — Permitting BTM solar/storage, IPP co-location agreements, fuel cells. Meta's Onsite Generation Solutions role. *Priority: low*
+
 ## Next up
 
 - ✅ **Newcomer on-ramp trio — shipped 2026-06-02.** Foundations gained "Why sign a PPA?", an electricity primer, and the MW-vs-MWh rule.
