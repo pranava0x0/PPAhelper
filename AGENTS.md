@@ -70,6 +70,98 @@ The `Workflow` tool (deep-research and friends) fans out dozens of subagents and
 
 ---
 
+## Agent token discipline
+
+**Scar tissue from a 150k-token session (June 2026):** Two background agents launched in parallel — one Explore sweep of this codebase (60.6k tokens, 22 tool uses) and one web-research agent for job postings (88.3k tokens, 89 tool uses). Both tasks could have been done inline for under 10k tokens combined. The codebase sweep was answerable with `cat backlog.md` + `ls data/`. The web research was answerable with 3–4 `WebSearch` calls in main context.
+
+**Scar tissue from a UAT agent (June 2026):** Spawned an Explore-type agent to "review the website and see if it helps you learn." Agent read HTML/JS files statically, concluded the Draft PPA generator was "a dead feature — form renders but nothing appears." It was wrong: the generator worked fine with a running server. Direct `preview_eval` + `preview_screenshot` calls would have given accurate results in ~5 tool uses and ~3k tokens. The agent used 40k+. **Static analysis agents lie about dynamic behavior.** Never use an agent to review a live UI when preview tools exist.
+
+### Think before you spawn — three questions
+
+Answer these in order before creating any agent:
+
+1. **Can I answer this with 3 or fewer inline tool calls?** `Read`, `Bash` (grep/find), `WebSearch`, `preview_eval`. If yes → do it inline, full stop.
+2. **Does answering this require running the app?** If yes → use the preview/browser tools directly. A static-analysis agent reading your HTML cannot test JavaScript, dynamic content, or server-dependent features. It will confidently give wrong answers.
+3. **Am I spawning because delegation feels "cleaner"?** That's the wrong reason. Spawn only when the task genuinely needs > 10 inline tool uses OR would flood main context with noise you don't need downstream.
+
+If you can't answer question 1 with "no" — stop and just do it inline.
+
+### The inline-first rule
+
+Try direct tools before spawning any agent. The threshold for spawning is ~10 tool uses — if you'd need more than that inline, delegate; otherwise, stay in main context.
+
+| Task | Do this instead | Spawn agent only if… |
+|------|-----------------|----------------------|
+| Check backlog + one data file | `cat backlog.md`, `Read` the file | Never — these are 2 reads |
+| Find a function or symbol | `grep -rn "symbol" .` via Bash | Never — grep is instant |
+| Read 1–5 files | `Read` each directly | Never — 5 reads is fast |
+| Explore a codebase structure | `find . -type f \| head -40`, `ls`, `cat` key files | > 15 files to map, or genuinely unknown structure |
+| 1–3 web searches | `WebSearch` calls in main context | Never — stay inline |
+| 4–8 web searches with synthesis | Still try inline first | If synthesis would flood context |
+| 20+ searches, multi-source report | — | Yes — spawn with tight constraints |
+| Review / UAT a live web UI | `preview_eval`, `preview_snapshot`, `preview_screenshot` directly | **Never** — static agents can't run JS or a server; they give confidently wrong answers about dynamic behavior |
+| "Does feature X work?" | Click through it with preview tools | Never — if you can click, click |
+
+### Constrain every agent prompt — non-negotiable
+
+Every delegated prompt must include at least one scope limiter:
+
+- `"Report in under 600 words"` — caps output, which caps processing and return tokens
+- `"Use no more than 8 web searches"` — prevents runaway page fetching
+- `"Read only the 3 most relevant files"` — stops Explore from sweeping everything
+- `"Return the top 5 results only"` — for list/research tasks
+
+Without a constraint, the Explore agent defaults to exhaustive behaviour (reads every file), and a web-research agent will fetch 20+ full pages.
+
+### Explore agent breadth — default to "quick"
+
+The breadth label in an Explore prompt directly controls how many files it reads:
+
+- `"quick"` — one targeted lookup; right for "where is function X defined?"
+- `"medium"` — moderate exploration; right for "how does this module work?"
+- `"very thorough"` — full sweep; only when you genuinely need every file in the project
+
+Default to `"quick"`. Use `"medium"` when you need to understand a subsystem. Use `"very thorough"` only when you can't know which files matter — and even then, add "focus on files changed in the last 5 commits."
+
+### Avoid parallel heavy agents
+
+Parallel agents double the token spend at launch. Two 60–90k agents running in parallel burn 150k tokens immediately — before either result arrives.
+
+Only parallelize when **all three** are true:
+1. The tasks are genuinely independent (neither's output feeds the other)
+2. Each would require > 15 tool uses inline
+3. Waiting for the first before starting the second would cost real user time
+
+When in doubt, run sequentially: finish the cheaper/faster task first, use its output to constrain the second.
+
+### Scout before delegating
+
+Do a 30-second inline check before spawning any agent:
+- `cat backlog.md | head -30` — often answers "what's already been done?"
+- `grep -n "keyword" index.html` — often answers "where does X live?"
+- One `WebSearch` call — often answers "do these jobs exist?" before spinning up a 90-tool-use scraper
+
+If the scout answers your question, no agent needed. If it confirms the scope is large, you now have real data to write a tight agent prompt with.
+
+### Estimate cost before spawning
+
+Before writing the agent prompt, do a 10-second estimate:
+
+- **Quick Explore** (~10 tool uses): ~10k tokens
+- **Medium Explore** (~20 tool uses): ~30–60k tokens
+- **Web research agent** (20+ searches + fetches): ~50–100k tokens
+- **Full UAT/review agent**: ~40k tokens — almost always replaceable with 5 direct preview calls (~3k tokens)
+
+If the estimate exceeds 20k tokens, ask: *what's the cheapest inline scout that narrows this?* Run the scout first. A single `grep` or `preview_eval` call often answers the question entirely or trims the agent's scope by 80%.
+
+### Model selection for subagents
+
+- Simple gathering (list files, grep, backlog check, schema validation): specify `model: "haiku"` — 20× cheaper than Sonnet
+- Multi-source synthesis (web research, code review, gap analysis): default Sonnet is appropriate
+- Reserve Opus only for genuinely open-ended creative/analytical tasks where Sonnet visibly underperforms
+
+---
+
 ## Common tasks
 
 ### Adding a record / claim / row (most common)

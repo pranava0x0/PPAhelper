@@ -19,7 +19,7 @@
   var usd2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
   var num = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
 
-  var state = { strike: 45, volume: 25000, side: "buyer", scenario: "calm", lmp: SCENARIOS.calm.slice() };
+  var state = { strike: 45, volume: 25000, side: "buyer", scenario: "calm", lmp: SCENARIOS.calm.slice(), basisSpread: 0 };
 
   var els = {};
   var lmpInputs = [];
@@ -133,11 +133,21 @@
     var payer, payee, amt = Math.abs(totalSettleBuyer);
     if (totalSettleBuyer >= 0) { payer = "the generator"; payee = "the buyer"; }
     else { payer = "the buyer"; payee = "the generator"; }
+    // developer's realized price (eroded by basis spread)
+    var devEffective = state.strike - state.basisSpread;
+    if (els.kpiDev) {
+      els.kpiDev.textContent = usd2.format(devEffective);
+      els.kpiDev.className = "k-val mono" + (state.basisSpread > 0 ? " debit" : "");
+    }
+
     els.banner.className = "direction-banner " + (netShown >= 0 ? "credit" : "debit");
+    var basisNote = state.basisSpread > 0
+      ? " Developer's node earns <strong class=\"mono\">$" + state.basisSpread + "/MWh</strong> less than the hub — effective realized price <strong class=\"mono\">" + usd2.format(devEffective) + "/MWh</strong>."
+      : "";
     els.banner.innerHTML = "Over the year, <strong>" + payer + "</strong> pays <strong>" + payee +
       "</strong> a net <strong class=\"mono\">" + usd.format(amt) + "</strong>. " +
       "The buyer's effective power price is locked at <strong class=\"mono\">" + usd2.format(effective) +
-      "/MWh</strong> — the strike — no matter where the market goes.";
+      "/MWh</strong> — the strike — no matter where the market goes." + basisNote;
 
     drawChart();
   }
@@ -189,6 +199,18 @@
       p.push('<circle cx="' + x(k).toFixed(1) + '" cy="' + y(state.lmp[k]).toFixed(1) + '" r="2.6" fill="' + cAccent + '"/>');
     }
 
+    // node LMP line (visible when basis spread > 0)
+    if (state.basisSpread) {
+      var nodePts = [];
+      for (var ni = 0; ni < 12; ni++) {
+        nodePts.push(x(ni).toFixed(1) + "," + y(state.lmp[ni] - state.basisSpread).toFixed(1));
+      }
+      p.push('<polyline points="' + nodePts.join(" ") + '" fill="none" stroke="' + cMuted + '" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.8"/>');
+      if (els.legendNode) els.legendNode.hidden = false;
+    } else {
+      if (els.legendNode) els.legendNode.hidden = true;
+    }
+
     svg.innerHTML = p.join("");
   }
 
@@ -210,7 +232,11 @@
       footLmp: document.getElementById("foot-lmp"),
       footStrike: document.getElementById("foot-strike"),
       footVol: document.getElementById("foot-vol"),
-      footNet: document.getElementById("foot-net")
+      footNet: document.getElementById("foot-net"),
+      basisSpread: document.getElementById("basis-spread"),
+      basisSpreadVal: document.getElementById("basis-spread-val"),
+      kpiDev: document.getElementById("kpi-dev"),
+      legendNode: document.getElementById("legend-node")
     };
     if (!els.body) return;
 
@@ -232,6 +258,14 @@
         recompute();
       });
     });
+
+    if (els.basisSpread) {
+      els.basisSpread.addEventListener("input", function () {
+        state.basisSpread = parseFloat(els.basisSpread.value) || 0;
+        els.basisSpreadVal.textContent = "$" + state.basisSpread + " /MWh";
+        recompute();
+      });
+    }
 
     // re-draw chart colors after a theme swap
     document.addEventListener("ppa:rerender", drawChart);

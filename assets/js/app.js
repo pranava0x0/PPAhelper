@@ -2,10 +2,10 @@
 (function () {
   "use strict";
 
-  var VIEWS = ["foundations", "examples", "simulator", "datacenter", "perspectives", "glossary", "coverage"];
+  var VIEWS = ["foundations", "examples", "ppadraft", "simulator", "datacenter", "perspectives", "glossary", "coverage"];
 
   /* ---------- view switcher ---------- */
-  function showView(name) {
+  function showView(name, moveFocus) {
     if (VIEWS.indexOf(name) === -1) name = "foundations";
     VIEWS.forEach(function (v) {
       var panel = document.getElementById("view-" + v);
@@ -17,17 +17,22 @@
       history.replaceState(null, "", "#" + name);
     }
     window.scrollTo({ top: 0, behavior: "auto" });
+    if (moveFocus) {
+      var panel = document.getElementById("view-" + name);
+      var h1 = panel && panel.querySelector("h1");
+      if (h1) { h1.setAttribute("tabindex", "-1"); h1.focus(); }
+    }
   }
 
   function wireNav() {
     document.querySelectorAll("[data-view]").forEach(function (el) {
       el.addEventListener("click", function (e) {
         e.preventDefault();
-        showView(el.dataset.view);
+        showView(el.dataset.view, true);
       });
     });
     window.addEventListener("hashchange", function () {
-      showView((window.location.hash || "#foundations").slice(1));
+      showView((window.location.hash || "#foundations").slice(1), true);
     });
     showView((window.location.hash || "#foundations").slice(1));
   }
@@ -166,6 +171,7 @@
   var currentLevel = "all";
   function applyLevel(level) {
     currentLevel = level;
+    try { localStorage.setItem("ppa-level", level); } catch (e) {}
     document.querySelectorAll("[data-level]").forEach(function (el) {
       var lv = parseInt(el.getAttribute("data-level"), 10);
       var show = level === "all" || (lv && lv <= parseInt(level, 10));
@@ -175,6 +181,14 @@
   function wireLevel() {
     var wrap = document.getElementById("level-filter");
     if (!wrap) return;
+    var saved = null;
+    try { saved = localStorage.getItem("ppa-level"); } catch (e) {}
+    if (saved) {
+      applyLevel(saved);
+      wrap.querySelectorAll("button").forEach(function (b) {
+        b.setAttribute("aria-pressed", b.dataset.setlevel === saved ? "true" : "false");
+      });
+    }
     wrap.querySelectorAll("button").forEach(function (b) {
       b.addEventListener("click", function () {
         wrap.querySelectorAll("button").forEach(function (x) {
