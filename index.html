@@ -6,7 +6,7 @@
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
   <link rel="preload" href="data/glossary.json" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260605">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260607">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -228,6 +228,143 @@
       </div>
       <p class="src"><a href="https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/">RMI — Risk Mitigation Guide</a> · <a href="https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements">World Bank — PPAs &amp; bankability</a></p>
       </div><!-- /data-level="2" who's-who -->
+
+      <hr class="rule">
+
+      <h2>A deal from start to first settlement</h2>
+      <p>All the pieces above — buyer, developer, settlement mechanic, basis risk — in one concrete story. A 100 MW ERCOT solar VPPA, agreed at $43/MWh, with three months of settlement math including one month where a congestion event nearly zeros the developer's economics.</p>
+
+      <div class="card" style="margin-bottom:16px">
+        <p class="eyebrow" style="margin-bottom:8px">The cast</p>
+        <div class="grid cols-2">
+          <div>
+            <p style="margin:0"><strong>Buyer:</strong> Azure Cloud Inc. — investment-grade tech, 500 MW renewable target</p>
+            <p style="margin:4px 0 0"><strong>Developer:</strong> Sunridge Energy LLC — Texas IPP, 400 MW portfolio</p>
+            <p style="margin:4px 0 0"><strong>Project:</strong> Sunridge Solar I — 100 MW AC, Pecos County, TX</p>
+          </div>
+          <div>
+            <p style="margin:0"><strong>ISO:</strong> ERCOT · settled at Houston Hub</p>
+            <p style="margin:4px 0 0"><strong>Strike:</strong> <span class="mono">$43/MWh</span> flat · 15-year term</p>
+            <p style="margin:4px 0 0"><strong>Target COD:</strong> December 2026</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:0">How the terms were negotiated</h3>
+      <ul style="margin:0 0 16px;padding-left:20px;font-size:15px">
+        <li><strong>Price:</strong> Developer needed <span class="mono">$41+/MWh</span> to service debt at 1.25× DSCR. Buyer modeled <span class="mono">$43/MWh</span> below their 10-year avoided-cost forecast. Agreed flat — developer skipped the escalator to close faster.</li>
+        <li><strong>Settlement point:</strong> Houston Hub (buyer's preference for cleaner accounting; developer absorbs the node-to-hub spread).</li>
+        <li><strong>Curtailment:</strong> As-generated — buyer pays only for MWhs that actually settle. Developer carries ERCOT curtailment risk.</li>
+        <li><strong>Credit support:</strong> Two-way CSA; each party posts a <span class="gterm" data-term="Letter of Credit (LC)">letter of credit</span> equal to six months of expected payments (~<span class="mono">$3.9M</span>).</li>
+        <li><strong>Delay damages:</strong> <span class="mono">$15,000/day</span>, capped at 90 days, with supply-chain and permitting carve-outs.</li>
+      </ul>
+
+      <h3>Three months of settlement after COD</h3>
+      <p style="max-width:none;margin-bottom:10px">The swap keeps the buyer's cost locked at the strike. Month 3 shows what happens when a congestion event drives the node far below the hub — basis risk nearly wipes the developer's economics for that month.</p>
+      <div class="table-wrap">
+        <table class="settle" style="font-size:13px">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Hub LMP</th>
+              <th>Node LMP</th>
+              <th>Strike</th>
+              <th>Volume</th>
+              <th>VPPA settlement</th>
+              <th>Dev. realized</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Jan 2027</td>
+              <td class="num">$38</td>
+              <td class="num">$36</td>
+              <td class="num">$43</td>
+              <td class="num">15,000 MWh</td>
+              <td class="num debit">−$75,000 buyer→gen.</td>
+              <td class="num">$41/MWh</td>
+            </tr>
+            <tr>
+              <td>Jul 2027 <em style="font-size:11px;color:var(--text-muted)">summer spike</em></td>
+              <td class="num">$71</td>
+              <td class="num">$67</td>
+              <td class="num">$43</td>
+              <td class="num">10,000 MWh</td>
+              <td class="num credit">+$280,000 gen.→buyer</td>
+              <td class="num">$39/MWh</td>
+            </tr>
+            <tr>
+              <td>Aug 2027 <em style="font-size:11px;color:var(--text-muted)">congestion event</em></td>
+              <td class="num">$65</td>
+              <td class="num">$22</td>
+              <td class="num">$43</td>
+              <td class="num">12,000 MWh</td>
+              <td class="num credit">+$264,000 gen.→buyer</td>
+              <td class="num debit">~$0/MWh ⚠</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hint" style="margin-top:8px">Developer realized = (Node LMP × Volume + VPPA receipt) / Volume = Strike − (Hub LMP − Node LMP). Aug 2027: developer earns $22 × 12,000 = $264,000 at the node, then pays the buyer $264,000 via the swap — netting ~$0. The VPPA payment that protects the buyer is the same payment that zeros the developer. <strong>This is basis risk in action.</strong></p>
+      <p class="src"><a href="https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities">Norton Rose — VPPA risks</a> · <a href="https://cityrenewables.org/vppa/research-and-build-team/understand-basis-risk/">American Cities — basis risk</a></p>
+
+      <hr class="rule">
+
+      <details class="acc">
+        <summary><strong>Become a PPA originator — the role, who hires, how to break in</strong></summary>
+        <div class="acc-body">
+          <p style="margin-bottom:10px">This tool's stated goal is to help you learn to originate PPAs. Here's what that job actually looks like and how people get into it.</p>
+
+          <h3 style="margin-top:4px">A day in the life</h3>
+          <ul style="margin:0 0 12px;padding-left:20px;font-size:14px">
+            <li><strong>Lead generation:</strong> Identifying corporate buyers with renewable targets — data-center build-out announcements, sustainability commitments, RE100 pledges. Pitching projects at RE+, CEBA Summit, and CleanPower conferences.</li>
+            <li><strong>Pricing runs:</strong> Modeling strike prices — what strike covers project LCOE and hits target returns at the given capital stack, and where the buyer's avoided-cost benchmark sits.</li>
+            <li><strong>Term sheet drafting:</strong> Writing a non-binding term sheet that anchors the commercial core: price, contract quantity, settlement point, term, REC ownership, credit support structure.</li>
+            <li><strong>Negotiations:</strong> Driving the commercial discussion with the buyer's energy procurement team and counsel. The risk allocation matrix is your negotiating map.</li>
+            <li><strong>Internal approvals:</strong> Presenting deals to investment committee with a deal model, sensitivity analysis, and risk memo. Defending the strike under stress scenarios.</li>
+            <li><strong>Closing coordination:</strong> Working with lenders, tax-equity investors, and attorneys to clear the <span class="gterm" data-term="Conditions Precedent (CP)">conditions precedent</span> and hit Notice to Proceed.</li>
+          </ul>
+
+          <h3>Who hires</h3>
+          <div class="grid cols-2" style="margin-bottom:12px">
+            <div class="card">
+              <p class="eyebrow">Developer / IPP origination</p>
+              <p style="margin:0;font-size:14px;max-width:none">NextEra, AES, Invenergy, EDF Renewables, Pattern Energy. Title: "PPA Originator," "Business Development Manager," or "Energy Transactions Manager."</p>
+            </div>
+            <div class="card">
+              <p class="eyebrow">Corporate buyer energy teams</p>
+              <p style="margin:0;font-size:14px;max-width:none">Google, Amazon, Microsoft, Meta, Apple — 8+ postings in 2025–2026 require PPA knowledge. Title: "Renewable Energy Manager," "Energy Procurement Manager," or "Renewable Energy Analyst."</p>
+            </div>
+            <div class="card">
+              <p class="eyebrow">Advisory &amp; brokerage</p>
+              <p style="margin:0;font-size:14px;max-width:none">LevelTen Energy, Schneider Electric Energy &amp; Sustainability, CPower — advise buyers through origination and execution on a fee basis. Good entry point for someone who wants deal exposure across many buyers at once.</p>
+            </div>
+            <div class="card">
+              <p class="eyebrow">Law &amp; finance</p>
+              <p style="margin:0;font-size:14px;max-width:none">Stoel Rives, Norton Rose Fulbright, Kirkland &amp; Ellis (energy transactional); Goldman Sachs, Lazard, Guggenheim (tax-equity and project finance). Energy attorneys often move into origination after 2–4 years of deal experience.</p>
+            </div>
+          </div>
+
+          <h3>How to break in</h3>
+          <ol style="margin:0 0 12px;padding-left:20px;font-size:14px">
+            <li><strong>Energy finance / project finance:</strong> LCOE modeling, debt sizing, and return analysis — the quantitative core of every origination pitch.</li>
+            <li><strong>Utility or ISO regulatory background:</strong> Understanding dispatch, interconnection, and tariff structures builds instant credibility in technical negotiations.</li>
+            <li><strong>Corporate energy procurement:</strong> Time inside a buyer's energy team is rare and valued by developers — you already know what an investment committee needs to approve a 15-year VPPA.</li>
+            <li><strong>Energy law:</strong> A PPA is a legal contract. Transactional energy attorneys who understand the clauses — not just who wrote them — move into business development roles regularly.</li>
+            <li><strong>Clean energy organizations:</strong> CEBA, RMI, and Berkeley Lab publish deal data and market benchmarks; analyst roles there build the vocabulary and network.</li>
+          </ol>
+
+          <h3>What to study next</h3>
+          <ol style="margin:0 0 0;padding-left:20px;font-size:14px">
+            <li>Run the simulator until the cash flows feel intuitive from both perspectives — buyer and generator.</li>
+            <li>Work through the annotated term sheets in the Drafting tab, clause by clause.</li>
+            <li>Study the ISO your target market is in: ERCOT for Texas, PJM for Mid-Atlantic, CAISO for California.</li>
+            <li>Read NREL's standard contracts, the EEI Master P&amp;S, and Stoel Rives "Law of Solar."</li>
+            <li>Track the LevelTen PPA Price Index and CEBA's annual procurement survey — the real-time market benchmarks that originators watch.</li>
+          </ol>
+          <p class="src" style="margin-top:12px"><a href="https://cebuyers.org/">CEBA — Clean Energy Buyers Alliance</a> · <a href="https://www.leveltenenergy.com/ppa">LevelTen PPA Price Index</a> · <a href="https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/">RMI — Risk Mitigation Guide</a></p>
+        </div>
+      </details>
 
       <div class="card" style="margin-top:24px">
         <p style="margin:0"><strong>Where to go next.</strong> Learn to draft one, clause by clause, in <button class="nav-link-btn" data-view="examples">Drafting</button> — including the full deal lifecycle — feel the settlement mechanic in the <button class="nav-link-btn" data-view="simulator">simulator</button>, and see how AI data centers are reshaping deals in <button class="nav-link-btn" data-view="datacenter">Data centers</button>. The <button class="nav-link-btn" data-view="coverage">coverage page</button> tracks what's verified versus still being researched.</p>
@@ -599,6 +736,18 @@
             </div>
             <p class="hint" style="margin:10px 0 0">Average LMP this scenario: <span class="mono" id="avg-lmp">—</span>. Edit any month in the table below to build a custom curve.</p>
           </fieldset>
+
+          <fieldset>
+            <legend>Basis risk (node vs hub)</legend>
+            <div class="field">
+              <label for="basis-spread">Node-to-hub spread <span class="hint">$/MWh</span></label>
+              <div style="display:flex;align-items:center;gap:10px">
+                <input type="range" id="basis-spread" min="0" max="30" value="0" step="1" style="flex:1;accent-color:var(--accent)">
+                <span class="mono" id="basis-spread-val" style="min-width:60px;text-align:right">$0 /MWh</span>
+              </div>
+              <p class="hint" style="margin:6px 0 0;font-size:12.5px">Node LMP = Hub LMP − spread. The VPPA swap settles at the hub; the developer earns only the node price for actual energy sales. A $5–8/MWh spread is typical in ERCOT; a congestion event can hit $40+.</p>
+            </div>
+          </fieldset>
         </form>
 
         <div class="readout">
@@ -620,6 +769,11 @@
               <div class="k-val mono" id="kpi-months">—</div>
               <div class="k-sub" id="kpi-months-sub">for the buyer</div>
             </div>
+            <div class="kpi">
+              <div class="k-label">Developer's realized price</div>
+              <div class="k-val mono" id="kpi-dev">—</div>
+              <div class="k-sub">$/MWh at the node (= strike − spread)</div>
+            </div>
           </div>
 
           <div class="chart-wrap">
@@ -629,6 +783,7 @@
               <span><span class="swatch" style="background:var(--text-muted)"></span> Strike (fixed)</span>
               <span><span class="swatch" style="background:var(--flow-credit)"></span> Buyer receives</span>
               <span><span class="swatch" style="background:var(--flow-debit)"></span> Buyer pays</span>
+              <span id="legend-node" hidden><span class="swatch" style="background:var(--text-muted);opacity:0.6"></span> Node LMP (dev. earns)</span>
             </div>
           </div>
 
@@ -645,7 +800,7 @@
               </table>
             </div>
           </div>
-          <p class="hint">Settlement convention: each month, settlement = (LMP − strike) × volume. Positive means the generator pays the buyer; negative means the buyer pays the generator. This illustration assumes the buyer settles at the same price as the swap; in practice, <span class="gterm" data-term="Basis Risk">basis</span> between the settlement hub and the buyer's node shifts the effective price. <a href="https://www.leveltenenergy.com/post/power-purchase-agreement-terms">LevelTen terms</a></p>
+          <p class="hint">Settlement convention: each month, settlement = (LMP − strike) × volume. Positive means the generator pays the buyer; negative means the buyer pays the generator. The VPPA swap settles at the hub; the developer earns the node price for actual energy sales. Use the Basis risk slider above to see how a node-to-hub spread erodes the developer's realized price. <a href="https://www.leveltenenergy.com/post/power-purchase-agreement-terms">LevelTen terms</a> · <a href="https://cityrenewables.org/vppa/research-and-build-team/understand-basis-risk/">Basis risk explainer</a></p>
         </div>
       </div>
     </section>
@@ -782,10 +937,10 @@
     </div>
   </footer>
 
-  <script src="assets/js/draft.js?v=20260605" defer></script>
-  <script src="assets/js/settle-core.js?v=20260605" defer></script>
-  <script src="assets/js/simulator.js?v=20260605" defer></script>
-  <script src="assets/js/app.js?v=20260605" defer></script>
-  <script src="assets/js/content.js?v=20260605" defer></script>
+  <script src="assets/js/draft.js?v=20260607" defer></script>
+  <script src="assets/js/settle-core.js?v=20260607" defer></script>
+  <script src="assets/js/simulator.js?v=20260607" defer></script>
+  <script src="assets/js/app.js?v=20260607" defer></script>
+  <script src="assets/js/content.js?v=20260607" defer></script>
 </body>
 </html>

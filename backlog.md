@@ -39,10 +39,10 @@ Full walkthrough as newcomer and practitioner. Generator works fine (static-anal
 - ✅ **Newcomer vs. Practitioner filter — fixed 2026-06-05.** Was hiding <5% of content (only the basis-risk and risk-allocation sections). Now also gates Who's-who and Deal lifecycle behind Practitioner, adds "Practitioner" pills to all four section headings. 18 elements hidden for Newcomer vs 0 for Practitioner; the filter is now meaningfully different.
 
 ### High-impact gaps — should build next
-- **End-to-end worked narrative** — The site teaches all the pieces but never threads them together. A single short story ("100 MW ERCOT solar VPPA: Amazon buyer, Sunridge developer, 3 sample months, where the settlement math lands, which risks were negotiated how") would make everything click. UAT confirmed this is the single biggest newcomer gap. *Priority: **high** (was medium — bumping).*
-- **Simulator: basis-risk mode** — The site opens with "basis risk is the #1 structural risk," then the simulator explicitly assumes no basis. A practitioner immediately notices. Add a ±spread slider (node vs hub) and show how it shifts the developer's P&L. *Priority: **high** (already Phase 1 — confirming).*
+- ✅ **End-to-end worked narrative — shipped 2026-06-07.** Concrete 100 MW ERCOT VPPA (Sunridge Solar I, $43/MWh flat, 15-year): full commercial term negotiation narrative + 3-month settlement table (Jan calm, Jul spike, Aug congestion event) where basis risk wipes the developer's August economics to ~$0/MWh. Added to the Learn tab before "Where to go next."
+- ✅ **Simulator: basis-risk mode — shipped 2026-06-07.** Node-to-hub spread slider (0–30 $/MWh) in a new "Basis risk" fieldset. Draws a dashed node LMP line on the chart; adds a "Developer's realized price" KPI (= strike − spread, shown in red when spread > 0); banner updates with a basis note. Both legend-node and banner update dynamically.
+- ✅ **PPA Originator role accordion — shipped 2026-06-07.** Added to Learn tab: day-in-the-life (lead gen, pricing runs, term sheet, negotiations, IC approvals, closing coordination), who hires (4 employer categories with real firm names), how to break in (5 pathways), what to study next. Placed after the worked narrative before "Where to go next."
 - **Self-check: quizzes and flashcards** — Newcomers learn by testing, not reading. A 5-question scenario quiz per tab ("market $55, strike $45 — who pays whom? How much?") would reinforce the simulator. Spaced-repetition flashcards from the glossary would help retention. This is the site's biggest pedagogical gap. *Priority: **high** (was medium — bumping).*
-- **PPA Originator role page** — Still just a glossary entry. A short page: day-in-the-life, who hires (developers/IPPs, utilities, advisors, corporates), how to break in, what to study. The stated goal of the tool is "learn to originate" — this is missing. *Priority: **high** (was high — confirming).*
 
 ### Medium-impact gaps — build after above
 - **ISO/RTO market comparison** — ERCOT energy-only nodal vs PJM/MISO capacity markets vs CAISO CRRs. Why it matters for basis risk and deal structure. Already in backlog, UAT confirms it's a real practitioner gap. *Priority: medium (confirmed).*
@@ -56,6 +56,46 @@ Full walkthrough as newcomer and practitioner. Generator works fine (static-anal
 - Cross-tab "next step" breadcrumb. *Priority: low.*
 - Per-view `<title>` + Open Graph meta. *Priority: low.*
 - `issues.md` creation. *Priority: low.*
+
+## Expert review — 2026-06-07
+
+Full pedagogical audit: read every file, walked every tab as a PPA expert teaching a newcomer. Items ordered per user request: **flow → reorganization → content → improvement ideas**.
+
+### 1. Pedagogical flow — fix first
+
+- **Sticky learning-path stepper.** Learn tab is ~8 screenfuls; the 4-step stepper is at the top only. Once a user scrolls past Step 1 they have no orientation. Make it sticky (`position: sticky; top: <header-height>`) or add a slim side rail on desktop. Already in backlog (IA section, medium priority) — bumping to **high** given 8-screen length. *Priority: **high***
+- **No signal to move between tabs.** Only the "Where to go next" card at the bottom of Learn points elsewhere. Newcomers who skim (not scroll to bottom) have no idea Drafting exists. Need cross-tab next-step links at multiple points in the Learn flow, not just the footer card. *Priority: **high***
+- **Simulator uses made-up numbers with no real-world grounding.** Scenarios ($30–$145 LMP) are illustrative only; a newcomer finishes the simulator with no idea where real LMPs land. Add a static "real-world context" callout (e.g., "ERCOT North Hub averaged ~$45/MWh in 2023; a $43/MWh strike was competitive at the time"). Update quarterly. *Priority: **medium***
+- **No failure-mode content.** Every clause is taught as "what it does," never "what happens when it fails." Failure modes are where real learning sticks — a short "what can go wrong" accordion (basis-risk wipe, counterparty default, COD slip, curtailment horror story) would be high-value. *Priority: **medium***
+- **Perspectives tab lacks practitioner voices.** Current voices: CEO (Powell), pioneer/DOE (Shah), tech exec (Tian), academic (Norris). Missing: a corporate energy procurement manager ("what I need before recommending a PPA to our investment committee"), a lender ("what makes a PPA bankable"), and a developer/originator. These are the day-to-day practitioner perspectives. *Priority: **medium***
+
+### 2. Reorganization
+
+- **Deal lifecycle accessible from Learn, not only Drafting.** Currently practitioner-gated in the Drafting tab only. A newcomer who reads only Learn leaves without knowing the six stages that define an originator's job. Either duplicate (simplified version) in Learn or add a visible cross-tab link from the who's-who section. *Priority: **high***
+- **Learn tab is too long without stage navigation mid-page.** Stages 1–4 all render at once. Sticky stepper (above) partially fixes this; also consider collapsing each stage into a `<details>` that auto-opens the current one. *Priority: **medium***
+- **Pricing structure content belongs in the Simulator, not only as a future tab.** When a user is interacting with the flat-strike simulator, nothing tells them flat-strike is just one of 4–5 common structures. A small "pricing structure" callout beneath the scenario buttons would surface the gap without requiring a full new tab. *Priority: **medium***
+
+### 3. Content gaps
+
+- **Discount-to-market (index-minus) pricing — completely absent.** The most common 2024–2026 corporate VPPA structure: hub LMP minus a fixed spread (e.g., hub minus $8/MWh) rather than a fixed strike. Buyer captures upside if prices rise; developer gets spread certainty. Not in the simulator, not in the glossary, not in the examples. A job candidate who doesn't know this structure is visibly behind in any CEBA-adjacent interview. *Priority: **high***
+- **ISO/RTO market-by-market comparison.** Already tracked as high priority — this review confirms it's the single most asked-about topic in practitioner interviews. Add ERCOT (energy-only, nodal, FERC-exempt for interstate), PJM (RPM capacity market, nodal, 5–7 year queue), CAISO (CRRs for basis hedging, NP15/SP15), MISO (capacity + energy, mostly zonal). *Priority: **high** (already tracked)*
+- **REC → Scope 2 accounting chain.** Already tracked — this review confirms it's the first question corporate sustainability teams ask before signing. Needs: GHG Protocol market-based Scope 2, what a bundled REC claims vs. an unbundled one, additionality, 24/7 hourly matching vs. annual volumetric. Cite: GHG Protocol Scope 2 Guidance (currently missing from citation base). *Priority: **medium** (already tracked, add GHG Protocol citation)*
+- **Project finance fundamentals — "bankable" is said but never explained.** Non-recourse project finance, DSCR (what 1.25x means in plain terms), the capital stack (debt / tax equity / equity split), why the offtaker's credit rating is the variable lenders care most about. Would make every mention of "bankability" land with weight instead of floating. *Priority: **medium***
+- **Price cannibal / value deflation — absent entirely.** As solar saturation increases, midday prices trend toward zero or negative (CAISO, ERCOT West). Each new solar MW reduces the settlement value of every other solar MW. This is the defining market-structure challenge of 2025–2026 and is completely unaddressed. *Priority: **medium***
+- **Interconnection queue mechanics** — already tracked but this review adds specifics: queue process steps (file → study → cost allocation → LGIA), FERC Order 2023 (cluster reform — biggest recent market change, currently missing from citation base), what a buyer should ask a developer about their queue position. *Priority: **medium** (already tracked)*
+- **Curtailment — economic vs. reliability, deemed generation.** Site explains curtailment exists but not: (a) economic curtailment when ISO dispatches to zero at negative prices (very common ERCOT West Texas), (b) who bears it and how; (c) deemed-generation mechanics — when a positive-price curtailment triggers a notional payment. *Priority: **medium** (already tracked)*
+- **Counterparty assessment — absent.** How developers assess buyer creditworthiness (IG vs sub-IG, parent guarantee requirement, what a rating downgrade clause triggers), how buyers assess developer creditworthiness (track record, balance sheet, sponsor strength). Directly relevant to credit-support clauses already in the draft generator. *Priority: **medium***
+- **Pricing structure escalators.** Escalating strikes (2%/yr is standard for physical PPAs) appear in the physical PPA example but are never explained. Why does the escalator exist? (Nominal debt service is roughly fixed; escalation lets the real burden decline with inflation.) *Priority: **low***
+- **Proxy revenue swaps.** Increasingly used structure — not mentioned anywhere. Low priority for now but worth a glossary term and a sentence in pricing structures. *Priority: **low***
+
+### 4. Other improvement ideas
+
+- **Quiz / scenario challenges.** Already tracked as high priority, remains the biggest unshipped pedagogical gap. "Hub LMP $62, strike $45, volume 20,000 MWh — who pays whom and how much?" with stepped worked answers. *Priority: **high** (already tracked)*
+- **Forward curve context callout in simulator.** Static line beneath the scenario buttons: "For context: ERCOT North Hub averaged ~$X/MWh in 2024. A $43 strike was [above/below] the forward curve at that time." Update the figure quarterly as a comment in the HTML. Low effort, high grounding value. *Priority: **low***
+- **Buyer due diligence checklist.** A simple `<details>` accordion: what a buyer verifies before signing (queue position, resource assessment P50/P90, developer track record, EPC quality, permitting status, financing plan). Directly useful for anyone on the buyer side. *Priority: **low***
+- **Add missing primary citations.** FERC Order 2023 (interconnection reform), GHG Protocol Scope 2 Guidance, CEBA Annual Procurement Survey. These are the authoritative sources for content that already exists on the site. *Priority: **low***
+
+---
 
 ## Next up
 
