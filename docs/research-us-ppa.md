@@ -202,6 +202,16 @@ Named-expert framing (full data in `data/perspectives.json`) plus a load-flexibi
 
 ---
 
+## Round 5 — ISO/RTO market structure (2026-06-22)
+
+Verified inline against primary sources (FERC + each ISO) for the four markets that dominate corporate PPAs. Drives the new "US wholesale markets" comparison in the Learn tab and the `Capacity Market` / `Energy-Only Market` / `Congestion Revenue Right (CRR)` glossary terms.
+
+- **ERCOT — energy-only, non-FERC.** Pays generators only for energy (+ ancillary), no capacity market; relies on scarcity pricing. Grid is intrastate and not synchronously interconnected, so wholesale sales are **not** FERC-jurisdictional — oversight is the PUCT/Texas Legislature. Nodal LMP; hubs North/Houston/West/South. *([FERC — ERCOT](https://www.ferc.gov/industries-data/electric/electric-power-markets/ercot), [ERCOT market structure one-pager](https://www.ercot.com/files/docs/2019/09/17/Market_Structure_OnePager_FINAL_Revised.pdf))*
+- **PJM — capacity + energy.** Reliability Pricing Model (RPM) procures capacity via the Base Residual Auction; locational deliverability areas. Nodal LMP; Western Hub (AEP-Dayton) benchmark. *([PJM Manual 18](https://www.pjm.com/-/media/DotCom/documents/manuals/m18.ashx))*
+- **CAISO — no central capacity market.** Resource adequacy set at the state/CPUC level. CRRs hedge congestion; trading hubs based on NP15/SP15/ZP26 zones. *([CAISO — CRRs](https://www.caiso.com/market-operations/products-services/congestion-revenue-rights))*
+- **MISO — capacity + energy.** Seasonal Planning Resource Auction clears capacity by Local Resource Zone; nodal LMP with hubs. *([MISO — Resource Adequacy / PRA](https://www.misoenergy.org/planning/resource-adequacy2/resource-adequacy/))*
+- Smaller markets (SPP, ISO-NE FCM, NYISO ICAP) noted at a lighter level of detail, cited to [FERC — Electric power markets](https://www.ferc.gov/industries-data/electric/electric-power-markets).
+
 ## Coverage scorecard (be honest in the UI)
 
 | Topic | Status |
@@ -222,7 +232,7 @@ Named-expert framing (full data in `data/perspectives.json`) plus a load-flexibi
 | Annotated example term sheets (VPPA, utility, data-center nuclear) | ✅ Added (illustrative composites) |
 | Expert perspectives (Shah, Norris, Tian, Powell); load flexibility | ✅ Added (R4, paraphrased + cited) |
 | Originator role / day-to-day / skills | 🟡 Covered (R2, secondary — job postings) |
-| ISO/RTO per-market detail (ERCOT/PJM/CAISO/MISO/SPP) | ⚠️ Needs research |
+| ISO/RTO market structure (ERCOT/PJM/CAISO/MISO; capacity vs. energy, basis hedging) | ✅ Verified (R5, primary) |
 | Internal approval/signing (investment committee, board, PUC prudence) | ⚠️ Needs research |
 | Conditions precedent, assignment/step-in, dispute resolution (clause-level) | ⚠️ Needs research |
 | Time-of-delivery / hourly (ToD) pricing; 24/7 CFE matching | ⚠️ Needs research |

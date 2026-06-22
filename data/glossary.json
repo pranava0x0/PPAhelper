@@ -115,6 +115,14 @@
       "url": "https://www.wbcsd.org/wp-content/uploads/2023/10/Pricing-structures-for-corporate-renewable-PPAs.pdf"
     },
     {
+      "term": "Negative Pricing / Price Floor",
+      "category": "Pricing",
+      "def": "Wholesale LMPs can go below zero when there is more generation than the grid can use (local congestion or system-wide oversupply), so suppliers briefly pay to keep producing — common in wind- and solar-heavy markets. In a VPPA without a price floor, every negative-price interval forces the generator to pay the buyer the strike plus the full negative price, so VPPAs increasingly set the Floating Price floor at $0 to cap this exposure.",
+      "status": "verified",
+      "source": "EIA — Today in Energy",
+      "url": "https://www.eia.gov/todayinenergy/detail.php?id=6730"
+    },
+    {
       "term": "Commercial Operation Date (COD)",
       "category": "Contract",
       "def": "The date the project is complete and begins commercial delivery. Missing the targeted COD triggers delay damages.",
@@ -409,6 +417,30 @@
       "status": "verified",
       "source": "FERC",
       "url": "https://ferc.gov/power-sales-and-markets"
+    },
+    {
+      "term": "Capacity Market",
+      "category": "Market",
+      "def": "A market that pays generators for being available to deliver power in the future (priced in MW), separate from the energy they actually produce. PJM (Reliability Pricing Model), MISO (Planning Resource Auction), ISO-NE (Forward Capacity Market), and NYISO (ICAP) run capacity markets; ERCOT is the major exception.",
+      "status": "verified",
+      "source": "PJM Manual 18; MISO",
+      "url": "https://www.pjm.com/-/media/DotCom/documents/manuals/m18.ashx"
+    },
+    {
+      "term": "Energy-Only Market",
+      "category": "Market",
+      "def": "A wholesale market that pays generators only for the energy they deliver (plus ancillary services), with no separate capacity payment — relying on scarcity pricing to signal new investment. ERCOT is the prime US example, and its grid is intrastate, so it is not subject to FERC wholesale-market jurisdiction.",
+      "status": "verified",
+      "source": "ERCOT; FERC",
+      "url": "https://www.ercot.com/files/docs/2019/09/17/Market_Structure_OnePager_FINAL_Revised.pdf"
+    },
+    {
+      "term": "Congestion Revenue Right (CRR)",
+      "category": "Market",
+      "def": "A financial instrument (CAISO and ERCOT term; PJM, MISO, and SPP call the equivalent a Financial Transmission Right, or FTR) that pays its holder the congestion price difference between two grid locations — letting a generator or buyer hedge node-to-hub basis risk directly in the market.",
+      "status": "verified",
+      "source": "CAISO",
+      "url": "https://www.caiso.com/market-operations/products-services/congestion-revenue-rights"
     },
     {
       "term": "Baseload vs Peaker",

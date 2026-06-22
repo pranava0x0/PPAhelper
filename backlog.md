@@ -12,8 +12,22 @@ Sourced from 25 active job postings at Amazon, Google, Microsoft, Meta, Apple, O
 - ✅ **Utility contract types** — Drafting tab. ESA, green tariff, standard offer, sleeved PPA. Amazon (5 postings), Oracle (2), and Meta (2) require this knowledge.
 - ✅ **5 new glossary terms** — ESA, Green Tariff, Letter of Credit (LC), Counterparty Credit Risk, LGIA.
 
+### Implemented (Commissioner Swett review — 2026-06-22)
+- ✅ **Pricing-structures explainer** — Drafting tab. Verified WBCSD "who bears price risk" table (fixed / escalating / inflation-indexed / discount-to-market+floor / collar) plus negative-price-floor and ToD notes. Closes the gap where the research had this but the UI didn't.
+- ✅ **Self-check quiz** — Drafting tab, 6 questions with worked answers (settlement direction, basis/dev-realized, risk allocation, structure choice, credit support, negative pricing). Was the top unshipped pedagogical gap. `assets/js/quiz.js`.
+- ✅ **Draft generator hardened** — added Limitation of Liability article (was internally inconsistent with the "uncapped liabilities = deal-killer" lesson), two-way termination close-out, basis/settlement-point clause, negative-price floor option, computed worked example, Business Day / Event of Default definitions, buyer parent-guarantee note.
+- ✅ **Accuracy fixes** — corrected the "VPPAs require retail access" error (a VPPA needs the *project* in an ISO/RTO market, not the buyer in a retail-choice state) and the 3–5-vs-4–7-year lifecycle contradiction. See issues.md.
+- ✅ **Negative Pricing / Price Floor glossary term** (EIA-sourced).
+- ✅ **ISO/RTO market-by-market comparison** — Learn tab (Practitioner). ERCOT (energy-only, non-FERC), PJM (RPM capacity), CAISO (CRRs, NP15/SP15, no central capacity market), MISO (seasonal PRA), plus SPP/ISO-NE/NYISO notes. Verified against FERC + each ISO; coverage page moved from needs-research to verified. Was the top high-priority interview topic. New glossary terms: Capacity Market, Energy-Only Market, Congestion Revenue Right (CRR).
+- ✅ **Draft generator — operational clauses** — Metering & Settlement Data (3.5), Taxes & Market Costs (3.6), Seller Insurance (7.3), Confidentiality (14.8).
+
+### Still open from the 2026-06-22 review
+- **examples.json "real-time LMP" default** — many VPPAs settle day-ahead; present both DA and RT as options. *Priority: low*
+- **Generated draft — missing articles** — metering & data source (ISO settlement data as source of truth), taxes/charges/ancillary cost allocation, seller insurance, confidentiality. *Priority: medium*
+- **REC shortfall / replacement** — what happens to the buyer's clean-energy claim if the project underproduces; minimum-REC-delivery or replacement-cost mechanics. *Priority: low*
+
 ### PPA / utility contract depth — not yet built (high priority)
-- **ISO/RTO market-by-market comparison** — PJM vs. ERCOT vs. CAISO vs. MISO key differences: capacity markets (PJM/MISO) vs. energy-only (ERCOT), nodal settlement details, CAISO congestion revenue rights. Amazon explicitly requires PJM/MISO/SPP/SERC knowledge by region. *Priority: high*
+- ✅ **ISO/RTO market-by-market comparison** — *shipped 2026-06-22 (Learn tab).* PJM vs. ERCOT vs. CAISO vs. MISO: capacity markets (PJM/MISO) vs. energy-only (ERCOT), nodal settlement, CAISO CRRs, FERC jurisdiction. Remaining depth (per-region SERC/SPP detail, CRR/FTR mechanics worked example) still open at lower priority.
 - **Interconnection deep dive** — How LGIA/SGIA queue works, why it takes 3–7 years, what creates congestion constraints, how a buyer navigates queue position. Amazon, Google, and Meta all require interconnection knowledge. *Priority: high*
 - **Counterparty credit provisions — worked example** — One-way vs. two-way CSA mechanics, sizing an LC (6–18 months of expected payments), when a parent guarantee is required vs. a cash deposit. *Priority: medium*
 - **Curtailment clause variants** — Deemed generation vs. actual, who-caused-it carve-outs, the ERCOT example where curtailment risk wiped a deal's economics. *Priority: medium*
