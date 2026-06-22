@@ -168,6 +168,53 @@
         <p class="src" style="margin-top:12px"><a href="https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities">Norton Rose Fulbright</a> · <a href="https://cityrenewables.org/vppa/research-and-build-team/understand-basis-risk/">American Cities Climate Challenge</a></p>
       </div>
 
+      <div data-level="2">
+        <hr class="rule">
+
+        <h2>The US wholesale markets — ISO/RTO by ISO/RTO <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <p>Where a project sits decides almost everything downstream: whether there's a <span class="gterm" data-term="Capacity Market">capacity market</span>, which <span class="gterm" data-term="Hub">hub</span> you settle a VPPA against, how you can hedge <span class="gterm" data-term="Basis Risk">basis</span>, and even whether <span class="gterm" data-term="FERC (Federal Energy Regulatory Commission)">FERC</span> has jurisdiction. Knowing these cold is the single most asked-about topic in practitioner interviews.</p>
+        <div class="table-wrap">
+          <table class="coverage" style="width:100%;table-layout:auto">
+            <thead>
+              <tr>
+                <th style="width:13%">Market</th>
+                <th style="width:23%">Capacity vs energy</th>
+                <th style="width:25%">Pricing &amp; common hubs</th>
+                <th style="width:39%">What it means for a PPA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>ERCOT</strong><br><span class="hint">Texas</span></td>
+                <td><span class="gterm" data-term="Energy-Only Market">Energy-only</span> — no capacity market; relies on scarcity pricing</td>
+                <td>Nodal <span class="gterm" data-term="Locational Marginal Price (LMP)">LMP</span>; hubs North, Houston, West, South</td>
+                <td>Not FERC-jurisdictional (intrastate grid, PUCT-regulated). Huge renewable build and heavy congestion make basis famously hard to hedge; CRRs exist but rarely cover a VPPA fully.</td>
+              </tr>
+              <tr>
+                <td><strong>PJM</strong><br><span class="hint">Mid-Atlantic / Midwest</span></td>
+                <td>Capacity market (RPM / Base Residual Auction) + energy</td>
+                <td>Nodal LMP; Western Hub (AEP-Dayton) is the benchmark</td>
+                <td>FERC-jurisdictional. Capacity prices spiked in recent auctions on data-center load. Long interconnection queue; FTRs/ARRs hedge congestion.</td>
+              </tr>
+              <tr>
+                <td><strong>CAISO</strong><br><span class="hint">California</span></td>
+                <td>No central capacity market — resource adequacy set by the CPUC / state</td>
+                <td>Nodal LMP; hubs NP15, SP15, ZP26</td>
+                <td>Solar "duck curve" drives routine midday <span class="gterm" data-term="Negative Pricing / Price Floor">negative prices</span> and curtailment. <span class="gterm" data-term="Congestion Revenue Right (CRR)">CRRs</span> hedge basis.</td>
+              </tr>
+              <tr>
+                <td><strong>MISO</strong><br><span class="hint">Midwest / South</span></td>
+                <td>Capacity (seasonal Planning Resource Auction, by zone) + energy</td>
+                <td>Nodal LMP; Indiana Hub a common reference</td>
+                <td>Large footprint spanning regulated and restructured states. FTRs hedge congestion.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:10px">The smaller markets follow the same template: <strong>SPP</strong> (wind-heavy Plains; energy market with an emerging capacity construct), <strong>ISO-NE</strong> (Forward Capacity Market; winter gas constraints drive price spikes), and <strong>NYISO</strong> (ICAP capacity market; zonal, with Zone J / NYC the most congested). The Southeast and much of the Mountain West have <em>no</em> organized market — bilateral utility deals and green tariffs instead, and no clean hub to settle a VPPA against.</p>
+        <p class="src"><a href="https://www.ferc.gov/industries-data/electric/electric-power-markets">FERC — Electric power markets</a> · <a href="https://www.ercot.com/files/docs/2019/09/17/Market_Structure_OnePager_FINAL_Revised.pdf">ERCOT market structure</a> · <a href="https://www.pjm.com/-/media/DotCom/documents/manuals/m18.ashx">PJM Manual 18 (RPM)</a> · <a href="https://www.caiso.com/market-operations/products-services/congestion-revenue-rights">CAISO CRRs</a> · <a href="https://www.misoenergy.org/planning/resource-adequacy2/resource-adequacy/">MISO resource adequacy</a></p>
+      </div>
+
       <hr class="rule">
 
       <h2>RECs — what the buyer is really paying for</h2>
@@ -405,6 +452,55 @@
         <p style="max-width:none;margin-bottom:0">Define your defined terms — a vague clause is an unallocated risk. Every clause assigns a risk to someone; know which. Start from the market-standard form; don't over-engineer. The usual deal-killers: the <strong>wrong settlement point</strong> (basis), a <strong>weak offtaker credit</strong>, a <strong>tenor too short to finance</strong>, and <strong>uncapped liabilities</strong>.</p>
       </div>
 
+      <hr class="rule">
+
+      <h2>Pricing structures — and who bears price risk</h2>
+      <p>The <span class="gterm" data-term="Strike Price (Fixed Price)">strike</span> is one number, but how it moves over the term is a negotiated choice — and each choice hands the electricity-price risk to a different party. These are the five structures you'll see, ordered roughly from most to least price risk on the buyer.</p>
+      <div class="table-wrap">
+        <table class="coverage" style="width:100%;table-layout:auto">
+          <thead>
+            <tr>
+              <th style="width:22%">Structure</th>
+              <th style="width:48%">How it works</th>
+              <th style="width:30%">Who bears electricity-price risk</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Fixed (flat)</strong></td>
+              <td>One $/MWh for the whole term. The cleanest hedge and the easiest to budget.</td>
+              <td><strong>Buyer</strong> — goes out-of-the-money if market prices fall below the strike.</td>
+            </tr>
+            <tr>
+              <td><strong>Escalating</strong></td>
+              <td>A fixed price that steps up a set % each year (e.g. 1–2%).</td>
+              <td><strong>Buyer</strong> — committed to a rising price path regardless of the market.</td>
+            </tr>
+            <tr>
+              <td><strong>Inflation-indexed</strong></td>
+              <td>Price tracks an index such as CPI rather than a fixed schedule.</td>
+              <td><strong>Buyer</strong> — committed to an indexed path; real cost is hedged, nominal isn't.</td>
+            </tr>
+            <tr>
+              <td><strong>Discount-to-market + floor</strong></td>
+              <td>Buyer pays market minus a discount, but never less than a floor price.</td>
+              <td><strong>Producer</strong> down to the floor; <strong>buyer</strong> at risk below the floor.</td>
+            </tr>
+            <tr>
+              <td><strong><span class="gterm" data-term="Collar (Floor + Cap)">Collar</span> (floor + cap)</strong></td>
+              <td>A floor and a cap bracket the price; it floats between them.</td>
+              <td><strong>Producer</strong> within the collar; buyer at risk below the floor but caps its upside above the cap.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card" style="border-left:3px solid var(--accent);margin-top:12px">
+        <p class="eyebrow">Two adjustments that ride on top of any structure</p>
+        <p style="margin:0 0 6px"><strong>Negative-price floor.</strong> Independent of the pricing structure, settle whether the <span class="gterm" data-term="Negative Pricing / Price Floor">Floating Price floors at $0</span>. Without it, every below-zero LMP interval makes the generator pay the buyer the strike <em>plus</em> the negative price — routine pain in ERCOT, CAISO, and SPP.</p>
+        <p style="margin:0"><strong>Time-of-delivery (ToD) weighting.</strong> An hourly variant that prices solar lower in saturated midday hours and higher at peak — closer to 24/7 matching. Real and increasingly common, but the clause-level mechanics are still a research gap here; see the <button class="nav-link-btn" data-view="coverage" style="background:none;border:none;color:var(--accent);font:inherit;cursor:pointer;padding:0;text-decoration:underline">coverage page</button>.</p>
+      </div>
+      <p class="src"><a href="https://www.wbcsd.org/wp-content/uploads/2023/10/Pricing-structures-for-corporate-renewable-PPAs.pdf">WBCSD — Pricing structures for corporate renewable PPAs</a> · <a href="https://www.eia.gov/todayinenergy/detail.php?id=6730">EIA — Negative wholesale prices</a></p>
+
       <div data-level="2">
         <hr class="rule">
 
@@ -481,26 +577,27 @@
           <p class="eyebrow">Physical PPA — use when</p>
           <ul style="margin:0 0 10px;padding-left:20px">
             <li>You want actual electrons at your meter or delivery point</li>
-            <li>The project is in a regulated state (VPPAs require retail access)</li>
+            <li>You can buy retail power from a supplier of choice, or you take wholesale delivery as a load-serving entity</li>
             <li>You need co-located or behind-the-meter generation</li>
-            <li>You want to eliminate <span class="gterm" data-term="Basis Risk">basis risk</span> by fixing the delivery point</li>
+            <li>You want to fix the delivery point rather than carry a separate <span class="gterm" data-term="Basis Risk">basis</span> exposure</li>
           </ul>
           <p style="margin:0"><strong>Common forms:</strong> utility offtake (20-year wholesale), <span class="gterm" data-term="Sleeved PPA">sleeved PPA</span>, behind-the-meter, community solar</p>
         </div>
         <div class="card">
           <p class="eyebrow">Virtual / Financial PPA — use when</p>
           <ul style="margin:0 0 10px;padding-left:20px">
-            <li>Project is in a different ISO region or state from where you consume power</li>
-            <li>You want RECs and a price hedge without physical delivery logistics</li>
-            <li>You operate loads across many ISOs and want a portfolio hedge</li>
-            <li>The state has retail choice — VPPA is the standard corporate model there</li>
+            <li>The project sits in an <span class="gterm" data-term="ISO / RTO">ISO/RTO</span> market with a liquid, published settlement hub</li>
+            <li>You want RECs and a price hedge without taking physical delivery</li>
+            <li>You operate loads across many regions and want a portfolio-level hedge</li>
+            <li>You can transact a commodity swap (a financial derivative) under your treasury and accounting policies</li>
           </ul>
           <p style="margin:0"><strong>Common forms:</strong> hub-settled CfD (most common), node-settled CfD, fixed-volume swap</p>
         </div>
       </div>
       <div class="card" style="border-left:3px solid var(--accent);margin-top:12px">
-        <p class="eyebrow">The regulated-state constraint</p>
-        <p style="margin:0">VPPAs require retail access — the ability to buy electricity from any supplier. In regulated states where the local utility is the sole supplier, buyers use <span class="gterm" data-term="Green Tariff">green tariffs</span> or <span class="gterm" data-term="Energy Supply Agreement (ESA)">utility ESAs</span> instead. In deregulated states (ERCOT, PJM, CAISO, MISO, ISO-NE, NYISO), direct PPAs are available. This is why geography is the first question in any procurement conversation.</p>
+        <p class="eyebrow">The geography constraint — what actually gates each structure</p>
+        <p style="margin:0 0 8px">A common myth is that a VPPA needs the <em>buyer</em> to be in a deregulated, retail-choice state. It doesn't. A VPPA is a purely financial hedge: the buyer keeps its existing retail supply and separately settles a swap against a wholesale <span class="gterm" data-term="Hub">hub</span>. So a company headquartered in a fully regulated state routinely signs a VPPA on an ERCOT or PJM project. What a VPPA actually requires is that <strong>the project</strong> sit in an organized wholesale (<span class="gterm" data-term="ISO / RTO">ISO/RTO</span>) market with a transparent <span class="gterm" data-term="Locational Marginal Price (LMP)">LMP</span> to settle against.</p>
+        <p style="margin:0">What <em>does</em> turn on the buyer's geography is a <strong>physical retail</strong> deal: buying the actual electrons for your site from a chosen supplier needs <strong>retail choice</strong>. Where there is no organized market at all (much of the Southeast, the non-CAISO West), there is no clean index to settle a VPPA against — so buyers fall back to <span class="gterm" data-term="Green Tariff">green tariffs</span>, <span class="gterm" data-term="Energy Supply Agreement (ESA)">utility ESAs</span>, or <span class="gterm" data-term="Sleeved PPA">sleeved</span> deals. Note that ISO/RTO membership and retail deregulation are different things: PJM and MISO span both regulated (e.g. Virginia, Michigan) and restructured states. Geography is the first question in any procurement conversation — but ask it about the <em>project</em> for a VPPA and about the <em>buyer's territory</em> for a physical retail deal.</p>
       </div>
       <p class="src"><a href="https://www.wbcsd.org/wp-content/uploads/2023/10/Pricing-structures-for-corporate-renewable-PPAs.pdf">WBCSD — Pricing structures for corporate PPAs</a> · <a href="https://www.epa.gov/statelocalenergy/customer-power-purchase-agreements">EPA — Customer PPAs</a></p>
 
@@ -530,7 +627,7 @@
         <hr class="rule">
 
         <h2>Deal lifecycle — origination to operations <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
-        <p>A utility-scale PPA takes 3–5 years from first conversation to first MWh of settlement. Here are the six stages every deal goes through, with who's involved and typical timelines.</p>
+        <p>A utility-scale PPA takes roughly 3–7 years from first conversation to first MWh of settlement — and longer when the interconnection queue binds (see the bottleneck note below). Here are the six stages every deal goes through, with who's involved and typical timelines. The stages overlap: a developer clears conditions precedent while construction is already underway.</p>
       <ol class="steps">
         <li>
           <strong>Origination &amp; RFP</strong> <em style="font-size:0.88em;color:var(--text-muted);font-weight:400">(6–18 months)</em><br>
@@ -580,6 +677,13 @@
         <div class="clause-detail" id="clause-detail" aria-live="polite"></div>
       </div>
       <p class="src" id="example-realdocs" style="margin-top:16px"></p>
+
+      <hr class="rule">
+
+      <h2>Test yourself</h2>
+      <p class="lede">Six questions on the mechanics interviewers actually probe — settlement direction, basis, risk allocation, structure choice, credit support. Answer to reveal the worked reasoning.</p>
+      <div id="quiz" class="quiz"></div>
+      <p class="src" style="margin-top:14px">Score: <span class="quiz-score" id="quiz-score">0 / 0</span> &middot; <button type="button" id="quiz-reset" class="btn-secondary" style="font-size:12px;padding:6px 12px;border-radius:8px;cursor:pointer">Reset</button></p>
     </section>
 
     <!-- ============ DRAFT PPA ============ -->
@@ -800,7 +904,7 @@
               </table>
             </div>
           </div>
-          <p class="hint">Settlement convention: each month, settlement = (LMP − strike) × volume. Positive means the generator pays the buyer; negative means the buyer pays the generator. The VPPA swap settles at the hub; the developer earns the node price for actual energy sales. Use the Basis risk slider above to see how a node-to-hub spread erodes the developer's realized price. <a href="https://www.leveltenenergy.com/post/power-purchase-agreement-terms">LevelTen terms</a> · <a href="https://cityrenewables.org/vppa/research-and-build-team/understand-basis-risk/">Basis risk explainer</a></p>
+          <p class="hint">Settlement convention: each month, settlement = (LMP − strike) × volume. Positive means the generator pays the buyer; negative means the buyer pays the generator. The VPPA swap settles at the hub; the developer earns the node price for actual energy sales. Use the Basis risk slider above to see how a node-to-hub spread erodes the developer's realized price. Try setting a month's LMP <strong>negative</strong> (e.g. −$20): with no floor the generator pays the buyer the strike <em>plus</em> the negative price — which is why VPPAs often add a <span class="gterm" data-term="Negative Pricing / Price Floor">$0 price floor</span>. <a href="https://www.leveltenenergy.com/post/power-purchase-agreement-terms">LevelTen terms</a> · <a href="https://cityrenewables.org/vppa/research-and-build-team/understand-basis-risk/">Basis risk explainer</a></p>
         </div>
       </div>
     </section>
@@ -864,6 +968,7 @@
           <tr><td>Term lengths; delay damages; capacity buydowns; credit support</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>EEI master; LevelTen index; EPA guide</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>FERC role; market-based rates; PURPA qualifying facilities</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>ISO/RTO market structure (ERCOT, PJM, CAISO, MISO; capacity vs. energy, basis hedging)</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>IRA ITC/PTC, transferability → pricing; Berkeley Lab LCOE data</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Deal types: behind/front-of-meter, sleeved, community solar</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Clauses: curtailment, force majeure, change-in-law, termination</td><td><span class="pill verified">verified</span></td></tr>
@@ -887,7 +992,6 @@
       <table class="coverage">
         <thead><tr><th>Topic</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td>ISO/RTO per-market detail (ERCOT, PJM, CAISO, MISO, SPP)</td><td><span class="pill gap">needs research</span></td></tr>
           <tr><td>Internal approval &amp; signing (investment committee, board, PUC prudence)</td><td><span class="pill gap">needs research</span></td></tr>
           <tr><td>Clause-level: conditions precedent, assignment / lender step-in, dispute resolution</td><td><span class="pill gap">needs research</span></td></tr>
           <tr><td>Time-of-delivery / hourly pricing; 24/7 carbon-free matching</td><td><span class="pill gap">needs research</span></td></tr>
@@ -938,6 +1042,7 @@
   </footer>
 
   <script src="assets/js/draft.js?v=20260607" defer></script>
+  <script src="assets/js/quiz.js?v=20260607" defer></script>
   <script src="assets/js/settle-core.js?v=20260607" defer></script>
   <script src="assets/js/simulator.js?v=20260607" defer></script>
   <script src="assets/js/app.js?v=20260607" defer></script>

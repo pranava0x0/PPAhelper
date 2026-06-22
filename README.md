@@ -21,6 +21,7 @@ No dependencies — plain Node, no install.
 ```bash
 node test/settle.test.js   # VPPA settlement math (11 cases)
 node test/data.test.js     # glossary single-source-of-truth integrity
+node test/ui.test.js       # index.html / app.js / glossary cross-file integrity
 ```
 
 ## Deploy to GitHub Pages
@@ -36,6 +37,8 @@ index.html               # masthead, view-switcher, the six views
 assets/css/styles.css    # copper-on-paper terminal/broadsheet identity (see docs/design.md)
 assets/js/settle-core.js # pure VPPA settlement math (shared by browser + tests)
 assets/js/simulator.js   # simulator UI: scenarios, SVG chart, editable table
+assets/js/draft.js       # Draft-PPA generator: form inputs -> full VPPA template
+assets/js/quiz.js        # self-check quiz (settlement, basis, risk allocation)
 assets/js/app.js         # view switching, theme toggle, glossary, tooltips, level filter
 assets/js/content.js     # renders Example PPAs + Data centers tabs from JSON
 data/glossary.json       # single source of truth for terms (feeds glossary + tooltips)
