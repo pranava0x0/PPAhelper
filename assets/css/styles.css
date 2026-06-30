@@ -306,7 +306,10 @@ button, a, input, [tabindex] { touch-action: manipulation; }
 .clause-detail { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
 .clause-detail h3 { margin: 8px 0 6px; }
 .clause-detail-val { font-size: 14px; color: var(--accent); margin: 0 0 12px; }
-@media (min-width: 860px) { .clause-detail { position: sticky; top: 116px; } }
+@media (min-width: 860px) {
+  .clause-detail { position: sticky; top: 116px; }
+  ol.path { position: sticky; top: 116px; z-index: 20; background: var(--bg); padding-bottom: 14px; }
+}
 
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 .chip { font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); cursor: pointer; min-height: 32px; }

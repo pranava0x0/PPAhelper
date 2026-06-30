@@ -6,7 +6,7 @@
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
   <link rel="preload" href="data/glossary.json" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260607">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260630">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -120,6 +120,7 @@
         </div>
       </div>
       <p class="src"><a href="https://www.utilitydive.com/news/corporate-clean-energy-demand-remains-strong-ceba-ceo-rich-powell-2025-26-procurement-trends/819987/">CEBA / Utility Dive</a></p>
+      <p style="margin-top:14px">Once the mechanic clicks, run the <button class="nav-link-btn" data-view="simulator">settlement simulator</button> — change the strike, pick a scenario, and watch which way the cash flows.</p>
 
       <hr class="rule">
 
@@ -155,6 +156,7 @@
       </div>
       <p style="margin-top:16px">Net effect: the buyer locks in the strike as its effective power price, and the generator locks in stable revenue to finance the project. Don't just read it — <button class="nav-link-btn" data-view="simulator" style="background:none;border:none;color:var(--accent);font:inherit;cursor:pointer;padding:0;text-decoration:underline">run the settlement simulator</button> and watch the cash change direction.</p>
       <p class="src"><a href="https://www.stoel.com/insights/reports/the-law-of-solar/power-purchase-agreements-utility-scale-projects">Stoel Rives, "Law of Solar"</a> · <a href="https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities">Norton Rose Fulbright</a></p>
+      <p style="margin-top:10px;font-size:14px">The simulator models a flat fixed strike — one of five pricing structures. The most common US corporate VPPA structure in 2024–2026 is <strong>discount-to-market</strong>: buyer pays hub LMP minus a fixed spread (e.g. hub − $8/MWh), with a floor so the developer is never exposed below a minimum. See all five in <button class="nav-link-btn" data-view="examples" style="background:none;border:none;color:var(--accent);font:inherit;cursor:pointer;padding:0;text-decoration:underline">Drafting → Pricing structures</button>.</p>
 
       <div data-level="2">
         <hr class="rule">
@@ -212,6 +214,10 @@
           </table>
         </div>
         <p style="margin-top:10px">The smaller markets follow the same template: <strong>SPP</strong> (wind-heavy Plains; energy market with an emerging capacity construct), <strong>ISO-NE</strong> (Forward Capacity Market; winter gas constraints drive price spikes), and <strong>NYISO</strong> (ICAP capacity market; zonal, with Zone J / NYC the most congested). The Southeast and much of the Mountain West have <em>no</em> organized market — bilateral utility deals and green tariffs instead, and no clean hub to settle a VPPA against.</p>
+        <div class="card" style="border-left:3px solid var(--warn);margin-top:14px">
+          <p class="eyebrow">The price-cannibal problem (2024–2026)</p>
+          <p style="margin:0">As solar build accelerates, midday prices converge toward zero or go negative in CAISO (California) and ERCOT West Texas — the most solar-saturated hours. Each new MW of solar added reduces the settlement value of every existing solar VPPA. A $43/MWh flat-strike deal signed in 2021 may settle against a hub averaging $25/MWh in the 10am–3pm block by 2027. The most common structural responses: <strong>time-of-delivery (ToD) pricing</strong> that weights evening hours more heavily, and <strong>battery co-location</strong> to shift output to the 5–8pm peak. A buyer who doesn't ask about this in due diligence accepts a hedge that may stop hedging in the most solar-heavy hours. <a href="https://www.eia.gov/todayinenergy/detail.php?id=6730">EIA — Negative wholesale prices</a></p>
+        </div>
         <p class="src"><a href="https://www.ferc.gov/industries-data/electric/electric-power-markets">FERC — Electric power markets</a> · <a href="https://www.ercot.com/files/docs/2019/09/17/Market_Structure_OnePager_FINAL_Revised.pdf">ERCOT market structure</a> · <a href="https://www.pjm.com/-/media/DotCom/documents/manuals/m18.ashx">PJM Manual 18 (RPM)</a> · <a href="https://www.caiso.com/market-operations/products-services/congestion-revenue-rights">CAISO CRRs</a> · <a href="https://www.misoenergy.org/planning/resource-adequacy2/resource-adequacy/">MISO resource adequacy</a></p>
       </div>
 
@@ -356,6 +362,26 @@
       <p class="src"><a href="https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities">Norton Rose — VPPA risks</a> · <a href="https://cityrenewables.org/vppa/research-and-build-team/understand-basis-risk/">American Cities — basis risk</a></p>
 
       <hr class="rule">
+
+      <details class="acc" style="margin-top:16px">
+        <summary><strong>What goes wrong — four failure modes</strong></summary>
+        <div class="acc-body">
+          <p>The mechanics look clean in term sheets. These are the cases where they broke.</p>
+          <h3 style="margin-top:8px">1. COD slip / delay damages</h3>
+          <p>The project misses its commercial operation date — EPC delays, supply-chain backlogs, permitting hang-ups. The developer's per-day delay damages start accruing (e.g., $15,000/day). After hitting the cap (often 90 days of expected payments) the buyer may have walk rights. The developer's lenders are watching the milestone schedule throughout.</p>
+          <h3>2. Counterparty default</h3>
+          <p>If the developer goes bankrupt mid-construction (as SunEdison did in 2016), lenders invoke their step-in rights, transfer the project to a solvent entity, and the PPA may survive — or may be rejected by the bankruptcy estate. If the buyer defaults, the developer marks the remaining swap to market and demands a close-out payment; the direction of that payment depends on whether the contract is in- or out-of-the-money at default.</p>
+          <h3>3. Basis-risk wipe</h3>
+          <p>Already shown above: Aug 2027, hub $65, node $22, developer nets ~$0 that month. Sustained over a year it erodes debt-service coverage. Fixes: node-settled VPPA (eliminates basis), a CRR hedge (costly and imperfect), or a basis collar that caps the developer's exposure.</p>
+          <h3>4. Change-in-law / IRA risk</h3>
+          <p>If Congress reduces ITC/PTC after signing, a developer who priced the deal expecting full credits must absorb the loss or trigger a pricing re-opener clause — which most buyers resist. These clauses are heavily negotiated precisely because neither party controls Congressional action.</p>
+          <p class="src" style="margin-top:12px"><a href="https://www.projectfinance.law/publications/2020/june/corporate-vppas-risks-and-sensitivities">Norton Rose — VPPA risks</a> · <a href="https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/">RMI risk guide</a></p>
+        </div>
+      </details>
+
+      <div class="card" style="margin-top:14px;margin-bottom:16px">
+        <p style="margin:0">The full six-stage journey from first RFP to first settlement check — with timelines and who does what — is in <button class="nav-link-btn" data-view="examples">Drafting → Deal lifecycle</button>.</p>
+      </div>
 
       <details class="acc">
         <summary><strong>Become a PPA originator — the role, who hires, how to break in</strong></summary>
@@ -633,6 +659,14 @@
           <strong>Origination &amp; RFP</strong> <em style="font-size:0.88em;color:var(--text-muted);font-weight:400">(6–18 months)</em><br>
           Developer identifies a site, completes resource assessment, and enters the <span class="gterm" data-term="Large Generator Interconnection Agreement (LGIA)">interconnection queue</span>. Buyer issues an RFP or evaluates an unsolicited proposal — comparing projects on price, location, and counterparty credit.<br>
           <em style="font-size:12.5px;color:var(--text-muted)">Parties: developer's origination team · buyer's procurement lead · advisor/broker</em>
+          <details style="margin-top:8px;font-size:13.5px">
+            <summary style="cursor:pointer;color:var(--text-muted);font-size:12.5px">Interconnection queue — how it works</summary>
+            <div style="margin-top:8px;padding-left:12px;border-left:2px solid var(--border)">
+              <p style="margin:0 0 6px">Five steps from application to grid connection: <strong>(1) Application</strong> — developer files with the ISO/TO and pays a study deposit. <strong>(2) Feasibility study</strong> — ISO screens for thermal and voltage violations (~3 months). <strong>(3) System impact study</strong> — detailed congestion and stability analysis; network upgrade costs estimated (~6 months). <strong>(4) Facilities study</strong> — engineering drawings and final cost allocation for required upgrades (~6 months). <strong>(5) LGIA / SGIA signing</strong> — developer commits to cost allocation and posts security before construction begins.</p>
+              <p style="margin:0 0 6px">FERC Order 2023 (2023) reformed the process to cluster-based study cycles, aiming to cut queue times — but PJM and CAISO still report 4–7 year wait times for many projects. Queue position is the single biggest development risk a buyer should ask about.</p>
+              <p style="margin:0"><strong>Ask any developer:</strong> (1) What study phase are you in? (2) What are the estimated network upgrade costs and who bears them? (3) Do you have a signed LGIA or a date-certain path to one?</p>
+            </div>
+          </details>
         </li>
         <li>
           <strong>Term sheet</strong> <em style="font-size:0.88em;color:var(--text-muted);font-weight:400">(1–3 months)</em><br>
@@ -839,6 +873,8 @@
               <button type="button" class="scenario-btn" data-scenario="spike">Summer spike</button>
             </div>
             <p class="hint" style="margin:10px 0 0">Average LMP this scenario: <span class="mono" id="avg-lmp">—</span>. Edit any month in the table below to build a custom curve.</p>
+            <p class="hint" style="margin:8px 0 0"><strong>Real-world grounding:</strong> ERCOT North Hub averaged ~$45/MWh in 2024. A $43/MWh strike was roughly at-the-money when recently signed. Try "Calm market" + strike $43 to model that deal.</p>
+            <p class="hint" style="margin:6px 0 0"><strong>Discount-to-market:</strong> Most 2024–2026 US VPPAs use hub LMP minus a spread (e.g. hub − $8/MWh) with a floor, not a flat strike. Approximate it here by setting the strike to your floor (e.g. $35) and watching how the generator's payout behaves when LMP dips near the floor.</p>
           </fieldset>
 
           <fieldset>
@@ -1041,11 +1077,11 @@
     </div>
   </footer>
 
-  <script src="assets/js/draft.js?v=20260607" defer></script>
-  <script src="assets/js/quiz.js?v=20260607" defer></script>
-  <script src="assets/js/settle-core.js?v=20260607" defer></script>
-  <script src="assets/js/simulator.js?v=20260607" defer></script>
-  <script src="assets/js/app.js?v=20260607" defer></script>
-  <script src="assets/js/content.js?v=20260607" defer></script>
+  <script src="assets/js/draft.js?v=20260630" defer></script>
+  <script src="assets/js/quiz.js?v=20260630" defer></script>
+  <script src="assets/js/settle-core.js?v=20260630" defer></script>
+  <script src="assets/js/simulator.js?v=20260630" defer></script>
+  <script src="assets/js/app.js?v=20260630" defer></script>
+  <script src="assets/js/content.js?v=20260630" defer></script>
 </body>
 </html>
