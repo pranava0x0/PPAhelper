@@ -230,6 +230,19 @@ Corporate buyers route a PPA through sustainability (Scope 2 claim), treasury/fi
 
 ---
 
+## Round 7 — real executed contracts & deal refresh (2026-07-01)
+
+Two actual executed PPAs, publicly filed with the SEC as material-contract exhibits, now annotated clause-by-clause in the Drafting tab (values quoted from the documents themselves):
+
+- **New Mexico SunTower, LLC × El Paso Electric** (Oct 17, 2008) — 92 MW solar, New Mexico. 20 commercial-operation-year term; price redacted under SEC confidential treatment (a teachable point); all RECs to EPE at no additional cost; Security Fund $20/kW → $40/kW; LC issuer rated A− or better by both S&P and Moody's (§11.1(C)(1)); Delivery Excuse / interconnection-disconnect carve-outs. *([SEC EDGAR — EPE Exhibit 10.07](https://www.sec.gov/Archives/edgar/data/31978/000119312509167228/dex1007.htm))*
+- **SCPPA × Milford Wind Corridor Phase II, LLC** (Mar 1, 2010) — 102 MW wind, Milford, Utah. **Prepaid** municipal structure; Prepaid Energy Price $47.00/MWh; delivery at the Intermountain Power Project 345-kV switchyard; delay LDs $5,000/day (first 30 days) then $19,375/day capped at $4.8M (§3.5(a)); LD Security LC $4.8M + Performance Security LC $5M; curtailed energy deemed delivered toward the guarantee (§5.6(g)); buyer purchase options (§2.4–2.5). *([SEC EDGAR — First Wind Exhibit 10.57](https://www.sec.gov/Archives/edgar/data/1434804/000104746910008771/a2200542zex-10_57.htm))*
+
+Method note: EDGAR full-text search for "power purchase agreement" in Exhibit 10 filings (with a declared User-Agent) is the best free library of real executed PPAs; utility commission dockets (CPUC resolutions) are the other main source.
+
+Deal refresh (data/datacenter.json, 19 deals): added Google × Ormat (up to 150 MW geothermal, NV — [ESG Today](https://www.esgtoday.com/google-ormat-sign-deal-to-power-data-centers-from-new-geothermal-projects/)), SCE × Fervo (320 MW Cape Station, largest geothermal PPA — [Fervo](https://fervoenergy.com/fervo-energy-announces-320-mw-power-purchase-agreements-with-southern-california-edison/)), DTE × hyperscaler (1.4 GW regulated-utility ESA — [Utility Dive](https://www.utilitydive.com/news/dte-data-center-deal-transformational-growth-earnings/804231/)).
+
+---
+
 ## Coverage scorecard (be honest in the UI)
 
 | Topic | Status |

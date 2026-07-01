@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-01",
+  "updated": "2026-07-01",
   "note": "Data-center & generation PPAs. Deals are point-in-time (as of mid-2026) and will age — treat them as worked examples of structures, not a live deal tracker. Each carries a primary or reputable-trade source. 'level': 1=newcomer, 2=practitioner.",
   "demand": {
     "stat": "US data-center electricity demand more than doubled (2.3x) from 2018 to 2024 and could reach 325–580 TWh by 2028 — up to roughly 12% of US electricity.",
@@ -371,6 +371,45 @@
       "note": "Off-grid BYOP at scale to bypass the interconnection queue entirely.",
       "source": "Data Center Dynamics",
       "url": "https://www.datacenterdynamics.com/en/news/natural-gas-plant-planned-for-stargate-ai-data-center-campus-report/"
+    },
+    {
+      "buyer": "Google",
+      "buyerType": "Hyperscaler",
+      "seller": "Ormat Technologies",
+      "tech": "Geothermal",
+      "capacity": "up to 150 MW",
+      "tenor": "long-term (25 yrs)",
+      "announced": "2025–2026",
+      "structure": "Corporate PPA for new geothermal plants supporting Nevada data centers",
+      "note": "Firm 24/7 carbon-free supply from new-build geothermal in Nevada, extending Google's clean-firm portfolio beyond the Fervo pilot.",
+      "source": "ESG Today",
+      "url": "https://www.esgtoday.com/google-ormat-sign-deal-to-power-data-centers-from-new-geothermal-projects/"
+    },
+    {
+      "buyer": "Southern California Edison",
+      "buyerType": "Utility",
+      "seller": "Fervo Energy",
+      "tech": "Enhanced geothermal",
+      "capacity": "320 MW",
+      "tenor": "15 years",
+      "announced": "2025",
+      "structure": "Utility PPAs from Cape Station (Utah) — the world's largest geothermal PPA",
+      "note": "Brings Fervo's contracted Cape Station capacity to 373 MW; shows utility (not just hyperscaler) demand for clean firm power.",
+      "source": "Fervo Energy",
+      "url": "https://fervoenergy.com/fervo-energy-announces-320-mw-power-purchase-agreements-with-southern-california-edison/"
+    },
+    {
+      "buyer": "Hyperscale data center (undisclosed)",
+      "buyerType": "Hyperscaler",
+      "seller": "DTE Energy",
+      "tech": "Utility supply (gas + renewables + storage)",
+      "capacity": "1.4 GW",
+      "tenor": "long-term",
+      "announced": "Oct 2025",
+      "structure": "Regulated-utility electric service agreement; DTE adding 12 GW of generation 2026–2032",
+      "note": "The utility-side counterpart to a PPA: a large-load ESA where the regulated utility builds and the commission reviews cost allocation. DTE's pipeline could add up to 7 GW more load.",
+      "source": "Utility Dive",
+      "url": "https://www.utilitydive.com/news/dte-data-center-deal-transformational-growth-earnings/804231/"
     }
   ]
 }
