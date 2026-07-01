@@ -6,7 +6,7 @@
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
   <link rel="preload" href="data/glossary.json" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260701">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260701b">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -18,8 +18,7 @@
       <span class="masthead-spacer"></span>
       <div class="masthead-controls">
         <div class="level-filter" id="level-filter" role="group" aria-label="Filter content by experience level">
-          <button type="button" data-setlevel="all" aria-pressed="true">All</button>
-          <button type="button" data-setlevel="1" aria-pressed="false">Newcomer</button>
+          <button type="button" data-setlevel="1" aria-pressed="true">Newcomer</button>
           <button type="button" data-setlevel="2" aria-pressed="false">Practitioner</button>
         </div>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">dark</button>
@@ -46,7 +45,7 @@
       <p class="lede">A PPA is a long-term contract to buy electricity — and its clean-energy attributes — from a generator. This page takes you from "I know nothing about power" to understanding how a PPA works, in four steps.</p>
 
       <ol class="path" aria-label="Learning path">
-        <li><button type="button" class="path-step" data-scroll-to="stage-1"><span class="path-n">1</span> <span class="path-t">Electricity from scratch</span> <span class="path-lvl">know nothing</span></button></li>
+        <li data-level-only="1"><button type="button" class="path-step" data-scroll-to="stage-1"><span class="path-n">1</span> <span class="path-t">Electricity from scratch</span> <span class="path-lvl">know nothing</span></button></li>
         <li><button type="button" class="path-step" data-scroll-to="stage-2"><span class="path-n">2</span> <span class="path-t">How power is bought &amp; sold</span> <span class="path-lvl">know a little</span></button></li>
         <li><button type="button" class="path-step" data-scroll-to="stage-3"><span class="path-n">3</span> <span class="path-t">Why PPAs exist</span> <span class="path-lvl">the point</span></button></li>
         <li><button type="button" class="path-step" data-scroll-to="stage-4"><span class="path-n">4</span> <span class="path-t">How a PPA works</span> <span class="path-lvl">the mechanics</span></button></li>
@@ -54,6 +53,7 @@
 
       <hr class="rule">
 
+      <div data-level-only="1">
       <h2 id="stage-1"><span class="stage-n">1</span>Electricity from scratch</h2>
       <p>Electricity is a <strong>secondary</strong> energy source — power plants make it by converting coal, gas, nuclear, sun, or wind into electric current. It's the product every PPA buys and sells. Four things to know before anything else:</p>
       <details class="acc">
@@ -75,6 +75,7 @@
       <p class="src"><a href="https://www.eia.gov/energyexplained/electricity/measuring-electricity.php">EIA — Measuring electricity</a> · <a href="https://www.eia.gov/energyexplained/electricity/delivery-to-consumers.php">EIA — Delivery to consumers</a></p>
 
       <hr class="rule">
+      </div><!-- /data-level-only="1" electricity-from-scratch -->
 
       <h2 id="stage-2"><span class="stage-n">2</span>How power is bought &amp; sold</h2>
       <p>Once you know power must be balanced instantly, the market makes sense: prices reflect what it costs to meet demand at each moment and place.</p>
@@ -1116,11 +1117,11 @@
     </div>
   </footer>
 
-  <script src="assets/js/draft.js?v=20260701" defer></script>
-  <script src="assets/js/quiz.js?v=20260701" defer></script>
-  <script src="assets/js/settle-core.js?v=20260701" defer></script>
-  <script src="assets/js/simulator.js?v=20260701" defer></script>
-  <script src="assets/js/app.js?v=20260701" defer></script>
-  <script src="assets/js/content.js?v=20260701" defer></script>
+  <script src="assets/js/draft.js?v=20260701b" defer></script>
+  <script src="assets/js/quiz.js?v=20260701b" defer></script>
+  <script src="assets/js/settle-core.js?v=20260701b" defer></script>
+  <script src="assets/js/simulator.js?v=20260701b" defer></script>
+  <script src="assets/js/app.js?v=20260701b" defer></script>
+  <script src="assets/js/content.js?v=20260701b" defer></script>
 </body>
 </html>

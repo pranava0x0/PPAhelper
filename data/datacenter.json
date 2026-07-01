@@ -1,6 +1,6 @@
 {
   "updated": "2026-06-01",
-  "note": "Data-center & generation PPAs. Deals are point-in-time (as of mid-2026) and will age — treat them as worked examples of structures, not a live deal tracker. Each carries a primary or reputable-trade source. 'level': 1=newcomer, 2=practitioner, 3=advanced.",
+  "note": "Data-center & generation PPAs. Deals are point-in-time (as of mid-2026) and will age — treat them as worked examples of structures, not a live deal tracker. Each carries a primary or reputable-trade source. 'level': 1=newcomer, 2=practitioner.",
   "demand": {
     "stat": "US data-center electricity demand more than doubled (2.3x) from 2018 to 2024 and could reach 325–580 TWh by 2028 — up to roughly 12% of US electricity.",
     "source": "LBNL — 2024 US Data Center Energy Usage Report",
@@ -15,7 +15,10 @@
       "what": "Contract the output of a recommissioned or up-rated existing nuclear unit under a long-term (often ~20-year) PPA.",
       "whyClever": "Delivers large, firm, carbon-free baseload that already has an interconnection — far faster than building new generation. Long tenor underwrites the restart capex.",
       "tradeoffs": "Limited to the few restartable sites; needs NRC approval; multi-year lead time; can draw scrutiny over keeping the plant off the public grid.",
-      "glossaryRefs": ["Commercial Operation Date (COD)", "Bankability"],
+      "glossaryRefs": [
+        "Commercial Operation Date (COD)",
+        "Bankability"
+      ],
       "example": "Microsoft × Constellation — Three Mile Island Unit 1 (Crane Clean Energy Center)",
       "source": "Constellation",
       "url": "https://www.constellationenergy.com/news/2024/Constellation-to-Launch-Crane-Clean-Energy-Center-Restoring-Jobs-and-Carbon-Free-Power-to-The-Grid.html"
@@ -27,7 +30,11 @@
       "what": "Site the data center directly next to a generator and take power on the generator's side of the grid meter, bypassing the transmission network.",
       "whyClever": "Fastest path to large firm power — no new transmission, no full interconnection queue. The load and supply are physically married.",
       "tradeoffs": "Raises FERC and cost-allocation questions about whether co-located load avoids paying for grid services it still relies on for backup. FERC rejected Talen's amended interconnection agreement for the AWS co-location in Nov 2024.",
-      "glossaryRefs": ["Behind-the-Meter (BTM)", "FERC (Federal Energy Regulatory Commission)", "Speed-to-Power"],
+      "glossaryRefs": [
+        "Behind-the-Meter (BTM)",
+        "FERC (Federal Energy Regulatory Commission)",
+        "Speed-to-Power"
+      ],
       "example": "Amazon × Talen — Susquehanna (original co-located structure)",
       "source": "Data Center Frontier",
       "url": "https://www.datacenterfrontier.com/energy/article/55264293/talen-energy-continues-behind-the-meter-power-fight-for-aws-data-center-campus"
@@ -39,7 +46,10 @@
       "what": "Restructure a co-location deal as a grid-connected, front-of-meter arrangement where the generator becomes the licensed retail supplier to the load.",
       "whyClever": "Keeps the commercial relationship and the firm nuclear supply while sidestepping the FERC co-location dispute — the load is a normal grid-connected retail customer.",
       "tradeoffs": "The load pays grid charges it avoided under co-location; depends on a retail-choice (deregulated) market.",
-      "glossaryRefs": ["Front-of-Meter / Offsite PPA", "FERC (Federal Energy Regulatory Commission)"],
+      "glossaryRefs": [
+        "Front-of-Meter / Offsite PPA",
+        "FERC (Federal Energy Regulatory Commission)"
+      ],
       "example": "Amazon × Talen — restructured June 2025 (17-yr, up to 1,920 MW)",
       "source": "Utility Dive",
       "url": "https://www.utilitydive.com/news/talen-amazon-aws-susquehanna-nuclear-data-centert/750440/"
@@ -51,7 +61,11 @@
       "what": "Sign an offtake for the output of yet-to-be-built small modular reactors, often as a fleet across multiple units.",
       "whyClever": "Firm 24/7 carbon-free power that can scale in increments; the corporate offtake gives the developer the demand certainty to build first-of-a-kind units.",
       "tradeoffs": "First units are ~2030+; first-of-a-kind cost and schedule risk; needs NRC licensing.",
-      "glossaryRefs": ["Small Modular Reactor (SMR)", "24/7 Carbon-Free Energy (CFE)", "Bankability"],
+      "glossaryRefs": [
+        "Small Modular Reactor (SMR)",
+        "24/7 Carbon-Free Energy (CFE)",
+        "Bankability"
+      ],
       "example": "Google × Kairos Power (up to 500 MW, first SMR ~2030); Meta × Oklo / TerraPower",
       "source": "Google",
       "url": "https://blog.google/company-news/outreach-and-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/"
@@ -63,7 +77,11 @@
       "what": "Offtake firm power from next-generation (enhanced) geothermal projects that engineer heat reservoirs in non-traditional locations.",
       "whyClever": "Dispatchable, 24/7 carbon-free power that complements variable solar/wind — fills the firmness gap without nuclear lead times.",
       "tradeoffs": "Still scaling; geographically constrained; newer technology risk.",
-      "glossaryRefs": ["Enhanced Geothermal", "Firm / Dispatchable Power", "24/7 Carbon-Free Energy (CFE)"],
+      "glossaryRefs": [
+        "Enhanced Geothermal",
+        "Firm / Dispatchable Power",
+        "24/7 Carbon-Free Energy (CFE)"
+      ],
       "example": "Google × Fervo (115 MW, Nevada); Meta × Sage Geosystems / XGS Energy (~300 MW)",
       "source": "Carbon Credits",
       "url": "https://carboncredits.com/google-taps-earths-heat-in-150mw-geothermal-deal-with-ormat-technologies-to-power-data-centers/"
@@ -75,7 +93,11 @@
       "what": "Build dedicated on-site generation — typically gas turbines, sometimes fuel cells — to energize the campus directly, ahead of or instead of a grid connection.",
       "whyClever": "The fastest route to firm megawatts when the interconnection queue is multi-year. Common among neoclouds racing to deploy GPUs.",
       "tradeoffs": "Carbon and air-permit exposure; not carbon-free unless paired with capture or clean fuel; capital and O&M sit with the developer.",
-      "glossaryRefs": ["Bring-Your-Own-Power (BYOP)", "Behind-the-Meter (BTM)", "Speed-to-Power"],
+      "glossaryRefs": [
+        "Bring-Your-Own-Power (BYOP)",
+        "Behind-the-Meter (BTM)",
+        "Speed-to-Power"
+      ],
       "example": "Crusoe (Stargate / Abilene) — ~29 GE Vernova gas turbines, ~1 GW",
       "source": "GE Vernova",
       "url": "https://www.gevernova.com/news/articles/going-big-support-data-center-growth-rising-renewables-crusoe-ordering-flexible-gas"
@@ -87,7 +109,10 @@
       "what": "Procure clean energy so that carbon-free supply matches consumption every hour in every region, rather than netting it out across a year (annual/volumetric matching).",
       "whyClever": "A far more rigorous clean-energy claim than annual RECs — it forces procurement of firm and storage resources, not just cheap midday solar.",
       "tradeoffs": "Harder and more expensive; some analyses find hourly matching is not always the most cost-effective way to cut system-wide emissions versus targeting dirtier grids.",
-      "glossaryRefs": ["24/7 Carbon-Free Energy (CFE)", "Renewable Energy Certificate (REC)"],
+      "glossaryRefs": [
+        "24/7 Carbon-Free Energy (CFE)",
+        "Renewable Energy Certificate (REC)"
+      ],
       "example": "Google — 24/7 CFE by 2030 goal",
       "source": "DOE — Clean Energy Resources to Meet Data Center Demand",
       "url": "https://www.energy.gov/oe/clean-energy-resources-meet-data-center-electricity-demand"
@@ -99,7 +124,10 @@
       "what": "Acquire or co-develop the generation (and sometimes the grid assets) rather than only contracting for its output.",
       "whyClever": "Control over the build timeline — the buyer can co-locate generation and data center and move at its own speed instead of waiting on a counterparty.",
       "tradeoffs": "Capital-intensive; pulls a tech company into the power business; concentration and execution risk.",
-      "glossaryRefs": ["Speed-to-Power", "Bankability"],
+      "glossaryRefs": [
+        "Speed-to-Power",
+        "Bankability"
+      ],
       "example": "Google × Intersect Power ($4.75B, Dec 2024) — co-developing generation + data centers",
       "source": "S&P Global",
       "url": "https://www.spglobal.com/sustainable1/en/insights/special-editorial/hyperscaler-procurement-to-shape-us-power-investment"
@@ -111,7 +139,11 @@
       "what": "Agree to curtail or shift the data center's consumption during grid peaks in exchange for a faster, cheaper interconnection.",
       "whyClever": "Duke's 2025 'Rethinking Load Growth' found the existing US grid could absorb ~76 GW of new load if large users curtail just 0.25% of annual consumption — what the authors call 'curtailment-enabled headroom.' A load willing to flex skips much of the multi-year queue.",
       "tradeoffs": "Requires on-site backup or workload scheduling to ride through curtailment; not every AI workload tolerates interruption; still an emerging contracting practice.",
-      "glossaryRefs": ["Curtailment", "Speed-to-Power", "Firm / Dispatchable Power"],
+      "glossaryRefs": [
+        "Curtailment",
+        "Speed-to-Power",
+        "Firm / Dispatchable Power"
+      ],
       "example": "Duke / Tyler Norris — Rethinking Load Growth (2025); DOE data-center interconnection proposals",
       "source": "PowerMag",
       "url": "https://www.powermag.com/duke-researchers-grid-flexibility-key-to-accommodate-load-growth/"
@@ -119,11 +151,13 @@
     {
       "id": "fusion",
       "name": "Frontier offtake (fusion)",
-      "level": 3,
+      "level": 2,
       "what": "Sign an early offtake for a not-yet-commercial technology to help finance its first plant.",
       "whyClever": "Signals demand and de-risks first-of-a-kind capital; positions the buyer for firm clean power if the technology matures.",
       "tradeoffs": "High technology risk; long and uncertain timelines; mostly a strategic bet, not near-term supply.",
-      "glossaryRefs": ["Commercial Operation Date (COD)"],
+      "glossaryRefs": [
+        "Commercial Operation Date (COD)"
+      ],
       "example": "Microsoft × Helion — world's first fusion PPA (~50 MW, target 2028)",
       "source": "Helion Energy",
       "url": "https://www.helionenergy.com/newsroom/helion-announces-worlds-first-fusion-ppa-with-microsoft"
@@ -131,116 +165,212 @@
   ],
   "deals": [
     {
-      "buyer": "Microsoft", "buyerType": "Hyperscaler", "seller": "Constellation Energy",
-      "tech": "Nuclear (restart)", "capacity": "835 MW", "tenor": "20 years", "announced": "Sep 2024",
+      "buyer": "Microsoft",
+      "buyerType": "Hyperscaler",
+      "seller": "Constellation Energy",
+      "tech": "Nuclear (restart)",
+      "capacity": "835 MW",
+      "tenor": "20 years",
+      "announced": "Sep 2024",
       "structure": "Existing-plant restart PPA, grid-connected (PJM matching)",
       "note": "Restarts Three Mile Island Unit 1 as the Crane Clean Energy Center; targeted online ~2027–2028; ~$1.6B restart capex.",
-      "source": "Constellation", "url": "https://www.constellationenergy.com/news/2024/Constellation-to-Launch-Crane-Clean-Energy-Center-Restoring-Jobs-and-Carbon-Free-Power-to-The-Grid.html"
+      "source": "Constellation",
+      "url": "https://www.constellationenergy.com/news/2024/Constellation-to-Launch-Crane-Clean-Energy-Center-Restoring-Jobs-and-Carbon-Free-Power-to-The-Grid.html"
     },
     {
-      "buyer": "Amazon (AWS)", "buyerType": "Hyperscaler", "seller": "Talen Energy",
-      "tech": "Nuclear (existing)", "capacity": "up to 1,920 MW", "tenor": "17 years", "announced": "Jun 2025",
+      "buyer": "Amazon (AWS)",
+      "buyerType": "Hyperscaler",
+      "seller": "Talen Energy",
+      "tech": "Nuclear (existing)",
+      "capacity": "up to 1,920 MW",
+      "tenor": "17 years",
+      "announced": "Jun 2025",
       "structure": "Restructured from behind-the-meter co-location to front-of-meter retail after FERC rejected the co-location interconnection agreement",
       "note": "~$18B; Talen acts as AWS's licensed retail electricity provider in PA, sourcing from the grid.",
-      "source": "PowerMag", "url": "https://www.powermag.com/talen-amazon-launch-18b-nuclear-ppa-a-grid-connected-ipp-model-for-the-data-center-era/"
+      "source": "PowerMag",
+      "url": "https://www.powermag.com/talen-amazon-launch-18b-nuclear-ppa-a-grid-connected-ipp-model-for-the-data-center-era/"
     },
     {
-      "buyer": "Google", "buyerType": "Hyperscaler", "seller": "Kairos Power",
-      "tech": "Nuclear (SMR)", "capacity": "up to 500 MW", "tenor": "multi-unit fleet", "announced": "Oct 2024",
+      "buyer": "Google",
+      "buyerType": "Hyperscaler",
+      "seller": "Kairos Power",
+      "tech": "Nuclear (SMR)",
+      "capacity": "up to 500 MW",
+      "tenor": "multi-unit fleet",
+      "announced": "Oct 2024",
       "structure": "First corporate SMR fleet offtake; first reactor ~2030, more through 2035",
       "note": "World's first corporate agreement to buy power from multiple SMRs.",
-      "source": "Google", "url": "https://blog.google/company-news/outreach-and-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/"
+      "source": "Google",
+      "url": "https://blog.google/company-news/outreach-and-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/"
     },
     {
-      "buyer": "Google", "buyerType": "Hyperscaler", "seller": "Fervo Energy / Intersect Power",
-      "tech": "Enhanced geothermal + direct investment", "capacity": "115 MW (Fervo)", "tenor": "—", "announced": "2024–2025",
+      "buyer": "Google",
+      "buyerType": "Hyperscaler",
+      "seller": "Fervo Energy / Intersect Power",
+      "tech": "Enhanced geothermal + direct investment",
+      "capacity": "115 MW (Fervo)",
+      "tenor": "—",
+      "announced": "2024–2025",
       "structure": "Geothermal PPA (Nevada) plus a $4.75B move into Intersect Power to co-develop generation and data centers",
       "note": "Pairs firm geothermal with vertical integration for speed-to-power.",
-      "source": "Utility Dive", "url": "https://www.utilitydive.com/news/hyperscaler-data-center-power-companies-grid-utilities/820568/"
+      "source": "Utility Dive",
+      "url": "https://www.utilitydive.com/news/hyperscaler-data-center-power-companies-grid-utilities/820568/"
     },
     {
-      "buyer": "Meta", "buyerType": "Hyperscaler", "seller": "Vistra / Oklo / TerraPower",
-      "tech": "Nuclear (existing + SMR)", "capacity": "up to 6.6 GW", "tenor": "through 2035", "announced": "2025",
+      "buyer": "Meta",
+      "buyerType": "Hyperscaler",
+      "seller": "Vistra / Oklo / TerraPower",
+      "tech": "Nuclear (existing + SMR)",
+      "capacity": "up to 6.6 GW",
+      "tenor": "through 2035",
+      "announced": "2025",
       "structure": "Multi-partner nuclear procurement following a Dec 2024 RFP for 1–4 GW of new nuclear",
       "note": "One of the largest corporate nuclear procurement efforts in US history.",
-      "source": "PowerMag", "url": "https://www.powermag.com/meta-locks-in-up-to-6-6-gw-of-nuclear-power-through-deals-with-vistra-oklo-and-terrapower/"
+      "source": "PowerMag",
+      "url": "https://www.powermag.com/meta-locks-in-up-to-6-6-gw-of-nuclear-power-through-deals-with-vistra-oklo-and-terrapower/"
     },
     {
-      "buyer": "Meta", "buyerType": "Hyperscaler", "seller": "Sage Geosystems / XGS Energy",
-      "tech": "Enhanced geothermal", "capacity": "~300 MW combined", "tenor": "—", "announced": "2025–2026",
+      "buyer": "Meta",
+      "buyerType": "Hyperscaler",
+      "seller": "Sage Geosystems / XGS Energy",
+      "tech": "Enhanced geothermal",
+      "capacity": "~300 MW combined",
+      "tenor": "—",
+      "announced": "2025–2026",
       "structure": "Firm geothermal PPAs (Texas, New Mexico) for baseload data-center power",
       "note": "Complements Meta's 12+ GW of renewables with dispatchable clean power.",
-      "source": "Power Engineering", "url": "https://www.power-eng.com/nuclear/meta-seeks-up-to-4-gw-of-new-nuclear-to-power-its-data-centers-ai/"
+      "source": "Power Engineering",
+      "url": "https://www.power-eng.com/nuclear/meta-seeks-up-to-4-gw-of-new-nuclear-to-power-its-data-centers-ai/"
     },
     {
-      "buyer": "Microsoft", "buyerType": "Hyperscaler", "seller": "Helion Energy",
-      "tech": "Fusion", "capacity": "~50 MW", "tenor": "—", "announced": "2023 (construction 2025)",
+      "buyer": "Microsoft",
+      "buyerType": "Hyperscaler",
+      "seller": "Helion Energy",
+      "tech": "Fusion",
+      "capacity": "~50 MW",
+      "tenor": "—",
+      "announced": "2023 (construction 2025)",
       "structure": "World's first fusion power purchase agreement; target online 2028",
       "note": "A frontier bet to finance first-of-a-kind fusion.",
-      "source": "Helion Energy", "url": "https://www.helionenergy.com/newsroom/helion-announces-worlds-first-fusion-ppa-with-microsoft"
+      "source": "Helion Energy",
+      "url": "https://www.helionenergy.com/newsroom/helion-announces-worlds-first-fusion-ppa-with-microsoft"
     },
     {
-      "buyer": "Crusoe (neocloud)", "buyerType": "Neocloud", "seller": "GE Vernova (turbines)",
-      "tech": "On-site natural gas", "capacity": "~1 GW (≈29 turbines)", "tenor": "owned", "announced": "Dec 2024–Jun 2025",
+      "buyer": "Crusoe (neocloud)",
+      "buyerType": "Neocloud",
+      "seller": "GE Vernova (turbines)",
+      "tech": "On-site natural gas",
+      "capacity": "~1 GW (≈29 turbines)",
+      "tenor": "owned",
+      "announced": "Dec 2024–Jun 2025",
       "structure": "Bring-your-own-power on-site generation for the Stargate / Abilene (Lancium) campus",
       "note": "Speed-to-power play; campus scaling to ~1.2 GW. Stargate also adds on-site solar + storage.",
-      "source": "Data Center Dynamics", "url": "https://www.datacenterdynamics.com/en/news/crusoe-orders-19-natural-gas-turbines-from-ge-vernova-to-power-data-centers/"
+      "source": "Data Center Dynamics",
+      "url": "https://www.datacenterdynamics.com/en/news/crusoe-orders-19-natural-gas-turbines-from-ge-vernova-to-power-data-centers/"
     },
     {
-      "buyer": "CoreWeave (neocloud)", "buyerType": "Neocloud", "seller": "Core Scientific (acquisition)",
-      "tech": "Mixed / data-center power", "capacity": "~1.3 GW (+1 GW expansion)", "tenor": "owned", "announced": "Jul 2025",
+      "buyer": "CoreWeave (neocloud)",
+      "buyerType": "Neocloud",
+      "seller": "Core Scientific (acquisition)",
+      "tech": "Mixed / data-center power",
+      "capacity": "~1.3 GW (+1 GW expansion)",
+      "tenor": "owned",
+      "announced": "Jul 2025",
       "structure": "Acquire the power-secured data-center footprint outright rather than contract for it",
       "note": "Vertical integration to lock in gross power capacity.",
-      "source": "CoreWeave (SEC 8-K)", "url": "https://www.sec.gov/Archives/edgar/data/0001769628/000176962825000019/coreweave-pressreleasepric.htm"
+      "source": "CoreWeave (SEC 8-K)",
+      "url": "https://www.sec.gov/Archives/edgar/data/0001769628/000176962825000019/coreweave-pressreleasepric.htm"
     },
     {
-      "buyer": "Meta", "buyerType": "Hyperscaler", "seller": "Constellation Energy",
-      "tech": "Nuclear (existing)", "capacity": "1,121 MW", "tenor": "20 years", "announced": "Jun 2025",
+      "buyer": "Meta",
+      "buyerType": "Hyperscaler",
+      "seller": "Constellation Energy",
+      "tech": "Nuclear (existing)",
+      "capacity": "1,121 MW",
+      "tenor": "20 years",
+      "announced": "Jun 2025",
       "structure": "Full-output PPA that keeps the Clinton, IL plant running (through 2047) and adds a ~30 MW uprate",
       "note": "Takes effect mid-2027 when Illinois' state nuclear subsidy expires; grid-connected.",
-      "source": "Constellation", "url": "https://www.constellationenergy.com/newsroom/2025/constellation-meta-sign-20-year-deal-for-clean-reliable-nuclear-energy-in-illinois.html"
+      "source": "Constellation",
+      "url": "https://www.constellationenergy.com/newsroom/2025/constellation-meta-sign-20-year-deal-for-clean-reliable-nuclear-energy-in-illinois.html"
     },
     {
-      "buyer": "Amazon (AWS)", "buyerType": "Hyperscaler", "seller": "X-energy / Energy Northwest",
-      "tech": "Nuclear (SMR)", "capacity": "~320 MW (scaling to 960 MW)", "tenor": "investment + offtake", "announced": "Oct 2024",
+      "buyer": "Amazon (AWS)",
+      "buyerType": "Hyperscaler",
+      "seller": "X-energy / Energy Northwest",
+      "tech": "Nuclear (SMR)",
+      "capacity": "~320 MW (scaling to 960 MW)",
+      "tenor": "investment + offtake",
+      "announced": "Oct 2024",
       "structure": "Anchors X-energy financing and offtakes SMR output in central Washington, early 2030s",
       "note": "Part of plans for up to 5 GW of X-energy SMRs by 2039; separate SMR deal with Dominion in Virginia.",
-      "source": "Utility Dive", "url": "https://www.utilitydive.com/news/amazon-small-modular-reactor-deals-nuclear-dominion-x-energy-energy-northwest/730022/"
+      "source": "Utility Dive",
+      "url": "https://www.utilitydive.com/news/amazon-small-modular-reactor-deals-nuclear-dominion-x-energy-energy-northwest/730022/"
     },
     {
-      "buyer": "Microsoft", "buyerType": "Hyperscaler", "seller": "Brookfield Renewable",
-      "tech": "Solar + wind (framework)", "capacity": "10.5 GW", "tenor": "2026–2030 delivery", "announced": "May 2024",
+      "buyer": "Microsoft",
+      "buyerType": "Hyperscaler",
+      "seller": "Brookfield Renewable",
+      "tech": "Solar + wind (framework)",
+      "capacity": "10.5 GW",
+      "tenor": "2026–2030 delivery",
+      "announced": "May 2024",
       "structure": "First-of-its-kind global renewable framework — roughly 8x the largest single corporate PPA ever signed",
       "note": "Supports Microsoft's 100% 24/7 zero-carbon-by-2030 goal; a framework, not one contract.",
-      "source": "Brookfield", "url": "https://www.globenewswire.com/news-release/2024/05/01/2873042/0/en/Brookfield-and-Microsoft-Collaborating-to-Deliver-Over-10-5-GW-of-New-Renewable-Power-Capacity-Globally.html"
+      "source": "Brookfield",
+      "url": "https://www.globenewswire.com/news-release/2024/05/01/2873042/0/en/Brookfield-and-Microsoft-Collaborating-to-Deliver-Over-10-5-GW-of-New-Renewable-Power-Capacity-Globally.html"
     },
     {
-      "buyer": "Google", "buyerType": "Hyperscaler", "seller": "Brookfield Renewable",
-      "tech": "Hydropower", "capacity": "up to 3,000 MW", "tenor": "framework", "announced": "2025",
+      "buyer": "Google",
+      "buyerType": "Hyperscaler",
+      "seller": "Brookfield Renewable",
+      "tech": "Hydropower",
+      "capacity": "up to 3,000 MW",
+      "tenor": "framework",
+      "announced": "2025",
       "structure": "First-of-its-kind hydro framework — firm, dispatchable carbon-free power",
       "note": "Adds large-scale firm hydro to Google's clean-firm mix alongside nuclear and geothermal.",
-      "source": "Power Technology", "url": "https://www.power-technology.com/news/google-brookfield-hydroelectric-power/"
+      "source": "Power Technology",
+      "url": "https://www.power-technology.com/news/google-brookfield-hydroelectric-power/"
     },
     {
-      "buyer": "Meta", "buyerType": "Hyperscaler", "seller": "Engie",
-      "tech": "Solar", "capacity": "600 MW", "tenor": "—", "announced": "2025",
+      "buyer": "Meta",
+      "buyerType": "Hyperscaler",
+      "seller": "Engie",
+      "tech": "Solar",
+      "capacity": "600 MW",
+      "tenor": "—",
+      "announced": "2025",
       "structure": "Solar PPA in Texas — Meta was 2025's largest corporate clean-energy offtaker (10+ GW)",
       "note": "Variable renewables still anchor the portfolio alongside new nuclear and geothermal.",
-      "source": "Data Center Dynamics", "url": "https://www.datacenterdynamics.com/en/news/meta-signs-600mw-solar-ppa-with-engie-in-texas/"
+      "source": "Data Center Dynamics",
+      "url": "https://www.datacenterdynamics.com/en/news/meta-signs-600mw-solar-ppa-with-engie-in-texas/"
     },
     {
-      "buyer": "xAI", "buyerType": "Neocloud", "seller": "On-site gas turbines (self-supplied)",
-      "tech": "On-site natural gas", "capacity": "~247 MW (permitted)", "tenor": "owned", "announced": "2025",
+      "buyer": "xAI",
+      "buyerType": "Neocloud",
+      "seller": "On-site gas turbines (self-supplied)",
+      "tech": "On-site natural gas",
+      "capacity": "~247 MW (permitted)",
+      "tenor": "owned",
+      "announced": "2025",
       "structure": "Bring-your-own-power gas turbines for the Colossus supercomputer in Memphis — off-grid speed-to-power",
       "note": "Drew air-permit scrutiny; a cautionary example of BYOP's environmental and community trade-offs.",
-      "source": "CNBC", "url": "https://www.cnbc.com/2025/07/03/musks-xai-gets-permit-for-turbines-to-power-supercomputer-in-memphis.html"
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2025/07/03/musks-xai-gets-permit-for-turbines-to-power-supercomputer-in-memphis.html"
     },
     {
-      "buyer": "OpenAI / Oracle (Stargate)", "buyerType": "Neocloud", "seller": "Voltagrid / Vantage",
-      "tech": "Off-grid natural gas microgrid", "capacity": "700 MW", "tenor": "contracted", "announced": "2025",
+      "buyer": "OpenAI / Oracle (Stargate)",
+      "buyerType": "Neocloud",
+      "seller": "Voltagrid / Vantage",
+      "tech": "Off-grid natural gas microgrid",
+      "capacity": "700 MW",
+      "tenor": "contracted",
+      "announced": "2025",
       "structure": "Off-grid 700 MW gas microgrid for the second Stargate campus (Shackelford County, TX)",
       "note": "Off-grid BYOP at scale to bypass the interconnection queue entirely.",
-      "source": "Data Center Dynamics", "url": "https://www.datacenterdynamics.com/en/news/natural-gas-plant-planned-for-stargate-ai-data-center-campus-report/"
+      "source": "Data Center Dynamics",
+      "url": "https://www.datacenterdynamics.com/en/news/natural-gas-plant-planned-for-stargate-ai-data-center-campus-report/"
     }
   ]
 }

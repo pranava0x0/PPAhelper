@@ -30,8 +30,18 @@ test("level-filter control does NOT use the content-filter attribute data-level"
   const block = m[0];
   assert.ok(!/data-level=/.test(block),
     "level-filter buttons use data-level — applyLevel() will hide the control itself");
-  assert.strictEqual((block.match(/data-setlevel=/g) || []).length, 3,
-    "expected 3 data-setlevel buttons (All / Newcomer / Practitioner)");
+  assert.strictEqual((block.match(/data-setlevel=/g) || []).length, 2,
+    "expected 2 data-setlevel buttons (Newcomer / Practitioner — All was removed)");
+  assert.ok(!/data-setlevel="all"/.test(block), "the removed All mode is back in the markup");
+});
+
+// --- Two-level filter: the modes must actually differ in both directions ---
+test("newcomer-only on-ramp content exists and app.js handles data-level-only", () => {
+  assert.ok(/data-level-only="1"/.test(html),
+    "no data-level-only content — Practitioner would be a superset, not a different mode");
+  assert.ok(/data-level-only/.test(appJs), "app.js never reads data-level-only");
+  assert.ok(!/level === "all"/.test(appJs), "app.js still special-cases the removed 'all' level");
+  assert.ok(/saved === "all"/.test(appJs), "localStorage migration for saved 'all' level missing");
 });
 
 test("applyLevel is driven by data-setlevel in app.js", () => {

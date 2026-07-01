@@ -308,15 +308,20 @@
     if (input) { input.value = key; input.focus(); }
   }
 
-  /* ---------- experience-level filter (newcomer → practitioner → all) ---------- */
-  var currentLevel = "all";
+  /* ---------- experience-level filter (newcomer ↔ practitioner) ----------
+     Two genuinely different modes: data-level="N" content is progressive
+     (shown at level >= N), data-level-only="N" content is exclusive
+     (the from-scratch on-ramp hides once you switch to Practitioner). */
+  var currentLevel = "1";
   function applyLevel(level) {
     currentLevel = level;
     try { localStorage.setItem("ppa-level", level); } catch (e) {}
     document.querySelectorAll("[data-level]").forEach(function (el) {
       var lv = parseInt(el.getAttribute("data-level"), 10);
-      var show = level === "all" || (lv && lv <= parseInt(level, 10));
-      el.classList.toggle("lvl-hidden", !show);
+      el.classList.toggle("lvl-hidden", !(lv && lv <= parseInt(level, 10)));
+    });
+    document.querySelectorAll("[data-level-only]").forEach(function (el) {
+      el.classList.toggle("lvl-hidden", el.getAttribute("data-level-only") !== level);
     });
   }
   function wireLevel() {
@@ -324,12 +329,12 @@
     if (!wrap) return;
     var saved = null;
     try { saved = localStorage.getItem("ppa-level"); } catch (e) {}
-    if (saved) {
-      applyLevel(saved);
-      wrap.querySelectorAll("button").forEach(function (b) {
-        b.setAttribute("aria-pressed", b.dataset.setlevel === saved ? "true" : "false");
-      });
-    }
+    if (saved === "all") saved = "2"; // migrate: the removed All mode was Practitioner-equivalent
+    var level = saved === "1" || saved === "2" ? saved : "1";
+    applyLevel(level);
+    wrap.querySelectorAll("button").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.dataset.setlevel === level ? "true" : "false");
+    });
     wrap.querySelectorAll("button").forEach(function (b) {
       b.addEventListener("click", function () {
         wrap.querySelectorAll("button").forEach(function (x) {
