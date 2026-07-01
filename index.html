@@ -700,6 +700,45 @@
       <p class="src"><a href="https://www.nrel.gov/analysis/standard-contracts-downloads">NREL standard contracts</a> · <a href="https://www.stoel.com/insights/reports/the-law-of-solar/power-purchase-agreements-utility-scale-projects">Stoel Rives — Law of Solar</a></p>
       </div><!-- /data-level="2" deal-lifecycle -->
 
+      <div data-level="2">
+        <hr class="rule">
+
+        <h2>Getting to signature — who approves, and what makes it binding <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <p class="lede">A negotiated PPA isn't a deal until the right people on both sides say yes — and the approval machine looks completely different depending on who the buyer is. This is the part of the lifecycle that stage 4 above compresses into one line.</p>
+
+        <div class="grid cols-2">
+          <div class="card">
+            <p class="eyebrow">Track A · corporate buyer</p>
+            <p style="max-width:none;margin:0 0 8px">Four internal gates, usually in this order:</p>
+            <ol style="margin:0;padding-left:20px;font-size:14px">
+              <li><strong>Sustainability</strong> confirms the deal supports the company's clean-energy claim — <span class="gterm" data-term="Renewable Energy Certificate (REC)">RECs</span> convey, and the accounting works under the buyer's Scope 2 method.</li>
+              <li><strong>Treasury / finance</strong> sizes the exposure: a VPPA is a long-dated swap, so it gets marked to market, and finance decides whether it qualifies for hedge accounting or runs through the P&amp;L.</li>
+              <li><strong>Legal</strong> closes the risk table — <span class="gterm" data-term="Credit Support">credit support</span>, termination, <span class="gterm" data-term="Change in Law">change in law</span> — often with outside energy counsel.</li>
+              <li><strong>Investment committee or board</strong> gives final approval. Whoever signs must hold a <span class="gterm" data-term="Delegation of Authority">delegation of authority</span> covering a commitment of this size — a 15-year, 100&nbsp;MW VPPA is a nine-figure notional obligation.</li>
+            </ol>
+          </div>
+          <div class="card">
+            <p class="eyebrow">Track B · regulated utility buyer</p>
+            <p style="max-width:none;margin:0 0 8px">The approval is external — the state commission, because ratepayers foot the bill:</p>
+            <ol style="margin:0;padding-left:20px;font-size:14px">
+              <li>The utility files an <strong>advice letter or application</strong> with the state PUC describing the PPA and how it complies with procurement rules.</li>
+              <li>A <strong>procurement review group</strong> — commission staff, ratepayer advocates, non-market participants — examines it, and in California an <span class="gterm" data-term="Independent Evaluator">independent evaluator</span> reports on whether negotiations were fair and the price cost-effective.</li>
+              <li>The commission approves cost recovery by <strong>resolution</strong> — the <span class="gterm" data-term="Prudence Review">prudence review</span>. Some states issue an advance determination of prudence (or CPCN) before the utility commits.</li>
+            </ol>
+            <p style="max-width:none;margin:8px 0 0;font-size:13px;color:var(--text-muted)">Timing matters: commission review adds months, so utility PPAs are often executed subject to regulatory approval as a condition precedent.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:20px">What makes the signature itself binding</h3>
+        <p>Standard forms handle this with representations. In the <span class="gterm" data-term="EEI Master Power Purchase & Sale Agreement">EEI master</span>, each party represents that it holds all necessary regulatory authorizations and that execution is <em>"duly authorized by all necessary action"</em> — so the internal approvals above aren't just process, they're what makes that representation true. The EEI architecture splits the paperwork: a negotiated <strong>cover sheet</strong> records each side's elections (collateral thresholds, cross-default, confirmation procedure) once, and each individual trade is then executed as a short <strong>confirmation</strong> under it. Bespoke long-form PPAs merge everything into one document, which is why they take months instead of minutes to execute.</p>
+
+        <div class="card" style="border-left:3px solid var(--accent);margin-top:8px">
+          <p style="margin:0"><strong>Signed ≠ unconditional.</strong> A PPA is signed years before the project exists, so <span class="gterm" data-term="Conditions Precedent (CP)">conditions precedent</span> — financing close, permits, a signed <span class="gterm" data-term="Large Generator Interconnection Agreement (LGIA)">LGIA</span>, regulatory approval — keep the executed contract from being fully effective until they're met. Two questions to ask the other side at term sheet: <em>whose approval does this need on your side, and how long does that take?</em> A missed answer here is how deals die after signing.</p>
+        </div>
+
+        <p class="src"><a href="https://information.auditor.ca.gov/reports/2016-104/appendix.html">California State Auditor — CPUC oversight of utility contracts</a> · <a href="https://docs.cpuc.ca.gov/PUBLISHED/FINAL_RESOLUTION/116189.htm">CPUC Resolution E-4320 (example PPA approval)</a> · <a href="https://www.epa.gov/system/files/documents/2022-08/Electricity%20Resource%20Planning%20and%20Procurement_508.pdf">EPA Guide to Action — resource planning &amp; procurement</a> · <a href="https://www.eei.org/en/resources-and-media/master-contract">EEI Master Power Purchase &amp; Sale Agreement</a> · <a href="https://intelligence.dlapiper.com/corporateppa/">DLA Piper — Corporate PPAs</a></p>
+      </div><!-- /data-level="2" getting-to-signature -->
+
       <hr class="rule">
 
       <h2>Annotated examples</h2>
@@ -1012,6 +1051,7 @@
           <tr><td>Data-center demand &amp; deal structures (LBNL/DOE + company &amp; trade sources)</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Load flexibility / curtailment-enabled headroom (Duke 2025)</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Annotated example term sheets (VPPA, utility physical, data-center nuclear)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Internal approval &amp; signing (corporate approval chain, PUC prudence review, signature authority)</td><td><span class="pill verified">verified</span></td></tr>
         </tbody>
       </table>
 
@@ -1028,8 +1068,7 @@
       <table class="coverage">
         <thead><tr><th>Topic</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td>Internal approval &amp; signing (investment committee, board, PUC prudence)</td><td><span class="pill gap">needs research</span></td></tr>
-          <tr><td>Clause-level: conditions precedent, assignment / lender step-in, dispute resolution</td><td><span class="pill gap">needs research</span></td></tr>
+          <tr><td>Clause-level: assignment / lender step-in, dispute resolution</td><td><span class="pill gap">needs research</span></td></tr>
           <tr><td>Time-of-delivery / hourly pricing; 24/7 carbon-free matching</td><td><span class="pill gap">needs research</span></td></tr>
         </tbody>
       </table>

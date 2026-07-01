@@ -545,6 +545,30 @@
       "status": "secondary",
       "source": "FERC Order 2003; Amazon/Meta energy job descriptions (2025–2026)",
       "url": "https://www.ferc.gov/industries-data/electric/electric-transmission/interconnection-rules-and-procedures"
+    },
+    {
+      "term": "Prudence Review",
+      "category": "Regulatory",
+      "def": "The state utility commission's review of whether a regulated utility's PPA was a reasonable decision before the utility may recover its costs from ratepayers. The utility files an advice letter or application; commission staff, ratepayer advocates, and a procurement review group examine the deal; approval comes by commission resolution. Some states grant an advance determination of prudence (or a certificate of public convenience and necessity) before the utility commits.",
+      "status": "verified",
+      "source": "California State Auditor — CPUC contract oversight; EPA Guide to Action",
+      "url": "https://information.auditor.ca.gov/reports/2016-104/appendix.html"
+    },
+    {
+      "term": "Independent Evaluator",
+      "category": "Regulatory",
+      "def": "A third party retained by a regulated utility (required in California RPS solicitations) to monitor PPA negotiations and report to the commission on whether the deal is cost-effective and the process was fair. Their report accompanies the utility's request for approval.",
+      "status": "verified",
+      "source": "California State Auditor — CPUC contract oversight",
+      "url": "https://information.auditor.ca.gov/reports/2016-104/appendix.html"
+    },
+    {
+      "term": "Delegation of Authority",
+      "category": "Contract",
+      "def": "The internal corporate instrument (board resolution or policy) that gives a specific officer the power to bind the company to a contract of a given size. PPA masters make this contractual: each party represents that execution is 'duly authorized by all necessary action' — sign without the delegation behind you and that representation is false, itself an event of default.",
+      "status": "verified",
+      "source": "EEI Master Power Purchase & Sale Agreement representations",
+      "url": "https://www.eei.org/en/resources-and-media/master-contract"
     }
   ]
 }

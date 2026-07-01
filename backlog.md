@@ -114,6 +114,9 @@ Full pedagogical audit: read every file, walked every tab as a PPA expert teachi
 
 ## Next up
 
+- ✅ **"Getting to signature" module — shipped 2026-07-01.** Drafting tab, Practitioner level, after the deal lifecycle: two-track approval chain (corporate: sustainability → treasury → legal → IC/board with delegation of authority; regulated utility: advice letter → procurement review group + independent evaluator → PUC resolution / prudence review), EEI signature-authority representations and cover-sheet-plus-confirmation architecture, "signed ≠ unconditional" CP callout. 3 new glossary terms (Prudence Review, Independent Evaluator, Delegation of Authority). Research Round 6 in docs/research-us-ppa.md (§15–17); coverage page row moved from needs-research to verified. Closes the oldest scorecard gap.
+- **Still open from the signing research:** GHG Protocol Scope 2 explainer (with "guidance under revision — hourly matching proposed" caveat), EEI cover-sheet anatomy as an annotated example, buyer due-diligence checklist. *Priority: medium*
+
 - ✅ **Backlog drive — shipped 2026-06-30.** Closed 8 open items in one pass: sticky stepper (desktop CSS), cross-tab next-step prompts at 3 points in Learn, failure-modes accordion (COD slip / counterparty default / basis wipe / change-in-law), discount-to-market note in Learn + simulator, price-cannibal / value-deflation callout in ISO/RTO section, interconnection queue steps expandable in Drafting deal-lifecycle Stage 1, ERCOT 2024 LMP grounding in simulator. Cache-bust version strings updated in next deploy.
 
 - ✅ **Newcomer on-ramp trio — shipped 2026-06-02.** Foundations gained "Why sign a PPA?", an electricity primer, and the MW-vs-MWh rule.
