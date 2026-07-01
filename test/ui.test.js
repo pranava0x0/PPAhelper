@@ -69,6 +69,24 @@ test("every inline data-term tooltip resolves to a glossary term", () => {
   assert.deepStrictEqual(missing, [], "inline data-term values not in glossary: " + missing.join(" | "));
 });
 
+// --- Hover explainer card + acronym auto-tagging (replaces title-attribute tooltips) ---
+test("explainer card replaces title tooltips; acronym map resolves to real terms", () => {
+  assert.ok(!/setAttribute\("title"/.test(appJs),
+    "app.js still sets title-attribute tooltips (broken on touch, poor for screen readers)");
+  assert.ok(/term-card/.test(appJs) && /autoTagAcronyms/.test(appJs),
+    "term-card popover or autoTagAcronyms missing from app.js");
+  const css = read("assets/css/styles.css");
+  assert.ok(/\.term-card\s*\{/.test(css), ".term-card styles missing");
+  // every acronym app.js will extract must map to exactly one glossary term
+  const acr = new Map();
+  glossary.terms.forEach((t) => {
+    const m = t.term.match(/\(([A-Z][A-Za-z&-]{1,9})\)/);
+    if (m && !acr.has(m[1])) acr.set(m[1], t.term);
+  });
+  assert.ok(acr.size >= 15, "expected 15+ parenthesized acronyms in glossary, got " + acr.size);
+  acr.forEach((term, a) => assert.ok(termSet.has(term), "acronym " + a + " maps to missing term " + term));
+});
+
 // --- DESIGN.md scar tissue: the [hidden] guard must exist ---
 test("[hidden] display guard is present in CSS", () => {
   const css = read("assets/css/styles.css");
