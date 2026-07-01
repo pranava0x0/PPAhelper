@@ -323,6 +323,7 @@
     document.querySelectorAll("[data-level-only]").forEach(function (el) {
       el.classList.toggle("lvl-hidden", el.getAttribute("data-level-only") !== level);
     });
+    syncTocs();
   }
   function wireLevel() {
     var wrap = document.getElementById("level-filter");
@@ -354,6 +355,48 @@
     getLevel: function () { return currentLevel; }
   };
 
+  /* ---------- per-view "On this page" contents ----------
+     Long tabs (4+ h2 sections) get a numbered jump bar under the lede so
+     readers can navigate without scrolling. Entries hide with their section
+     when the level filter hides it (syncTocs, called from applyLevel). */
+  function buildTocs() {
+    VIEWS.forEach(function (name) {
+      var view = document.getElementById("view-" + name);
+      if (!view) return;
+      var h2s = Array.prototype.slice.call(view.querySelectorAll("h2"));
+      if (h2s.length < 4) return;
+      var nav = document.createElement("nav");
+      nav.className = "toc";
+      nav.setAttribute("aria-label", "On this page");
+      var ol = document.createElement("ol");
+      h2s.forEach(function (h, i) {
+        if (!h.id) h.id = name + "-s" + (i + 1);
+        var clean = h.cloneNode(true);
+        clean.querySelectorAll(".pill, .stage-n").forEach(function (x) { x.remove(); });
+        var li = document.createElement("li");
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "toc-link";
+        b.setAttribute("data-scroll-to", h.id);
+        b.textContent = clean.textContent.replace(/\s+/g, " ").trim();
+        li.appendChild(b);
+        ol.appendChild(li);
+      });
+      nav.appendChild(ol);
+      var lede = view.querySelector(".lede");
+      var anchor = lede || view.querySelector("h1");
+      anchor.parentNode.insertBefore(nav, anchor.nextSibling);
+    });
+  }
+
+  function syncTocs() {
+    document.querySelectorAll(".toc [data-scroll-to]").forEach(function (b) {
+      var t = document.getElementById(b.getAttribute("data-scroll-to"));
+      var off = !t || t.closest(".lvl-hidden");
+      b.parentElement.style.display = off ? "none" : "";
+    });
+  }
+
   /* ---------- in-page scroll links (learning-path stepper) ---------- */
   function wireScrollLinks() {
     document.querySelectorAll("[data-scroll-to]").forEach(function (b) {
@@ -369,6 +412,7 @@
   function init() {
     wireNav();
     wireTheme();
+    buildTocs();
     wireLevel();
     wireScrollLinks();
     loadGlossary();

@@ -251,6 +251,18 @@ table.coverage { width: 100%; border-collapse: collapse; font-size: 14px; }
 table.coverage th, table.coverage td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
 table.coverage th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
 
+/* per-view "On this page" contents bar */
+.toc { margin: 14px 0 4px; }
+.toc ol { list-style: none; counter-reset: toc; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.toc li { counter-increment: toc; }
+.toc-link {
+  font: inherit; font-size: 13px; background: none; border: none; padding: 0;
+  color: var(--text-muted); cursor: pointer; border-bottom: 1px dotted transparent;
+}
+.toc-link::before { content: counter(toc); color: var(--accent); font-weight: 700; margin-right: 5px; font-feature-settings: "tnum" 1; }
+.toc-link:hover, .toc-link:focus-visible { color: var(--text); border-bottom-color: var(--accent); }
+h2[id] { scroll-margin-top: 96px; }
+
 /* inline glossary tooltip terms */
 .gterm { border-bottom: 1px dotted var(--accent); cursor: help; }
 .gterm-auto { border-bottom-color: var(--border); }

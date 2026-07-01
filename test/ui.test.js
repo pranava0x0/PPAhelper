@@ -97,6 +97,18 @@ test("explainer card replaces title tooltips; acronym map resolves to real terms
   acr.forEach((term, a) => assert.ok(termSet.has(term), "acronym " + a + " maps to missing term " + term));
 });
 
+// --- "On this page" contents bar ---
+test("per-view TOC is built, level-synced, and uses data-scroll-to (not hash links)", () => {
+  assert.ok(/function buildTocs/.test(appJs), "buildTocs missing from app.js");
+  assert.ok(/syncTocs\(\);/.test(appJs.match(/function applyLevel[\s\S]*?\n  \}/)[0]),
+    "applyLevel does not call syncTocs — TOC entries won't follow the level filter");
+  assert.ok(!/\.toc[\s\S]{0,400}?a\.href = "#/.test(appJs),
+    "TOC must use data-scroll-to buttons; hash hrefs would trigger the view router");
+  const css = read("assets/css/styles.css");
+  assert.ok(/\.toc-link/.test(css) && /scroll-margin-top/.test(css),
+    ".toc-link styles or the sticky-masthead scroll-margin offset missing");
+});
+
 // --- DESIGN.md scar tissue: the [hidden] guard must exist ---
 test("[hidden] display guard is present in CSS", () => {
   const css = read("assets/css/styles.css");
