@@ -120,21 +120,160 @@
     input.addEventListener("input", function () { searchTerm = input.value; renderGlossary(); });
   }
 
-  /* ---------- inline term tooltips ---------- */
+  /* ---------- inline term explainer card (hover / focus / tap) ---------- */
+  var termMap = {};
+  var card = null;
+  var cardFor = null;      // element the card is currently shown for
+  var hideTimer = null;
+  var lastPointerType = "mouse";
+
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function buildCard() {
+    card = document.createElement("div");
+    card.className = "term-card";
+    card.setAttribute("role", "tooltip");
+    card.hidden = true;
+    card.addEventListener("mouseenter", function () { clearTimeout(hideTimer); });
+    card.addEventListener("mouseleave", scheduleHide);
+    document.body.appendChild(card);
+    window.addEventListener("scroll", hideCard, { passive: true });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") hideCard(); });
+    document.addEventListener("pointerdown", function (e) {
+      lastPointerType = e.pointerType || "mouse";
+      if (card.hidden) return;
+      if (!card.contains(e.target) && !(e.target.closest && e.target.closest(".gterm"))) hideCard();
+    });
+  }
+
+  function showCardFor(el) {
+    var t = termMap[el.dataset.term];
+    if (!t) return;
+    clearTimeout(hideTimer);
+    cardFor = el;
+    var src = t.url
+      ? '<a href="' + esc(t.url) + '" target="_blank" rel="noopener">' + esc(t.source) + "</a>"
+      : esc(t.source || "");
+    card.innerHTML =
+      '<p class="term-card-name">' + esc(t.term) + ' <span class="term-cat">' + esc(t.category) + "</span></p>" +
+      '<p class="term-card-def">' + esc(t.def) + "</p>" +
+      (src ? '<p class="term-card-src">Source: ' + src + "</p>" : "") +
+      '<p class="term-card-hint">Click the term to open it in the glossary.</p>';
+    // position: below the term, flipped above if it would overflow the viewport
+    var r = el.getBoundingClientRect();
+    card.style.visibility = "hidden";
+    card.hidden = false;
+    var x = Math.max(8, Math.min(r.left, window.innerWidth - card.offsetWidth - 8));
+    var y = r.bottom + 8;
+    if (y + card.offsetHeight > window.innerHeight - 8) y = r.top - card.offsetHeight - 8;
+    if (y < 8) y = 8;
+    card.style.left = x + "px";
+    card.style.top = y + "px";
+    card.style.visibility = "";
+  }
+
+  function hideCard() {
+    if (card) card.hidden = true;
+    cardFor = null;
+  }
+
+  function scheduleHide() {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hideCard, 200);
+  }
+
   function wireTooltips() {
-    var map = {};
-    glossary.forEach(function (t) { map[t.term] = t; });
+    buildCard();
+    // delegated hover/focus so late-rendered .gterm elements (content.js) work too
+    document.addEventListener("mouseover", function (e) {
+      var g = e.target.closest && e.target.closest(".gterm");
+      if (g && termMap[g.dataset.term]) showCardFor(g);
+    });
+    document.addEventListener("mouseout", function (e) {
+      if (e.target.closest && e.target.closest(".gterm")) scheduleHide();
+    });
+    document.addEventListener("focusin", function (e) {
+      var g = e.target.closest && e.target.closest(".gterm");
+      if (g && termMap[g.dataset.term]) showCardFor(g);
+      else if (card && !card.contains(e.target)) hideCard();
+    });
     document.querySelectorAll(".gterm").forEach(function (el) {
       var key = el.dataset.term;
-      var t = map[key];
+      var t = termMap[key];
       if (!t) return;
       el.setAttribute("tabindex", "0");
       el.setAttribute("role", "button");
-      el.setAttribute("title", t.def + (t.source ? "  (Source: " + t.source + ")" : ""));
       el.setAttribute("aria-label", key + ": " + t.def);
-      el.addEventListener("click", function () { showGlossaryTerm(key); });
+      el.addEventListener("click", function () {
+        // touch has no hover: first tap shows the card, tapping again opens the glossary
+        if (lastPointerType === "touch" && cardFor !== el) { showCardFor(el); return; }
+        hideCard();
+        showGlossaryTerm(key);
+      });
       el.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.click(); }
+      });
+    });
+  }
+
+  /* ---------- acronym auto-tagging ----------
+     Glossary terms carry their acronym in parens ("Locational Marginal Price (LMP)").
+     Tag the first bare occurrence of each acronym per paragraph/list item so every
+     acronym in prose gets the hover explainer, without hand-tagging or wallpapering. */
+  function autoTagAcronyms() {
+    var acr = {};
+    glossary.forEach(function (t) {
+      var m = t.term.match(/\(([A-Z][A-Za-z&-]{1,9})\)/);
+      if (m && !acr[m[1]]) acr[m[1]] = t.term;
+    });
+    if (termMap["ISO / RTO"] || glossary.some(function (t) { return t.term === "ISO / RTO"; })) {
+      acr.ISO = acr.RTO = "ISO / RTO";
+    }
+    var names = Object.keys(acr).sort(function (a, b) { return b.length - a.length; });
+    if (!names.length) return;
+    var pattern = new RegExp("\\b(" + names.map(function (n) {
+      return n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }).join("|") + ")s?\\b", "g");
+
+    document.querySelectorAll("main p, main li, main td, main dd").forEach(function (el) {
+      if (el.closest("#view-glossary, #view-ppadraft, a, button, .gterm, code, pre, .term-card")) return;
+      var done = {};
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+        acceptNode: function (n) {
+          return n.parentElement && n.parentElement.closest("a, button, .gterm, code, pre, summary")
+            ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+        }
+      });
+      var nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(function (node) {
+        var text = node.nodeValue;
+        var m, last = 0, frag = null;
+        pattern.lastIndex = 0;
+        while ((m = pattern.exec(text))) {
+          var name = m[1];
+          if (done[name]) continue;
+          done[name] = true;
+          // "(PPA)" right after its expansion is the definition site — leave it alone
+          if (text.charAt(m.index - 1) === "(") continue;
+          if (!frag) frag = document.createDocumentFragment();
+          frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+          var span = document.createElement("span");
+          span.className = "gterm gterm-auto";
+          span.dataset.term = acr[name];
+          span.textContent = m[0];
+          span.setAttribute("tabindex", "0");
+          span.setAttribute("role", "button");
+          span.setAttribute("aria-label", acr[name] + ": " + (termMap[acr[name]] ? termMap[acr[name]].def : ""));
+          frag.appendChild(span);
+          last = m.index + m[0].length;
+        }
+        if (frag) {
+          frag.appendChild(document.createTextNode(text.slice(last)));
+          node.parentNode.replaceChild(frag, node);
+        }
       });
     });
   }
@@ -145,9 +284,11 @@
       .then(function (data) {
         glossary = (data && data.terms) || [];
         glossary.sort(function (a, b) { return a.term.localeCompare(b.term); });
+        glossary.forEach(function (t) { termMap[t.term] = t; });
         buildCatFilter();
         renderGlossary();
         wireGlossarySearch();
+        autoTagAcronyms();
         wireTooltips();
       })
       .catch(function (err) {
@@ -167,28 +308,34 @@
     if (input) { input.value = key; input.focus(); }
   }
 
-  /* ---------- experience-level filter (newcomer → practitioner → all) ---------- */
-  var currentLevel = "all";
+  /* ---------- experience-level filter (newcomer ↔ practitioner) ----------
+     Two genuinely different modes: data-level="N" content is progressive
+     (shown at level >= N), data-level-only="N" content is exclusive
+     (the from-scratch on-ramp hides once you switch to Practitioner). */
+  var currentLevel = "1";
   function applyLevel(level) {
     currentLevel = level;
     try { localStorage.setItem("ppa-level", level); } catch (e) {}
     document.querySelectorAll("[data-level]").forEach(function (el) {
       var lv = parseInt(el.getAttribute("data-level"), 10);
-      var show = level === "all" || (lv && lv <= parseInt(level, 10));
-      el.classList.toggle("lvl-hidden", !show);
+      el.classList.toggle("lvl-hidden", !(lv && lv <= parseInt(level, 10)));
     });
+    document.querySelectorAll("[data-level-only]").forEach(function (el) {
+      el.classList.toggle("lvl-hidden", el.getAttribute("data-level-only") !== level);
+    });
+    syncTocs();
   }
   function wireLevel() {
     var wrap = document.getElementById("level-filter");
     if (!wrap) return;
     var saved = null;
     try { saved = localStorage.getItem("ppa-level"); } catch (e) {}
-    if (saved) {
-      applyLevel(saved);
-      wrap.querySelectorAll("button").forEach(function (b) {
-        b.setAttribute("aria-pressed", b.dataset.setlevel === saved ? "true" : "false");
-      });
-    }
+    if (saved === "all") saved = "2"; // migrate: the removed All mode was Practitioner-equivalent
+    var level = saved === "1" || saved === "2" ? saved : "1";
+    applyLevel(level);
+    wrap.querySelectorAll("button").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.dataset.setlevel === level ? "true" : "false");
+    });
     wrap.querySelectorAll("button").forEach(function (b) {
       b.addEventListener("click", function () {
         wrap.querySelectorAll("button").forEach(function (x) {
@@ -208,6 +355,48 @@
     getLevel: function () { return currentLevel; }
   };
 
+  /* ---------- per-view "On this page" contents ----------
+     Long tabs (4+ h2 sections) get a numbered jump bar under the lede so
+     readers can navigate without scrolling. Entries hide with their section
+     when the level filter hides it (syncTocs, called from applyLevel). */
+  function buildTocs() {
+    VIEWS.forEach(function (name) {
+      var view = document.getElementById("view-" + name);
+      if (!view) return;
+      var h2s = Array.prototype.slice.call(view.querySelectorAll("h2"));
+      if (h2s.length < 4) return;
+      var nav = document.createElement("nav");
+      nav.className = "toc";
+      nav.setAttribute("aria-label", "On this page");
+      var ol = document.createElement("ol");
+      h2s.forEach(function (h, i) {
+        if (!h.id) h.id = name + "-s" + (i + 1);
+        var clean = h.cloneNode(true);
+        clean.querySelectorAll(".pill, .stage-n").forEach(function (x) { x.remove(); });
+        var li = document.createElement("li");
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "toc-link";
+        b.setAttribute("data-scroll-to", h.id);
+        b.textContent = clean.textContent.replace(/\s+/g, " ").trim();
+        li.appendChild(b);
+        ol.appendChild(li);
+      });
+      nav.appendChild(ol);
+      var lede = view.querySelector(".lede");
+      var anchor = lede || view.querySelector("h1");
+      anchor.parentNode.insertBefore(nav, anchor.nextSibling);
+    });
+  }
+
+  function syncTocs() {
+    document.querySelectorAll(".toc [data-scroll-to]").forEach(function (b) {
+      var t = document.getElementById(b.getAttribute("data-scroll-to"));
+      var off = !t || t.closest(".lvl-hidden");
+      b.parentElement.style.display = off ? "none" : "";
+    });
+  }
+
   /* ---------- in-page scroll links (learning-path stepper) ---------- */
   function wireScrollLinks() {
     document.querySelectorAll("[data-scroll-to]").forEach(function (b) {
@@ -223,6 +412,7 @@
   function init() {
     wireNav();
     wireTheme();
+    buildTocs();
     wireLevel();
     wireScrollLinks();
     loadGlossary();

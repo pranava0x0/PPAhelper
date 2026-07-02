@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-01",
-  "note": "Illustrative annotated term sheets for learning — realistic composites grounded in the verified clause definitions in docs/research-us-ppa.md, NOT reproductions of any specific confidential contract. Values are examples. Each clause's glossaryRefs must match a term in glossary.json exactly so the UI can link them. For real public templates, see the links in each example's 'realDocs'.",
+  "updated": "2026-07-01",
+  "note": "Annotated term sheets for learning. The first three are realistic composites grounded in docs/research-us-ppa.md; the two marked 'Real:' annotate actual executed contracts filed publicly with the SEC (linked in realDocs). Each clause's glossaryRefs must match a term in glossary.json exactly so the UI can link them.",
   "examples": [
     {
       "id": "vppa",
@@ -9,40 +9,113 @@
       "level": 1,
       "summary": "The most common corporate structure: a purely financial contract-for-differences on a solar or wind project, with the RECs delivered to the buyer. No electrons reach the buyer's site.",
       "realDocs": [
-        { "label": "LevelTen — annotated VPPA terms", "url": "https://www.leveltenenergy.com/post/power-purchase-agreement-terms" },
-        { "label": "EPA — Customer PPAs", "url": "https://www.epa.gov/statelocalenergy/customer-power-purchase-agreements" }
+        {
+          "label": "LevelTen — annotated VPPA terms",
+          "url": "https://www.leveltenenergy.com/post/power-purchase-agreement-terms"
+        },
+        {
+          "label": "EPA — Customer PPAs",
+          "url": "https://www.epa.gov/statelocalenergy/customer-power-purchase-agreements"
+        }
       ],
       "clauses": [
-        { "label": "Structure", "value": "Virtual (financial) PPA — contract for differences", "party": "both",
+        {
+          "label": "Structure",
+          "value": "Virtual (financial) PPA — contract for differences",
+          "party": "both",
           "annotation": "No physical delivery. The parties settle the gap between a fixed strike and the floating market price; economically a fixed-for-floating swap.",
-          "glossaryRefs": ["Virtual / Financial PPA (VPPA)", "Contract for Differences (CfD)"] },
-        { "label": "Facility", "value": "200 MW solar, ERCOT (West Texas)", "party": "seller",
+          "glossaryRefs": [
+            "Virtual / Financial PPA (VPPA)",
+            "Contract for Differences (CfD)"
+          ]
+        },
+        {
+          "label": "Facility",
+          "value": "200 MW solar, ERCOT (West Texas)",
+          "party": "seller",
           "annotation": "The generator's location sets the node where it physically earns revenue — the root of basis risk if the deal settles elsewhere.",
-          "glossaryRefs": ["Node"] },
-        { "label": "Term", "value": "12 years from Commercial Operation Date", "party": "both",
+          "glossaryRefs": [
+            "Node"
+          ]
+        },
+        {
+          "label": "Term",
+          "value": "12 years from Commercial Operation Date",
+          "party": "both",
           "annotation": "Corporate buyers increasingly favour shorter terms (10–15 yrs) than the traditional ~20-year utility PPA; the term must still be long enough to finance the project.",
-          "glossaryRefs": ["Commercial Operation Date (COD)", "Bankability"] },
-        { "label": "Fixed (strike) price", "value": "$42.00 / MWh, flat for the term", "party": "buyer",
+          "glossaryRefs": [
+            "Commercial Operation Date (COD)",
+            "Bankability"
+          ]
+        },
+        {
+          "label": "Fixed (strike) price",
+          "value": "$42.00 / MWh, flat for the term",
+          "party": "buyer",
           "annotation": "The price the buyer effectively locks in. Under a flat/fixed structure the buyer bears the downside if market prices fall below the strike.",
-          "glossaryRefs": ["Strike Price (Fixed Price)"] },
-        { "label": "Settlement", "value": "Monthly financial settlement; Floating = real-time LMP", "party": "both",
+          "glossaryRefs": [
+            "Strike Price (Fixed Price)"
+          ]
+        },
+        {
+          "label": "Settlement",
+          "value": "Monthly financial settlement; Floating = real-time LMP",
+          "party": "both",
           "annotation": "Each month: settlement = (LMP − strike) × volume. Market above strike, generator pays buyer; below, buyer pays generator.",
-          "glossaryRefs": ["Locational Marginal Price (LMP)", "Contract for Differences (CfD)"] },
-        { "label": "Settlement location", "value": "ERCOT North Hub", "party": "buyer",
+          "glossaryRefs": [
+            "Locational Marginal Price (LMP)",
+            "Contract for Differences (CfD)"
+          ]
+        },
+        {
+          "label": "Settlement location",
+          "value": "ERCOT North Hub",
+          "party": "buyer",
           "annotation": "Buyers usually push to settle at the less-volatile hub. That leaves the developer absorbing the node-to-hub gap — the single most important risk term to negotiate.",
-          "glossaryRefs": ["Settlement Location", "Hub", "Basis Risk"] },
-        { "label": "Environmental attributes", "value": "100% of RECs conveyed to Buyer", "party": "buyer",
+          "glossaryRefs": [
+            "Settlement Location",
+            "Hub",
+            "Basis Risk"
+          ]
+        },
+        {
+          "label": "Environmental attributes",
+          "value": "100% of RECs conveyed to Buyer",
+          "party": "buyer",
           "annotation": "The RECs are what the fixed price really buys — they back the buyer's clean-energy claim. One REC per MWh generated.",
-          "glossaryRefs": ["Renewable Energy Certificate (REC)"] },
-        { "label": "Volume", "value": "As-generated (unit-contingent)", "party": "buyer",
+          "glossaryRefs": [
+            "Renewable Energy Certificate (REC)"
+          ]
+        },
+        {
+          "label": "Volume",
+          "value": "As-generated (unit-contingent)",
+          "party": "buyer",
           "annotation": "Buyer takes the project's actual output, so it carries volume and shape risk — generation may not line up with high-price hours.",
-          "glossaryRefs": ["Volume Risk", "Shape Risk"] },
-        { "label": "Credit support", "value": "Seller letter of credit; Buyer parent guarantee", "party": "both",
+          "glossaryRefs": [
+            "Volume Risk",
+            "Shape Risk"
+          ]
+        },
+        {
+          "label": "Credit support",
+          "value": "Seller letter of credit; Buyer parent guarantee",
+          "party": "both",
           "annotation": "Corporate VPPAs are often two-way, unlike one-way utility PPAs — each side secures its exposure if prices move against it.",
-          "glossaryRefs": ["Credit Support"] },
-        { "label": "Change in law", "value": "Allocated; tax-credit risk to Seller", "party": "both",
+          "glossaryRefs": [
+            "Credit Support"
+          ]
+        },
+        {
+          "label": "Change in law",
+          "value": "Allocated; tax-credit risk to Seller",
+          "party": "both",
           "annotation": "States who absorbs a law or tax change that hurts the economics — material given how much value sits in IRA tax credits.",
-          "glossaryRefs": ["Change in Law", "Investment Tax Credit (ITC)"] }
+          "glossaryRefs": [
+            "Change in Law",
+            "Investment Tax Credit (ITC)"
+          ]
+        }
       ]
     },
     {
@@ -52,40 +125,109 @@
       "level": 2,
       "summary": "A generator physically delivers power and title to a utility offtaker at a defined point, typically under a long, investment-grade-backed contract that banks can finance.",
       "realDocs": [
-        { "label": "EEI Master Power Purchase & Sale Agreement", "url": "https://www.eei.org/en/resources-and-media/master-contract" },
-        { "label": "NREL — Standard contracts", "url": "https://www.nrel.gov/analysis/standard-contracts-downloads" }
+        {
+          "label": "EEI Master Power Purchase & Sale Agreement",
+          "url": "https://www.eei.org/en/resources-and-media/master-contract"
+        },
+        {
+          "label": "NREL — Standard contracts",
+          "url": "https://www.nrel.gov/analysis/standard-contracts-downloads"
+        }
       ],
       "clauses": [
-        { "label": "Structure", "value": "Physical PPA — energy + title delivered", "party": "both",
+        {
+          "label": "Structure",
+          "value": "Physical PPA — energy + title delivered",
+          "party": "both",
           "annotation": "Electrons and legal title pass to the offtaker at the delivery point; this is a sale of power, not a financial hedge.",
-          "glossaryRefs": ["Physical PPA"] },
-        { "label": "Term", "value": "20 years from COD", "party": "both",
+          "glossaryRefs": [
+            "Physical PPA"
+          ]
+        },
+        {
+          "label": "Term",
+          "value": "20 years from COD",
+          "party": "both",
           "annotation": "The traditional utility tenor — long enough to amortize project debt and give the sponsor a return.",
-          "glossaryRefs": ["Commercial Operation Date (COD)", "Bankability"] },
-        { "label": "Price", "value": "$38 / MWh, escalating 2% per year", "party": "both",
+          "glossaryRefs": [
+            "Commercial Operation Date (COD)",
+            "Bankability"
+          ]
+        },
+        {
+          "label": "Price",
+          "value": "$38 / MWh, escalating 2% per year",
+          "party": "both",
           "annotation": "An escalating structure: the buyer commits to a rising price path and bears price risk if the market falls below it.",
-          "glossaryRefs": ["Strike Price (Fixed Price)"] },
-        { "label": "Delivery point", "value": "Project busbar / interconnection node", "party": "seller",
+          "glossaryRefs": [
+            "Strike Price (Fixed Price)"
+          ]
+        },
+        {
+          "label": "Delivery point",
+          "value": "Project busbar / interconnection node",
+          "party": "seller",
           "annotation": "Where title transfers and where the price is referenced — defines who bears congestion between the node and any further sink.",
-          "glossaryRefs": ["Node", "Settlement Location"] },
-        { "label": "Environmental attributes", "value": "Bundled — RECs delivered with the energy", "party": "buyer",
+          "glossaryRefs": [
+            "Node",
+            "Settlement Location"
+          ]
+        },
+        {
+          "label": "Environmental attributes",
+          "value": "Bundled — RECs delivered with the energy",
+          "party": "buyer",
           "annotation": "A 'bundled' deal conveys both the power and its RECs, versus a VPPA where only the financial value and RECs move.",
-          "glossaryRefs": ["Renewable Energy Certificate (REC)"] },
-        { "label": "Guaranteed COD / delay damages", "value": "Target COD with daily delay damages", "party": "seller",
+          "glossaryRefs": [
+            "Renewable Energy Certificate (REC)"
+          ]
+        },
+        {
+          "label": "Guaranteed COD / delay damages",
+          "value": "Target COD with daily delay damages",
+          "party": "seller",
           "annotation": "Penalizes the seller for missing the in-service date — protects the buyer's expected supply.",
-          "glossaryRefs": ["Delay Damages", "Commercial Operation Date (COD)"] },
-        { "label": "Capacity buydown", "value": "Price/payment adjustment if under-built", "party": "seller",
+          "glossaryRefs": [
+            "Delay Damages",
+            "Commercial Operation Date (COD)"
+          ]
+        },
+        {
+          "label": "Capacity buydown",
+          "value": "Price/payment adjustment if under-built",
+          "party": "seller",
           "annotation": "If the project comes in smaller than promised, the seller compensates the buyer.",
-          "glossaryRefs": ["Capacity Buydown"] },
-        { "label": "Curtailment", "value": "Deemed-generation payment for buyer/grid curtailment", "party": "both",
+          "glossaryRefs": [
+            "Capacity Buydown"
+          ]
+        },
+        {
+          "label": "Curtailment",
+          "value": "Deemed-generation payment for buyer/grid curtailment",
+          "party": "both",
           "annotation": "When output can't be taken, the seller is paid on a 'deemed generated' basis — but compensation often excludes transmission causes outside the offtaker's control.",
-          "glossaryRefs": ["Curtailment"] },
-        { "label": "Credit support", "value": "Seller posts 6–18 months of payments (one-way)", "party": "seller",
+          "glossaryRefs": [
+            "Curtailment"
+          ]
+        },
+        {
+          "label": "Credit support",
+          "value": "Seller posts 6–18 months of payments (one-way)",
+          "party": "seller",
           "annotation": "Classic one-way utility security: the seller posts an LC or guarantee; the investment-grade utility usually posts nothing.",
-          "glossaryRefs": ["Credit Support"] },
-        { "label": "Force majeure", "value": "Mutual excuse; insurance-backed", "party": "both",
+          "glossaryRefs": [
+            "Credit Support"
+          ]
+        },
+        {
+          "label": "Force majeure",
+          "value": "Mutual excuse; insurance-backed",
+          "party": "both",
           "annotation": "Excuses performance for events beyond control; how loss lands depends largely on insurance availability.",
-          "glossaryRefs": ["Force Majeure"] }
+          "glossaryRefs": [
+            "Force Majeure"
+          ]
+        }
       ]
     },
     {
@@ -95,30 +237,307 @@
       "level": 2,
       "summary": "A hyperscaler underwrites the restart of an existing nuclear unit with a long firm offtake — the structure behind the Microsoft × Constellation Three Mile Island deal.",
       "realDocs": [
-        { "label": "Constellation — Crane Clean Energy Center", "url": "https://www.constellationenergy.com/news/2024/Constellation-to-Launch-Crane-Clean-Energy-Center-Restoring-Jobs-and-Carbon-Free-Power-to-The-Grid.html" }
+        {
+          "label": "Constellation — Crane Clean Energy Center",
+          "url": "https://www.constellationenergy.com/news/2024/Constellation-to-Launch-Crane-Clean-Energy-Center-Restoring-Jobs-and-Carbon-Free-Power-to-The-Grid.html"
+        }
       ],
       "clauses": [
-        { "label": "Structure", "value": "Long-term offtake of a restarted nuclear unit", "party": "both",
+        {
+          "label": "Structure",
+          "value": "Long-term offtake of a restarted nuclear unit",
+          "party": "both",
           "annotation": "The buyer's 20-year commitment underwrites the capex to recommission a retired unit — trading tenor for speed-to-firm-power.",
-          "glossaryRefs": ["Speed-to-Power", "Bankability"] },
-        { "label": "Capacity", "value": "~835 MW firm baseload", "party": "buyer",
+          "glossaryRefs": [
+            "Speed-to-Power",
+            "Bankability"
+          ]
+        },
+        {
+          "label": "Capacity",
+          "value": "~835 MW firm baseload",
+          "party": "buyer",
           "annotation": "Large, around-the-clock output — what an AI data center needs, and what variable solar/wind alone can't supply.",
-          "glossaryRefs": ["Firm / Dispatchable Power"] },
-        { "label": "Term", "value": "20 years", "party": "both",
+          "glossaryRefs": [
+            "Firm / Dispatchable Power"
+          ]
+        },
+        {
+          "label": "Term",
+          "value": "20 years",
+          "party": "both",
           "annotation": "Long tenor gives the generator the revenue certainty to justify the restart investment.",
-          "glossaryRefs": ["Bankability"] },
-        { "label": "Conditions precedent", "value": "NRC approval; restart capex; grid studies", "party": "seller",
+          "glossaryRefs": [
+            "Bankability"
+          ]
+        },
+        {
+          "label": "Conditions precedent",
+          "value": "NRC approval; restart capex; grid studies",
+          "party": "seller",
           "annotation": "Delivery is gated on regulatory and engineering milestones — nuclear restarts take years and federal sign-off.",
-          "glossaryRefs": ["Commercial Operation Date (COD)"] },
-        { "label": "Delivery / matching", "value": "Grid-connected; matched in the PJM region", "party": "buyer",
+          "glossaryRefs": [
+            "Commercial Operation Date (COD)"
+          ]
+        },
+        {
+          "label": "Delivery / matching",
+          "value": "Grid-connected; matched in the PJM region",
+          "party": "buyer",
           "annotation": "Power flows to the grid (front-of-meter), and the buyer matches it against its regional data-center load.",
-          "glossaryRefs": ["Front-of-Meter / Offsite PPA", "24/7 Carbon-Free Energy (CFE)"] },
-        { "label": "Environmental attributes", "value": "Carbon-free attributes to Buyer", "party": "buyer",
+          "glossaryRefs": [
+            "Front-of-Meter / Offsite PPA",
+            "24/7 Carbon-Free Energy (CFE)"
+          ]
+        },
+        {
+          "label": "Environmental attributes",
+          "value": "Carbon-free attributes to Buyer",
+          "party": "buyer",
           "annotation": "Nuclear output is carbon-free, supporting the buyer's clean-energy and 24/7 CFE goals.",
-          "glossaryRefs": ["24/7 Carbon-Free Energy (CFE)"] },
-        { "label": "Credit support", "value": "Investment-grade buyer covenant", "party": "buyer",
+          "glossaryRefs": [
+            "24/7 Carbon-Free Energy (CFE)"
+          ]
+        },
+        {
+          "label": "Credit support",
+          "value": "Investment-grade buyer covenant",
+          "party": "buyer",
           "annotation": "A creditworthy hyperscaler offtaker is exactly what makes a project like this financeable.",
-          "glossaryRefs": ["Credit Support", "Bankability"] }
+          "glossaryRefs": [
+            "Credit Support",
+            "Bankability"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "real-epe-suntower",
+      "title": "Real: EPE × NM SunTower solar PPA (2008)",
+      "type": "Real executed contract / utility solar",
+      "level": 2,
+      "summary": "An actual executed 92 MW solar PPA between New Mexico SunTower, LLC and El Paso Electric, signed October 17, 2008 — public because EPE filed it with the SEC as a material contract (Exhibit 10.07). Every value below is quoted from the real document.",
+      "realDocs": [
+        {
+          "label": "Full contract text — SEC EDGAR (EPE Exhibit 10.07)",
+          "url": "https://www.sec.gov/Archives/edgar/data/31978/000119312509167228/dex1007.htm"
+        }
+      ],
+      "clauses": [
+        {
+          "label": "Parties & why it's public",
+          "value": "New Mexico SunTower, LLC (seller) × El Paso Electric Company (buyer), Oct 17, 2008",
+          "party": "both",
+          "annotation": "Real PPAs surface publicly when a listed company files them as material contracts with the SEC, or a utility files them with its state commission. EDGAR full-text search for 'power purchase agreement' in Exhibit 10 filings is the best free library of executed deals.",
+          "glossaryRefs": [
+            "Utility"
+          ]
+        },
+        {
+          "label": "Facility",
+          "value": "Solar 'SunTower' facility, Designed Maximum Output 92 MW, New Mexico — two prospective sites at execution (Exhibit B)",
+          "party": "seller",
+          "annotation": "Signed before the final site was even chosen: the contract lets the seller pick between two candidate sites before the financial-commitment milestone. Real deals are signed years ahead of steel in the ground.",
+          "glossaryRefs": [
+            "Commercial Operation Date (COD)"
+          ]
+        },
+        {
+          "label": "Term",
+          "value": "Through the last day of the 20th Commercial Operation Year (Art. 2)",
+          "party": "both",
+          "annotation": "The classic 20-year utility tenor — long enough to amortize project debt. Note the term runs from commercial operation, not signature: add the multi-year build and the total relationship approaches 25 years.",
+          "glossaryRefs": [
+            "Bankability",
+            "Commercial Operation Date (COD)"
+          ]
+        },
+        {
+          "label": "Price",
+          "value": "**** (redacted — confidential treatment requested)",
+          "party": "both",
+          "annotation": "The most-studied number in any PPA is the one you usually can't see: the SEC granted confidential treatment and the price appears as asterisks. Commercial price terms are the norm to redact; structure, security, and risk clauses stay visible.",
+          "glossaryRefs": [
+            "Strike Price (Fixed Price)"
+          ]
+        },
+        {
+          "label": "Environmental attributes",
+          "value": "All RECs transferred to and owned by EPE at no additional cost (recitals); seller bears REC compliance admin costs up to $25,000/yr under NMPRC Rule 572",
+          "party": "buyer",
+          "annotation": "A bundled deal: energy and RECs move together for one price, and the contract even allocates the paperwork cost of REC registration. New Mexico's commission rules are baked directly into the contract.",
+          "glossaryRefs": [
+            "Renewable Energy Certificate (REC)"
+          ]
+        },
+        {
+          "label": "Point of Delivery",
+          "value": "Point at which electricity is delivered to EPE, adjusted for metering losses; generally the same as the Point of Interconnection",
+          "party": "both",
+          "annotation": "Delivery at the project's own interconnection means the buyer takes the power where the plant sits — the utility, not the seller, bears congestion beyond that point. Compare a hub-settled VPPA, where the developer absorbs the node-to-hub gap.",
+          "glossaryRefs": [
+            "Node",
+            "Settlement Location"
+          ]
+        },
+        {
+          "label": "Development security",
+          "value": "Security Fund of $20/kW of Designed Maximum Output within 30 days of execution, rising to $40/kW at permits/interconnection agreement (no later than June 1, 2010)",
+          "party": "seller",
+          "annotation": "Security ramps with project risk: a small stake at signature, doubled once permits and the interconnection agreement make the project real. Sized per kW, so ~$1.8M rising to ~$3.7M for a 92 MW plant.",
+          "glossaryRefs": [
+            "Credit Support"
+          ]
+        },
+        {
+          "label": "Letter-of-credit standard",
+          "value": "LC issuer must hold an unsecured bond rating of A− or better from both S&P and Moody's (§11.1(C)(1))",
+          "party": "seller",
+          "annotation": "Credit support is only as good as the bank behind it — the contract specifies dual-agency minimum ratings for the issuer, written in 2008 as Lehman was proving exactly why.",
+          "glossaryRefs": [
+            "Letter of Credit (LC)",
+            "Counterparty Credit Risk"
+          ]
+        },
+        {
+          "label": "Delivery excuse / curtailment",
+          "value": "'Delivery Excuse' covers events solely due to EPE's actions; carve-out for temporary disconnection by the interconnection provider",
+          "party": "both",
+          "annotation": "Who-caused-it drives who pays: buyer-caused curtailment excuses the seller (and typically still pays), while grid-operator disconnections sit in their own carve-out — the same cause-based allocation taught in the curtailment clause pattern.",
+          "glossaryRefs": [
+            "Curtailment"
+          ]
+        },
+        {
+          "label": "Commissioning",
+          "value": "Test Date no later than 45 days before COD; commissioning tests and conditions to commercial operation (Art. 4)",
+          "party": "seller",
+          "annotation": "COD isn't declared, it's proven: the plant must pass defined commissioning tests before the 20-year clock and full payments start. Test energy before COD is typically bought at a discounted rate.",
+          "glossaryRefs": [
+            "Commercial Operation Date (COD)",
+            "Conditions Precedent (CP)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "real-milford-wind",
+      "title": "Real: SCPPA × Milford Wind II prepaid PPA (2010)",
+      "type": "Real executed contract / prepaid municipal wind",
+      "level": 2,
+      "summary": "An actual executed 102 MW wind PPA between the Southern California Public Power Authority and Milford Wind Corridor Phase II, LLC (First Wind), dated March 1, 2010 — a rare public example of a PREPAID structure, with real liquidated-damages and security numbers.",
+      "realDocs": [
+        {
+          "label": "Full contract text — SEC EDGAR (First Wind Exhibit 10.57)",
+          "url": "https://www.sec.gov/Archives/edgar/data/1434804/000104746910008771/a2200542zex-10_57.htm"
+        }
+      ],
+      "clauses": [
+        {
+          "label": "Parties & origination",
+          "value": "SCPPA (joint powers authority of SoCal municipal utilities) × Milford Wind Corridor Phase II, LLC; RFP issued Sept 1, 2006 — executed March 1, 2010",
+          "party": "both",
+          "annotation": "Three and a half years from RFP to signature — a real data point for the origination-to-execution timeline the lifecycle section describes.",
+          "glossaryRefs": [
+            "Offtaker",
+            "PPA Originator"
+          ]
+        },
+        {
+          "label": "Structure — prepaid",
+          "value": "Buyer pays a lump-sum Prepayment Amount for 'Guaranteed Generation' over the term (§7.1(g)); excess energy priced separately",
+          "party": "both",
+          "annotation": "The rare prepaid PPA: a municipal buyer can raise tax-exempt bonds cheaply, prepay for 20 years of output, and capture a lower effective price. The seller gets construction-scale capital day one — but the buyer now carries delivery risk, which is why the guarantee and security package below is so heavy.",
+          "glossaryRefs": [
+            "Bankability"
+          ]
+        },
+        {
+          "label": "Facility",
+          "value": "Nominal 102 MW wind facility near Milford, Utah",
+          "party": "seller",
+          "annotation": "Phase II of the Milford Wind Corridor — an expansion PPA next to an operating Phase I, which is exactly the de-risked posture buyers prefer.",
+          "glossaryRefs": [
+            "Capacity Factor"
+          ]
+        },
+        {
+          "label": "Term",
+          "value": "Delivery Term: 20 years from the Prepayment Date (§2.2)",
+          "party": "both",
+          "annotation": "The clock runs from the prepayment, not COD — because the buyer's money is in from that date. Term mechanics always follow the money.",
+          "glossaryRefs": [
+            "Commercial Operation Date (COD)"
+          ]
+        },
+        {
+          "label": "Price",
+          "value": "Prepaid Energy Price: $47.00/MWh (definitions); Excess Energy per Appendix A",
+          "party": "both",
+          "annotation": "A real 2010 wind price, visible because this filer didn't redact it: $47/MWh. Berkeley Lab's price indices put 2018–19 utility solar below $30/MWh — a decade of cost decline in one comparison.",
+          "glossaryRefs": [
+            "Strike Price (Fixed Price)",
+            "Levelized Cost of Energy (LCOE)"
+          ]
+        },
+        {
+          "label": "Point of Delivery",
+          "value": "Seller's interconnection facilities at the Intermountain Power Project 345-kV switchyard",
+          "party": "both",
+          "annotation": "The project sits in Utah; the buyers' load is in Southern California. Delivery at the IPP switchyard puts the power onto the existing high-voltage DC line to Los Angeles — the transmission path is the deal's hidden foundation.",
+          "glossaryRefs": [
+            "Transmission & Distribution (T&D)",
+            "Settlement Location"
+          ]
+        },
+        {
+          "label": "Delay liquidated damages",
+          "value": "$5,000/day for the first 30 days past the Guaranteed COD, then $19,375/day, capped at $4,800,000 (§3.5(a))",
+          "party": "seller",
+          "annotation": "Real delay-damage numbers: gentle for the first month, then nearly 4× — designed to sting for slippage the seller can control while capping total exposure at a financeable number.",
+          "glossaryRefs": [
+            "Delay Damages",
+            "Commercial Operation Date (COD)"
+          ]
+        },
+        {
+          "label": "Credit support",
+          "value": "LD Security LC of $4,800,000 + separate Performance Security LC of $5,000,000, each from a 'Qualified Issuer' (Appendix M forms)",
+          "party": "seller",
+          "annotation": "Two stacked letters of credit securing different obligations — one sized exactly to the LD cap, one for ongoing performance. Note the contract even prescribes the LC form as an appendix.",
+          "glossaryRefs": [
+            "Letter of Credit (LC)",
+            "Credit Support"
+          ]
+        },
+        {
+          "label": "Curtailment — deemed delivered",
+          "value": "Curtailed energy under §5.6(g) is deemed Delivered Energy toward the Guaranteed Annual Quantity",
+          "party": "both",
+          "annotation": "Because the buyer prepaid for guaranteed output, curtailed energy still counts as delivered for the guarantee — the prepaid structure flips the usual curtailment fight from 'who pays' to 'what counts.'",
+          "glossaryRefs": [
+            "Curtailment"
+          ]
+        },
+        {
+          "label": "Environmental attributes & capacity rights",
+          "value": "Sweeping 'Environmental Attributes' definition (all current or future credits/benefits) plus separate 'Capacity Rights' conveyed",
+          "party": "buyer",
+          "annotation": "The definition reaches attributes that don't exist yet ('current or future') — drafted so any later-created environmental product belongs to the buyer. Capacity value is conveyed as its own defined right.",
+          "glossaryRefs": [
+            "Renewable Energy Certificate (REC)",
+            "Capacity Market"
+          ]
+        },
+        {
+          "label": "Buyer options",
+          "value": "Early-termination events and buyer purchase options over the facility (§2.4–2.5)",
+          "party": "buyer",
+          "annotation": "Municipal buyers often negotiate an option to buy the plant outright — the PPA doubles as a path to ownership, another feature the prepayment structure makes natural.",
+          "glossaryRefs": [
+            "Offtaker"
+          ]
+        }
       ]
     }
   ]

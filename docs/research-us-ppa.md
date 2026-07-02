@@ -212,6 +212,37 @@ Verified inline against primary sources (FERC + each ISO) for the four markets t
 - **MISO — capacity + energy.** Seasonal Planning Resource Auction clears capacity by Local Resource Zone; nodal LMP with hubs. *([MISO — Resource Adequacy / PRA](https://www.misoenergy.org/planning/resource-adequacy2/resource-adequacy/))*
 - Smaller markets (SPP, ISO-NE FCM, NYISO ICAP) noted at a lighter level of detail, cited to [FERC — Electric power markets](https://www.ferc.gov/industries-data/electric/electric-power-markets).
 
+## Round 6 — approval & signing mechanics (2026-07-01)
+
+Sourced inline (WebSearch + primary regulatory/standard-form documents). Drives the "Getting to signature" section in the Drafting tab and the `Prudence Review` / `Independent Evaluator` / `Delegation of Authority` glossary terms.
+
+### 15. Regulated-utility approval — primary (CA State Auditor, CPUC, EPA)
+- To get a PPA approved, a California utility submits an **advice letter or application** to the CPUC describing the terms and compliance. Review involves the utility's **procurement review group** (PUC energy division, Office of Ratepayer Advocates, non-market participants) and an **independent evaluator** retained by the utility who monitors negotiations and assesses cost-effectiveness; approval or denial comes by **PUC resolution**. *([California State Auditor — CPUC oversight of energy utility contracts](https://information.auditor.ca.gov/reports/2016-104/appendix.html))*
+- Real approvals to read: [CPUC Resolution E-4320](https://docs.cpuc.ca.gov/PUBLISHED/FINAL_RESOLUTION/116189.htm) (PG&E bilateral RPS PPA), [E-4448](https://docs.cpuc.ca.gov/PublishedDocs/PUBLISHED/FINAL_RESOLUTION/159180.htm) (SDG&E short-term RPS PPAs).
+- Some states grant approval before commitment: a **CPCN** generally establishes prudence; Minnesota calls it **Advance Determination of Prudence**, Vermont a **Certificate of Public Good**. *([EPA — Guide to Action: Electricity Resource Planning and Procurement](https://www.epa.gov/system/files/documents/2022-08/Electricity%20Resource%20Planning%20and%20Procurement_508.pdf))*
+
+### 16. Signature authority & documentation architecture — primary (EEI)
+- The **EEI Master PPSA** has each party represent that it holds all necessary **regulatory authorizations** and that **execution and delivery are within its powers and duly authorized by all necessary action** — internal delegation-of-authority is what makes this representation true. *([EEI — Master Contract](https://www.eei.org/en/resources-and-media/master-contract))*
+- Architecture: a negotiated **cover sheet** (elections: collateral thresholds, cross-default, confirmation procedure) + per-transaction **confirmations**; credit terms in the collateral annex. *([EEI — optional annex provisions](https://www.eei.org/en/resources-and-media/master-contract/annex-provisions-optional), [Charles Law — EEI masters overview](https://charleslawpllc.com/our_expertise/eei-master-agreements-for-the-purchase-and-sale-of-power/) (secondary))*
+
+### 17. Corporate approval chain — secondary (advisor/law-firm guidance)
+Corporate buyers route a PPA through sustainability (Scope 2 claim), treasury/finance (mark-to-market / hedge-accounting exposure), legal, then investment committee or board sign-off, usually with a procurement advisor running the RFP. *(Secondary — [DLA Piper — Corporate PPAs](https://intelligence.dlapiper.com/corporateppa/), [3Degrees — PPAs/VPPAs](https://3degreesinc.com/what-we-do/implement-your-strategy/power-purchase-agreements-ppas-vppas/), [Daeryun — PPA transaction steps](https://www.daeryunlaw.com/us/insights/ppa-transaction-in-nyc); no single primary source describes internal committee mechanics.)*
+
+---
+
+## Round 7 — real executed contracts & deal refresh (2026-07-01)
+
+Two actual executed PPAs, publicly filed with the SEC as material-contract exhibits, now annotated clause-by-clause in the Drafting tab (values quoted from the documents themselves):
+
+- **New Mexico SunTower, LLC × El Paso Electric** (Oct 17, 2008) — 92 MW solar, New Mexico. 20 commercial-operation-year term; price redacted under SEC confidential treatment (a teachable point); all RECs to EPE at no additional cost; Security Fund $20/kW → $40/kW; LC issuer rated A− or better by both S&P and Moody's (§11.1(C)(1)); Delivery Excuse / interconnection-disconnect carve-outs. *([SEC EDGAR — EPE Exhibit 10.07](https://www.sec.gov/Archives/edgar/data/31978/000119312509167228/dex1007.htm))*
+- **SCPPA × Milford Wind Corridor Phase II, LLC** (Mar 1, 2010) — 102 MW wind, Milford, Utah. **Prepaid** municipal structure; Prepaid Energy Price $47.00/MWh; delivery at the Intermountain Power Project 345-kV switchyard; delay LDs $5,000/day (first 30 days) then $19,375/day capped at $4.8M (§3.5(a)); LD Security LC $4.8M + Performance Security LC $5M; curtailed energy deemed delivered toward the guarantee (§5.6(g)); buyer purchase options (§2.4–2.5). *([SEC EDGAR — First Wind Exhibit 10.57](https://www.sec.gov/Archives/edgar/data/1434804/000104746910008771/a2200542zex-10_57.htm))*
+
+Method note: EDGAR full-text search for "power purchase agreement" in Exhibit 10 filings (with a declared User-Agent) is the best free library of real executed PPAs; utility commission dockets (CPUC resolutions) are the other main source.
+
+Deal refresh (data/datacenter.json, 19 deals): added Google × Ormat (up to 150 MW geothermal, NV — [ESG Today](https://www.esgtoday.com/google-ormat-sign-deal-to-power-data-centers-from-new-geothermal-projects/)), SCE × Fervo (320 MW Cape Station, largest geothermal PPA — [Fervo](https://fervoenergy.com/fervo-energy-announces-320-mw-power-purchase-agreements-with-southern-california-edison/)), DTE × hyperscaler (1.4 GW regulated-utility ESA — [Utility Dive](https://www.utilitydive.com/news/dte-data-center-deal-transformational-growth-earnings/804231/)).
+
+---
+
 ## Coverage scorecard (be honest in the UI)
 
 | Topic | Status |
@@ -233,6 +264,6 @@ Verified inline against primary sources (FERC + each ISO) for the four markets t
 | Expert perspectives (Shah, Norris, Tian, Powell); load flexibility | ✅ Added (R4, paraphrased + cited) |
 | Originator role / day-to-day / skills | 🟡 Covered (R2, secondary — job postings) |
 | ISO/RTO market structure (ERCOT/PJM/CAISO/MISO; capacity vs. energy, basis hedging) | ✅ Verified (R5, primary) |
-| Internal approval/signing (investment committee, board, PUC prudence) | ⚠️ Needs research |
-| Conditions precedent, assignment/step-in, dispute resolution (clause-level) | ⚠️ Needs research |
+| Internal approval/signing (PUC prudence review, signature authority, EEI architecture) | ✅ Verified (R6, primary; corporate chain secondary) |
+| Assignment/step-in, dispute resolution (clause-level) | ⚠️ Needs research |
 | Time-of-delivery / hourly (ToD) pricing; 24/7 CFE matching | ⚠️ Needs research |
