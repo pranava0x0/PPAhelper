@@ -569,6 +569,102 @@
       "status": "verified",
       "source": "EEI Master Power Purchase & Sale Agreement representations",
       "url": "https://www.eei.org/en/resources-and-media/master-contract"
+    },
+    {
+      "term": "Scope 2 (Market-Based)",
+      "category": "RECs",
+      "def": "One of the two accounting methods in the GHG Protocol Scope 2 Guidance for emissions from purchased electricity. The location-based method uses the grid average; the market-based method reflects the buyer's contractual instruments — RECs, a VPPA, a green tariff. Retiring the RECs from a matched MWh lets the buyer report zero market-based emissions for that MWh, which is why a VPPA's REC conveyance is what makes the clean-energy claim.",
+      "status": "verified",
+      "source": "GHG Protocol — Scope 2 Guidance",
+      "url": "https://ghgprotocol.org/scope-2-guidance"
+    },
+    {
+      "term": "Additionality",
+      "category": "RECs",
+      "def": "Whether a purchase actually causes new renewable capacity that would not otherwise have been built. A long-term PPA with a new-build project scores high — the offtake is what financed it. Buying unbundled RECs from an existing plant scores low. The stricter buyers (and 24/7 CFE programs) weigh additionality, not just the REC count.",
+      "status": "verified",
+      "source": "EPA — Green Power Markets",
+      "url": "https://www.epa.gov/green-power-markets/green-power-partnership-additionality"
+    },
+    {
+      "term": "Unbundled REC",
+      "category": "RECs",
+      "def": "A REC sold on its own, separate from the electricity that produced it, so a buyer can make a renewable claim without any delivery or price relationship to a specific project. Cheaper and more liquid than a bundled PPA, but weak on additionality — a common critique of relying on them for a Scope 2 claim.",
+      "status": "verified",
+      "source": "EPA — Renewable Energy Certificates",
+      "url": "https://www.epa.gov/green-power-markets/renewable-energy-certificates-recs"
+    },
+    {
+      "term": "Debt Service Coverage Ratio (DSCR)",
+      "category": "Finance",
+      "def": "Project cash flow available for debt service divided by the debt payments due in the same period. Lenders size a renewable project's debt to a minimum DSCR — commonly around 1.20–1.40x for a contracted project — so cash flow always clears the payment with margin. A 1.25x DSCR means the project throws off $1.25 of cash for every $1.00 of debt service owed.",
+      "status": "verified",
+      "source": "World Bank PPP",
+      "url": "https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements"
+    },
+    {
+      "term": "Capital Stack",
+      "category": "Finance",
+      "def": "The layers of capital funding a project, from senior to junior: senior (bank) debt first, then tax equity monetizing the ITC/PTC, then sponsor / developer equity last. Each layer is repaid in priority order, so the lower you sit the more risk you take and the higher the return you require. A bankable PPA is what lets the senior-debt layer be as large and cheap as possible.",
+      "status": "verified",
+      "source": "NREL — project finance",
+      "url": "https://www.nrel.gov/analysis/tech-lcoe.html"
+    },
+    {
+      "term": "Non-Recourse Project Finance",
+      "category": "Finance",
+      "def": "Debt secured only against the project's own cash flows and assets — lenders have no recourse to the developer's balance sheet if the project underperforms. Because repayment rides entirely on the PPA's revenue, the offtaker's credit rating and the contract's bankability become the central underwriting questions, which is why every clause is read through a lender's eyes.",
+      "status": "verified",
+      "source": "World Bank PPP",
+      "url": "https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements"
+    },
+    {
+      "term": "CFADS (Cash Flow Available for Debt Service)",
+      "category": "Finance",
+      "def": "A project's operating cash flow before financing — revenue minus operating costs, taxes, and working-capital movements — i.e. the pool of cash actually available to pay lenders. It is the numerator of the DSCR, so debt is ultimately sized off CFADS: lenders lend the amount whose annual payment CFADS can cover with the required coverage margin.",
+      "status": "verified",
+      "source": "World Bank PPP",
+      "url": "https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements"
+    },
+    {
+      "term": "Gearing (Debt-to-Capital)",
+      "category": "Finance",
+      "def": "The share of a project funded by debt rather than equity (also called leverage). Renewable projects are typically 60–75% geared. Higher gearing lifts the equity return when things go well and deepens the loss when they don't; lenders cap it so equity always has enough at stake to keep managing the asset.",
+      "status": "verified",
+      "source": "World Bank PPP",
+      "url": "https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements"
+    },
+    {
+      "term": "Partnership Flip",
+      "category": "Tax",
+      "def": "The dominant US tax-equity structure. A tax-equity investor with enough tax appetite takes the large majority (often ~99%) of the project's tax credits, depreciation, and income until it hits a target return; allocations then 'flip' so the developer/sponsor holds ~95% and usually an option to buy the investor out. Yield-based flips turn on a target IRR (common with PTC wind); fixed flips turn on a set date (common with ITC solar).",
+      "status": "verified",
+      "source": "NREL — renewable tax-equity structures",
+      "url": "https://www.nrel.gov/docs/fy10osti/46534.pdf"
+    },
+    {
+      "term": "Merchant Tail",
+      "category": "Pricing",
+      "def": "The portion of a project's life that runs past the end of its PPA, selling into the wholesale spot market at whatever price prevails. Because that revenue is uncontracted, lenders won't advance debt against it — the merchant tail is upside (and downside) that equity, not debt, underwrites. A longer PPA converts merchant tail into bankable revenue.",
+      "status": "verified",
+      "source": "Berkeley Lab — Utility-Scale Solar",
+      "url": "https://emp.lbl.gov/utility-scale-solar"
+    },
+    {
+      "term": "Price Cannibalization",
+      "category": "Market",
+      "def": "The tendency of variable renewables to depress wholesale prices in the very hours they generate most — midday solar in CAISO and West Texas can push prices toward (or below) zero. Each new MW lowers the settlement value every existing same-technology project captures, eroding merchant-tail assumptions. Structural responses: time-of-delivery pricing and battery co-location.",
+      "status": "verified",
+      "source": "Berkeley Lab / EIA",
+      "url": "https://emp.lbl.gov/utility-scale-solar"
+    },
+    {
+      "term": "Financial Transmission Right (FTR)",
+      "category": "Market",
+      "def": "A financial instrument (called a CRR in CAISO/ERCOT) that pays its holder the congestion component of the price difference between two locations. Because basis is driven by transmission congestion, an FTR/CRR lets a generator or buyer hedge node-to-hub basis risk — collecting when congestion widens the spread they're otherwise exposed to.",
+      "status": "verified",
+      "source": "PJM / FERC",
+      "url": "https://www.pjm.com/markets-and-operations/ftr"
     }
   ]
 }

@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  var VIEWS = ["foundations", "examples", "ppadraft", "simulator", "datacenter", "perspectives", "glossary", "coverage"];
+  var VIEWS = ["foundations", "examples", "ppadraft", "simulator", "projfin", "datacenter", "perspectives", "glossary", "coverage"];
 
   /* ---------- view switcher ---------- */
   function showView(name, moveFocus) {
