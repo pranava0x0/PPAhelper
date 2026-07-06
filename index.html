@@ -6,7 +6,7 @@
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
   <link rel="preload" href="data/glossary.json" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260701c">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260705b">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -29,6 +29,7 @@
       <button class="nav-btn" role="tab" id="tab-examples" aria-controls="view-examples" aria-selected="false" data-view="examples">Drafting</button>
       <button class="nav-btn" role="tab" id="tab-ppadraft" aria-controls="view-ppadraft" aria-selected="false" data-view="ppadraft">Draft PPA</button>
       <button class="nav-btn" role="tab" id="tab-simulator" aria-controls="view-simulator" aria-selected="false" data-view="simulator">Settlement simulator</button>
+      <button class="nav-btn" role="tab" id="tab-projfin" aria-controls="view-projfin" aria-selected="false" data-view="projfin">Project finance</button>
       <button class="nav-btn" role="tab" id="tab-datacenter" aria-controls="view-datacenter" aria-selected="false" data-view="datacenter">Data centers</button>
       <button class="nav-btn" role="tab" id="tab-perspectives" aria-controls="view-perspectives" aria-selected="false" data-view="perspectives">Perspectives</button>
       <button class="nav-btn" role="tab" id="tab-glossary" aria-controls="view-glossary" aria-selected="false" data-view="glossary">Glossary</button>
@@ -220,6 +221,25 @@
           <p style="margin:0">As solar build accelerates, midday prices converge toward zero or go negative in CAISO (California) and ERCOT West Texas — the most solar-saturated hours. Each new MW of solar added reduces the settlement value of every existing solar VPPA. A $43/MWh flat-strike deal signed in 2021 may settle against a hub averaging $25/MWh in the 10am–3pm block by 2027. The most common structural responses: <strong>time-of-delivery (ToD) pricing</strong> that weights evening hours more heavily, and <strong>battery co-location</strong> to shift output to the 5–8pm peak. A buyer who doesn't ask about this in due diligence accepts a hedge that may stop hedging in the most solar-heavy hours. <a href="https://www.eia.gov/todayinenergy/detail.php?id=6730">EIA — Negative wholesale prices</a></p>
         </div>
         <p class="src"><a href="https://www.ferc.gov/industries-data/electric/electric-power-markets">FERC — Electric power markets</a> · <a href="https://www.ercot.com/files/docs/2019/09/17/Market_Structure_OnePager_FINAL_Revised.pdf">ERCOT market structure</a> · <a href="https://www.pjm.com/-/media/DotCom/documents/manuals/m18.ashx">PJM Manual 18 (RPM)</a> · <a href="https://www.caiso.com/market-operations/products-services/congestion-revenue-rights">CAISO CRRs</a> · <a href="https://www.misoenergy.org/planning/resource-adequacy2/resource-adequacy/">MISO resource adequacy</a></p>
+
+        <h3 style="margin-top:22px">How a nodal price is actually built — and how you hedge it</h3>
+        <p>Engineering-economics courses (Stanford, MIT) start here, because it's what makes basis a <em>structural</em> risk rather than bad luck. Every <span class="gterm" data-term="Locational Marginal Price (LMP)">LMP</span> decomposes into three parts:</p>
+        <div class="grid cols-3">
+          <div class="card">
+            <p class="eyebrow">Energy</p>
+            <p style="max-width:none;margin:0">The system-wide marginal cost of the next MWh — the same reference number everywhere on the grid at that instant. This is the piece a hub price mostly reflects.</p>
+          </div>
+          <div class="card">
+            <p class="eyebrow">Congestion</p>
+            <p style="max-width:none;margin:0">The adjustment when a transmission line is maxed out and cheaper generation can't reach a location. This is what makes a node diverge from its hub — i.e. it <em>is</em> your <span class="gterm" data-term="Basis Risk">basis</span>. A wind farm behind a constrained line can see deeply negative congestion.</p>
+          </div>
+          <div class="card">
+            <p class="eyebrow">Losses</p>
+            <p style="max-width:none;margin:0">A small adjustment for energy lost as heat moving power over distance. Usually the least significant of the three.</p>
+          </div>
+        </div>
+        <p style="margin-top:12px"><strong>LMP = Energy + Congestion + Losses.</strong> Because a VPPA settles at the <span class="gterm" data-term="Hub">hub</span> but the generator earns its <em>node</em>, the congestion term is the developer's basis exposure. The market's own hedge for it is the <span class="gterm" data-term="Financial Transmission Right (FTR)">FTR</span> (a CRR in ERCOT/CAISO): a financial right that pays the congestion difference between two points, so a holder collects exactly when congestion widens the spread they're exposed to. FTRs/CRRs are auctioned in limited quantities, though — which is why, in a congestion-heavy market like ERCOT, they rarely cover a VPPA's basis in full.</p>
+        <p class="src"><a href="https://www.pjm.com/markets-and-operations/ftr">PJM — Financial Transmission Rights</a> · <a href="https://www.caiso.com/market-operations/products-services/congestion-revenue-rights">CAISO — Congestion Revenue Rights</a></p>
       </div>
 
       <hr class="rule">
@@ -227,6 +247,32 @@
       <h2>RECs — what the buyer is really paying for</h2>
       <p>A <span class="gterm" data-term="Renewable Energy Certificate (REC)">renewable energy certificate</span> represents the environmental attributes of renewable generation — one REC per MWh delivered to the grid. In a VPPA the fixed price is the consideration for those RECs, which the seller conveys to the buyer. The buyer can then claim the clean-energy use.</p>
       <p class="src"><a href="https://www.epa.gov/green-power-markets/renewable-energy-certificates-recs">EPA — Renewable Energy Certificates</a></p>
+
+      <div data-level="2">
+        <hr class="rule">
+
+        <h2>From REC to carbon claim — the Scope 2 chain <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <p>A REC is not the goal — it's the instrument. The reason a corporate buyer signs a VPPA is to move the number in a carbon report. Here's how the attribute actually lands in the accounting.</p>
+        <div class="grid cols-3">
+          <div class="card">
+            <p class="eyebrow">Step 1 — the method</p>
+            <p style="max-width:none;margin:0">The GHG Protocol gives two ways to count electricity emissions. <strong>Location-based</strong> uses the grid average — the same for everyone on the wires. <strong>Market-based</strong> reflects what you contracted for. A clean-energy claim only shows up under the <span class="gterm" data-term="Scope 2 (Market-Based)">market-based method</span>.</p>
+          </div>
+          <div class="card">
+            <p class="eyebrow">Step 2 — retire the REC</p>
+            <p style="max-width:none;margin:0">Each MWh you want to claim needs one REC, retired in a registry against your name so no one else can use it. The VPPA is the vehicle: the fixed price is the consideration, and the seller conveys the RECs. Retire them and those MWh count as zero market-based emissions.</p>
+          </div>
+          <div class="card">
+            <p class="eyebrow">Step 3 — how good is the claim</p>
+            <p style="max-width:none;margin:0"><span class="gterm" data-term="Additionality">Additionality</span> is the quality test: did your money cause a new plant to get built? A long-term PPA with a new-build project scores high. An <span class="gterm" data-term="Unbundled REC">unbundled REC</span> from an old plant scores low — same one-MWh claim, far weaker story.</p>
+          </div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--accent);margin-top:12px">
+          <p class="eyebrow">Annual matching vs. 24/7</p>
+          <p style="max-width:none;margin:0">The default is <strong>annual volumetric</strong> matching: buy enough RECs to cover a year's consumption, netted over the whole year. <span class="gterm" data-term="24/7 Carbon-Free Energy (CFE)">24/7 CFE</span> is stricter — every hour's load must be met by carbon-free generation in that same hour and grid region. A solar-only annual match can be "100% renewable" on paper while running on gas at night; hourly matching closes that gap and is where scrutiny is heading. <em>The GHG Protocol Scope 2 Guidance is under revision, with hourly / time-matched accounting among the proposals — treat today's rules as a moving target.</em></p>
+        </div>
+        <p class="src"><a href="https://ghgprotocol.org/scope-2-guidance">GHG Protocol — Scope 2 Guidance</a> · <a href="https://www.epa.gov/green-power-markets/green-power-partnership-additionality">EPA — Additionality</a></p>
+      </div><!-- /data-level="2" rec-scope2 -->
 
       <div data-level="2">
         <hr class="rule">
@@ -282,6 +328,29 @@
       </div>
       <p class="src"><a href="https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/">RMI — Risk Mitigation Guide</a> · <a href="https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements">World Bank — PPAs &amp; bankability</a></p>
       </div><!-- /data-level="2" who's-who -->
+
+      <div data-level="2">
+        <hr class="rule">
+
+        <h2>What "bankable" actually means <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <p>The site says "bankable" a lot. Here's the machinery behind the word. A utility-scale project is built with <span class="gterm" data-term="Non-Recourse Project Finance">non-recourse project finance</span> — the lenders can look only to the project's own cash flow, not the developer's balance sheet. So the PPA <em>is</em> the collateral, and every clause gets read by someone deciding how much debt it can carry.</p>
+        <div class="grid cols-3">
+          <div class="card">
+            <p class="eyebrow">The capital stack</p>
+            <p style="max-width:none;margin:0">A project is funded in layers, paid in priority order: <strong>senior debt</strong> (~50–70%), then <strong>tax equity</strong> monetizing the <span class="gterm" data-term="Investment Tax Credit (ITC)">ITC</span>/<span class="gterm" data-term="Production Tax Credit (PTC)">PTC</span>, then <strong>sponsor equity</strong> last. The cheaper and larger the senior <span class="gterm" data-term="Capital Stack">layer</span>, the better the project's economics — and that layer's size is set by the PPA.</p>
+          </div>
+          <div class="card">
+            <p class="eyebrow">The coverage test</p>
+            <p style="max-width:none;margin:0">Lenders size debt to a minimum <span class="gterm" data-term="Debt Service Coverage Ratio (DSCR)">DSCR</span>. A 1.25x DSCR means the project must throw off $1.25 of cash for every $1.00 of debt payment due. Weaker or lumpier PPA revenue → higher required coverage → less debt the deal supports → worse returns for the developer.</p>
+          </div>
+          <div class="card">
+            <p class="eyebrow">The one variable lenders obsess over</p>
+            <p style="max-width:none;margin:0">The <span class="gterm" data-term="Offtaker">offtaker's</span> credit rating. Investment-grade revenue is what makes the cash flow bankable; a sub-IG or unrated buyer must post <span class="gterm" data-term="Credit Support">credit support</span> — a <span class="gterm" data-term="Letter of Credit (LC)">letter of credit</span> or parent guarantee — or the debt shrinks.</p>
+          </div>
+        </div>
+        <p style="margin-top:12px">Read the deal-killers from the drafting page through this lens and they stop being a list and start being one sentence: <strong>a weak offtaker, a tenor too short to repay the debt, or uncapped liabilities all lower the DSCR the lenders will underwrite — so they shrink the loan, and the project may not get built.</strong></p>
+        <p class="src"><a href="https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements">World Bank — PPAs, bankability &amp; project finance</a> · <a href="https://emp.lbl.gov/utility-scale-solar">Berkeley Lab — Utility-Scale Solar</a></p>
+      </div><!-- /data-level="2" bankability -->
 
       <hr class="rule">
 
@@ -477,6 +546,33 @@
       <div class="card" style="border-left:3px solid var(--warn);margin-top:14px">
         <p class="eyebrow">Drafting principles &amp; deal-killers</p>
         <p style="max-width:none;margin-bottom:0">Define your defined terms — a vague clause is an unallocated risk. Every clause assigns a risk to someone; know which. Start from the market-standard form; don't over-engineer. The usual deal-killers: the <strong>wrong settlement point</strong> (basis), a <strong>weak offtaker credit</strong>, a <strong>tenor too short to finance</strong>, and <strong>uncapped liabilities</strong>.</p>
+      </div>
+
+      <div data-level="2" style="margin-top:14px">
+        <details>
+          <summary><strong>Buyer's due-diligence checklist</strong> — what to verify before signing <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></summary>
+          <p style="margin-top:10px">Before the term sheet becomes a contract, a buyer confirms the project can actually deliver. Diligence failures here are what turn a signed PPA into a stranded one.</p>
+          <div class="grid cols-2">
+            <div class="card">
+              <p class="eyebrow">Can it get built &amp; connected?</p>
+              <ul style="margin:0;padding-left:18px">
+                <li><strong>Interconnection status</strong> — queue position, which study phase, and the <span class="gterm" data-term="Large Generator Interconnection Agreement (LGIA)">LGIA</span> cost estimate. A late-queue project with unknown network-upgrade costs is a schedule and price risk.</li>
+                <li><strong>Permitting &amp; site control</strong> — land leases, environmental permits, and local approvals in hand, not pending.</li>
+                <li><strong>EPC quality</strong> — a creditworthy contractor on a fixed-price, date-certain <span class="gterm" data-term="Commercial Operation Date (COD)">COD</span> contract with <span class="gterm" data-term="Delay Damages">delay damages</span>.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <p class="eyebrow">Will it produce, and will the counterparty last?</p>
+              <ul style="margin:0;padding-left:18px">
+                <li><strong>Resource assessment</strong> — an independent P50/P90 energy estimate. P50 is the expected output; P90 is the conservative case lenders and cautious buyers size against.</li>
+                <li><strong>Developer track record</strong> — projects delivered, balance-sheet and sponsor strength behind the entity signing.</li>
+                <li><strong>Financing plan</strong> — is the <span class="gterm" data-term="Capital Stack">capital stack</span> committed or still speculative? Unfinanced projects slip or die.</li>
+                <li><strong>Settlement point &amp; basis</strong> — confirm the node, and pressure-test the node-to-hub <span class="gterm" data-term="Basis Risk">basis</span> history before accepting the strike.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="src"><a href="https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/">RMI — Corporate Purchaser's Guide to Risk Mitigation</a> · <a href="https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements">World Bank PPP</a></p>
+        </details>
       </div>
 
       <hr class="rule">
@@ -881,7 +977,7 @@
     <section class="view" id="view-simulator" role="tabpanel" aria-labelledby="tab-simulator" hidden>
       <p class="eyebrow">Interactive</p>
       <h1>VPPA settlement simulator</h1>
-      <p class="lede">Set a strike price and a year of market prices, and watch the contract-for-differences settle month by month. Green is money flowing to a party; clay is money flowing out. This is an illustration of the mechanic, not market data.</p>
+      <p class="lede">Set a strike price and a year of market prices, and watch the contract-for-differences settle month by month. Green is money flowing to a party; red is money flowing out. This is an illustration of the mechanic, not market data.</p>
 
       <div class="sim-layout">
         <form class="controls" id="sim-controls" aria-label="Simulator inputs">
@@ -985,6 +1081,177 @@
       </div>
     </section>
 
+    <!-- ============ PROJECT FINANCE ============ -->
+    <section class="view" id="view-projfin" role="tabpanel" aria-labelledby="tab-projfin" hidden>
+      <p class="eyebrow">Interactive · the number the PPA is really about</p>
+      <h1>Project-finance workbench</h1>
+      <p class="lede">University finance courses don't stop at "a PPA must be bankable" — they make you size the debt and solve for the equity return. This does the same: set the project and the contract, and watch how much debt the cash flow supports at your target DSCR, how the capital stack splits, and what the equity investor earns. A teaching model, not investment advice.</p>
+
+      <div class="sim-layout">
+        <form class="controls" id="pf-controls" aria-label="Project finance inputs">
+          <fieldset>
+            <legend>Project preset</legend>
+            <div class="scenario-row" id="pf-presets">
+              <button type="button" class="scenario-btn" data-preset="solar" aria-pressed="true">Utility solar</button>
+              <button type="button" class="scenario-btn" data-preset="wind">Onshore wind</button>
+              <button type="button" class="scenario-btn" data-preset="storage">Solar + storage</button>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>The project</legend>
+            <div class="field">
+              <label for="pf-mw">Nameplate capacity <span class="hint">MW</span></label>
+              <input type="number" id="pf-mw" value="100" min="1" max="2000" step="10">
+            </div>
+            <div class="field">
+              <label for="pf-capex">Capex <span class="hint">$/kW installed</span></label>
+              <input type="number" id="pf-capex" value="1200" min="200" max="6000" step="50">
+            </div>
+            <div class="field">
+              <label for="pf-cf">Capacity factor <span class="hint">% — actual output ÷ nameplate</span></label>
+              <input type="number" id="pf-cf" value="26" min="5" max="95" step="1">
+            </div>
+            <div class="field">
+              <label for="pf-opex">Operating cost <span class="hint">$/kW-year</span></label>
+              <input type="number" id="pf-opex" value="18" min="0" max="200" step="1">
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>The contract</legend>
+            <div class="field">
+              <label for="pf-price">PPA price <span class="hint">$/MWh, flat</span></label>
+              <input type="number" id="pf-price" value="45" min="0" max="300" step="1">
+            </div>
+            <div class="field">
+              <label for="pf-tenor">PPA term = debt tenor <span class="hint">years</span></label>
+              <input type="number" id="pf-tenor" value="15" min="3" max="30" step="1">
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>The financing</legend>
+            <div class="field">
+              <label for="pf-rate">Debt interest rate <span class="hint">% per year</span></label>
+              <input type="number" id="pf-rate" value="6.5" min="0" max="20" step="0.1">
+            </div>
+            <div class="field">
+              <label for="pf-dscr">Target minimum DSCR <span class="hint">×</span></label>
+              <input type="number" id="pf-dscr" value="1.30" min="1" max="3" step="0.05">
+            </div>
+            <div class="field">
+              <label for="pf-itc">Tax credit funded share <span class="hint">% of capex met by ITC / tax equity</span></label>
+              <input type="number" id="pf-itc" value="30" min="0" max="60" step="1">
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Merchant tail (life after the PPA)</legend>
+            <div class="field">
+              <label for="pf-merch-yrs">Merchant years after PPA <span class="hint">years selling at spot</span></label>
+              <input type="number" id="pf-merch-yrs" value="5" min="0" max="20" step="1">
+            </div>
+            <div class="field">
+              <label for="pf-merch-price">Assumed merchant price <span class="hint">$/MWh</span></label>
+              <input type="number" id="pf-merch-price" value="30" min="0" max="200" step="1">
+            </div>
+            <p class="hint" style="margin:2px 0 0">Contracted years fund the debt; the merchant tail is the uncontracted upside equity underwrites to. Set years to 0 to ignore it.</p>
+          </fieldset>
+        </form>
+
+        <div class="readout">
+          <div class="direction-banner" id="pf-banner" role="status" aria-live="polite">—</div>
+
+          <div class="kpis">
+            <div class="kpi">
+              <div class="k-label">Annual PPA revenue</div>
+              <div class="k-val mono" id="pf-revenue">—</div>
+              <div class="k-sub" id="pf-gen-sub">from annual generation</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">CFADS</div>
+              <div class="k-val mono" id="pf-cfads">—</div>
+              <div class="k-sub">cash for debt service (revenue − opex)</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">Supportable debt</div>
+              <div class="k-val mono" id="pf-debt">—</div>
+              <div class="k-sub" id="pf-debt-sub">sized to your DSCR</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">Gearing</div>
+              <div class="k-val mono" id="pf-gearing">—</div>
+              <div class="k-sub">debt ÷ total capital cost</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">Equity check</div>
+              <div class="k-val mono" id="pf-equity">—</div>
+              <div class="k-sub">what the sponsor must fund</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">Levered equity IRR</div>
+              <div class="k-val mono" id="pf-irr">—</div>
+              <div class="k-sub" id="pf-irr-sub">incl. merchant tail</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <p class="eyebrow">Capital stack — how the project is paid for</p>
+            <div class="cap-stack" id="pf-capstack" aria-hidden="true"></div>
+            <div class="cap-stack-legend" id="pf-capstack-legend"></div>
+            <p class="hint" style="margin:10px 0 0">At construction the project is funded by <strong>senior debt</strong> (sized off the contracted cash flow) and <strong>sponsor equity</strong>. The <span class="gterm" data-term="Investment Tax Credit (ITC)">ITC</span> then comes back to equity as cash in year 1 — this model assumes the sponsor keeps it via post-IRA transferability. Route it through a <span class="gterm" data-term="Partnership Flip">tax-equity partnership flip</span> instead (explained below) and a tax-equity investor takes most of that credit and a share of early cash, lowering the sponsor's own return.</p>
+          </div>
+
+          <p class="hint">How it works: annual generation = MW × 8,760 h × capacity factor. Revenue = generation × PPA price. <span class="gterm" data-term="CFADS (Cash Flow Available for Debt Service)">CFADS</span> = revenue − opex. Lenders lend the amount whose level annual payment equals CFADS ÷ target <span class="gterm" data-term="Debt Service Coverage Ratio (DSCR)">DSCR</span>, present-valued over the tenor at the interest rate — capped at 75% <span class="gterm" data-term="Gearing (Debt-to-Capital)">gearing</span>. Equity funds the rest and earns whatever cash is left after debt service, plus the merchant tail. Flat pricing, no tax, no degradation, no reserves — the shape of the answer, not a bankable model.</p>
+        </div>
+      </div>
+
+      <div data-level="2">
+        <hr class="rule">
+        <h2>Tax equity &amp; the partnership flip <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <p>The calculator's two-layer stack is a simplification. In a real US renewable deal a third layer sits between debt and sponsor equity: <strong>tax equity</strong> — a bank or corporate with enough tax liability to actually use the <span class="gterm" data-term="Investment Tax Credit (ITC)">ITC</span> or <span class="gterm" data-term="Production Tax Credit (PTC)">PTC</span> the project generates. The developer usually can't. The <span class="gterm" data-term="Partnership Flip">partnership flip</span> is how they share it.</p>
+        <div class="grid cols-2">
+          <div class="card">
+            <p class="eyebrow">Before the flip</p>
+            <p style="max-width:none;margin:0">The tax-equity investor is allocated the large majority of taxable income, credits, and depreciation — commonly ~99% — so it captures the ITC/PTC and the accelerated depreciation. It contributes a big slug of the capital up front and earns its return mostly through tax benefits.</p>
+          </div>
+          <div class="card">
+            <p class="eyebrow">After the flip</p>
+            <p style="max-width:none;margin:0">Once the investor hits its agreed return, allocations "flip": the sponsor jumps to ~95% of cash and income and typically holds an option to buy the investor out. From here the developer owns the upside.</p>
+          </div>
+          <div class="card">
+            <p class="eyebrow">Yield-based flip</p>
+            <p style="max-width:none;margin:0">The flip happens whenever the investor reaches a target after-tax IRR — the date floats with actual performance. Common with <span class="gterm" data-term="Production Tax Credit (PTC)">PTC</span> wind, where credits accrue over 10 years of production.</p>
+          </div>
+          <div class="card">
+            <p class="eyebrow">Fixed / time-based flip</p>
+            <p style="max-width:none;margin:0">The flip date is fixed (e.g. year 6). Simpler, and common with <span class="gterm" data-term="Investment Tax Credit (ITC)">ITC</span> solar, where the credit is claimed up front so the investor's return is more predictable.</p>
+          </div>
+        </div>
+        <p style="margin-top:12px">Why it matters for the PPA: the tax-equity investor underwrites the same contract the lender does. A weak offtaker or a short tenor shrinks not just the debt but the tax-equity commitment — so a thin PPA raises the sponsor's own equity check twice over. Post-IRA <span class="gterm" data-term="Investment Tax Credit (ITC)">ITC/PTC</span> transferability now lets some developers sell credits for cash instead of running a full flip, but the flip remains the workhorse structure.</p>
+        <p class="src"><a href="https://www.nrel.gov/docs/fy10osti/46534.pdf">NREL — PTC/ITC &amp; partnership flip structures</a> · <a href="https://www.irs.gov/credits-deductions/elective-pay-and-transferability">IRS — Elective Pay &amp; Transferability</a></p>
+      </div>
+
+      <div data-level="2">
+        <hr class="rule">
+        <h2>Contracted vs. merchant revenue — the merchant tail <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <p>A PPA rarely covers a project's whole life. A 30-year asset with a 15-year PPA spends its back half selling into the spot market at whatever price prevails — the <span class="gterm" data-term="Merchant Tail">merchant tail</span>. That split drives how the deal is financed and who takes which risk.</p>
+        <div class="grid cols-2">
+          <div class="card">
+            <p class="eyebrow">Contracted years</p>
+            <p style="max-width:none;margin:0">Revenue is fixed and predictable, so lenders will advance debt against it — this is the window the <span class="gterm" data-term="Debt Service Coverage Ratio (DSCR)">DSCR</span> test and the debt tenor live inside. Debt tenor almost never exceeds the PPA term, because past that point the revenue is a market bet, not a contract.</p>
+          </div>
+          <div class="card">
+            <p class="eyebrow">Merchant years</p>
+            <p style="max-width:none;margin:0">Uncontracted upside — and downside. Equity, not debt, underwrites the tail: if merchant prices hold, the sponsor's IRR climbs; if <span class="gterm" data-term="Price Cannibalization">renewables cannibalize midday prices</span>, the tail can be worth far less than assumed. Try dialing the merchant price up and down in the calculator.</p>
+          </div>
+        </div>
+        <p style="margin-top:12px">This is why a longer PPA is worth real money to a developer: it converts merchant risk into bankable, debt-supported revenue. It's also why buyers with strong credit have leverage — the certainty they provide is exactly what lenders and tax-equity price off.</p>
+        <p class="src"><a href="https://emp.lbl.gov/utility-scale-solar">Berkeley Lab — Utility-Scale Solar (merchant &amp; PPA pricing)</a></p>
+      </div>
+    </section>
+
     <!-- ============ DATA CENTERS ============ -->
     <section class="view" id="view-datacenter" role="tabpanel" aria-labelledby="tab-datacenter" hidden>
       <p class="eyebrow">Applied · the fastest-moving corner of the market</p>
@@ -1049,6 +1316,13 @@
           <tr><td>Deal types: behind/front-of-meter, sleeved, community solar</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Clauses: curtailment, force majeure, change-in-law, termination</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Bankability (creditworthy offtaker + tenor; lender risk view)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Project finance: capital stack, DSCR, non-recourse debt</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Debt sizing to DSCR, gearing, levered equity IRR (interactive workbench)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Tax equity &amp; the partnership flip (yield-based vs. fixed; ITC/PTC)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Contracted vs. merchant revenue; the merchant tail</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>LMP decomposition (energy/congestion/loss); FTR/CRR basis hedging</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>REC → Scope 2 chain (market-based method, additionality, bundled vs. unbundled)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Buyer due-diligence checklist (interconnection, P50/P90, EPC, financing)</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Data-center demand &amp; deal structures (LBNL/DOE + company &amp; trade sources)</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Load flexibility / curtailment-enabled headroom (Duke 2025)</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Annotated example term sheets (VPPA, utility physical, data-center nuclear)</td><td><span class="pill verified">verified</span></td></tr>
@@ -1070,7 +1344,7 @@
         <thead><tr><th>Topic</th><th>Status</th></tr></thead>
         <tbody>
           <tr><td>Clause-level: assignment / lender step-in, dispute resolution</td><td><span class="pill gap">needs research</span></td></tr>
-          <tr><td>Time-of-delivery / hourly pricing; 24/7 carbon-free matching</td><td><span class="pill gap">needs research</span></td></tr>
+          <tr><td>Time-of-delivery / hourly pricing — clause-level mechanics (concept &amp; 24/7 matching now covered)</td><td><span class="pill gap">needs research</span></td></tr>
         </tbody>
       </table>
 
@@ -1093,6 +1367,7 @@
             <a href="https://www.leveltenenergy.com/ppa">LevelTen PPA Price Index</a><br>
             <a href="https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/">RMI — Risk Mitigation Guide</a><br>
             <a href="https://www.wbcsd.org/wp-content/uploads/2023/10/Pricing-structures-for-corporate-renewable-PPAs.pdf">WBCSD — Pricing Structures</a><br>
+            <a href="https://ghgprotocol.org/scope-2-guidance">GHG Protocol — Scope 2 Guidance</a><br>
             <a href="https://ppp.worldbank.org/sector/energy/energy-power-agreements/power-purchase-agreements">World Bank — PPAs &amp; bankability</a>
           </p>
         </div>
@@ -1117,11 +1392,12 @@
     </div>
   </footer>
 
-  <script src="assets/js/draft.js?v=20260701c" defer></script>
-  <script src="assets/js/quiz.js?v=20260701c" defer></script>
-  <script src="assets/js/settle-core.js?v=20260701c" defer></script>
-  <script src="assets/js/simulator.js?v=20260701c" defer></script>
-  <script src="assets/js/app.js?v=20260701c" defer></script>
-  <script src="assets/js/content.js?v=20260701c" defer></script>
+  <script src="assets/js/draft.js?v=20260705b" defer></script>
+  <script src="assets/js/quiz.js?v=20260705b" defer></script>
+  <script src="assets/js/settle-core.js?v=20260705b" defer></script>
+  <script src="assets/js/simulator.js?v=20260705b" defer></script>
+  <script src="assets/js/projfin.js?v=20260705b" defer></script>
+  <script src="assets/js/app.js?v=20260705b" defer></script>
+  <script src="assets/js/content.js?v=20260705b" defer></script>
 </body>
 </html>

@@ -4,17 +4,21 @@
 > (Lives in `docs/` because the macOS filesystem is case-insensitive — a root `design.md` would clobber `DESIGN.md`.)
 
 ## Identity in one line
-**A power-market trading terminal rendered as an editorial broadsheet** — the seriousness of a contract document, the live numbers of a trading desk.
+**A clean-energy markets & finance workbench** — the calm precision of a fintech dashboard, the live numbers of a trading desk. *(Re-skinned 2026-07-05 from the earlier "editorial broadsheet on warm paper" identity — see history below.)*
 
-- **Reference point:** the FT/Bloomberg terminal crossed with a printed contract. Calm authority, rule lines, a monospace data tape.
-- **Subject-anchored palette:** ink on warm paper (the contract), with **copper** as the single accent (the wire — electricity's actual conductor, not the AI violet). Directional money flows get their own semantic greens/clays, used only on real settlement numbers.
-- **Type pairing:** serif display (Charter/Georgia stack) for headings + KPI numerals — editorial gravitas; system sans for body/UI; **mono for all market data** (prices, $/MWh, LMP, settlement amounts) — the terminal tape.
-- **One memorable move:** a **monospace data spine** — every price and settlement figure renders in mono with tabular numerals, aligned like a ticker tape, under a thin masthead rule.
+- **Reference point:** a modern analytics product (Linear/Stripe-era clarity) crossed with a trading desk. Cool surfaces, soft elevation, one confident accent, a monospace data tape.
+- **Subject-anchored palette:** cool near-white surfaces (`--bg`/`--surface`) with **electric blue** as the single brand accent — the charge in the wire. Directional money flows keep their own semantic green/red, used only on real settlement numbers.
+- **Type pairing:** a **grotesque sans display** (Inter / system-ui) for headings, the wordmark, and KPI numerals — product clarity, not editorial gravitas; the same sans for body/UI; **mono for all market data** (prices, $/MWh, LMP, settlement amounts, project-finance figures) — the terminal tape.
+- **One memorable move:** a **monospace data spine** — every price, settlement, and finance figure renders in mono with tabular numerals, under a thin blurred masthead rule; cards carry soft elevation rather than hairline warm borders.
 
 ## Tokens (see assets/css/styles.css `:root` for the source of truth)
-- `--bg` warm paper `#f3efe6` / dark ink `#15181b`
-- `--accent` copper `#b06a2c`
-- Semantic money-flow: `--flow-credit` grid-green (party receives) / `--flow-debit` clay-red (party pays). These color **only** settlement direction, never chrome.
+- `--bg` cool near-white `#f4f6f9` / dark slate `#0b0f14`
+- `--accent` electric blue `#2563eb` (light) / `#5b9bff` (dark)
+- Semantic money-flow: `--flow-credit` green (party receives) / `--flow-debit` red (party pays). These color **only** settlement direction, never chrome.
+- `--shadow-card` / `--shadow-pop` — soft elevation replaces the old double-rule broadsheet framing.
+
+### History
+- **2026-07-05 re-skin:** moved off the warm-paper + copper + serif "editorial broadsheet" identity (which read too close to the Anthropic/Claude default aesthetic) to the cooler product/fintech look above. Structure, mono data spine, money-flow semantics, and coverage-honesty rules all unchanged; only palette, display type, and framing (borders→elevation, double rule→single) changed.
 
 ## Rules specific to this project
 - **No emoji.** Outline pills and rule lines do the badge work.
