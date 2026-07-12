@@ -97,14 +97,14 @@
         explain: "The swap settles at the hub, but the developer earns only its node price for actual energy sales (node = hub − spread). Its realized price is strike − spread = $39. A $5–8 spread is typical in ERCOT; a congestion event can hit $40+."
       },
       {
-        prompt: "A month prints LMP = −$20 with a $45 strike and no price floor. What does the generator owe per MWh?",
+        prompt: "A month prints LMP = −$20 with a $45 strike and no price floor. Who pays whom, and how much per MWh?",
         opts: [
-          { t: "$65 — the strike plus the full negative price", correct: true },
-          { t: "$45 — never more than the strike" },
-          { t: "$25 — the difference shrinks below zero" },
+          { t: "The buyer pays the generator $65 — the strike plus the full negative price", correct: true },
+          { t: "The generator pays the buyer $65" },
+          { t: "The buyer pays $45 — never more than the strike" },
           { t: "Nothing — negative prices void the swap" }
         ],
-        explain: "Settlement = (LMP − strike): (−$20 − $45) = −$65... in the generator-pays direction that's the strike plus the magnitude of the negative price. That blowout is exactly why VPPAs often floor the floating price at $0 — capping the payment at the strike."
+        explain: "Settlement = (LMP − strike) = (−$20 − $45) = −$65, and negative means the buyer pays the generator — here the strike plus the magnitude of the negative price, $65/MWh. That blowout on the buyer is exactly why VPPAs often floor the floating price at $0, capping the buyer's payment at the strike."
       },
       {
         prompt: "Why does a 100 MW solar project settle far less volume than 100 MW × 8,760 hours?",
@@ -173,12 +173,46 @@
       {
         prompt: "Why do VPPAs increasingly add a $0 floor on the Floating Price?",
         opts: [
-          { t: "Without it, a negative LMP makes the generator pay the strike plus the full negative price", correct: true },
+          { t: "Without it, a negative LMP makes the buyer pay the strike plus the full negative price", correct: true },
           { t: "To cap the buyer's upside when prices spike" },
           { t: "Because RECs can't be issued at negative prices" },
           { t: "To shorten the contract term" }
         ],
-        explain: "When LMP goes below zero (routine in wind- and solar-heavy ERCOT, CAISO, SPP), settlement = (LMP − strike) × volume balloons: the generator owes the buyer the strike plus the magnitude of the negative price. Flooring the Floating Price at $0 caps that exposure."
+        explain: "When LMP goes below zero (routine in wind- and solar-heavy ERCOT, CAISO, SPP), settlement = (LMP − strike) × volume balloons in the buyer's-payment direction: the buyer owes the generator the strike plus the magnitude of the negative price. Flooring the Floating Price at $0 caps the buyer's exposure."
+      }
+    ],
+
+    /* Draft PPA — the practice-template generator you just drove */
+    ppadraft: [
+      {
+        prompt: "In the generated draft, what do the [IN BRACKETS] markers flag?",
+        opts: [
+          { t: "Every negotiable position — what's still yours to fill in or bargain", correct: true },
+          { t: "Clauses the law requires verbatim" },
+          { t: "Sections the generator failed to complete" },
+          { t: "Defined terms that have a glossary entry" }
+        ],
+        explain: "The tool marks every negotiable position [IN BRACKETS] so you can see exactly what's still open — party names and states, dates, the optional price floor, credit support, governing law. Nothing in brackets is settled."
+      },
+      {
+        prompt: "The output is labeled a \"practice template only.\" What does that mean for using it?",
+        opts: [
+          { t: "It's a learning draft and starting point — don't sign or rely on it without a qualified energy attorney", correct: true },
+          { t: "It's execution-ready the moment the brackets are filled" },
+          { t: "It's binding once both parties download the same copy" },
+          { t: "It can be filed with FERC as-is" }
+        ],
+        explain: "A real VPPA is a bespoke, heavily negotiated contract. The page warns you not to sign or rely on the generated draft for a real transaction without review by a qualified energy attorney — it's for learning and as a first draft."
+      },
+      {
+        prompt: "You pick an ISO/RTO and a strike price. Which draft term does the generator derive from your ISO choice?",
+        opts: [
+          { t: "The settlement point — the hub whose LMP the swap floats against", correct: true },
+          { t: "The strike price" },
+          { t: "The contract term in years" },
+          { t: "The buyer's state of formation" }
+        ],
+        explain: "Choosing the ISO auto-fills the settlement point — the hub where the Floating Price (LMP) is measured (ERCOT North, PJM Western, CAISO NP15, and so on). Strike, term, and party details are yours to set; the settlement point follows from the market the project lives in."
       }
     ],
 

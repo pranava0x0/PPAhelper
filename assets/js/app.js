@@ -386,7 +386,7 @@
      quiz.js reports checkpoint results via PPA.progress.quizResult; a
      near-perfect score (>= total - 1) auto-marks that course stop done. */
   var PROGRESS_KEY = "ppa-progress";
-  var QUIZ_TO_VIEW = { learn: "foundations", simulator: "simulator", drafting: "examples", projfin: "projfin", datacenter: "datacenter" };
+  var QUIZ_TO_VIEW = { learn: "foundations", simulator: "simulator", drafting: "examples", ppadraft: "ppadraft", projfin: "projfin", datacenter: "datacenter" };
 
   function loadProgress() {
     try {

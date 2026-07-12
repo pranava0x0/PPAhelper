@@ -6,7 +6,7 @@
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
   <link rel="preload" href="data/glossary.json" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260712b">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260712c">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -635,7 +635,7 @@
       </div>
       <div class="card" style="border-left:3px solid var(--accent);margin-top:12px">
         <p class="eyebrow">Two adjustments that ride on top of any structure</p>
-        <p style="margin:0 0 6px"><strong>Negative-price floor.</strong> Independent of the pricing structure, settle whether the <span class="gterm" data-term="Negative Pricing / Price Floor">Floating Price floors at $0</span>. Without it, every below-zero LMP interval makes the generator pay the buyer the strike <em>plus</em> the negative price — routine pain in ERCOT, CAISO, and SPP.</p>
+        <p style="margin:0 0 6px"><strong>Negative-price floor.</strong> Independent of the pricing structure, settle whether the <span class="gterm" data-term="Negative Pricing / Price Floor">Floating Price floors at $0</span>. Without it, every below-zero LMP interval makes the buyer pay the generator the strike <em>plus</em> the negative price — routine pain for the buyer in ERCOT, CAISO, and SPP.</p>
         <p style="margin:0"><strong>Time-of-delivery (ToD) weighting.</strong> An hourly variant that prices solar lower in saturated midday hours and higher at peak — closer to 24/7 matching. Real and increasingly common, but the clause-level mechanics are still a research gap here; see the <button class="nav-link-btn" data-view="coverage" style="background:none;border:none;color:var(--accent);font:inherit;cursor:pointer;padding:0;text-decoration:underline">coverage page</button>.</p>
       </div>
       <p class="src"><a href="https://www.wbcsd.org/wp-content/uploads/2023/10/Pricing-structures-for-corporate-renewable-PPAs.pdf">WBCSD — Pricing structures for corporate renewable PPAs</a> · <a href="https://www.eia.gov/todayinenergy/detail.php?id=6730">EIA — Negative wholesale prices</a></p>
@@ -986,6 +986,12 @@
           <pre class="draft-output" id="draft-output" aria-live="polite" aria-label="Generated PPA draft"></pre>
         </div>
       </div>
+
+      <hr class="rule">
+
+      <h2 id="checkpoint-ppadraft">Checkpoint</h2>
+      <p class="quiz-note">Three questions on the draft you just built. Two right marks this stop done.</p>
+      <div class="quiz" data-quiz="ppadraft"></div>
     </section>
 
     <!-- ============ SIMULATOR ============ -->
@@ -1091,7 +1097,7 @@
               </table>
             </div>
           </div>
-          <p class="hint">Settlement convention: each month, settlement = (LMP − strike) × volume. Positive means the generator pays the buyer; negative means the buyer pays the generator. The VPPA swap settles at the hub; the developer earns the node price for actual energy sales. Use the Basis risk slider above to see how a node-to-hub spread erodes the developer's realized price. Try setting a month's LMP <strong>negative</strong> (e.g. −$20): with no floor the generator pays the buyer the strike <em>plus</em> the negative price — which is why VPPAs often add a <span class="gterm" data-term="Negative Pricing / Price Floor">$0 price floor</span>. <a href="https://www.leveltenenergy.com/post/power-purchase-agreement-terms">LevelTen terms</a> · <a href="https://cityrenewables.org/vppa/research-and-build-team/understand-basis-risk/">Basis risk explainer</a></p>
+          <p class="hint">Settlement convention: each month, settlement = (LMP − strike) × volume. Positive means the generator pays the buyer; negative means the buyer pays the generator. The VPPA swap settles at the hub; the developer earns the node price for actual energy sales. Use the Basis risk slider above to see how a node-to-hub spread erodes the developer's realized price. Try setting a month's LMP <strong>negative</strong> (e.g. −$20): with no floor the buyer pays the generator the strike <em>plus</em> the negative price — which is why VPPAs often add a <span class="gterm" data-term="Negative Pricing / Price Floor">$0 price floor</span>. <a href="https://www.leveltenenergy.com/post/power-purchase-agreement-terms">LevelTen terms</a> · <a href="https://cityrenewables.org/vppa/research-and-build-team/understand-basis-risk/">Basis risk explainer</a></p>
         </div>
       </div>
 
@@ -1425,13 +1431,13 @@
     </div>
   </footer>
 
-  <script src="assets/js/draft.js?v=20260712b" defer></script>
-  <script src="assets/js/quiz-banks.js?v=20260712b" defer></script>
-  <script src="assets/js/quiz.js?v=20260712b" defer></script>
-  <script src="assets/js/settle-core.js?v=20260712b" defer></script>
-  <script src="assets/js/simulator.js?v=20260712b" defer></script>
-  <script src="assets/js/projfin.js?v=20260712b" defer></script>
-  <script src="assets/js/app.js?v=20260712b" defer></script>
-  <script src="assets/js/content.js?v=20260712b" defer></script>
+  <script src="assets/js/draft.js?v=20260712c" defer></script>
+  <script src="assets/js/quiz-banks.js?v=20260712c" defer></script>
+  <script src="assets/js/quiz.js?v=20260712c" defer></script>
+  <script src="assets/js/settle-core.js?v=20260712c" defer></script>
+  <script src="assets/js/simulator.js?v=20260712c" defer></script>
+  <script src="assets/js/projfin.js?v=20260712c" defer></script>
+  <script src="assets/js/app.js?v=20260712c" defer></script>
+  <script src="assets/js/content.js?v=20260712c" defer></script>
 </body>
 </html>
