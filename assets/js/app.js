@@ -355,8 +355,7 @@
     document.querySelectorAll("[data-level-only]").forEach(function (el) {
       el.classList.toggle("lvl-hidden", el.getAttribute("data-level-only") !== level);
     });
-    var nav = document.querySelector("nav.views");
-    if (nav) nav.classList.toggle("lvl2", parseInt(level, 10) >= 2); // hides course numbers for practitioners
+    updateLevelCounts(level);
     syncTocs();
   }
   function wireLevel() {
@@ -378,6 +377,75 @@
         applyLevel(b.dataset.setlevel);
         document.dispatchEvent(new CustomEvent("ppa:level"));
       });
+    });
+  }
+
+  /* Newcomer stubs: every hidden practitioner section (data-level="2" wrapping an
+     h2) leaves a slim in-place row so newcomers can see depth exists and unlock it.
+     Stubs carry data-level-only="1", so applyLevel swaps stub ↔ section for free. */
+  function buildLevelStubs() {
+    document.querySelectorAll('[data-level="2"]').forEach(function (sec) {
+      var h2 = sec.querySelector("h2");
+      if (!h2 || sec.previousElementSibling && sec.previousElementSibling.classList.contains("level-stub")) return;
+      var clone = h2.cloneNode(true);
+      clone.querySelectorAll(".pill").forEach(function (p) { p.remove(); });
+      var title = clone.textContent.replace(/\s+/g, " ").trim();
+      if (!title) return;
+
+      var stub = document.createElement("button");
+      stub.type = "button";
+      stub.className = "level-stub";
+      stub.setAttribute("data-level-only", "1");
+      var eyebrow = document.createElement("span");
+      eyebrow.className = "level-stub-eyebrow";
+      eyebrow.textContent = "Practitioner section";
+      var label = document.createElement("span");
+      label.className = "level-stub-title";
+      label.textContent = title;
+      var cta = document.createElement("span");
+      cta.className = "level-stub-cta";
+      cta.textContent = "Switch to Practitioner to read →";
+      stub.appendChild(eyebrow);
+      stub.appendChild(label);
+      stub.appendChild(cta);
+      stub.addEventListener("click", function () {
+        setLevelViaFilter("2");
+        var target = h2.id ? h2 : sec;
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            var smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            target.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+          });
+        });
+      });
+      sec.parentNode.insertBefore(stub, sec);
+    });
+  }
+
+  /* Partial-state count lines: where a list is level-filtered, show "N of M" at
+     Newcomer so the hidden depth is honest (CLAUDE.md empty≠broken). Each host is
+     a [data-level-count] element naming the container whose [data-level] children
+     it summarizes; the line clears at Practitioner (everything shown). */
+  function updateLevelCounts(level) {
+    document.querySelectorAll("[data-level-count]").forEach(function (host) {
+      var sel = host.getAttribute("data-level-count");
+      var scope = sel ? document.querySelector(sel) : null;
+      if (!scope) { host.textContent = ""; return; }
+      var noun = host.getAttribute("data-count-noun") || "items";
+      var items = scope.querySelectorAll("[data-level]");
+      var total = items.length;
+      var shown = 0;
+      items.forEach(function (it) {
+        var lv = parseInt(it.getAttribute("data-level"), 10) || 1;
+        if (lv <= parseInt(level, 10)) shown++;
+      });
+      if (total > 0 && shown < total) {
+        host.textContent = "Showing " + shown + " of " + total + " " + noun + " — the rest are Practitioner.";
+        host.hidden = false;
+      } else {
+        host.textContent = "";
+        host.hidden = true;
+      }
     });
   }
 
@@ -953,6 +1021,7 @@
     buildSearchButton();
     buildCourseFooters();
     buildPracIndex();
+    buildLevelStubs();
     wireLevel();
     wireChooser();
     refreshProgressUI();

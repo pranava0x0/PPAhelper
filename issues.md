@@ -24,8 +24,8 @@ Living audit trail. Each: date · area · description · root cause (**content b
 
 - **2026-07-12 · Styling · `.src::before` prefixes non-source captions with "Source: ".** *(code bug — Open)*
   The rule is unconditional, but `class="src" style="border:none"` is reused for plain captions (Data centers deals intro, structures intro, glossary empty state), which all render a spurious "Source: " prefix. Fix: split into `.src` (real attributions) and a plain caption class. Tracked in backlog.md; spun off as a standalone task chip.
-- **2026-07-12 · Level modes · Toggle changes the menu but content changes are invisible.** *(design gap — Open, planned)*
-  User-reported. Full audit + 8-item improvement plan in backlog.md → "Newcomer ↔ Practitioner consistency plan".
+- **2026-07-12 · Level modes · Toggle changes the menu but content changes are invisible.** *(design gap — mostly Fixed 2026-07-12)*
+  User-reported. Full audit + 8-item plan in backlog.md → "Newcomer ↔ Practitioner consistency plan". Pass C items 1–3 shipped (the three high-priority fixes): course numbers now unified across both levels; every hidden practitioner section leaves an in-place stub row at Newcomer that unlocks + scrolls to it; level-filtered lists (dc structures, Perspectives voices/resources, Drafting term sheets) show a live "Showing N of M" partial-state line. Remaining (items 4–7, medium/low): transient toggle-feedback status line, per-tab mode line, level labels on JSON-rendered voices/resources, chooser copy truthing.
 
 ## 2026-06-22 — "Commissioner Swett" expert review pass
 
