@@ -68,6 +68,8 @@ The `Workflow` tool (deep-research and friends) fans out dozens of subagents and
 
 **Reading the resource counts:** a run that finished faster and cheaper than a prior one usually *failed earlier* — it is not "more efficient." Always confirm the result object exists and is non-empty before trusting it. (Real case: a 7-min / 1.4M-token run died mid-verify and returned nothing; the 16-min / 3.5M-token run completed. The cheap one was the failure.)
 
+**Session-limit resilience (single delegated agents).** Scar tissue from 2026-07-12, when one Opus implementation task died four times (401, then three session-limit deaths) yet still shipped — full log and the 8-rule protocol in [docs/agent-runs.md](docs/agent-runs.md). The short version: keep the spec in a committed doc before spawning; verify a stated reset time against the wall clock before scheduling any wait (it may already have passed — or re-cap again after passing); canary a capped model with a trivial spawn before resuming real work; resume a dead agent (it keeps its exploration context) instead of respawning cold; after two capacity deaths on one model, reroute the task to a working model or do it inline; and trust only the transcript + `git status` for liveness — the task panel and failure notifications both misreported at least once (a "failed" agent kept editing for 13 more minutes and completed all of index.html's Pass A changes).
+
 ---
 
 ## Agent token discipline
@@ -215,6 +217,7 @@ This is a schema change. **Don't do this casually.** Steps:
 - **Don't add yourself as a co-author or leave a machine fingerprint.** Never include `Co-Authored-By:` for any AI agent in commit messages — not Claude, Copilot, or any other tool — and no "🤖 Generated with…" footers or tool-attribution lines in commits or PR descriptions. Commits are owned by the human who reviews and ships the work. Write the message in their plain voice (what + why), not the generic-assistant register. The `claude.coauthor` git config is set to `false` in these repos; honor it.
 - **Don't treat an empty result as a failure (or a failure as empty).** A legitimately empty collection renders as an explicit "none" state; an extraction/parse failure is a bug to log in `issues.md`. Conflating them hides coverage gaps. See [CLAUDE.md → Data handling](CLAUDE.md).
 - **Don't invent history for a missing file.** If a referenced `backlog.md` / `issues.md` / `security.md` isn't there, don't fabricate prior entries — create the file only when the task calls for it.
+- **Don't trust green tests to mean the energy is right.** The settlement engine and its unit tests can be correct while the *teaching copy* is uniformly wrong — a single domain misconception (e.g. "the generator pays during negative prices" when the convention says the buyer does) copy-pastes itself across quiz banks, the draft generator, and inline notes, and no test catches prose. Reconcile every who-pays-whom, who-bears-risk, and directional claim against `settle-core.js`'s stated convention (`settlement = (LMP − strike)`, positive ⇒ generator pays buyer, negative ⇒ buyer pays generator) and against the app's own control cases. When one claim is backwards, `grep` the whole repo for the same phrasing — the error is rarely alone. PR #5 review found the same flip in five places; the review bot caught one.
 
 ---
 

@@ -307,6 +307,10 @@ Violet/indigo gradient + centered hero + two buttons + same sans + emoji cards =
 
 ---
 
+### 12.9 A class with `::before` content is semantic — never reuse it for its font styles
+
+`.src::before { content: "Source: " }` made every `<p class="src" style="border:none">` caption on the site read "Source: Each is one answer…" (found 2026-07-12; fix tracked in backlog). If a class injects words, it encodes meaning — give look-alike captions their own class even when the typography is identical. Detector: check computed `::before` content on a sampled element in the live page; static review reads the class name and sees nothing wrong.
+
 ## 13. What's intentionally NOT in design
 
 Decisions made by *omission*:

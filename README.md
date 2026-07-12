@@ -22,6 +22,7 @@ No dependencies — plain Node, no install.
 node test/settle.test.js   # VPPA settlement math (11 cases)
 node test/data.test.js     # glossary single-source-of-truth integrity
 node test/ui.test.js       # index.html / app.js / glossary cross-file integrity
+node test/flow.test.js     # course flow: nav order, practitioner-index anchors, quiz banks
 ```
 
 ## Deploy to GitHub Pages
@@ -38,7 +39,8 @@ assets/css/styles.css    # copper-on-paper terminal/broadsheet identity (see doc
 assets/js/settle-core.js # pure VPPA settlement math (shared by browser + tests)
 assets/js/simulator.js   # simulator UI: scenarios, SVG chart, editable table
 assets/js/draft.js       # Draft-PPA generator: form inputs -> full VPPA template
-assets/js/quiz.js        # self-check quiz (settlement, basis, risk allocation)
+assets/js/quiz-banks.js  # checkpoint question banks, one per course stop (shared with tests)
+assets/js/quiz.js        # checkpoint engine: renders banks, reports scores to course progress
 assets/js/app.js         # view switching, theme toggle, glossary, tooltips, level filter
 assets/js/content.js     # renders Example PPAs + Data centers tabs from JSON
 data/glossary.json       # single source of truth for terms (feeds glossary + tooltips)
@@ -54,6 +56,6 @@ backlog.md               # deferred scope and feature ideas
 
 ## Status
 
-**Seven tabs live; four research passes done.** Foundations, Example PPAs (annotated), the settlement simulator, Data centers, Perspectives, the glossary (48 cited terms), and the coverage page. A two-mode experience toggle (Newcomer / Practitioner) serves both audiences: Newcomer hides practitioner depth, Practitioner hides the from-scratch on-ramp. Research has run in four passes — a fact-checked deep-research run, a government / national-lab pass (FERC, IRS, EPA, NREL, Berkeley Lab), a data-center deals pass, and an expert-perspectives pass (Jigar Shah, Tyler Norris, Lucia Tian, Rich Powell) — all tracked in the in-app **Coverage & sources** view and `docs/research-us-ppa.md`. Next phases (pricing payoff explorer, basis-risk visualizer, deal-lifecycle walkthrough, quizzes) are in `backlog.md`.
+**Seven tabs live; four research passes done.** Foundations, Example PPAs (annotated), the settlement simulator, Data centers, Perspectives, the glossary (48 cited terms), and the coverage page. A two-mode experience toggle (Newcomer / Practitioner) serves both audiences: Newcomer hides practitioner depth, Practitioner hides the from-scratch on-ramp and gains a jump index to the deep sections. The tabs form a seven-stop course — prev/next footers on every stop, a localStorage progress model with checkpoint quizzes that mark stops done, and a quick-nav palette (`/` or Ctrl-K) over every section and glossary term. Research has run in four passes — a fact-checked deep-research run, a government / national-lab pass (FERC, IRS, EPA, NREL, Berkeley Lab), a data-center deals pass, and an expert-perspectives pass (Jigar Shah, Tyler Norris, Lucia Tian, Rich Powell) — all tracked in the in-app **Coverage & sources** view and `docs/research-us-ppa.md`. Next phases (pricing payoff explorer, basis-risk visualizer, deal-lifecycle walkthrough) are in `backlog.md`.
 
 The settlement simulator and example term sheets illustrate contract mechanics; they are not market data, legal advice, or financial advice. Data-center deals are point-in-time as of mid-2026.

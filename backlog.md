@@ -219,9 +219,101 @@ Walking the tabs as a true beginner: the **mechanics are taught well, but the on
 - **Mobile nav scroll affordance.** Seven tabs scroll horizontally with no cue; add an edge fade / "more" indicator so off-screen tabs are discoverable. *Priority: medium*
 - **Automated link-checker** (105 external links). Add a CI script (e.g., lychee) or make target to catch dead links; log rot to `issues.md`. *Priority: medium*
 - **Render smoke test in CI.** `test/ui.test.js` now statically checks nav/view consistency, inline-term resolution, and the self-filtering guard; a true headless render check (each view paints, key nodes exist) is still worth adding. *Priority: medium*
-- **Asset cache-busting.** `index.html` references `app.js`/`styles.css` with no version, so a returning visitor can pair new HTML with stale cached JS/CSS — observed in testing, where a cached old `app.js` broke the level filter. Add `?v=` query strings or hashed filenames on deploy. *Priority: medium*
+- **Asset cache-busting.** ~~`index.html` references `app.js`/`styles.css` with no version~~ Done 2026-07-12: all assets carry `?v=` strings. Remaining lesson (bitten same day, see issues.md): bump the string once per **shipped state**, never reuse one across two change sets — same-string rewrites serve stale JS silently. A tiny pre-commit check (assets changed ⇒ version changed) would make this mechanical. *Priority: low (was medium)*
 - **Create `issues.md`.** No bug log exists yet (CLAUDE.md expects one). *Priority: low*
 - **Per-view `<title>` + Open Graph meta** for sharing/SEO. *Priority: low*
+- **`.src::before` prefixes non-source captions.** Every `<p class="src" style="border:none">` caption (deals table intro, structures intro, glossary empty state) renders with a spurious "Source: " prefix because `.src::before { content: "Source: " }` is unconditional. Split into `.src` (real source lines) and a plain caption class. Found 2026-07-12 during the course-flow pass. *Priority: low*
+
+## Newcomer ↔ Practitioner consistency plan (added 2026-07-12)
+
+User-reported after the course-flow pass: switching modes visibly changes the MENU
+(course numbers appear/disappear) while the CONTENT looks the same. Audited what the
+toggle actually does — level-gated blocks per tab, hidden at Newcomer → shown at
+Practitioner:
+
+| Tab | Gated blocks | Hidden at Newcomer | What actually changes on toggle |
+|---|---|---|---|
+| Learn | 7 | 6 | on-ramp swaps out; 5 deep sections + practitioner index appear |
+| Settlement simulator | 0 | 0 | nothing |
+| Drafting | 9 | 8 | 4 deep sections + extra term-sheet pills appear |
+| Draft PPA | 0 | 0 | nothing |
+| Project finance | 2 | 2 | tax-equity + merchant-tail sections appear |
+| Data centers | 10 | 6 | 4 structures shown → 10 |
+| Perspectives | 12 | 7 | extra voices + resources appear |
+| Glossary / Coverage | 0 | 0 | nothing |
+
+### Diagnosis — four distinct inconsistencies
+
+1. **Numbering disagrees with itself.** Practitioner hides the nav course numbers
+   (`nav.views.lvl2 .course-num`), but course footers still say "Mark stop N of 7",
+   the masthead chip still says "N/7", and the palette says "Stop N of 7". The course
+   order is canonical for both levels (the spec's own premise), so hiding numbers for
+   experts contradicts every other numbered surface. This is the "menu looks
+   different" half of the report.
+2. **Revealed content is indistinguishable from always-on content.** Practitioner
+   sections use the same cards and h2s as everything else; the only marker is a small
+   "Practitioner" pill — visible only AFTER switching, exactly when it carries no
+   information. Toggling produces no visible change unless a gated block happens to
+   be in the viewport. This is the "content looks the same" half.
+3. **Newcomers can't tell depth exists.** Hidden practitioner blocks vanish without a
+   trace: no stub, no count, no "6 more structures in Practitioner". Same for the
+   gated term sheets and Perspectives voices/resources. Discovering the deeper half
+   of the site depends entirely on trying the masthead toggle.
+4. **Three tabs don't participate at all.** Simulator, Draft PPA, and the reference
+   tabs have zero gated content — there the toggle changes only the menu, the purest
+   form of the reported inconsistency. The chooser's promise ("the on-ramp hides and
+   a jump index appears") is only true on Learn.
+
+### Plan (Pass C candidate, in order)
+
+1. **Unify numbering — keep course numbers in both modes.** Delete the
+   `nav.views.lvl2 .course-num { display:none }` rule and the `applyLevel` class
+   toggle that drives it; numbers + done ticks then agree with footers, chip, and
+   palette in both modes. Smallest change that removes the reported mismatch.
+   Acceptance: toggling level changes nothing in the nav; flow.test asserts the
+   hiding rule is gone. *Effort: XS. Priority: high.*
+2. **Stub rows for hidden practitioner sections.** At Newcomer, each hidden
+   `data-level="2"` section with an h2 renders one slim collapsed row in place:
+   "Basis risk — practitioner section · switch to Practitioner to read" (button =
+   `PPA.setLevel("2")` + scroll back to that anchor). Generate in app.js from the
+   gated h2s themselves (the PRAC_INDEX anchors already cover most). Depth becomes
+   discoverable exactly where it lives, and toggling now visibly swaps stubs ↔
+   sections in place. No new colors; reuse chip/eyebrow idiom. Acceptance: every
+   gated-h2 section shows a stub at Newcomer; clicking one lands on the revealed
+   section at Practitioner. *Effort: M. Priority: high.*
+3. **Count lines where lists are level-filtered.** Data centers: "Showing 4 of 10
+   structures — the rest are Practitioner" under the structures intro (content.js
+   knows both counts; explicit partial-state per CLAUDE.md's empty≠broken rule).
+   Same one-liner for Perspectives voices/resources and the Drafting term-sheet
+   pills. Acceptance: counts update live on toggle; the line disappears at
+   Practitioner. *Effort: S. Priority: high.*
+4. **Toggle feedback at the point of action.** On level change, a transient
+   aria-live status line by the masthead controls: "Practitioner — 23 deeper blocks
+   shown across 5 tabs" / "Newcomer — on-ramp restored, deep sections stubbed",
+   computed from the same audit that produced the table above. Acceptance: visible
+   and screen-reader-announced on every toggle; no layout shift. *Effort: S.
+   Priority: medium.*
+5. **Per-tab mode line.** One line under each h1 stating the tab's relationship to
+   the toggle: "5 practitioner sections on this tab" (shown or stubbed) vs "This tab
+   is the same at both levels" (Simulator, Draft PPA, reference tabs). Kills the
+   silent-tab problem honestly — by labeling, not padding. Driven from one audit
+   function, not hand-written per tab. *Effort: S–M. Priority: medium.*
+6. **Level labels on rendered (JSON) content.** Static gated h2s all carry the
+   "Practitioner" pill already, and dc structure cards label Newcomer/Practitioner
+   per card — but the gated Perspectives voices/resources and Drafting term-sheet
+   pills carry no label at all. Bring them up to the dc-structures standard.
+   *Effort: S. Priority: low.*
+7. **Chooser copy truthing.** Once 2–5 land, reword the Practitioner option to match
+   reality beyond Learn ("deep sections unlock across five tabs — index on Learn"),
+   or generate the sentence from the audit counts. *Effort: XS. Priority: low.*
+8. **Tests ride along.** flow.test.js: assert the number-hiding rule is gone (1);
+   every gated h2 has a stub marker at Newcomer (2); count-line hooks exist (3);
+   every gated h2 carries a pill (6). *Effort: S, per item.*
+
+Deliberately NOT in this plan: inventing practitioner content for Simulator/Draft PPA
+just so the toggle "does something" there — the honest fix is labeling (item 5). If
+real depth is wanted later, the natural candidates already exist above: the pricing
+payoff explorer (discount-to-market, collars) and a basis-risk visualizer.
 
 ## Gap research
 
