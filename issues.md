@@ -2,6 +2,26 @@
 
 Living audit trail. Each: date · area · description · root cause (**content bug** / **code bug** / **test bug**) · status.
 
+## 2026-07-12 — masthead/scroll + Pass C review pass
+
+Energy-expert + code review of the mode-consistency and masthead/scroll UX work.
+
+**Energy outcome: no domain findings.** These branches touch UI chrome only (nav numbering,
+level stubs, count lines, masthead layout, back-to-top) — no settlement/PPA content changed.
+Ran the directional sweep (per the ppa-expert-review skill): every who-pays-whom claim still
+reconciles with the settle-core convention; the five negative-price fixes from the PR #5 pass
+hold and remain internally consistent. Nothing to fix on the domain side.
+
+### Fixed (a11y nits from the code review)
+
+- **2026-07-12 · A11y · Floating back-to-top FAB was below the 44px touch target.** *(code bug — Fixed)*
+  `.to-top` measured 36px tall. It's a standalone floating action button (not a dense-toolbar
+  control), so it should meet the 44px minimum. Added `min-height: 44px` + centering; now 44px.
+  *Fix: assets/css/styles.css.*
+- **2026-07-12 · A11y · "Resume →" chip read the bare arrow to screen readers.** *(code bug — Fixed)*
+  The resume chip's only text was "Resume →", so a screen reader announced "Resume right-arrow".
+  Added an explicit `aria-label` ("Resume the course — N of 7 stops done"). *Fix: assets/js/app.js.*
+
 ## 2026-07-12 — PR #5 energy-expert review pass
 
 ### Fixed

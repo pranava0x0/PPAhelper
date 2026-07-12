@@ -699,6 +699,7 @@
     if (chip) {
       chip.hidden = count === 0;
       chip.textContent = "Resume →";
+      chip.setAttribute("aria-label", "Resume the course — " + count + " of " + COURSE.length + " stops done");
       chip.title = count + " of " + COURSE.length + " course stops done — click to resume the next one";
     }
     var next = progress.firstUnfinished();
