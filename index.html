@@ -6,7 +6,7 @@
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
   <link rel="preload" href="data/glossary.json" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260705b">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260712">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -26,14 +26,15 @@
     </div>
     <nav class="views" role="tablist" aria-label="Sections">
       <button class="nav-btn" role="tab" id="tab-foundations" aria-controls="view-foundations" aria-selected="true" data-view="foundations">Learn</button>
+      <button class="nav-btn" role="tab" id="tab-simulator" aria-controls="view-simulator" aria-selected="false" data-view="simulator">Settlement simulator</button>
       <button class="nav-btn" role="tab" id="tab-examples" aria-controls="view-examples" aria-selected="false" data-view="examples">Drafting</button>
       <button class="nav-btn" role="tab" id="tab-ppadraft" aria-controls="view-ppadraft" aria-selected="false" data-view="ppadraft">Draft PPA</button>
-      <button class="nav-btn" role="tab" id="tab-simulator" aria-controls="view-simulator" aria-selected="false" data-view="simulator">Settlement simulator</button>
       <button class="nav-btn" role="tab" id="tab-projfin" aria-controls="view-projfin" aria-selected="false" data-view="projfin">Project finance</button>
       <button class="nav-btn" role="tab" id="tab-datacenter" aria-controls="view-datacenter" aria-selected="false" data-view="datacenter">Data centers</button>
       <button class="nav-btn" role="tab" id="tab-perspectives" aria-controls="view-perspectives" aria-selected="false" data-view="perspectives">Perspectives</button>
-      <button class="nav-btn" role="tab" id="tab-glossary" aria-controls="view-glossary" aria-selected="false" data-view="glossary">Glossary</button>
-      <button class="nav-btn" role="tab" id="tab-coverage" aria-controls="view-coverage" aria-selected="false" data-view="coverage">Coverage &amp; sources</button>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <button class="nav-btn nav-ref" role="tab" id="tab-glossary" aria-controls="view-glossary" aria-selected="false" data-view="glossary">Glossary</button>
+      <button class="nav-btn nav-ref" role="tab" id="tab-coverage" aria-controls="view-coverage" aria-selected="false" data-view="coverage">Coverage &amp; sources</button>
     </nav>
   </header>
 
@@ -43,14 +44,23 @@
     <section class="view" id="view-foundations" role="tabpanel" aria-labelledby="tab-foundations">
       <p class="eyebrow">Start here · your learning path</p>
       <h1>Power purchase agreements, from scratch</h1>
-      <p class="lede">A PPA is a long-term contract to buy electricity — and its clean-energy attributes — from a generator. This page takes you from "I know nothing about power" to understanding how a PPA works, in four steps.</p>
+      <p class="lede">A PPA is a long-term contract to buy electricity — and its clean-energy attributes — from a generator. This page takes you from "I know nothing about power" to a deal's first settlement — step by step.</p>
 
-      <ol class="path" aria-label="Learning path">
-        <li data-level-only="1"><button type="button" class="path-step" data-scroll-to="stage-1"><span class="path-n">1</span> <span class="path-t">Electricity from scratch</span> <span class="path-lvl">know nothing</span></button></li>
-        <li><button type="button" class="path-step" data-scroll-to="stage-2"><span class="path-n">2</span> <span class="path-t">How power is bought &amp; sold</span> <span class="path-lvl">know a little</span></button></li>
-        <li><button type="button" class="path-step" data-scroll-to="stage-3"><span class="path-n">3</span> <span class="path-t">Why PPAs exist</span> <span class="path-lvl">the point</span></button></li>
-        <li><button type="button" class="path-step" data-scroll-to="stage-4"><span class="path-n">4</span> <span class="path-t">How a PPA works</span> <span class="path-lvl">the mechanics</span></button></li>
-      </ol>
+      <div id="path-chooser" class="chooser" hidden>
+        <div class="chooser-choices">
+          <button type="button" class="chooser-opt" id="chooser-new">
+            <strong>New to power markets?</strong>
+            <span>Follow the course in order — start at Electricity from scratch.</span>
+          </button>
+          <button type="button" class="chooser-opt" id="chooser-pro">
+            <strong>Work in energy already?</strong>
+            <span>Switch to Practitioner: the on-ramp hides and a jump index to the deep sections appears.</span>
+          </button>
+        </div>
+        <button type="button" class="chooser-dismiss" aria-label="Dismiss">&times;</button>
+      </div>
+
+      <div id="prac-index" data-level="2"></div>
 
       <hr class="rule">
 
@@ -163,7 +173,7 @@
       <div data-level="2">
         <hr class="rule">
 
-        <h2>Basis risk — the #1 structural risk to understand <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <h2 id="basis-risk">Basis risk — the #1 structural risk to understand <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
         <p>Wholesale prices are set at thousands of <span class="gterm" data-term="Node">nodes</span> (where generators connect) and averaged into less-volatile regional <span class="gterm" data-term="Hub">hubs</span>. Most corporate buyers settle the VPPA at the hub. But the generator earns its local node price — so the developer absorbs the node-to-hub gap. That gap is <span class="gterm" data-term="Basis Risk">basis risk</span>, and it can be brutal.</p>
         <div class="card" style="border-left:3px solid var(--warn)">
           <p class="eyebrow">The canonical horror story</p>
@@ -175,7 +185,7 @@
       <div data-level="2">
         <hr class="rule">
 
-        <h2>The US wholesale markets — ISO/RTO by ISO/RTO <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <h2 id="iso-rto-markets">The US wholesale markets — ISO/RTO by ISO/RTO <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
         <p>Where a project sits decides almost everything downstream: whether there's a <span class="gterm" data-term="Capacity Market">capacity market</span>, which <span class="gterm" data-term="Hub">hub</span> you settle a VPPA against, how you can hedge <span class="gterm" data-term="Basis Risk">basis</span>, and even whether <span class="gterm" data-term="FERC (Federal Energy Regulatory Commission)">FERC</span> has jurisdiction. Knowing these cold is the single most asked-about topic in practitioner interviews.</p>
         <div class="table-wrap">
           <table class="coverage" style="width:100%;table-layout:auto">
@@ -251,7 +261,7 @@
       <div data-level="2">
         <hr class="rule">
 
-        <h2>From REC to carbon claim — the Scope 2 chain <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <h2 id="scope-2-chain">From REC to carbon claim — the Scope 2 chain <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
         <p>A REC is not the goal — it's the instrument. The reason a corporate buyer signs a VPPA is to move the number in a carbon report. Here's how the attribute actually lands in the accounting.</p>
         <div class="grid cols-3">
           <div class="card">
@@ -277,7 +287,7 @@
       <div data-level="2">
         <hr class="rule">
 
-        <h2>Who's who — the parties behind every deal <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <h2 id="whos-who">Who's who — the parties behind every deal <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
         <p>A utility-scale PPA involves at least six parties, each with different interests, timelines, and risk appetites. Knowing who each one is changes how you read every clause.</p>
       <div class="grid cols-3">
         <div class="card">
@@ -332,7 +342,7 @@
       <div data-level="2">
         <hr class="rule">
 
-        <h2>What "bankable" actually means <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <h2 id="bankable">What "bankable" actually means <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
         <p>The site says "bankable" a lot. Here's the machinery behind the word. A utility-scale project is built with <span class="gterm" data-term="Non-Recourse Project Finance">non-recourse project finance</span> — the lenders can look only to the project's own cash flow, not the developer's balance sheet. So the PPA <em>is</em> the collateral, and every clause gets read by someone deciding how much debt it can carry.</p>
         <div class="grid cols-3">
           <div class="card">
@@ -577,7 +587,7 @@
 
       <hr class="rule">
 
-      <h2>Pricing structures — and who bears price risk</h2>
+      <h2 id="pricing-structures">Pricing structures — and who bears price risk</h2>
       <p>The <span class="gterm" data-term="Strike Price (Fixed Price)">strike</span> is one number, but how it moves over the term is a negotiated choice — and each choice hands the electricity-price risk to a different party. These are the five structures you'll see, ordered roughly from most to least price risk on the buyer.</p>
       <div class="table-wrap">
         <table class="coverage" style="width:100%;table-layout:auto">
@@ -627,7 +637,7 @@
       <div data-level="2">
         <hr class="rule">
 
-        <h2>Risk allocation — who bears what <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <h2 id="risk-allocation">Risk allocation — who bears what <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
         <p>Every clause assigns a risk to one party. These are the eight risks that shape every deal, and where buyers and sellers typically start their negotiations. Knowing this table is what Google, Amazon, and Meta interviewers test.</p>
         <div class="table-wrap">
           <table class="coverage" style="width:100%;table-layout:auto">
@@ -749,7 +759,7 @@
       <div data-level="2">
         <hr class="rule">
 
-        <h2>Deal lifecycle — origination to operations <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <h2 id="deal-lifecycle">Deal lifecycle — origination to operations <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
         <p>A utility-scale PPA takes roughly 3–7 years from first conversation to first MWh of settlement — and longer when the interconnection queue binds (see the bottleneck note below). Here are the six stages every deal goes through, with who's involved and typical timelines. The stages overlap: a developer clears conditions precedent while construction is already underway.</p>
       <ol class="steps">
         <li>
@@ -800,7 +810,7 @@
       <div data-level="2">
         <hr class="rule">
 
-        <h2>Getting to signature — who approves, and what makes it binding <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <h2 id="getting-to-signature">Getting to signature — who approves, and what makes it binding <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
         <p class="lede">A negotiated PPA isn't a deal until the right people on both sides say yes — and the approval machine looks completely different depending on who the buyer is. This is the part of the lifecycle that stage 4 above compresses into one line.</p>
 
         <div class="grid cols-2">
@@ -838,7 +848,7 @@
 
       <hr class="rule">
 
-      <h2>Annotated examples</h2>
+      <h2 id="annotated-examples">Annotated examples</h2>
       <p class="lede">Pick a term sheet, then select any clause for what it means, why it matters, and the glossary terms behind it. Illustrative composites — not a specific contract.</p>
       <div class="example-pills" id="example-pills" role="tablist" aria-label="Choose an example"></div>
       <p id="example-summary" class="example-summary"></p>
@@ -1087,7 +1097,7 @@
       <h1>Project-finance workbench</h1>
       <p class="lede">University finance courses don't stop at "a PPA must be bankable" — they make you size the debt and solve for the equity return. This does the same: set the project and the contract, and watch how much debt the cash flow supports at your target DSCR, how the capital stack splits, and what the equity investor earns. A teaching model, not investment advice.</p>
 
-      <div class="sim-layout">
+      <div class="sim-layout" id="pf-workbench">
         <form class="controls" id="pf-controls" aria-label="Project finance inputs">
           <fieldset>
             <legend>Project preset</legend>
@@ -1209,7 +1219,7 @@
 
       <div data-level="2">
         <hr class="rule">
-        <h2>Tax equity &amp; the partnership flip <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <h2 id="tax-equity-flip">Tax equity &amp; the partnership flip <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
         <p>The calculator's two-layer stack is a simplification. In a real US renewable deal a third layer sits between debt and sponsor equity: <strong>tax equity</strong> — a bank or corporate with enough tax liability to actually use the <span class="gterm" data-term="Investment Tax Credit (ITC)">ITC</span> or <span class="gterm" data-term="Production Tax Credit (PTC)">PTC</span> the project generates. The developer usually can't. The <span class="gterm" data-term="Partnership Flip">partnership flip</span> is how they share it.</p>
         <div class="grid cols-2">
           <div class="card">
@@ -1263,7 +1273,7 @@
       <p class="src" style="border:none">Each is one answer to the same question: how do you get large, firm, often carbon-free power faster than the grid can build it? Select to expand.</p>
       <div id="dc-structures"></div>
 
-      <h2 style="margin-top:30px">Recent deals</h2>
+      <h2 style="margin-top:30px" id="recent-deals">Recent deals</h2>
       <p class="src" style="border:none">As of mid-2026 — worked examples of the structures above, not a live deal tracker. Each links to a source.</p>
       <div class="dc-filter" id="dc-filter" role="group" aria-label="Filter deals by buyer type"></div>
       <div class="table-wrap"><table class="settle dc-table" id="dc-deals"></table></div>
@@ -1392,12 +1402,12 @@
     </div>
   </footer>
 
-  <script src="assets/js/draft.js?v=20260705b" defer></script>
-  <script src="assets/js/quiz.js?v=20260705b" defer></script>
-  <script src="assets/js/settle-core.js?v=20260705b" defer></script>
-  <script src="assets/js/simulator.js?v=20260705b" defer></script>
-  <script src="assets/js/projfin.js?v=20260705b" defer></script>
-  <script src="assets/js/app.js?v=20260705b" defer></script>
-  <script src="assets/js/content.js?v=20260705b" defer></script>
+  <script src="assets/js/draft.js?v=20260712" defer></script>
+  <script src="assets/js/quiz.js?v=20260712" defer></script>
+  <script src="assets/js/settle-core.js?v=20260712" defer></script>
+  <script src="assets/js/simulator.js?v=20260712" defer></script>
+  <script src="assets/js/projfin.js?v=20260712" defer></script>
+  <script src="assets/js/app.js?v=20260712" defer></script>
+  <script src="assets/js/content.js?v=20260712" defer></script>
 </body>
 </html>

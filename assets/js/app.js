@@ -2,7 +2,38 @@
 (function () {
   "use strict";
 
-  var VIEWS = ["foundations", "examples", "ppadraft", "simulator", "projfin", "datacenter", "perspectives", "glossary", "coverage"];
+  var VIEWS = ["foundations", "simulator", "examples", "ppadraft", "projfin", "datacenter", "perspectives", "glossary", "coverage"];
+
+  /* The course spine: one canonical order, shared by the nav, the footers,
+     the progress chip, and the practitioner index. Glossary + Coverage are
+     reference views, not course stops. */
+  var COURSE = [
+    { view: "foundations",  label: "Learn",                teaser: "PPAs from scratch: the grid, the market, the settlement mechanic." },
+    { view: "simulator",    label: "Settlement simulator", teaser: "Feel the cash flows: strike vs LMP, month by month." },
+    { view: "examples",     label: "Drafting",             teaser: "How real contracts encode it: clauses, pricing structures, risk." },
+    { view: "ppadraft",     label: "Draft PPA",            teaser: "Generate a full VPPA draft from terms you choose." },
+    { view: "projfin",      label: "Project finance",      teaser: "Size the debt, see the equity return — the number the deal is really about." },
+    { view: "datacenter",   label: "Data centers",         teaser: "The demand shock reshaping who signs PPAs and why." },
+    { view: "perspectives", label: "Perspectives",         teaser: "What the people who do this all day disagree about." }
+  ];
+
+  /* Deep sections scattered across tabs — the expert fast lane (level 2 only).
+     Targets are stable h2 ids in index.html; test/flow.test.js checks they exist. */
+  var PRAC_INDEX = [
+    { view: "foundations", target: "basis-risk",           label: "Basis risk" },
+    { view: "foundations", target: "iso-rto-markets",      label: "ISO/RTO market-by-market" },
+    { view: "foundations", target: "scope-2-chain",        label: "REC → Scope 2 chain" },
+    { view: "foundations", target: "whos-who",             label: "Who's who behind a deal" },
+    { view: "foundations", target: "bankable",             label: "What bankable means" },
+    { view: "examples",    target: "pricing-structures",   label: "Pricing structures" },
+    { view: "examples",    target: "risk-allocation",      label: "Risk allocation matrix" },
+    { view: "examples",    target: "deal-lifecycle",       label: "Deal lifecycle" },
+    { view: "examples",    target: "getting-to-signature", label: "Getting to signature" },
+    { view: "examples",    target: "annotated-examples",   label: "Annotated real PPAs (SEC-filed)" },
+    { view: "projfin",     target: "pf-workbench",         label: "Debt-sizing workbench" },
+    { view: "projfin",     target: "tax-equity-flip",      label: "Tax equity & the flip" },
+    { view: "datacenter",  target: "recent-deals",         label: "Hyperscaler deals table" }
+  ];
 
   /* ---------- view switcher ---------- */
   function showView(name, moveFocus) {
@@ -22,6 +53,7 @@
       var h1 = panel && panel.querySelector("h1");
       if (h1) { h1.setAttribute("tabindex", "-1"); h1.focus(); }
     }
+    updateSpy(name);
   }
 
   function wireNav() {
@@ -323,6 +355,8 @@
     document.querySelectorAll("[data-level-only]").forEach(function (el) {
       el.classList.toggle("lvl-hidden", el.getAttribute("data-level-only") !== level);
     });
+    var nav = document.querySelector("nav.views");
+    if (nav) nav.classList.toggle("lvl2", parseInt(level, 10) >= 2); // hides course numbers for practitioners
     syncTocs();
   }
   function wireLevel() {
@@ -347,12 +381,312 @@
     });
   }
 
-  // exposed for the content renderers (assets/js/content.js)
+  /* ---------- course progress (localStorage) ----------
+     { done: { viewName: true }, quiz: { bankId: { best, total } } }
+     quiz.js reports checkpoint results via PPA.progress.quizResult; a
+     near-perfect score (>= total - 1) auto-marks that course stop done. */
+  var PROGRESS_KEY = "ppa-progress";
+  var QUIZ_TO_VIEW = { learn: "foundations", simulator: "simulator", drafting: "examples", projfin: "projfin", datacenter: "datacenter" };
+
+  function loadProgress() {
+    try {
+      var p = JSON.parse(localStorage.getItem(PROGRESS_KEY));
+      if (p && typeof p === "object") return { done: p.done || {}, quiz: p.quiz || {} };
+    } catch (e) {}
+    return { done: {}, quiz: {} };
+  }
+  var progressState = loadProgress();
+  function saveProgress() {
+    try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(progressState)); } catch (e) {}
+  }
+
+  var progress = {
+    isDone: function (view) { return !!progressState.done[view]; },
+    markDone: function (view, on) {
+      if (on) progressState.done[view] = true;
+      else delete progressState.done[view];
+      saveProgress();
+      refreshProgressUI();
+    },
+    reset: function () {
+      progressState = { done: {}, quiz: {} };
+      saveProgress();
+      refreshProgressUI();
+    },
+    quizResult: function (bankId, score, total) {
+      var prev = progressState.quiz[bankId];
+      if (!prev || score > prev.best) progressState.quiz[bankId] = { best: score, total: total };
+      var view = QUIZ_TO_VIEW[bankId];
+      if (view && total > 0 && score >= total - 1) progressState.done[view] = true;
+      saveProgress();
+      refreshProgressUI();
+    },
+    firstUnfinished: function () {
+      for (var i = 0; i < COURSE.length; i++) {
+        if (!progressState.done[COURSE[i].view]) return COURSE[i];
+      }
+      return COURSE[0];
+    },
+    doneCount: function () {
+      return COURSE.filter(function (s) { return progressState.done[s.view]; }).length;
+    }
+  };
+
+  /* ---------- course chrome: nav ticks + numbers, progress chip ---------- */
+  function decorateNav() {
+    COURSE.forEach(function (stop, i) {
+      var tab = document.getElementById("tab-" + stop.view);
+      if (!tab) return;
+      var num = document.createElement("span");
+      num.className = "course-num";
+      num.setAttribute("aria-hidden", "true");
+      num.textContent = String(i + 1);
+      tab.insertBefore(num, tab.firstChild);
+      var tick = document.createElement("span");
+      tick.className = "tick";
+      tick.setAttribute("aria-hidden", "true");
+      tick.textContent = "✓";
+      tab.appendChild(tick);
+      var sr = document.createElement("span");
+      sr.className = "visually-hidden tick-sr";
+      tab.appendChild(sr);
+    });
+  }
+
+  function buildProgressChip() {
+    var controls = document.querySelector(".masthead-controls");
+    if (!controls) return;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.id = "progress-chip";
+    b.className = "progress-chip";
+    b.hidden = true;
+    b.addEventListener("click", function () { showView(progress.firstUnfinished().view, true); });
+    controls.insertBefore(b, controls.firstChild);
+  }
+
+  /* ---------- course footers: prev / mark done / next on every stop ---------- */
+  function buildCourseFooters() {
+    COURSE.forEach(function (stop, i) {
+      var view = document.getElementById("view-" + stop.view);
+      if (!view) return;
+      var foot = document.createElement("div");
+      foot.className = "course-footer";
+
+      var prev = document.createElement("div");
+      prev.className = "cf-prev";
+      if (i > 0) {
+        var pb = document.createElement("button");
+        pb.type = "button";
+        pb.className = "cf-prev-btn";
+        pb.setAttribute("data-view", COURSE[i - 1].view);
+        var pArrow = document.createElement("span");
+        pArrow.setAttribute("aria-hidden", "true");
+        pArrow.textContent = "←";
+        pb.appendChild(pArrow);
+        pb.appendChild(document.createTextNode(" Prev · " + COURSE[i - 1].label));
+        prev.appendChild(pb);
+      }
+
+      var mid = document.createElement("div");
+      mid.className = "cf-mid";
+      var mark = document.createElement("button");
+      mark.type = "button";
+      mark.className = "cf-mark";
+      mark.setAttribute("data-markview", stop.view);
+      mark.addEventListener("click", function () { progress.markDone(stop.view, !progress.isDone(stop.view)); });
+      mid.appendChild(mark);
+      var reset = document.createElement("button");
+      reset.type = "button";
+      reset.className = "cf-reset";
+      reset.textContent = "reset course progress";
+      reset.hidden = true;
+      reset.addEventListener("click", function () { progress.reset(); });
+      mid.appendChild(reset);
+
+      var next = document.createElement("div");
+      next.className = "cf-next";
+      var nb = document.createElement("button");
+      nb.type = "button";
+      nb.className = "cf-next-btn";
+      var nLabel = document.createElement("span");
+      nLabel.className = "cf-next-label";
+      var nTeaser = document.createElement("span");
+      nTeaser.className = "cf-next-teaser";
+      if (i < COURSE.length - 1) {
+        nb.setAttribute("data-view", COURSE[i + 1].view);
+        nLabel.textContent = "Next: " + COURSE[i + 1].label + " ";
+        nTeaser.textContent = COURSE[i + 1].teaser;
+      } else {
+        nb.setAttribute("data-view", "glossary");
+        nLabel.textContent = "End of the course ";
+        nTeaser.textContent = "Browse the Glossary or check Coverage & sources.";
+      }
+      var nArrow = document.createElement("span");
+      nArrow.setAttribute("aria-hidden", "true");
+      nArrow.textContent = "→";
+      nLabel.appendChild(nArrow);
+      nb.appendChild(nLabel);
+      nb.appendChild(nTeaser);
+      next.appendChild(nb);
+
+      foot.appendChild(prev);
+      foot.appendChild(mid);
+      foot.appendChild(next);
+      view.appendChild(foot);
+    });
+
+    // reference views get a slim resume-the-course footer instead
+    ["glossary", "coverage"].forEach(function (name) {
+      var view = document.getElementById("view-" + name);
+      if (!view) return;
+      var foot = document.createElement("div");
+      foot.className = "ref-footer";
+      var label = document.createElement("span");
+      label.className = "eyebrow";
+      label.textContent = "Reference";
+      var rb = document.createElement("button");
+      rb.type = "button";
+      rb.className = "ref-resume";
+      rb.setAttribute("data-view", COURSE[0].view);
+      foot.appendChild(label);
+      foot.appendChild(rb);
+      view.appendChild(foot);
+    });
+  }
+
+  function refreshProgressUI() {
+    var count = progress.doneCount();
+    COURSE.forEach(function (stop, i) {
+      var done = progress.isDone(stop.view);
+      var tab = document.getElementById("tab-" + stop.view);
+      if (tab) {
+        tab.classList.toggle("done", done);
+        var sr = tab.querySelector(".tick-sr");
+        if (sr) sr.textContent = done ? " (done)" : "";
+      }
+      var mark = document.querySelector('.cf-mark[data-markview="' + stop.view + '"]');
+      if (mark) {
+        mark.setAttribute("aria-pressed", done ? "true" : "false");
+        mark.textContent = done ? "Done ✓ · mark unread" : "Mark stop " + (i + 1) + " of " + COURSE.length + " done";
+      }
+    });
+    document.querySelectorAll(".cf-reset").forEach(function (b) { b.hidden = count === 0; });
+    var chip = document.getElementById("progress-chip");
+    if (chip) {
+      chip.hidden = count === 0;
+      chip.textContent = count + "/" + COURSE.length;
+      chip.title = count + " of " + COURSE.length + " course stops done — click to resume";
+    }
+    var next = progress.firstUnfinished();
+    var stopNo = COURSE.indexOf(next) + 1;
+    document.querySelectorAll(".ref-resume").forEach(function (b) {
+      b.setAttribute("data-view", next.view);
+      b.textContent = "Resume the course at stop " + stopNo + ": " + next.label + " →";
+    });
+  }
+
+  /* ---------- first-visit path chooser ---------- */
+  function scrollToId(id) {
+    requestAnimationFrame(function () {
+      var t = document.getElementById(id);
+      if (!t) return;
+      var smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      t.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+    });
+  }
+
+  function wireChooser() {
+    var box = document.getElementById("path-chooser");
+    if (!box) return;
+    var seen = null;
+    try { seen = localStorage.getItem("ppa-chooser-done"); } catch (e) {}
+    if (seen || progress.doneCount() > 0) return;
+    box.hidden = false;
+    function dismiss() {
+      box.hidden = true;
+      try { localStorage.setItem("ppa-chooser-done", "1"); } catch (e) {}
+    }
+    function clickLevel(level) {
+      var b = document.querySelector('#level-filter button[data-setlevel="' + level + '"]');
+      if (b) b.click(); // reuse the filter's own click path so aria state stays in sync
+    }
+    document.getElementById("chooser-new").addEventListener("click", function () {
+      clickLevel("1"); dismiss(); scrollToId("stage-1");
+    });
+    document.getElementById("chooser-pro").addEventListener("click", function () {
+      clickLevel("2"); dismiss(); scrollToId("prac-index");
+    });
+    box.querySelector(".chooser-dismiss").addEventListener("click", dismiss);
+  }
+
+  /* ---------- practitioner index (expert fast lane, level 2 only) ---------- */
+  function buildPracIndex() {
+    var box = document.getElementById("prac-index");
+    if (!box) return;
+    var eyebrow = document.createElement("p");
+    eyebrow.className = "eyebrow";
+    eyebrow.textContent = "Practitioner index · jump straight to the deep sections";
+    box.appendChild(eyebrow);
+    var groups = {};
+    var wrap = document.createElement("div");
+    wrap.className = "prac-groups";
+    PRAC_INDEX.forEach(function (item) {
+      if (!groups[item.view]) {
+        var g = document.createElement("div");
+        g.className = "prac-group";
+        var lab = document.createElement("span");
+        lab.className = "prac-group-label";
+        var stop = COURSE.filter(function (s) { return s.view === item.view; })[0];
+        lab.textContent = stop ? stop.label : item.view;
+        g.appendChild(lab);
+        var chips = document.createElement("div");
+        chips.className = "chips prac-chips";
+        g.appendChild(chips);
+        groups[item.view] = chips;
+        wrap.appendChild(g);
+      }
+      var chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "chip prac-chip";
+      chip.textContent = item.label;
+      chip.addEventListener("click", function () {
+        showView(item.view);
+        scrollToId(item.target); // next frame, after the view unhides
+      });
+      groups[item.view].appendChild(chip);
+    });
+    box.appendChild(wrap);
+  }
+
+  /* ---------- TOC scroll-spy (one observer, re-scoped per view) ---------- */
+  var spy = null;
+  function updateSpy(name) {
+    if (!("IntersectionObserver" in window)) return;
+    if (spy) { spy.disconnect(); spy = null; }
+    var view = document.getElementById("view-" + name);
+    if (!view || !view.querySelector(".toc")) return;
+    var links = {};
+    view.querySelectorAll(".toc [data-scroll-to]").forEach(function (b) {
+      links[b.getAttribute("data-scroll-to")] = b;
+    });
+    spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        view.querySelectorAll(".toc-link.active").forEach(function (b) { b.classList.remove("active"); });
+        if (links[en.target.id]) links[en.target.id].classList.add("active");
+      });
+    }, { rootMargin: "-130px 0px -60% 0px", threshold: 0 });
+    view.querySelectorAll("h2[id]").forEach(function (h) { spy.observe(h); });
+  }
+
+  // exposed for the content renderers (assets/js/content.js) and quiz.js
   window.PPA = {
     showView: showView,
     showGlossaryTerm: showGlossaryTerm,
     reapplyLevel: function () { applyLevel(currentLevel); },
-    getLevel: function () { return currentLevel; }
+    getLevel: function () { return currentLevel; },
+    progress: progress
   };
 
   /* ---------- per-view "On this page" contents ----------
@@ -383,8 +717,8 @@
         ol.appendChild(li);
       });
       nav.appendChild(ol);
-      var lede = view.querySelector(".lede");
-      var anchor = lede || view.querySelector("h1");
+      // on Learn the TOC sits below the chooser + practitioner index, per the course flow
+      var anchor = view.querySelector("#prac-index") || view.querySelector(".lede") || view.querySelector("h1");
       anchor.parentNode.insertBefore(nav, anchor.nextSibling);
     });
   }
@@ -397,7 +731,7 @@
     });
   }
 
-  /* ---------- in-page scroll links (learning-path stepper) ---------- */
+  /* ---------- in-page scroll links (TOC + stage jump links) ---------- */
   function wireScrollLinks() {
     document.querySelectorAll("[data-scroll-to]").forEach(function (b) {
       b.addEventListener("click", function () {
@@ -410,11 +744,17 @@
   }
 
   function init() {
-    wireNav();
     wireTheme();
     buildTocs();
+    decorateNav();
+    buildProgressChip();
+    buildCourseFooters();
+    buildPracIndex();
     wireLevel();
+    wireChooser();
+    refreshProgressUI();
     wireScrollLinks();
+    wireNav(); // last: binds every [data-view], including the generated footers, then shows the initial view
     loadGlossary();
   }
 
