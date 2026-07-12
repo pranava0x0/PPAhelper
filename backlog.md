@@ -266,27 +266,30 @@ Practitioner:
 
 ### Plan (Pass C candidate, in order)
 
-1. **Unify numbering — keep course numbers in both modes.** Delete the
-   `nav.views.lvl2 .course-num { display:none }` rule and the `applyLevel` class
-   toggle that drives it; numbers + done ticks then agree with footers, chip, and
-   palette in both modes. Smallest change that removes the reported mismatch.
-   Acceptance: toggling level changes nothing in the nav; flow.test asserts the
-   hiding rule is gone. *Effort: XS. Priority: high.*
-2. **Stub rows for hidden practitioner sections.** At Newcomer, each hidden
-   `data-level="2"` section with an h2 renders one slim collapsed row in place:
-   "Basis risk — practitioner section · switch to Practitioner to read" (button =
-   `PPA.setLevel("2")` + scroll back to that anchor). Generate in app.js from the
-   gated h2s themselves (the PRAC_INDEX anchors already cover most). Depth becomes
-   discoverable exactly where it lives, and toggling now visibly swaps stubs ↔
-   sections in place. No new colors; reuse chip/eyebrow idiom. Acceptance: every
-   gated-h2 section shows a stub at Newcomer; clicking one lands on the revealed
-   section at Practitioner. *Effort: M. Priority: high.*
-3. **Count lines where lists are level-filtered.** Data centers: "Showing 4 of 10
-   structures — the rest are Practitioner" under the structures intro (content.js
-   knows both counts; explicit partial-state per CLAUDE.md's empty≠broken rule).
-   Same one-liner for Perspectives voices/resources and the Drafting term-sheet
-   pills. Acceptance: counts update live on toggle; the line disappears at
-   Practitioner. *Effort: S. Priority: high.*
+> **Items 1–3 shipped 2026-07-12** (branch `claude/pass-c-mode-consistency`). The three
+> high-priority fixes that close the reported "menu changes but content looks the same"
+> gap. Items 4–7 (toggle feedback line, per-tab mode line, JSON-content level labels,
+> chooser copy truthing) remain — all medium/low. 3 flow.test.js assertions ride along.
+
+1. ✅ **Unify numbering — keep course numbers in both modes — shipped 2026-07-12.** Deleted the
+   `nav.views.lvl2 .course-num { display:none }` rule and the `applyLevel` `lvl2` class
+   toggle; numbers + done ticks now agree with footers, chip, and palette in both modes.
+   Verified: toggling level leaves the nav unchanged (7 numbers, no `.lvl2` class); flow.test
+   asserts both the CSS rule and the JS toggle are gone. *Effort: XS. Priority: high.*
+2. ✅ **Stub rows for hidden practitioner sections — shipped 2026-07-12.** At Newcomer, each hidden
+   `data-level="2"` block with an h2 renders a slim in-place row: "Practitioner section ·
+   {title} · Switch to Practitioner to read →" (button = `setLevelViaFilter("2")` + scroll to
+   the anchor). Generated in app.js (`buildLevelStubs`) from the gated h2s; stubs carry
+   `data-level-only="1"` so the existing `applyLevel` swaps stub ↔ section for free. Reuses the
+   chip/eyebrow idiom, no new colors. Verified: all 10 gated-h2 sections get a stub at Newcomer;
+   clicking one switches to Practitioner and lands on the revealed section; 0 stubs visible at
+   Practitioner. *Effort: M. Priority: high.*
+3. ✅ **Count lines where lists are level-filtered — shipped 2026-07-12.** `[data-level-count]` host
+   `<p>`s under the Data centers structures ("Showing 4 of 10 structures — the rest are
+   Practitioner"), Perspectives voices (2 of 4) and resources (3 of 8), and Drafting term-sheet
+   pills (1 of 5). `updateLevelCounts` (called from `applyLevel`, recomputed after content.js
+   renders via `reapplyLevel`) counts each host's `[data-level]` children; the line clears at
+   Practitioner. Verified live at both levels. *Effort: S. Priority: high.*
 4. **Toggle feedback at the point of action.** On level change, a transient
    aria-live status line by the masthead controls: "Practitioner — 23 deeper blocks
    shown across 5 tabs" / "Newcomer — on-ramp restored, deep sections stubbed",
@@ -306,9 +309,11 @@ Practitioner:
 7. **Chooser copy truthing.** Once 2–5 land, reword the Practitioner option to match
    reality beyond Learn ("deep sections unlock across five tabs — index on Learn"),
    or generate the sentence from the audit counts. *Effort: XS. Priority: low.*
-8. **Tests ride along.** flow.test.js: assert the number-hiding rule is gone (1);
-   every gated h2 has a stub marker at Newcomer (2); count-line hooks exist (3);
-   every gated h2 carries a pill (6). *Effort: S, per item.*
+8. **Tests ride along.** flow.test.js: ✅ number-hiding rule + `.lvl2` toggle gone (1);
+   ✅ `buildLevelStubs` wired + gated sections exist to stub (2); ✅ count-line hosts present
+   and wired into `applyLevel` (3) — all shipped 2026-07-12. Still open: every gated h2 carries
+   a pill (6). Note: the static Node harness can't exercise the DOM, so the behavioral proof
+   (stub swap, live counts) is browser-verified; the assertions guard the wiring. *Effort: S, per item.*
 
 Deliberately NOT in this plan: inventing practitioner content for Simulator/Draft PPA
 just so the toggle "does something" there — the honest fix is labeling (item 5). If

@@ -15,6 +15,7 @@ const read = (p) => fs.readFileSync(path.join(__dirname, "..", p), "utf8");
 
 const html = read("index.html");
 const appJs = read("assets/js/app.js");
+const css = read("assets/css/styles.css");
 const banks = require("../assets/js/quiz-banks.js");
 
 const courseBlock = appJs.match(/var COURSE = \[([\s\S]*?)\];/);
@@ -80,6 +81,36 @@ test("quick-nav palette: masthead button plus / and Ctrl-K bindings", () => {
   assert.ok(/buildSearchButton/.test(appJs) && /openPalette/.test(appJs), "palette wiring missing from app.js");
   assert.ok(/e\.key === "\/"/.test(appJs), "slash shortcut missing");
   assert.ok(/toLowerCase\(\) === "k"/.test(appJs), "Ctrl/Cmd-K shortcut missing");
+});
+
+/* ---- Pass C: Newcomer ↔ Practitioner consistency ---- */
+
+test("course numbers are unified across levels (no per-level hiding)", () => {
+  assert.ok(!/nav\.views\.lvl2\s+\.course-num/.test(css),
+    "styles.css still hides course numbers for practitioners — numbering must agree in both modes");
+  assert.ok(!/classList\.toggle\("lvl2"/.test(appJs),
+    "app.js still toggles the nav .lvl2 class that hid course numbers");
+});
+
+test("newcomer stubs: builder wired and there are gated sections to stub", () => {
+  assert.ok(/function buildLevelStubs/.test(appJs), "buildLevelStubs missing from app.js");
+  assert.ok(/buildLevelStubs\(\);/.test(appJs), "buildLevelStubs never called in init");
+  assert.ok(/\[data-level="2"\]/.test(appJs), "buildLevelStubs must query [data-level=2] sections");
+  assert.ok(/data-level-only", "1"/.test(appJs), "stubs must carry data-level-only=1 so applyLevel swaps them");
+  // there must be practitioner sections with an h2 for the stubs to represent
+  const gatedH2 = (html.match(/data-level="2"/g) || []).length;
+  assert.ok(gatedH2 >= 8, "suspiciously few gated practitioner blocks: " + gatedH2);
+});
+
+test("partial-state count lines: hosts present and wired into applyLevel", () => {
+  const hosts = [...html.matchAll(/data-level-count="([^"]+)"/g)].map((m) => m[1]);
+  assert.ok(hosts.length >= 4, "expected >=4 level-count hosts, got " + hosts.length);
+  hosts.forEach((sel) => {
+    const id = sel.replace(/^#/, "");
+    assert.ok(html.includes('id="' + id + '"'), "count host targets missing container '" + sel + "'");
+  });
+  assert.ok(/function updateLevelCounts/.test(appJs), "updateLevelCounts missing from app.js");
+  assert.ok(/updateLevelCounts\(level\)/.test(appJs), "updateLevelCounts not called from applyLevel");
 });
 
 console.log("\nflow.test.js: " + passed + " passed (" +
