@@ -6,7 +6,7 @@
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
   <link rel="preload" href="data/glossary.json" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260712">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260712b">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -522,6 +522,12 @@
       <div class="card" style="margin-top:24px">
         <p style="margin:0"><strong>Where to go next.</strong> Learn to draft one, clause by clause, in <button class="nav-link-btn" data-view="examples">Drafting</button> — including the full deal lifecycle — feel the settlement mechanic in the <button class="nav-link-btn" data-view="simulator">simulator</button>, and see how AI data centers are reshaping deals in <button class="nav-link-btn" data-view="datacenter">Data centers</button>. The <button class="nav-link-btn" data-view="coverage">coverage page</button> tracks what's verified versus still being researched.</p>
       </div>
+
+      <hr class="rule">
+
+      <h2 id="checkpoint-learn">Checkpoint</h2>
+      <p class="quiz-note">Six questions on the on-ramp and the mechanic. Five right marks this stop done — all six and you're ready for Practitioner mode.</p>
+      <div class="quiz" data-quiz="learn"></div>
     </section>
 
     <!-- ============ EXAMPLES ============ -->
@@ -862,8 +868,7 @@
 
       <h2>Test yourself</h2>
       <p class="lede">Six questions on the mechanics interviewers actually probe — settlement direction, basis, risk allocation, structure choice, credit support. Answer to reveal the worked reasoning.</p>
-      <div id="quiz" class="quiz"></div>
-      <p class="src" style="margin-top:14px">Score: <span class="quiz-score" id="quiz-score">0 / 0</span> &middot; <button type="button" id="quiz-reset" class="btn-secondary" style="font-size:12px;padding:6px 12px;border-radius:8px;cursor:pointer">Reset</button></p>
+      <div id="quiz" class="quiz" data-quiz="drafting"></div>
     </section>
 
     <!-- ============ DRAFT PPA ============ -->
@@ -1089,6 +1094,12 @@
           <p class="hint">Settlement convention: each month, settlement = (LMP − strike) × volume. Positive means the generator pays the buyer; negative means the buyer pays the generator. The VPPA swap settles at the hub; the developer earns the node price for actual energy sales. Use the Basis risk slider above to see how a node-to-hub spread erodes the developer's realized price. Try setting a month's LMP <strong>negative</strong> (e.g. −$20): with no floor the generator pays the buyer the strike <em>plus</em> the negative price — which is why VPPAs often add a <span class="gterm" data-term="Negative Pricing / Price Floor">$0 price floor</span>. <a href="https://www.leveltenenergy.com/post/power-purchase-agreement-terms">LevelTen terms</a> · <a href="https://cityrenewables.org/vppa/research-and-build-team/understand-basis-risk/">Basis risk explainer</a></p>
         </div>
       </div>
+
+      <hr class="rule">
+
+      <h2 id="checkpoint-simulator">Checkpoint</h2>
+      <p class="quiz-note">Four questions on the cash flows you just ran. Three right marks this stop done.</p>
+      <div class="quiz" data-quiz="simulator"></div>
     </section>
 
     <!-- ============ PROJECT FINANCE ============ -->
@@ -1260,6 +1271,12 @@
         <p style="margin-top:12px">This is why a longer PPA is worth real money to a developer: it converts merchant risk into bankable, debt-supported revenue. It's also why buyers with strong credit have leverage — the certainty they provide is exactly what lenders and tax-equity price off.</p>
         <p class="src"><a href="https://emp.lbl.gov/utility-scale-solar">Berkeley Lab — Utility-Scale Solar (merchant &amp; PPA pricing)</a></p>
       </div>
+
+      <hr class="rule">
+
+      <h2 id="checkpoint-projfin">Checkpoint</h2>
+      <p class="quiz-note">Four questions on debt sizing and the capital stack. Three right marks this stop done.</p>
+      <div class="quiz" data-quiz="projfin"></div>
     </section>
 
     <!-- ============ DATA CENTERS ============ -->
@@ -1277,6 +1294,12 @@
       <p class="src" style="border:none">As of mid-2026 — worked examples of the structures above, not a live deal tracker. Each links to a source.</p>
       <div class="dc-filter" id="dc-filter" role="group" aria-label="Filter deals by buyer type"></div>
       <div class="table-wrap"><table class="settle dc-table" id="dc-deals"></table></div>
+
+      <hr class="rule">
+
+      <h2 id="checkpoint-datacenter">Checkpoint</h2>
+      <p class="quiz-note">Three questions on the structures and the demand shock. Two right marks this stop done.</p>
+      <div class="quiz" data-quiz="datacenter"></div>
     </section>
 
     <!-- ============ PERSPECTIVES ============ -->
@@ -1402,12 +1425,13 @@
     </div>
   </footer>
 
-  <script src="assets/js/draft.js?v=20260712" defer></script>
-  <script src="assets/js/quiz.js?v=20260712" defer></script>
-  <script src="assets/js/settle-core.js?v=20260712" defer></script>
-  <script src="assets/js/simulator.js?v=20260712" defer></script>
-  <script src="assets/js/projfin.js?v=20260712" defer></script>
-  <script src="assets/js/app.js?v=20260712" defer></script>
-  <script src="assets/js/content.js?v=20260712" defer></script>
+  <script src="assets/js/draft.js?v=20260712b" defer></script>
+  <script src="assets/js/quiz-banks.js?v=20260712b" defer></script>
+  <script src="assets/js/quiz.js?v=20260712b" defer></script>
+  <script src="assets/js/settle-core.js?v=20260712b" defer></script>
+  <script src="assets/js/simulator.js?v=20260712b" defer></script>
+  <script src="assets/js/projfin.js?v=20260712b" defer></script>
+  <script src="assets/js/app.js?v=20260712b" defer></script>
+  <script src="assets/js/content.js?v=20260712b" defer></script>
 </body>
 </html>

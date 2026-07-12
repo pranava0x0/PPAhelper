@@ -1,8 +1,10 @@
 # Course-flow spec — make PPA Helper an excellent course for newcomers AND experts
 
-> Working spec for the 2026-07 course-flow pass. Implementation split into two passes
-> (A: spine/nav/stepper/expert-lane, B: checkpoints/palette/tests). Delete or archive
-> after shipping; learnings go to backlog.md / README.
+> SHIPPED 2026-07-12 — pass A in 752566d, pass B in the following commit. Kept as the
+> design record for the course flow. Two deviations from the text below: the nav
+> reorder (A3) was already in main before the pass, and the simulator bank's basis
+> question is grounded in the page's own spread numbers (no "Aug 2027 worked row"
+> exists on the simulator page).
 
 ## Diagnosis (verified against the live site 2026-07-12)
 

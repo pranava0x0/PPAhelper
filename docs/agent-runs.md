@@ -38,10 +38,17 @@ run; distilled lessons graduate to AGENTS.md → Running multi-agent workflows.
 | 3 | Pass A implement (resume of #2) | opus 4.8 | died ~90s after 14:43 ET resume — pool still exhausted despite "resets 12pm"; failure notification never reached orchestrator (user's UI screenshot surfaced it) | ~1.5k | ~137k | 4 | a passed reset time ≠ available pool; canary the model before any real run (rule 6) |
 | 4 | Pass A implement (reroute) | fable (main loop, inline) | shipped 15:15 ET — 32/32 tests, browser-verified desktop+mobile, zero console errors | — | — | — | after N=2 capacity failures on one model, reroute; run 3's partial index.html edits were verified against the spec and kept, so nothing was redone |
 
+| 5 | Pass B implement (checkpoints, palette, flow tests) | fable (main loop, inline) | shipped ~16:00 ET — 40/40 tests across 4 suites, browser-verified incl. keyboard paths | — | — | — | Opus pool still capped until 5pm; two-strikes rule says don't wait when the orchestrator can finish the job |
+
 Correction to run 3: the "failed at 14:44" status was wrong — the agent kept working
 (zombie segment, 9 edits, all of index.html's Pass A changes) until a REAL death at
 ~14:57 on a fresh limit ("resets 5pm"). Both the panel and notifications misreported
 liveness at some point; the transcript and `git status` were the only honest signals.
+
+Also caught in run 5: the zombie agent's cache-buster bump (`?v=20260712`) was burned
+into the browser cache during Pass A verification, then Pass B rewrote the same files
+under the same version string — stale JS served silently. Bumped to `20260712b`.
+Lesson: bump the version string once per SHIPPED state, not once per working day.
 
 Input-token sums are per-API-call context re-sends without cache accounting — treat as
 relative burn between runs, not billing figures.

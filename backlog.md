@@ -222,6 +222,7 @@ Walking the tabs as a true beginner: the **mechanics are taught well, but the on
 - **Asset cache-busting.** `index.html` references `app.js`/`styles.css` with no version, so a returning visitor can pair new HTML with stale cached JS/CSS — observed in testing, where a cached old `app.js` broke the level filter. Add `?v=` query strings or hashed filenames on deploy. *Priority: medium*
 - **Create `issues.md`.** No bug log exists yet (CLAUDE.md expects one). *Priority: low*
 - **Per-view `<title>` + Open Graph meta** for sharing/SEO. *Priority: low*
+- **`.src::before` prefixes non-source captions.** Every `<p class="src" style="border:none">` caption (deals table intro, structures intro, glossary empty state) renders with a spurious "Source: " prefix because `.src::before { content: "Source: " }` is unconditional. Split into `.src` (real source lines) and a plain caption class. Found 2026-07-12 during the course-flow pass. *Priority: low*
 
 ## Gap research
 

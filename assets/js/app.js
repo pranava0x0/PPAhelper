@@ -596,6 +596,11 @@
     });
   }
 
+  function setLevelViaFilter(level) {
+    var b = document.querySelector('#level-filter button[data-setlevel="' + level + '"]');
+    if (b) b.click(); // reuse the filter's own click path so aria state stays in sync
+  }
+
   function wireChooser() {
     var box = document.getElementById("path-chooser");
     if (!box) return;
@@ -607,15 +612,11 @@
       box.hidden = true;
       try { localStorage.setItem("ppa-chooser-done", "1"); } catch (e) {}
     }
-    function clickLevel(level) {
-      var b = document.querySelector('#level-filter button[data-setlevel="' + level + '"]');
-      if (b) b.click(); // reuse the filter's own click path so aria state stays in sync
-    }
     document.getElementById("chooser-new").addEventListener("click", function () {
-      clickLevel("1"); dismiss(); scrollToId("stage-1");
+      setLevelViaFilter("1"); dismiss(); scrollToId("stage-1");
     });
     document.getElementById("chooser-pro").addEventListener("click", function () {
-      clickLevel("2"); dismiss(); scrollToId("prac-index");
+      setLevelViaFilter("2"); dismiss(); scrollToId("prac-index");
     });
     box.querySelector(".chooser-dismiss").addEventListener("click", dismiss);
   }
@@ -680,12 +681,213 @@
     view.querySelectorAll("h2[id]").forEach(function (h) { spy.observe(h); });
   }
 
+  /* ---------- quick-nav palette (/ or Ctrl-K) ----------
+     Built on first open; the index is rebuilt per open so it respects the
+     current level filter. Course tabs, every visible h2, every glossary term. */
+  var pal = null;
+
+  function paletteCtx(name) {
+    var stop = COURSE.filter(function (s) { return s.view === name; })[0];
+    if (stop) return stop.label;
+    return name === "glossary" ? "Glossary" : name === "coverage" ? "Coverage & sources" : name;
+  }
+
+  function buildPaletteIndex() {
+    var items = [];
+    COURSE.forEach(function (s, i) {
+      items.push({ label: s.label, ctx: "Stop " + (i + 1) + " of " + COURSE.length, view: s.view, id: null });
+    });
+    items.push({ label: "Glossary", ctx: "Reference", view: "glossary", id: null });
+    items.push({ label: "Coverage & sources", ctx: "Reference", view: "coverage", id: null });
+    VIEWS.forEach(function (name) {
+      var view = document.getElementById("view-" + name);
+      if (!view) return;
+      view.querySelectorAll("h2").forEach(function (h, hi) {
+        if (h.closest(".lvl-hidden")) return;
+        if (!h.id) h.id = name + "-x" + (hi + 1);
+        var clean = h.cloneNode(true);
+        clean.querySelectorAll(".pill, .stage-n").forEach(function (x) { x.remove(); });
+        items.push({ label: clean.textContent.replace(/\s+/g, " ").trim(), ctx: paletteCtx(name), view: name, id: h.id });
+      });
+    });
+    glossary.forEach(function (t) {
+      items.push({ label: t.term, ctx: "Glossary", term: t.term });
+    });
+    return items;
+  }
+
+  function rankPalette(items, q) {
+    q = (q || "").trim().toLowerCase();
+    if (!q) return items.slice(0, 12);
+    var scored = [];
+    items.forEach(function (it) {
+      var l = it.label.toLowerCase();
+      var s;
+      if (l.indexOf(q) === 0) s = 0;
+      else if (l.indexOf(" " + q) !== -1 || l.indexOf("(" + q) !== -1) s = 1;
+      else if (l.indexOf(q) !== -1) s = 2;
+      else return;
+      scored.push({ s: s, it: it });
+    });
+    scored.sort(function (a, b) { return a.s - b.s || a.it.label.length - b.it.label.length; });
+    return scored.slice(0, 12).map(function (x) { return x.it; });
+  }
+
+  function paletteGo(item) {
+    closePalette();
+    if (item.term) { showGlossaryTerm(item.term); return; }
+    showView(item.view, !item.id);
+    if (item.id) scrollToId(item.id);
+  }
+
+  function buildPaletteDom() {
+    var backdrop = document.createElement("div");
+    backdrop.className = "palette-backdrop";
+    backdrop.hidden = true;
+    var box = document.createElement("div");
+    box.className = "palette";
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-modal", "true");
+    box.setAttribute("aria-label", "Search sections and glossary");
+    var input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = "Jump to a section or glossary term…";
+    input.setAttribute("role", "combobox");
+    input.setAttribute("aria-expanded", "true");
+    input.setAttribute("aria-controls", "palette-list");
+    var list = document.createElement("ol");
+    list.className = "palette-list";
+    list.id = "palette-list";
+    list.setAttribute("role", "listbox");
+    box.appendChild(input);
+    box.appendChild(list);
+    backdrop.appendChild(box);
+    document.body.appendChild(backdrop);
+
+    backdrop.addEventListener("pointerdown", function (e) {
+      if (e.target === backdrop) closePalette();
+    });
+    backdrop.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { e.preventDefault(); closePalette(); }
+      else if (e.key === "ArrowDown") { e.preventDefault(); movePalette(1); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); movePalette(-1); }
+      else if (e.key === "Enter") {
+        e.preventDefault();
+        var row = pal.rows[pal.active];
+        if (row) paletteGo(row.item);
+      }
+    });
+    input.addEventListener("input", function () { renderPalette(input.value); });
+
+    pal = { backdrop: backdrop, input: input, list: list, rows: [], active: 0, opener: null, items: [] };
+  }
+
+  function renderPalette(q) {
+    var ranked = rankPalette(pal.items, q);
+    pal.rows = [];
+    while (pal.list.firstChild) pal.list.removeChild(pal.list.firstChild);
+    if (!ranked.length) {
+      var empty = document.createElement("li");
+      empty.className = "palette-empty";
+      empty.textContent = "No matches.";
+      pal.list.appendChild(empty);
+      return;
+    }
+    ranked.forEach(function (item, i) {
+      var li = document.createElement("li");
+      li.setAttribute("role", "option");
+      li.id = "pal-opt-" + i;
+      var lab = document.createElement("span");
+      lab.className = "pal-label";
+      lab.textContent = item.label;
+      var ctx = document.createElement("span");
+      ctx.className = "pal-ctx";
+      ctx.textContent = item.ctx || "";
+      li.appendChild(lab);
+      li.appendChild(ctx);
+      li.addEventListener("pointerdown", function (e) { e.preventDefault(); paletteGo(item); });
+      li.addEventListener("mouseenter", function () { setPaletteActive(i); });
+      pal.list.appendChild(li);
+      pal.rows.push({ el: li, item: item });
+    });
+    setPaletteActive(0);
+  }
+
+  function setPaletteActive(i) {
+    pal.active = i;
+    pal.rows.forEach(function (r, ri) {
+      r.el.setAttribute("aria-selected", ri === i ? "true" : "false");
+    });
+    pal.input.setAttribute("aria-activedescendant", "pal-opt-" + i);
+    var el = pal.rows[i] && pal.rows[i].el;
+    if (el && el.scrollIntoView) el.scrollIntoView({ block: "nearest" });
+  }
+
+  function movePalette(d) {
+    if (!pal.rows.length) return;
+    setPaletteActive((pal.active + d + pal.rows.length) % pal.rows.length);
+  }
+
+  function openPalette() {
+    if (!pal) buildPaletteDom();
+    pal.opener = document.activeElement;
+    pal.items = buildPaletteIndex();
+    pal.backdrop.hidden = false;
+    pal.input.value = "";
+    renderPalette("");
+    pal.input.focus();
+  }
+
+  function closePalette() {
+    if (!pal || pal.backdrop.hidden) return;
+    pal.backdrop.hidden = true;
+    if (pal.opener && pal.opener.focus) pal.opener.focus();
+  }
+
+  function isEditable(el) {
+    if (!el) return false;
+    var tag = el.tagName;
+    return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || el.isContentEditable;
+  }
+
+  function buildSearchButton() {
+    var controls = document.querySelector(".masthead-controls");
+    if (!controls) return;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.id = "search-btn";
+    b.className = "search-btn";
+    b.textContent = "Search /";
+    b.title = "Search sections & glossary — press / or Ctrl-K";
+    b.addEventListener("click", openPalette);
+    controls.insertBefore(b, controls.firstChild);
+
+    document.addEventListener("keydown", function (e) {
+      if (pal && !pal.backdrop.hidden) return; // the open palette handles its own keys
+      if ((e.ctrlKey || e.metaKey) && String(e.key).toLowerCase() === "k") {
+        e.preventDefault();
+        openPalette();
+      } else if (e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey && !isEditable(e.target)) {
+        e.preventDefault();
+        openPalette();
+      }
+    });
+  }
+
   // exposed for the content renderers (assets/js/content.js) and quiz.js
   window.PPA = {
     showView: showView,
     showGlossaryTerm: showGlossaryTerm,
     reapplyLevel: function () { applyLevel(currentLevel); },
     getLevel: function () { return currentLevel; },
+    setLevel: setLevelViaFilter,
+    quizViewFor: function (bankId) { return QUIZ_TO_VIEW[bankId] || null; },
+    nextStopAfter: function (view) {
+      for (var i = 0; i < COURSE.length - 1; i++) {
+        if (COURSE[i].view === view) return COURSE[i + 1];
+      }
+      return null;
+    },
     progress: progress
   };
 
@@ -748,6 +950,7 @@
     buildTocs();
     decorateNav();
     buildProgressChip();
+    buildSearchButton();
     buildCourseFooters();
     buildPracIndex();
     wireLevel();
