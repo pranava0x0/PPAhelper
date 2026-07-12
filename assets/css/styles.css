@@ -103,39 +103,58 @@ p { margin: 0 0 14px; max-width: 68ch; }
 }
 .masthead-inner {
   max-width: 1180px; margin: 0 auto; padding: 10px 22px;
-  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  display: grid; align-items: center; gap: 8px 16px;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "brand controls theme";
 }
-.masthead-controls { display: flex; align-items: center; gap: 10px; }
-.wordmark { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; letter-spacing: -0.03em; }
+.wordmark { grid-area: brand; font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; letter-spacing: -0.03em; }
 .wordmark .spark { color: var(--accent); }
-.masthead-tag {
-  font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;
-  border-left: 1px solid var(--border); padding-left: 16px;
-}
-.masthead-spacer { flex: 1; }
+.masthead-controls { grid-area: controls; justify-self: end; display: flex; align-items: center; gap: 10px; }
+.theme-toggle { grid-area: theme; }
 
+/* icon buttons in the masthead (theme toggle) */
 .theme-toggle {
-  font-family: var(--font-mono); font-size: 12px; background: none; border: 1px solid var(--border);
-  color: var(--text-muted); border-radius: 8px; padding: 6px 10px; cursor: pointer;
-  min-height: 32px; min-width: 64px; text-align: center;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; padding: 0;
+  background: none; border: 1px solid var(--border); border-radius: 8px;
+  color: var(--text-muted); cursor: pointer;
 }
 .theme-toggle:hover { color: var(--text); border-color: var(--accent); }
 
-/* masthead progress chip (appears once the course starts) */
+/* masthead resume chip (appears once the course starts — jumps to first unfinished stop) */
 .progress-chip {
-  font-family: var(--font-mono); font-size: 12px; font-variant-numeric: tabular-nums;
-  background: none; border: 1px solid var(--border); color: var(--text);
-  border-radius: 8px; padding: 6px 10px; cursor: pointer; min-height: 32px;
+  font-size: 12.5px; font-weight: 600; background: none;
+  border: 1px solid var(--border); color: var(--text);
+  border-radius: 8px; padding: 6px 12px; cursor: pointer; min-height: 34px;
 }
 .progress-chip:hover { border-color: var(--accent); color: var(--accent); }
 
-/* masthead search button (opens the quick-nav palette) */
+/* masthead search button — reads as a search field (opens the quick-nav palette) */
 .search-btn {
-  font-family: var(--font-mono); font-size: 12px; background: none;
-  border: 1px solid var(--border); color: var(--text-muted);
-  border-radius: 8px; padding: 6px 10px; cursor: pointer; min-height: 32px;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12.5px; background: var(--surface); color: var(--text-muted);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 6px 10px; cursor: pointer; min-height: 34px;
 }
 .search-btn:hover { color: var(--text); border-color: var(--accent); }
+.search-btn svg { flex-shrink: 0; }
+.search-btn .sb-key {
+  font-family: var(--font-mono); font-size: 11px; line-height: 15px;
+  border: 1px solid var(--border); border-radius: 5px; padding: 0 5px; color: var(--text-muted);
+}
+
+/* floating back-to-top (appears after scrolling; fast return without scrubbing) */
+.to-top {
+  position: fixed; right: 22px; bottom: 22px; z-index: 50;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); border: none;
+  border-radius: 999px; padding: 10px 15px; font-size: 13px; font-weight: 600;
+  cursor: pointer; box-shadow: var(--shadow-pop);
+  opacity: 0; transform: translateY(10px); pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+@media (max-width: 639px) { .to-top { right: 14px; bottom: 14px; } }
 
 /* ---- nav (view switcher) ---- */
 nav.views {
@@ -380,10 +399,10 @@ button, a, input, [tabindex] { touch-action: manipulation; }
 @media (max-width: 639px) {
   h1 { font-size: 1.6rem; }
   main { padding: 20px 16px 70px; }
-  .masthead-tag { display: none; }
   .lede { font-size: 1.06rem; }
-  .masthead-spacer { display: none; }
-  .masthead-controls { width: 100%; justify-content: space-between; }
+  /* brand + theme share the top row; controls flow to their own row below */
+  .masthead-inner { grid-template-columns: 1fr auto; grid-template-areas: "brand theme" "controls controls"; }
+  .masthead-controls { justify-self: stretch; width: 100%; justify-content: space-between; }
 }
 
 /* ---- level filter + inline nav links ---- */

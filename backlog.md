@@ -2,6 +2,28 @@
 
 Ideas and deferred scope. Each: description + priority (low / medium / high).
 
+## Masthead + in-tab navigation UX — shipped 2026-07-12
+
+User feedback on the header: the controls row under the title was cramped, the theme
+toggle should be smaller and top-right in line with the title, and "Search /" and the
+"1/7" progress chip read as meaningless. Plus: too much scrolling within a long tab.
+
+- ✅ **Masthead as a grid.** `.masthead-inner` is now `brand | controls | theme` on desktop
+  and `brand theme` / `controls controls` on mobile, so the theme toggle stays top-right in
+  line with the wordmark at every width and the controls get their own uncramped row on
+  narrow screens. Dropped the decorative `.masthead-tag`.
+- ✅ **Theme toggle → icon.** Compact 34px sun/moon icon button (was a 64px "dark"/"light"
+  text button); built via `makeIcon` (safe DOM SVG, no innerHTML).
+- ✅ **Search reads as search.** Magnifier icon + "Search" + a `/` keycap (`<kbd>`), instead
+  of the bare "Search /" string.
+- ✅ **Progress chip → "Resume →".** The cryptic "1/7" is gone; the chip now says what it
+  does (jump to the first unfinished stop). The tab checkmarks already show which stops are
+  done, and the count stays in the tooltip.
+- ✅ **Back-to-top button.** Floating "↑ Top" appears after ~900px of scroll, smooth-scrolls
+  up and moves focus to the active view's h1. Addresses "too much scrolling to get back up."
+- Still open (lower priority): make the "On this page" TOC sticky on mobile too (desktop-only
+  today); a per-section "next/prev subsection" control. *Priority: low.*
+
 ## From hyperscaler/AI-lab job research (June 2026)
 
 Sourced from 25 active job postings at Amazon, Google, Microsoft, Meta, Apple, Oracle, and Salesforce (2025–2026). Items ranked by hiring frequency across postings. PPA/utility-contract items were implemented; the rest are logged here.
