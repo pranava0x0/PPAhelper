@@ -35,6 +35,27 @@
     { view: "datacenter",  target: "recent-deals",         label: "Hyperscaler deals table" }
   ];
 
+  /* Build a stroke-icon SVG from a list of {tag, attrs} via safe DOM methods
+     (no innerHTML). Shared by the theme toggle and the search button. */
+  var SVG_NS = "http://www.w3.org/2000/svg";
+  function makeIcon(paths, size) {
+    var svg = document.createElementNS(SVG_NS, "svg");
+    var base = { width: size || 16, height: size || 16, viewBox: "0 0 24 24", fill: "none",
+      stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round" };
+    Object.keys(base).forEach(function (k) { svg.setAttribute(k, base[k]); });
+    svg.setAttribute("aria-hidden", "true");
+    paths.forEach(function (p) {
+      var el = document.createElementNS(SVG_NS, p.tag);
+      Object.keys(p.attrs).forEach(function (k) { el.setAttribute(k, p.attrs[k]); });
+      svg.appendChild(el);
+    });
+    return svg;
+  }
+  var ICON_MOON = [{ tag: "path", attrs: { d: "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" } }];
+  var ICON_SUN = [{ tag: "circle", attrs: { cx: 12, cy: 12, r: 4 } },
+    { tag: "path", attrs: { d: "M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" } }];
+  var ICON_SEARCH = [{ tag: "circle", attrs: { cx: 11, cy: 11, r: 7 } }, { tag: "path", attrs: { d: "M21 21l-4.3-4.3" } }];
+
   /* ---------- view switcher ---------- */
   function showView(name, moveFocus) {
     if (VIEWS.indexOf(name) === -1) name = "foundations";
@@ -79,7 +100,12 @@
     else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
       root.setAttribute("data-theme", "dark");
     }
-    function sync() { btn.textContent = root.getAttribute("data-theme") === "dark" ? "light" : "dark"; }
+    function sync() {
+      var dark = root.getAttribute("data-theme") === "dark";
+      btn.replaceChildren(makeIcon(dark ? ICON_SUN : ICON_MOON)); // show the mode you'd switch TO
+      btn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+      btn.title = dark ? "Light mode" : "Dark mode";
+    }
     sync();
     btn.addEventListener("click", function () {
       var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
@@ -530,7 +556,36 @@
     b.className = "progress-chip";
     b.hidden = true;
     b.addEventListener("click", function () { showView(progress.firstUnfinished().view, true); });
-    controls.insertBefore(b, controls.firstChild);
+    controls.appendChild(b);
+  }
+
+  /* Floating back-to-top: appears after scrolling past ~1.2 screens, so a long
+     stop can be exited without scrubbing all the way up by hand. */
+  function buildBackToTop() {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.id = "to-top";
+    b.className = "to-top";
+    b.setAttribute("aria-label", "Back to top");
+    b.appendChild(document.createTextNode("↑ Top"));
+    b.addEventListener("click", function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+      var h1 = document.querySelector(".view:not([hidden]) h1");
+      if (h1) { h1.setAttribute("tabindex", "-1"); h1.focus({ preventScroll: true }); }
+    });
+    document.body.appendChild(b);
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        b.classList.toggle("show", window.scrollY > 900);
+        ticking = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
   }
 
   /* ---------- course footers: prev / mark done / next on every stop ---------- */
@@ -643,8 +698,9 @@
     var chip = document.getElementById("progress-chip");
     if (chip) {
       chip.hidden = count === 0;
-      chip.textContent = count + "/" + COURSE.length;
-      chip.title = count + " of " + COURSE.length + " course stops done — click to resume";
+      chip.textContent = "Resume →";
+      chip.setAttribute("aria-label", "Resume the course — " + count + " of " + COURSE.length + " stops done");
+      chip.title = count + " of " + COURSE.length + " course stops done — click to resume the next one";
     }
     var next = progress.firstUnfinished();
     var stopNo = COURSE.indexOf(next) + 1;
@@ -925,10 +981,19 @@
     b.type = "button";
     b.id = "search-btn";
     b.className = "search-btn";
-    b.textContent = "Search /";
+    b.setAttribute("aria-label", "Search sections and glossary");
     b.title = "Search sections & glossary — press / or Ctrl-K";
+    b.appendChild(makeIcon(ICON_SEARCH, 15));
+    var lbl = document.createElement("span");
+    lbl.className = "sb-label";
+    lbl.textContent = "Search";
+    var key = document.createElement("kbd");
+    key.className = "sb-key";
+    key.textContent = "/";
+    b.appendChild(lbl);
+    b.appendChild(key);
     b.addEventListener("click", openPalette);
-    controls.insertBefore(b, controls.firstChild);
+    controls.appendChild(b);
 
     document.addEventListener("keydown", function (e) {
       if (pal && !pal.backdrop.hidden) return; // the open palette handles its own keys
@@ -1017,8 +1082,9 @@
     wireTheme();
     buildTocs();
     decorateNav();
-    buildProgressChip();
     buildSearchButton();
+    buildProgressChip();
+    buildBackToTop();
     buildCourseFooters();
     buildPracIndex();
     buildLevelStubs();
