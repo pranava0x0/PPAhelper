@@ -2,6 +2,20 @@
 
 Living audit trail. Each: date · area · description · root cause (**content bug** / **code bug** / **test bug**) · status.
 
+## 2026-07-12 — course-flow pass (A: spine/progress, B: checkpoints/palette)
+
+### Fixed
+
+- **2026-07-12 · Asset caching · Two same-day passes shipped different JS under one version string.** *(code bug — Fixed)*
+  Pass A bumped every asset to `?v=20260712`; the browser cached those files during verification; Pass B then rewrote `app.js`/`quiz.js` under the same string, so the page silently ran stale JS (checkpoints rendered zero questions). Root cause: version string keyed to the working day, not to the shipped state. Bumped to `?v=20260712b` and logged the rule — bump once per shipped state. *Fix: index.html asset URLs (151d392); lesson in docs/agent-runs.md.*
+
+### Open
+
+- **2026-07-12 · Styling · `.src::before` prefixes non-source captions with "Source: ".** *(code bug — Open)*
+  The rule is unconditional, but `class="src" style="border:none"` is reused for plain captions (Data centers deals intro, structures intro, glossary empty state), which all render a spurious "Source: " prefix. Fix: split into `.src` (real attributions) and a plain caption class. Tracked in backlog.md; spun off as a standalone task chip.
+- **2026-07-12 · Level modes · Toggle changes the menu but content changes are invisible.** *(design gap — Open, planned)*
+  User-reported. Full audit + 8-item improvement plan in backlog.md → "Newcomer ↔ Practitioner consistency plan".
+
 ## 2026-06-22 — "Commissioner Swett" expert review pass
 
 Reviewed the whole tool as a demanding PPA approver/originator would. Findings and fixes below.

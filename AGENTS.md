@@ -68,6 +68,8 @@ The `Workflow` tool (deep-research and friends) fans out dozens of subagents and
 
 **Reading the resource counts:** a run that finished faster and cheaper than a prior one usually *failed earlier* — it is not "more efficient." Always confirm the result object exists and is non-empty before trusting it. (Real case: a 7-min / 1.4M-token run died mid-verify and returned nothing; the 16-min / 3.5M-token run completed. The cheap one was the failure.)
 
+**Session-limit resilience (single delegated agents).** Scar tissue from 2026-07-12, when one Opus implementation task died four times (401, then three session-limit deaths) yet still shipped — full log and the 8-rule protocol in [docs/agent-runs.md](docs/agent-runs.md). The short version: keep the spec in a committed doc before spawning; verify a stated reset time against the wall clock before scheduling any wait (it may already have passed — or re-cap again after passing); canary a capped model with a trivial spawn before resuming real work; resume a dead agent (it keeps its exploration context) instead of respawning cold; after two capacity deaths on one model, reroute the task to a working model or do it inline; and trust only the transcript + `git status` for liveness — the task panel and failure notifications both misreported at least once (a "failed" agent kept editing for 13 more minutes and completed all of index.html's Pass A changes).
+
 ---
 
 ## Agent token discipline
