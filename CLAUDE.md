@@ -152,6 +152,7 @@ A living audit trail in the project root.
 - **Only load libraries used on the page.** No backend-only deps in read-only frontends.
 - **Responsive CSS, not duplicate DOM trees.**
 - **The `[hidden]` trap.** A `display: ...` rule overrides the `hidden` attribute. Always ship a `[hidden] { display: none }` rule alongside it.
+- **Cache-bust per shipped state, not per day.** Two same-day passes rewriting the same assets under one `?v=` string serve stale JS silently (bitten 2026-07-12). If assets changed, the string changes.
 
 ---
 
@@ -198,6 +199,7 @@ Scar tissue from a deep-research run that died at ~106 agents (operational drill
 - **Checkpoint intermediate results to disk.** The fan-out phases (search, fetch, verify) are the expensive part; the final synthesize is cheap. Persist each phase's output so a late-stage crash is salvageable instead of discarding hours of upstream work — then resume from the checkpoint, don't restart from zero.
 - **Contain per-agent failures; one bad agent must not sink the batch.** In a wide fan-out (60+ concurrent), a single uncaught throw can abort every in-flight sibling. Schema / forced-tool agents fail by returning prose instead of the tool call — tolerate that as an abstention (coalesce to null), and wrap any *terminal* schema step (the synthesizer) in try/catch that salvages partial results.
 - **Right-size the fan-out to the task.** 100+ agents and millions of tokens is the cost of a genuinely broad question, not a default. For gap-filling or a known-narrow ask, a handful of targeted searches is cheaper, faster, and far less fragile.
+- **Provider limits are part of the plan** (2026-07-12, four delegated-agent deaths in one task): verify a stated reset time against the wall clock before waiting on it — it may already have passed, or re-cap again after passing; canary a capped model with a trivial spawn before real work; resume a dead agent rather than respawn (a cold respawn repays the whole exploration — ~180k input tokens here for zero shipped edits); after two capacity deaths on one model, reroute the task or take it inline; judge liveness from the transcript and `git status`, never the task panel — a "failed" agent kept editing for 13 more minutes. Keep a per-project `docs/agent-runs.md` logging each run's model, outcome, tokens, and lesson.
 
 ---
 

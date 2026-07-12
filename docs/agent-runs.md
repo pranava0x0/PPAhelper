@@ -50,6 +50,43 @@ into the browser cache during Pass A verification, then Pass B rewrote the same 
 under the same version string — stale JS served silently. Bumped to `20260712b`.
 Lesson: bump the version string once per SHIPPED state, not once per working day.
 
+## Session accounting — 2026-07-12 (course-flow session)
+
+Measured by grep-summing the JSONL transcripts after the PR opened; input sums are
+per-call and approximate. Wall clock 00:03–17:56 ET with two idle gaps (00:03→09:00,
+09:30→14:42 user-away). Nine driver messages produced the whole session.
+
+| Actor | API calls | Tool calls (approx) | Output tk | Uncached input tk | Cache-read tk | Delivered |
+|---|---|---|---|---|---|---|
+| Main loop (fable) | 665 | ~506 | ~1.85M | ~306k | ~143M | spec, 3/4 of Pass A, all of Pass B, all verification, docs, PR #5 |
+| Opus run 1 | 49 | ~36 | ~9.8k | ~176k | — | nothing (401 mid-exploration) |
+| Opus runs 2+3 (one agent, incl. zombie segment) | 81 | ~70 | ~130k | ~181k | — | index.html Pass A edits (41+/31−) |
+
+### What the numbers say (levers for the next run)
+
+1. **Cache locality was the whole economy.** 143M cache-read vs 306k uncached input:
+   one continuous hot-context session re-served its conversation from cache 665 times.
+   Every cold spawn forfeits that — the two dead cold runs paid ~357k input re-reading
+   the codebase and shipped zero edits. Rule 4 (resume, don't respawn) is worth about
+   one full cold exploration per avoided respawn.
+2. **Delegation underperformed inline for this task shape.** Four Opus lifecycle
+   events (~140k output) delivered one file's edits; the main loop shipped everything
+   else. For single-file-heavy refactors where the orchestrator already holds the
+   context, inline wins — delegation pays off for parallel/independent work, which
+   this wasn't. (CLAUDE.md "inline first", now with numbers.)
+3. **Verification calls earned their cost.** ~50 of ~506 tool calls were live browser
+   checks; they caught the two bugs static review could not (same-version stale-JS
+   serving; the `.src::before` caption prefix). The Node suites alone would have
+   shipped both.
+4. **Grep-first mapping kept per-call context flat.** index.html (1,400 lines) was
+   never read end-to-end; structural greps + targeted sed ranges found every edit
+   anchor. Same technique read the dead agents' transcripts safely (bounded `grep -o`
+   sums — never cat a transcript).
+5. **Driver attention was the scarcest input: nine messages,** two of which were spent
+   un-sticking dead delegation. The recovery machinery added mid-session
+   (clock-checked resume, canary, two-strikes reroute, transcript-based liveness)
+   exists so future limit deaths cost zero driver messages.
+
 Input-token sums are per-API-call context re-sends without cache accounting — treat as
 relative burn between runs, not billing figures.
 
