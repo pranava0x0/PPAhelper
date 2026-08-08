@@ -705,6 +705,14 @@
       "status": "verified",
       "source": "ERCOT — Large Load Integration",
       "url": "https://www.ercot.com/services/rq/large-load-integration"
+    },
+    {
+      "term": "Virtual Power Plant (VPP)",
+      "category": "Types",
+      "def": "An aggregation of distributed energy resources — home batteries, smart thermostats, EVs, demand response — dispatched as one resource through control software. DOE estimates 80–160 GW of VPPs by 2030 could serve rising peaks and cut grid costs ~$10B a year; FERC Order 2222 lets aggregations bid into wholesale markets.",
+      "status": "verified",
+      "source": "DOE — Pathways to Commercial Liftoff: Virtual Power Plants",
+      "url": "https://www.energy.gov/edf/articles/doe-releases-new-report-pathways-commercial-liftoff-virtual-power-plants"
     }
   ]
 }

@@ -99,6 +99,33 @@ test("data-center structures include newcomer-level entries", () => {
   assert.ok(dc.structures.some(s => s.level === 1), "no level-1 structures for newcomers");
 });
 
+test("case studies (DC + VPP) are complete, sourced, and cite real terms", () => {
+  ["caseStudies", "vppCases"].forEach(key => {
+    const cases = dc[key];
+    assert.ok(Array.isArray(cases) && cases.length >= 2, key + ": expected 2+ entries");
+    cases.forEach(c => {
+      assert.ok(c.id && /^[a-z0-9-]+$/.test(c.id), key + ": bad id " + c.id);
+      ["title", "market", "participants", "load", "gen", "tnd", "agreement", "unique", "lesson"]
+        .forEach(f => assert.ok(c[f] && String(c[f]).length > 10, c.id + ": missing/short field '" + f + "'"));
+      assert.ok([1, 2].includes(c.level), c.id + ": bad level");
+      assert.ok(Array.isArray(c.history) && c.history.length >= 3, c.id + ": history needs 3+ events");
+      c.history.forEach(h => assert.ok(h.date && h.event && h.event.length > 10, c.id + ": bad history row"));
+      assert.ok(Array.isArray(c.sources) && c.sources.length >= 2, c.id + ": needs 2+ sources");
+      c.sources.forEach(s => {
+        assert.ok(s.label && /^https?:\/\//.test(s.url || ""), c.id + ": bad source " + (s.label || "?"));
+        assert.ok(!/\/Users\//.test(s.url), c.id + ": local path in source url");
+      });
+      (c.glossaryRefs || []).forEach(r =>
+        assert.ok(termSet.has(r), c.id + ": glossaryRef not in glossary -> " + r));
+    });
+  });
+  assert.ok(dc.caseStudies.some(c => c.level === 1), "no newcomer-level case studies");
+  // at least one case must cite a primary regulator document (ferc.gov / puco / entergy release)
+  const allUrls = dc.caseStudies.flatMap(c => c.sources.map(s => s.url));
+  assert.ok(allUrls.some(u => /ferc\.gov/.test(u)), "no FERC primary document cited");
+  assert.ok(allUrls.some(u => /puco\.ohio\.gov/.test(u)), "no PUCO primary document cited");
+});
+
 let persp;
 test("perspectives.json is valid; voices and resources are sourced", () => {
   persp = load("perspectives.json");

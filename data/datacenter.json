@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-01",
+  "updated": "2026-08-08",
   "note": "Data-center & generation PPAs. Deals are point-in-time (as of mid-2026) and will age — treat them as worked examples of structures, not a live deal tracker. Each carries a primary or reputable-trade source. 'level': 1=newcomer, 2=practitioner.",
   "demand": {
     "stat": "US data-center electricity demand more than doubled (2.3x) from 2018 to 2024 and could reach 325–580 TWh by 2028 — up to roughly 12% of US electricity.",
@@ -161,6 +161,432 @@
       "example": "Microsoft × Helion — world's first fusion PPA (~50 MW, target 2028)",
       "source": "Helion Energy",
       "url": "https://www.helionenergy.com/newsroom/helion-announces-worlds-first-fusion-ppa-with-microsoft"
+    }
+  ],
+  "caseStudies": [
+    {
+      "id": "aws-talen",
+      "title": "AWS × Talen — Susquehanna: the co-location fight",
+      "level": 1,
+      "market": "PJM · Salem Township, PA",
+      "participants": "Amazon (AWS, buyer) · Talen Energy / Susquehanna Nuclear (seller) · PJM (RTO, filed the ISA) · PPL (transmission owner) · FERC (jurisdiction) · Exelon & AEP (protesting utilities)",
+      "load": "An AI campus built next to the 2.5 GW Susquehanna nuclear plant, bought by AWS in March 2024, designed to draw hundreds of MW behind the meter and scale toward 960 MW.",
+      "gen": "Existing dual-unit nuclear — no new generation built. The campus takes a share of a plant that has run since the 1980s.",
+      "tnd": "The whole dispute was wires. Behind-the-meter co-location bypasses the transmission network, so PJM filed an amended Interconnection Service Agreement to raise the co-located load from 300 to 480 MW. FERC rejected it 2–1 (Docket ER24-2172, Nov 1, 2024): PJM hadn't met the 'high burden' for non-conforming ISA terms, with Chairman Phillips dissenting that a first-of-its-kind configuration deserved one. The rejection froze the BTM expansion and triggered FERC's industry-wide co-location review.",
+      "agreement": "Original: a BTM power supply arrangement riding on a non-conforming ISA among PJM, Susquehanna Nuclear, and PPL. After the rejection: restructured (June 2025) into front-of-meter retail supply — a 17-year commitment for up to 1,920 MW with Talen acting as AWS's licensed retail electricity provider in Pennsylvania, the load paying full grid charges.",
+      "unique": "The commercial deal survived but its legal form flipped — from behind-the-meter ISA to front-of-meter retail ESA — because of a docket, not a negotiation. Unlike a VPPA, no strike price or CfD: the contested document was the interconnection agreement itself, and the 'price' of losing was paying transmission charges the structure was built to avoid.",
+      "history": [
+        {
+          "date": "Mar 2024",
+          "event": "Talen sells the co-located Cumulus campus to AWS; existing ISA allows 300 MW of BTM load."
+        },
+        {
+          "date": "Jun 2024",
+          "event": "PJM files the amended ISA to raise co-located load to 480 MW; Exelon and AEP protest."
+        },
+        {
+          "date": "Nov 1, 2024",
+          "event": "FERC rejects the amended ISA 2–1 (ER24-2172, 189 FERC ¶ 61,078); Phillips dissents."
+        },
+        {
+          "date": "Feb 2025",
+          "event": "FERC opens a show-cause review of PJM's co-located-load rules — the fight goes industry-wide."
+        },
+        {
+          "date": "Jun 2025",
+          "event": "Deal restructured front-of-meter: 17 years, up to 1,920 MW, Talen as retail supplier; ~$18B value reported."
+        },
+        {
+          "date": "Jun 2026",
+          "event": "FERC issues §206 show-cause orders on large-load interconnection to all six RTOs/ISOs."
+        }
+      ],
+      "lesson": "Interconnection is not paperwork after the deal — it can be the deal. Read the ISA as hard as the PPA, and model the outcome where the regulator makes you pay for the grid you hoped to bypass.",
+      "glossaryRefs": [
+        "Behind-the-Meter (BTM)",
+        "Front-of-Meter / Offsite PPA",
+        "FERC (Federal Energy Regulatory Commission)",
+        "Energy Supply Agreement (ESA)"
+      ],
+      "sources": [
+        {
+          "label": "FERC order — ER24-2172 (189 FERC ¶ 61,078), Nov 1, 2024",
+          "url": "https://www.ferc.gov/sites/default/files/2024-11/20241101-3061_ER24-2172-000.pdf"
+        },
+        {
+          "label": "FERC — Chairman Phillips dissent",
+          "url": "https://www.ferc.gov/news-events/news/chairman-phillips-dissent-pjms-susquehanna-co-location-proposal-er24-2172"
+        },
+        {
+          "label": "Utility Dive — FERC rejects the ISA",
+          "url": "https://www.utilitydive.com/news/ferc-interconnection-isa-talen-amazon-data-center-susquehanna-exelon/731841/"
+        },
+        {
+          "label": "PowerMag — the $18B front-of-meter restructure",
+          "url": "https://www.powermag.com/talen-amazon-launch-18b-nuclear-ppa-a-grid-connected-ipp-model-for-the-data-center-era/"
+        }
+      ]
+    },
+    {
+      "id": "msft-crane",
+      "title": "Microsoft × Constellation — Crane: the restart PPA",
+      "level": 1,
+      "market": "PJM · Londonderry Township, PA",
+      "participants": "Microsoft (buyer) · Constellation Energy (seller/owner) · NRC (licensing) · DOE Loan Programs Office (~$1B loan) · PJM (interconnection)",
+      "load": "Microsoft's PJM-region data centers — supply is grid-connected and matched to load across the region, not wired to one campus.",
+      "gen": "Three Mile Island Unit 1 (835 MW), retired in 2019 for economics, restarted as the Crane Clean Energy Center. ~$1.6B of restart capex, supported by a ~$1B DOE loan; target online 2027–28, ahead of original schedule.",
+      "tnd": "Grid-connected — the opposite answer to Susquehanna. By selling into PJM and matching Microsoft's regional load, the deal avoids the co-location fight entirely; the T&D work is reactivating the plant's interconnection, not litigating a new configuration.",
+      "agreement": "A 20-year, single-buyer PPA for the full output of one unit — price undisclosed. The tenor is the financing: two decades of investment-grade offtake is what makes a nine-figure restart bankable.",
+      "unique": "Most PPAs finance new construction; this one finances un-retirement. Full-output single-buyer nuclear at 20 years is an outlier against the 12–15-year solar VPPA norm — and there is no CfD mechanic to study, because the point is the block and the balance sheet, not a hub settlement.",
+      "history": [
+        {
+          "date": "Sep 2019",
+          "event": "TMI Unit 1 retires — unprofitable in PJM's energy market."
+        },
+        {
+          "date": "Sep 20, 2024",
+          "event": "Constellation announces the Crane Clean Energy Center and the 20-year Microsoft PPA."
+        },
+        {
+          "date": "2025",
+          "event": "NRC restart reviews and workforce rebuild proceed; DOE Loan Programs Office commits ~$1B."
+        },
+        {
+          "date": "2027–28",
+          "event": "Targeted return to service — roughly a year ahead of the original 2028 plan."
+        }
+      ],
+      "lesson": "A long-tenor offtake can resurrect firm capacity faster than anything can be built new. When you can't co-locate, buy the block and let the grid deliver it.",
+      "glossaryRefs": [
+        "Clean Firm Power",
+        "Bankability",
+        "Commercial Operation Date (COD)"
+      ],
+      "sources": [
+        {
+          "label": "Constellation — Crane Clean Energy Center announcement",
+          "url": "https://www.constellationenergy.com/news/2024/Constellation-to-Launch-Crane-Clean-Energy-Center-Restoring-Jobs-and-Carbon-Free-Power-to-The-Grid.html"
+        },
+        {
+          "label": "Carnegie Endowment — commitments, capex, and the DOE loan",
+          "url": "https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities"
+        }
+      ]
+    },
+    {
+      "id": "meta-entergy",
+      "title": "Meta × Entergy — Louisiana: the regulated-utility build",
+      "level": 1,
+      "market": "MISO South · Richland Parish, LA (vertically integrated state)",
+      "participants": "Meta (customer) · Entergy Louisiana (utility, builds and owns) · Louisiana PSC (approves) · settlement signatories incl. LPSC staff, Walmart, Sierra Club, Southern Renewable Energy Association · Louisiana consumer advocates (opposing)",
+      "load": "Hyperion — Meta's largest data center, a ~$10B campus in Richland Parish needing on the order of 2,000–2,500 MW as it ramps.",
+      "gen": "Entergy builds and rate-bases three combined-cycle gas plants totaling 2.26 GW — two in Richland Parish (online late 2028), one at the existing Waterford site — plus contracted solar additions. Meta doesn't sign a PPA with a developer; it takes utility service from new-build generation.",
+      "tnd": "The utility also builds the delivery: new substations and transmission approved in the same proceeding. Because Louisiana is vertically integrated, generation, wires, and the service agreement all run through one docket at the Louisiana PSC.",
+      "agreement": "A long-term electric service agreement under Entergy's tariff, with terms designed to shield other ratepayers — Meta commits to pay for the plants built for it. Approved 4–1 by the LPSC in August 2025 as a settlement; opponents argued the utility bypassed competitive solicitation.",
+      "unique": "There is no PPA at all. The 'negotiation' is a regulatory proceeding: intervenors sign the settlement, the commission votes, and counterparty protections live in the tariff rather than in bilateral credit annexes. This is the default path for gigawatt loads across the vertically integrated South and Midwest.",
+      "history": [
+        {
+          "date": "Dec 2024",
+          "event": "Entergy announces it will serve Meta's Richland Parish campus; files for three CCGTs."
+        },
+        {
+          "date": "2025",
+          "event": "Contested proceeding: consumer advocates challenge need, bidding, and ratepayer risk."
+        },
+        {
+          "date": "Aug 2025",
+          "event": "LPSC approves the settlement 4–1; groundbreaking follows."
+        },
+        {
+          "date": "Late 2028",
+          "event": "First Richland Parish units targeted online."
+        }
+      ],
+      "lesson": "In regulated states the energy lead's counterparty is a commission as much as a company. The winning skill is the docket — settlement coalitions, ratepayer-protection terms, and timeline discipline through a contested case.",
+      "glossaryRefs": [
+        "Energy Supply Agreement (ESA)",
+        "Utility",
+        "Large Load Interconnection"
+      ],
+      "sources": [
+        {
+          "label": "Entergy — LPSC approval release",
+          "url": "https://www.entergy.com/news/entergy-louisiana-receives-lpsc-approval-for-major-infrastructure-investments-to-support-metas-data-center-and-improve-reliability"
+        },
+        {
+          "label": "Entergy — serving Meta's Richland Parish data center",
+          "url": "https://www.entergy.com/news/entergy-louisiana-power-meta-s-data-center-in-richland-parish"
+        },
+        {
+          "label": "DCD — groundbreaking on the 2.26 GW of CCGTs",
+          "url": "https://www.datacenterdynamics.com/en/news/entergy-breaks-ground-on-two-natural-gas-plants-for-metas-2gw-data-center-in-richland-parish-louisiana/"
+        },
+        {
+          "label": "KPLC — the 4–1 LPSC vote",
+          "url": "https://www.kplctv.com/2025/08/21/entergy-la-gets-green-light-plant-power-metas-ai-data-center/"
+        }
+      ]
+    },
+    {
+      "id": "crusoe-abilene",
+      "title": "Crusoe — Abilene (Stargate): the energy-park hybrid",
+      "level": 2,
+      "market": "ERCOT · Lancium Clean Campus, Abilene, TX",
+      "participants": "Crusoe (developer/operator) · Lancium (energy-park developer, holds the interconnection) · OpenAI / Oracle (Stargate tenants) · Microsoft (900 MW AI-factory tenant) · GE Vernova (turbine supply) · Engine No. 1 & Chevron (gas JV partners)",
+      "load": "The flagship Stargate campus: eight buildings and 1.2 GW in phase two, four buildings operational by March 2026, plus a further 900 MW AI-factory campus for Microsoft — 2.1 GW on one site.",
+      "gen": "A stack, not a contract: ~29 GE Vernova gas turbines (~1 GW) on site for speed and backup, behind-the-meter solar and batteries, a separate Crusoe × Engine No. 1 × Chevron JV assembling 4.5 GW of gas for AI campuses, and proximate West Texas wind.",
+      "tnd": "Both answers at once. Lancium's energy park holds a 1.2 GW ERCOT grid interconnection — among the largest load connections in the market — while the on-site turbines energize buildings before and beside it. ERCOT's energy-only market and its new ≥75 MW large-load process are the backdrop.",
+      "agreement": "No headline PPA. The 'contract stack' is turbine supply and EPC agreements, the park's interconnection agreement, land/energy-park arrangements with Lancium, tenant leases with OpenAI/Oracle/Microsoft, and JV agreements for the gas fleet. Ownership replaces offtake.",
+      "unique": "Inverts the corporate-PPA model completely: instead of contracting a developer's electrons at a strike price, the operator becomes the generator. Speed is the strike — turbines on pads beat queue positions — and the exposure is fuel, permits, and carbon rather than basis and shape.",
+      "history": [
+        {
+          "date": "Jun 2024",
+          "event": "Crusoe breaks ground at the Lancium Clean Campus in Abilene."
+        },
+        {
+          "date": "Dec 2024 – Jun 2025",
+          "event": "GE Vernova turbine orders scale on-site generation toward ~1 GW; Stargate names Abilene its flagship."
+        },
+        {
+          "date": "Jan 2025",
+          "event": "Crusoe, Engine No. 1, and Chevron unveil a 4.5 GW gas venture for AI data centers."
+        },
+        {
+          "date": "Mar 2025",
+          "event": "Phase two begins: eight buildings, 1.2 GW, backed by the park's grid interconnection plus BTM solar and storage."
+        },
+        {
+          "date": "Mar 2026",
+          "event": "Four buildings operational; new 900 MW Microsoft AI-factory campus announced with its own on-site plant."
+        }
+      ],
+      "lesson": "At the frontier, the energy lead's job stops being 'sign a PPA' and becomes 'assemble a power company' — interconnection rights, turbines, fuel, and renewables under one campus roof.",
+      "glossaryRefs": [
+        "Bring-Your-Own-Power (BYOP)",
+        "Behind-the-Meter (BTM)",
+        "Speed-to-Power",
+        "Large Load Interconnection"
+      ],
+      "sources": [
+        {
+          "label": "Crusoe — Abilene expands to 1.2 GW",
+          "url": "https://www.crusoe.ai/resources/newsroom/crusoe-expands-ai-data-center-campus-in-abilene-to-1-2-gigawatts"
+        },
+        {
+          "label": "Crusoe — 900 MW Microsoft AI-factory campus",
+          "url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-new-900-mw-ai-factory-campus-in-abilene-texas-to-support-microsoft-ai-infrastructure"
+        },
+        {
+          "label": "Data Center Frontier — the 4.5 GW gas venture",
+          "url": "https://www.datacenterfrontier.com/hyperscale/article/55276169/crusoe-adds-45-gw-natural-gas-to-fuel-ai-expands-abilene-data-center-to-12-gw"
+        },
+        {
+          "label": "DCD — GE Vernova turbine orders",
+          "url": "https://www.datacenterdynamics.com/en/news/crusoe-orders-19-natural-gas-turbines-from-ge-vernova-to-power-data-centers/"
+        }
+      ]
+    },
+    {
+      "id": "xai-memphis",
+      "title": "xAI — Colossus, Memphis: speed vs. social license",
+      "level": 2,
+      "market": "TVA territory · Memphis, TN (federal utility — outside FERC rate jurisdiction)",
+      "participants": "xAI (owner) · Memphis Light, Gas & Water (municipal utility, TVA's largest customer) · TVA (wholesale supplier; board approves large loads) · Shelby County Health Department (air permits) · SELC and South Memphis residents (opposing)",
+      "load": "The Colossus supercomputer, stood up in months inside a former appliance factory — grid demand of 150 MW growing by another 150 MW, alongside self-supplied turbines.",
+      "gen": "Grid supply from MLGW/TVA plus dozens of mobile gas turbines on site. The July 2025 air permit covers 15 turbines (~247 MW) through January 2027; reporting and aerial imagery identified roughly 35 units on site, and residents allege months of unpermitted operation.",
+      "tnd": "TVA is a federal power authority — its board, not FERC or a state PUC, approves serving large new loads, and MLGW delivers. Grid approvals (Nov 2024, then +150 MW) came fast; the binding process turned out to be county air permitting and community opposition in a neighborhood with a long pollution history.",
+      "agreement": "A municipal power supply agreement (MLGW service backed by TVA board-approved wholesale supply) plus self-owned BTM generation under county air permits — no corporate PPA anywhere in the stack.",
+      "unique": "Shows the non-contract constraints that no PPA clause can fix: permits, environmental-justice opposition, and a utility governance path (TVA board votes) that most playbooks ignore. The 'counterparty' that can stop the campus is the community.",
+      "history": [
+        {
+          "date": "Jun 2024",
+          "event": "xAI picks Memphis; Colossus goes live in ~122 days with turbines self-supplying much of the load."
+        },
+        {
+          "date": "Nov 2024",
+          "event": "TVA board approves 150 MW of grid supply via MLGW."
+        },
+        {
+          "date": "2025",
+          "event": "SELC petitions over unpermitted turbines; aerial imagery shows ~35 units against 15 later permitted."
+        },
+        {
+          "date": "Jul 2025",
+          "event": "Shelby County issues an air permit: 15 turbines, ~247 MW, expiring January 2027."
+        },
+        {
+          "date": "2025–26",
+          "event": "TVA approves a further 150 MW; opposition and monitoring continue; second Memphis site advances."
+        }
+      ],
+      "lesson": "Speed-to-power has a social bill. An energy lead who wins the megawatts but loses the neighborhood has not secured the site — permit strategy and community engagement belong in the power plan.",
+      "glossaryRefs": [
+        "Bring-Your-Own-Power (BYOP)",
+        "Speed-to-Power",
+        "Behind-the-Meter (BTM)"
+      ],
+      "sources": [
+        {
+          "label": "WREG — TVA board approves xAI supply",
+          "url": "https://wreg.com/news/local/tva-approves-xai-request-for-electricity-supply/"
+        },
+        {
+          "label": "DCD — turbines beyond permitted limits",
+          "url": "https://www.datacenterdynamics.com/en/news/xai-doubles-number-of-onsite-gas-turbines-at-memphis-data-center-in-violation-of-permit-limits/"
+        },
+        {
+          "label": "Inside Climate News — permits and the South Memphis fight",
+          "url": "https://insideclimatenews.org/news/17072025/elon-musk-xai-data-center-gas-turbines-memphis/"
+        },
+        {
+          "label": "CNBC — the turbine permit",
+          "url": "https://www.cnbc.com/2025/07/03/musks-xai-gets-permit-for-turbines-to-power-supercomputer-in-memphis.html"
+        }
+      ]
+    },
+    {
+      "id": "aep-ohio",
+      "title": "AEP Ohio — the tariff that wrote the terms",
+      "level": 2,
+      "market": "PJM · central Ohio (Columbus 'data center alley'), distribution tariff at the Ohio PUCO",
+      "participants": "AEP Ohio (utility) · PUCO (regulator) · Ohio Consumers' Counsel and PUCO staff (settlement signatories) · data-center and hyperscale intervenors (Google, Amazon, Microsoft among parties) · appeal pending at the Ohio Supreme Court",
+      "load": "Not one campus but a class: ~30 GW of central-Ohio data-center service requests against a system built for a fraction of that — the queue that forced a rule.",
+      "gen": "None directly — this case is pure wires and terms. Generation is procured separately in PJM; the tariff governs how the distribution utility must be paid for serving very large new loads.",
+      "tnd": "AEP Ohio faced billions in transmission and distribution buildout for loads that might never materialize. The PUCO-approved tariff makes new large data centers pay for at least 85% of contracted capacity for up to 12 years — whether or not they draw it — with exit fees, before the wires get built.",
+      "agreement": "Not a bilateral contract: a class tariff (Case No. 24-508-EL-ATA, approved July 9, 2025) that functions as the standard-form ESA every new large load must sign. The 'negotiation' happened once, in a settlement among the utility, staff, and consumer advocates.",
+      "unique": "The inverse of every other case: no buyer and seller shaking hands, but a regulator writing default contract terms for an entire customer class. Its 85%/12-year ratchet became the reference point other states now copy — the market's minimum-take clause is being drafted in dockets, not deal rooms.",
+      "history": [
+        {
+          "date": "May 2024",
+          "event": "AEP Ohio files data-center tariff provisions after central-Ohio requests approach 30 GW."
+        },
+        {
+          "date": "Oct 2024",
+          "event": "Settlement reached with PUCO staff, the Consumers' Counsel, and others; hyperscalers litigate terms."
+        },
+        {
+          "date": "Jul 9, 2025",
+          "event": "PUCO approves the settlement — ≥85% minimum demand for up to 12 years, with exit provisions."
+        },
+        {
+          "date": "2025–26",
+          "event": "Appeal docketed at the Ohio Supreme Court (case 2025-1458); other utilities file lookalike tariffs."
+        }
+      ],
+      "lesson": "Watch the tariff dockets as closely as the deal flow: the ratchets, terms, and exit fees an energy lead will face were set in a case they may never have heard of.",
+      "glossaryRefs": [
+        "Energy Supply Agreement (ESA)",
+        "Large Load Interconnection",
+        "Utility"
+      ],
+      "sources": [
+        {
+          "label": "PUCO — order directing the data-center tariff",
+          "url": "https://puco.ohio.gov/news/puco-orders-aep-ohio-to-create-data-center-specific-tariff"
+        },
+        {
+          "label": "PowerMag — the landmark tariff approved",
+          "url": "https://www.powermag.com/regulator-approves-aep-ohios-landmark-data-center-tariff/"
+        },
+        {
+          "label": "Ohio Consumers' Counsel — data centers in Ohio",
+          "url": "https://www.occ.ohio.gov/factsheet/quick-facts-data-centers-ohio"
+        }
+      ]
+    }
+  ],
+  "vppCases": [
+    {
+      "id": "nrg-renewhome",
+      "title": "NRG × Renew Home × Google Cloud — the retail thermostat fleet",
+      "level": 1,
+      "market": "ERCOT · Texas retail (NRG brands incl. Reliant)",
+      "participants": "NRG (retail provider, dispatches) · Renew Home (Google Nest spin-out; devices and enrollment, co-funds up to $150/customer acquisition) · Google Cloud (AI dispatch platform) · enrolled households (the 'plant')",
+      "load": "Hundreds of thousands of Texas homes — the target is a ~1 GW VPP by 2035, capacity equivalent to about 200,000 homes at peak.",
+      "gen": "No generator. Capacity comes from Vivint and Nest smart thermostats (installed free for eligible retail customers) shifting HVAC load before and through peaks, orchestrated by AI dispatch on Google Cloud. Rollout began spring 2025.",
+      "tnd": "Interconnects nowhere: the resource lives behind thousands of distribution meters and shows up as load that doesn't materialize. In energy-only ERCOT, that peak-hour absence is worth roughly what a peaker's output earns — and it frees headroom the large-load queue is fighting over.",
+      "agreement": "A partnership and enrollment stack instead of a PPA: NRG × Renew Home commercial agreement (device co-funding, exclusivity on new Nest demand-response enrollments in Texas), per-household enrollment terms bundled into retail plans, and dispatch rights exercised by the retailer.",
+      "unique": "Against a classic PPA: no COD, no nameplate, no settlement point. 'Volume' is a statistical forecast of fleet response, revenue is avoided supply cost and market position rather than a strike price, and the counterparty is a churn-prone consumer base recruited $150 at a time.",
+      "history": [
+        {
+          "date": "Nov 2024",
+          "event": "NRG, Renew Home, and Google Cloud announce the ~1 GW-by-2035 Texas VPP partnership."
+        },
+        {
+          "date": "Spring 2025",
+          "event": "Enrollment opens across NRG retail brands; free professional thermostat installs begin."
+        },
+        {
+          "date": "2025–26",
+          "event": "Fleet scales through summer peaks; DOE's Liftoff analysis pegs national VPP potential at 80–160 GW by 2030."
+        }
+      ],
+      "lesson": "A VPP 'PPA' is really a customer-acquisition machine with dispatch rights. The scarce asset isn't steel — it's enrollment, retention, and trustworthy fleet statistics.",
+      "glossaryRefs": [
+        "Virtual Power Plant (VPP)",
+        "Curtailment-Enabled Headroom",
+        "Energy-Only Market"
+      ],
+      "sources": [
+        {
+          "label": "NRG — partnership announcement",
+          "url": "https://www.nrg.com/about/newsroom/2024/43921.html"
+        },
+        {
+          "label": "Utility Dive — 1 GW Texas VPP by 2035",
+          "url": "https://www.utilitydive.com/news/nrg-renew-home-aim-for-1-gw-texas-vpp-by-2035/732662/"
+        },
+        {
+          "label": "DOE — VPP Liftoff report",
+          "url": "https://www.energy.gov/edf/articles/doe-releases-new-report-pathways-commercial-liftoff-virtual-power-plants"
+        }
+      ]
+    },
+    {
+      "id": "sunrun-calready",
+      "title": "Sunrun — CalReady & PG&E: batteries as seasonal capacity",
+      "level": 2,
+      "market": "California · CAISO footprint, state grid-support program + PG&E's 2025 SAVE VPP",
+      "participants": "Sunrun (aggregator; owns/leases the systems) · ~56,000 customer households (~75,000 batteries) · California's state grid-support program (pays for capacity) · PG&E (local dispatch under the SAVE VPP) · CAISO (the grid it relieves)",
+      "load": "A fleet, not a campus: 75,000 residential solar-charged batteries — quadruple the prior year — expected to deliver up to ~250 MW during two-hour peak events.",
+      "gen": "Stored rooftop solar, discharged on command. CalReady stands ready 4–9 p.m., May through October; the Local PeakShift Power fleet under PG&E's SAVE program dispatched 50+ times for 1,200+ dispatching hours from July to October 2025 into constrained local areas.",
+      "tnd": "The T&D story runs backward: instead of building wires to deliver power, the batteries sit past the constraint and inject exactly where distribution feeders run hottest — capacity that arrives in months, targeted at circuits, with zero transmission build.",
+      "agreement": "Seasonal capacity contracts, not energy sales: program payments per enrolled battery (customers earn up to ~$150 per battery per season), pay-for-performance against dispatch windows, and measurement-and-verification baselines standing in for a meter at a plant gate. FERC Order 2222 opens the parallel wholesale path for such aggregations.",
+      "unique": "Against a classic PPA: the seller doesn't own a plant — it marshals tens of thousands of customer systems; 'availability' is a fleet statistic; the product is capacity and local relief, with no $/MWh strike, no basis, and recruitment cycles measured in months instead of development years.",
+      "history": [
+        {
+          "date": "2024",
+          "event": "CalReady's first season: ~16,000 homes prove the model in statewide events."
+        },
+        {
+          "date": "May 2025",
+          "event": "Fleet quadruples to ~56,000 customers / 75,000 batteries, ~250 MW of two-hour dispatch capability."
+        },
+        {
+          "date": "Jul–Oct 2025",
+          "event": "PG&E SAVE / Local PeakShift Power dispatches 50+ times, 1,200+ dispatching hours of targeted local relief."
+        }
+      ],
+      "lesson": "For a market drowning in large-load requests, distributed capacity is the fastest 'new build' there is — and contracting it means buying statistics and dispatch rights, not electrons from a fence line.",
+      "glossaryRefs": [
+        "Virtual Power Plant (VPP)",
+        "Firm / Dispatchable Power",
+        "Curtailment-Enabled Headroom"
+      ],
+      "sources": [
+        {
+          "label": "Sunrun — fleet quadruples to 75,000 batteries",
+          "url": "https://investors.sunrun.com/news-events/press-releases/detail/340/sunruns-distributed-power-plant-quadruples-in-size-to"
+        },
+        {
+          "label": "Sunrun × PG&E — local dispatches under the SAVE VPP",
+          "url": "https://investors.sunrun.com/news-events/press-releases/detail/362/sunrun-and-pge-dispatch-energy-from-northern-california"
+        },
+        {
+          "label": "FERC — Order No. 2222 explainer",
+          "url": "https://www.ferc.gov/ferc-order-no-2222-explainer-facilitating-participation-electricity-markets-distributed-energy"
+        }
+      ]
     }
   ],
   "deals": [
