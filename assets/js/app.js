@@ -32,6 +32,7 @@
     { view: "examples",    target: "annotated-examples",   label: "Annotated real PPAs (SEC-filed)" },
     { view: "projfin",     target: "pf-workbench",         label: "Debt-sizing workbench" },
     { view: "projfin",     target: "tax-equity-flip",      label: "Tax equity & the flip" },
+    { view: "datacenter",  target: "tech-contracts",       label: "Technology → contract map" },
     { view: "datacenter",  target: "recent-deals",         label: "Hyperscaler deals table" }
   ];
 

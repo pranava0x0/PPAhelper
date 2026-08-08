@@ -283,6 +283,26 @@
         explain: "FERC rejected Talen's amended interconnection agreement for the behind-the-meter AWS co-location in Nov 2024 amid cost-allocation questions. The June 2025 restructure keeps the firm nuclear supply while the load pays the grid charges it had avoided — a normal front-of-meter retail arrangement."
       },
       {
+        prompt: "Under a gas tolling agreement, who bears fuel-price risk — and why?",
+        opts: [
+          { t: "The buyer — it supplies the gas and pays a fixed toll, so the spark spread is its gain or loss", correct: true },
+          { t: "The plant owner — it operates the turbines" },
+          { t: "The pipeline — it delivers the fuel" },
+          { t: "Nobody — fuel cost is passed to the grid" }
+        ],
+        explain: "A toll splits the plant into two businesses: the owner earns a fixed $/kW-month capacity payment for keeping the machine available at a guaranteed heat rate, while the buyer procures the fuel, schedules dispatch, and takes the power. Cheap gas widens the buyer's spark spread; a gas spike is the buyer's loss. A fixed-price ESA is the opposite — the seller embeds the fuel hedge and charges for it."
+      },
+      {
+        prompt: "In a hybrid solar + storage PPA, what does the storage part of the price typically pay for?",
+        opts: [
+          { t: "The battery's availability — a storage adder or $/kW-month capacity payment, on top of the energy price", correct: true },
+          { t: "Extra RECs the battery generates" },
+          { t: "The buyer's transmission charges" },
+          { t: "A discount for charging at negative prices" }
+        ],
+        explain: "The battery doesn't generate — it shifts. So hybrid PPAs price it as availability: a storage adder on the energy price or a separate capacity payment, backed by availability and round-trip-efficiency guarantees. The negotiated clauses are the charging rules (grid vs. solar-only, which drives tax treatment and whose clean-energy claim the stored energy carries) and degradation over the term."
+      },
+      {
         prompt: "How does 24/7 hourly carbon-free matching differ from annual REC matching?",
         opts: [
           { t: "Carbon-free supply must match consumption every hour in the region, not net out across a year", correct: true },

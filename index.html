@@ -1297,6 +1297,83 @@
       <p class="level-count" data-level-count="#dc-structures" data-count-noun="structures" hidden></p>
       <div id="dc-structures"></div>
 
+      <h2 style="margin-top:30px" id="tech-contracts">How the contract follows the technology</h2>
+      <p>The 2026 job postings for this market ask for one thing the solar-era ones didn't: PPA experience <em>across</em> technologies — solar and storage, gas, nuclear. The reason is in this table. Each machine sells a different product, so each gets a different contract, and the buyer keeps a different residual risk. An energy lead runs a portfolio of all of them at once.</p>
+      <div class="table-wrap">
+        <table class="coverage" style="width:100%;table-layout:auto">
+          <thead>
+            <tr>
+              <th style="width:16%">Technology</th>
+              <th style="width:20%">What you're buying</th>
+              <th style="width:24%">The contract you'll see</th>
+              <th style="width:20%">The clause that defines it</th>
+              <th style="width:20%">Risk that stays with the buyer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Solar / wind, offsite</strong></td>
+              <td>As-generated energy + <span class="gterm" data-term="Renewable Energy Certificate (REC)">RECs</span></td>
+              <td><span class="gterm" data-term="Virtual / Financial PPA (VPPA)">VPPA</span> or physical PPA — the structure this whole course teaches</td>
+              <td><span class="gterm" data-term="Settlement Location">Settlement point</span> (hub vs. node)</td>
+              <td><span class="gterm" data-term="Shape Risk">Shape</span>, <span class="gterm" data-term="Volume Risk">volume</span>, <span class="gterm" data-term="Basis Risk">basis</span></td>
+            </tr>
+            <tr>
+              <td><strong>Solar + storage</strong></td>
+              <td>Energy shifted into the hours the load needs</td>
+              <td><span class="gterm" data-term="Hybrid PPA (Solar + Storage)">Hybrid PPA</span> — energy price plus a storage adder or capacity payment</td>
+              <td>Charging rules + battery availability guarantee</td>
+              <td>Paying for a battery that underdelivers — degradation, availability</td>
+            </tr>
+            <tr>
+              <td><strong>Standalone battery</strong></td>
+              <td>Dispatch rights — not energy</td>
+              <td>Storage <span class="gterm" data-term="Tolling Agreement">tolling agreement</span>: fixed $/kW-month for the box</td>
+              <td>Availability + round-trip-efficiency guarantee</td>
+              <td>Every charge/discharge decision — the buyer schedules it and eats the market outcome</td>
+            </tr>
+            <tr>
+              <td><strong>Gas, contracted or on-site</strong></td>
+              <td>Firm MW on the buyer's schedule</td>
+              <td><span class="gterm" data-term="Tolling Agreement">Tolling agreement</span> (buyer supplies the fuel) or outright <span class="gterm" data-term="Bring-Your-Own-Power (BYOP)">BYOP</span> ownership</td>
+              <td><span class="gterm" data-term="Heat Rate">Heat-rate</span> guarantee + start charges</td>
+              <td>Fuel price — under a toll the <span class="gterm" data-term="Spark Spread">spark spread</span> is the buyer's problem — plus carbon and permits</td>
+            </tr>
+            <tr>
+              <td><strong>Existing nuclear</strong></td>
+              <td>A flat 24/7 block of <span class="gterm" data-term="Clean Firm Power">clean firm power</span></td>
+              <td>Long-tenor PPA (17–20 yr) or front-of-meter retail supply (AWS × Talen)</td>
+              <td>Around-the-clock delivery at one price</td>
+              <td>A premium over hub power, and the additionality question — repricing a plant, not adding one</td>
+            </tr>
+            <tr>
+              <td><strong>SMR / frontier</strong></td>
+              <td>A claim on firm power that doesn't exist yet</td>
+              <td>Development offtake: milestones, CPs, price re-openers</td>
+              <td><span class="gterm" data-term="Commercial Operation Date (COD)">COD</span> milestones + walk rights</td>
+              <td>First-of-a-kind technology and schedule — it may never deliver</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src"><a href="https://www.eia.gov/todayinenergy/includes/sparkspread_explain.php">EIA — spark spreads</a> · <a href="https://emp.lbl.gov/utility-scale-solar">Berkeley Lab — Utility-Scale Solar (hybrid pricing)</a> · <a href="https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities">Carnegie — hyperscaler nuclear commitments</a></p>
+
+      <div data-level="2">
+        <hr class="rule">
+        <h2 id="tolling-mechanics">The toll, the heat rate, and the premium <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <p>Three contract mechanics from that table that interviews for these roles actually test.</p>
+
+        <h3 style="margin-top:14px">Gas — who owns the spark spread</h3>
+        <p>A <span class="gterm" data-term="Tolling Agreement">tolling agreement</span> splits a gas plant into two businesses. The owner gets a fixed toll — a $/kW-month capacity payment that covers capex and fixed O&amp;M — plus variable O&amp;M and start charges when dispatched. The buyer procures the fuel (which means firm gas transport, its own contract), schedules the plant, and takes the power. The contract's core promise is the <span class="gterm" data-term="Heat Rate">heat rate</span>: burn no more than X Btu per kWh. At a guaranteed 7,000 Btu/kWh and $3.50/MMBtu gas, a MWh costs $24.50 in fuel; if power is worth $45, the <span class="gterm" data-term="Spark Spread">spark spread</span> — $20.50 — belongs to the buyer, and so does the loss when gas spikes. A fixed-price ESA flips that: the seller embeds the fuel hedge and charges for it. Neoclouds building <span class="gterm" data-term="Bring-Your-Own-Power (BYOP)">BYOP</span> campuses (Crusoe at Abilene, the Stargate microgrid) take the same economics one step further and own the machine outright.</p>
+
+        <h3>Batteries — renting the box</h3>
+        <p>A storage toll is the same idea without fuel: fixed $/kW-month for dispatch rights over someone else's battery. The owner guarantees availability (typically ~95%+) and round-trip efficiency; the buyer decides every charge and discharge, so market risk sits entirely on the buyer's desk — which is the point, for a load that wants to shape its own supply. In a <span class="gterm" data-term="Hybrid PPA (Solar + Storage)">hybrid PPA</span> the battery instead rides inside the generator's offer: one contract, an energy price plus a storage adder or separate capacity payment. The clauses that get negotiated are the charging rules — whether the battery may charge from the grid or only from the paired solar, which drives both tax treatment and whose clean-energy claim the stored energy carries — plus degradation schedules and availability guarantees.</p>
+
+        <h3>Nuclear — buying the block</h3>
+        <p>An existing-fleet nuclear PPA is the simplest shape in the table — a flat around-the-clock block at one price for 17–20 years — and the hardest to price. The buyer pays a premium over prevailing hub power for firmness and the carbon-free claim (deal prices are undisclosed, but every disclosed structure is long-tenor and full-output). Scale check: announced hyperscaler nuclear agreements total up to ~13 GW, split roughly evenly between PPAs and direct partnerships — and even if all of it materializes, it covers less than 20% of projected data-center demand growth through 2035. New plants have historically taken 10–15 years from planning to commissioning, which is why the near-term deals contract <em>existing</em> plants — raising the additionality question from the Scope 2 chain in <button class="nav-link-btn" data-view="foundations">Learn</button>: the grid gains no new carbon-free MWh when an operating plant changes offtaker.</p>
+        <p class="src"><a href="https://www.eia.gov/todayinenergy/includes/sparkspread_explain.php">EIA — heat rates &amp; spark spreads</a> · <a href="https://www.eia.gov/tools/glossary/index.php?id=T">EIA glossary — tolling arrangement</a> · <a href="https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities">Carnegie Endowment (June 2026) — nuclear commitments vs. delivery</a></p>
+      </div><!-- /data-level="2" tolling-mechanics -->
+
       <h2 style="margin-top:30px" id="recent-deals">Recent deals</h2>
       <p class="src" style="border:none">As of mid-2026 — worked examples of the structures above, not a live deal tracker. Each links to a source.</p>
       <div class="dc-filter" id="dc-filter" role="group" aria-label="Filter deals by buyer type"></div>
@@ -1305,7 +1382,7 @@
       <hr class="rule">
 
       <h2 id="checkpoint-datacenter">Checkpoint</h2>
-      <p class="quiz-note">Three questions on the structures and the demand shock. Two right marks this stop done.</p>
+      <p class="quiz-note">Five questions on the structures, the contracts behind them, and the demand shock. Four right marks this stop done.</p>
       <div class="quiz" data-quiz="datacenter"></div>
     </section>
 
