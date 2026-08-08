@@ -8,11 +8,11 @@ Second job-market pass, this time on the *buyer-side* archetype: "Energy Lead / 
 
 **The diff.** The site taught the solar VPPA deeply and cataloged data-center deal *archetypes*, but three things these roles test were missing entirely (grep-confirmed zero hits): (1) how the **contract itself changes with the technology** — gas tolling / heat rate / spark spread, storage tolling, hybrid solar+storage PPAs, nuclear around-the-clock blocks; (2) the **load side of interconnection** — ERCOT's ≥75 MW large-load process, ramp schedules, minimum-demand ratchets, collateral in large-load ESAs; (3) the **buyer-side career frame** — the site's only role card was the developer-side originator.
 
-### Shipping this pass
-- **Technology → contract map** — Data centers tab, level-1 comparison table (solar/wind VPPA, hybrid solar+storage, storage toll, gas tolling/BYOP, existing nuclear, SMR/frontier) + practitioner deep-dive on tolling mechanics (heat rate, spark spread, who bears fuel risk), storage/hybrid clauses, nuclear block + clean-firm premium with the Carnegie reality-check numbers.
-- **Large-load interconnection + ESA terms** — Data centers tab, practitioner section: ERCOT SB6 batch process (≥75 MW, $50k/MW security, 474.7 GW queued June 2026), phantom-load problem, and the ESA terms an energy lead negotiates (ramp, contract demand + ratchet, term/exit fees, collateral, flexibility option, CIAC).
-- **Buyer's-chair role card** — Learn tab accordion next to the originator card: the data-center energy lead role, how it differs from developer-side origination, who hires (hyperscalers, neoclouds, DC developers/REITs, AI labs), what postings require, which tab teaches each skill.
-- **6 glossary terms** — Tolling Agreement, Heat Rate, Spark Spread, Hybrid PPA (Solar + Storage), Large Load Interconnection (+ wiring into tooltips); datacenter quiz bank +3 questions; PRAC_INDEX, coverage page, README updated.
+### Shipped 2026-08-08
+- ✅ **Technology → contract map** — Data centers tab, level-1 comparison table (solar/wind VPPA, hybrid solar+storage, storage toll, gas tolling/BYOP, existing nuclear, SMR/frontier) + practitioner deep-dive on tolling mechanics (heat rate, spark spread, who bears fuel risk), storage/hybrid clauses, nuclear block + clean-firm premium with the Carnegie reality-check numbers.
+- ✅ **Large-load interconnection + ESA terms** — Data centers tab, practitioner section: ERCOT SB6 batch process (≥75 MW, $50k/MW security, 474.7 GW queued June 2026), phantom-load problem, and the ESA terms an energy lead negotiates (ramp, contract demand + ratchet, term/exit fees, collateral, flexibility option, CIAC).
+- ✅ **Buyer's-chair role card** — Learn tab accordion next to the originator card: the data-center energy lead role, how it differs from developer-side origination, who hires (hyperscalers, neoclouds, DC developers/REITs, AI labs), what postings require, which tab teaches each skill.
+- ✅ **5 glossary terms** — Tolling Agreement, Heat Rate, Spark Spread, Hybrid PPA (Solar + Storage), Large Load Interconnection (wired into tooltips); datacenter quiz bank 3 → 6 questions; PRAC_INDEX, coverage page, README, footer date + cache-bust updated.
 
 ### Logged, not built (this pass)
 - **Heat-rate call options / structured gas products** — HRCOs and reverse tolls as hedges; niche beyond the tolling basics. *Priority: low*

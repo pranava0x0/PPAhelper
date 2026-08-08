@@ -6,7 +6,7 @@
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
   <link rel="preload" href="data/glossary.json" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260712f">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260808a">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -1521,7 +1521,7 @@
     <section class="view" id="view-coverage" role="tabpanel" aria-labelledby="tab-coverage" hidden>
       <p class="eyebrow">Honest scope</p>
       <h1>Coverage &amp; sources</h1>
-      <p class="lede">This tool only teaches what the research actually verified, and it grows over time. Three passes are done: a fact-checked deep-research run, a government/national-lab pass (FERC, IRS, EPA, NREL, Berkeley Lab), and a data-center deals pass. Items still open are marked as gaps, not dressed up as fact.</p>
+      <p class="lede">This tool only teaches what the research actually verified, and it grows over time. Five passes are done: a fact-checked deep-research run, a government/national-lab pass (FERC, IRS, EPA, NREL, Berkeley Lab), a data-center deals pass, an expert-perspectives pass, and a 2026 energy-lead pass (buyer-side job scan + multi-technology contract mechanics). Items still open are marked as gaps, not dressed up as fact.</p>
 
       <h2>Verified — primary / government sources</h2>
       <table class="coverage">
@@ -1551,6 +1551,9 @@
           <tr><td>Load flexibility / curtailment-enabled headroom (Duke 2025)</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Annotated example term sheets (VPPA, utility physical, data-center nuclear)</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Internal approval &amp; signing (corporate approval chain, PUC prudence review, signature authority)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Heat rate, spark spread, tolling mechanics (EIA)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>ERCOT large-load interconnection (SB6 process, 75 MW threshold, queue vs. record peak)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Hybrid solar + storage PPA pricing (Berkeley Lab)</td><td><span class="pill verified">verified</span></td></tr>
         </tbody>
       </table>
 
@@ -1559,6 +1562,9 @@
         <thead><tr><th>Topic</th><th>Status</th></tr></thead>
         <tbody>
           <tr><td>PPA originator role: responsibilities, skills, background (from job postings)</td><td><span class="pill secondary">secondary</span></td></tr>
+          <tr><td>Data-center energy-lead role: scope, employers, requirements (2026 job postings + primer)</td><td><span class="pill secondary">secondary</span></td></tr>
+          <tr><td>Hyperscaler nuclear commitments vs. delivery reality (Carnegie Endowment, June 2026)</td><td><span class="pill secondary">secondary</span></td></tr>
+          <tr><td>Large-load ESA terms (ratchets, ramp, collateral — trade press + worked deal examples)</td><td><span class="pill secondary">secondary</span></td></tr>
           <tr><td>Expert perspectives (Shah, Norris, Tian, Powell) — summaries of public work</td><td><span class="pill secondary">paraphrased</span></td></tr>
         </tbody>
       </table>
@@ -1569,6 +1575,8 @@
         <tbody>
           <tr><td>Clause-level: assignment / lender step-in, dispute resolution</td><td><span class="pill gap">needs research</span></td></tr>
           <tr><td>Time-of-delivery / hourly pricing — clause-level mechanics (concept &amp; 24/7 matching now covered)</td><td><span class="pill gap">needs research</span></td></tr>
+          <tr><td>Storage clause depth: augmentation, degradation schedules, RTE guarantees</td><td><span class="pill gap">needs research</span></td></tr>
+          <tr><td>Heat-rate call options &amp; structured gas hedges</td><td><span class="pill gap">needs research</span></td></tr>
         </tbody>
       </table>
 
@@ -1581,7 +1589,8 @@
             <a href="https://www.irs.gov/credits-deductions/elective-pay-and-transferability">IRS — Elective Pay &amp; Transferability</a><br>
             <a href="https://emp.lbl.gov/utility-scale-solar">Berkeley Lab — Utility-Scale Solar</a><br>
             <a href="https://www.epa.gov/statelocalenergy/customer-power-purchase-agreements">EPA — Customer PPAs</a><br>
-            <a href="https://docs.nrel.gov/docs/fy14osti/60983.pdf">NREL — Wind &amp; Solar Curtailment</a>
+            <a href="https://docs.nrel.gov/docs/fy14osti/60983.pdf">NREL — Wind &amp; Solar Curtailment</a><br>
+            <a href="https://www.eia.gov/todayinenergy/includes/sparkspread_explain.php">EIA — Heat Rates &amp; Spark Spreads</a>
           </p>
         </div>
         <div class="card">
@@ -1602,7 +1611,10 @@
             <a href="https://www.energy.gov/oe/clean-energy-resources-meet-data-center-electricity-demand">DOE — Clean Energy for Data Centers</a><br>
             <a href="https://www.constellationenergy.com/news/2024/Constellation-to-Launch-Crane-Clean-Energy-Center-Restoring-Jobs-and-Carbon-Free-Power-to-The-Grid.html">Constellation — Crane (Three Mile Island)</a><br>
             <a href="https://www.utilitydive.com/news/talen-amazon-aws-susquehanna-nuclear-data-centert/750440/">Utility Dive — Amazon/Talen</a><br>
-            <a href="https://blog.google/company-news/outreach-and-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/">Google — Kairos SMR</a>
+            <a href="https://blog.google/company-news/outreach-and-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/">Google — Kairos SMR</a><br>
+            <a href="https://www.ercot.com/services/rq/large-load-integration">ERCOT — Large Load Integration</a><br>
+            <a href="https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities">Carnegie — Hyperscaler Nuclear Commitments</a><br>
+            <a href="https://pranava0x0.github.io/FERC-Orders-June-2026/">FERC §206 Large-Load Orders — companion site</a>
           </p>
         </div>
       </div>
@@ -1612,17 +1624,17 @@
 
   <footer role="contentinfo">
     <div class="footer-inner">
-      <p style="margin:0">PPA Helper · a learning tool for US power purchase agreements. Content as of <span class="mono">2026-06-01</span>, built on a fact-checked research pass (<a href="docs/research-us-ppa.md">research notes</a>). The settlement simulator is an illustration of contract mechanics, not market data or financial advice.</p>
+      <p style="margin:0">PPA Helper · a learning tool for US power purchase agreements. Content as of <span class="mono">2026-08-08</span>, built on five fact-checked research passes (<a href="docs/research-us-ppa.md">research notes</a>). The settlement simulator is an illustration of contract mechanics, not market data or financial advice.</p>
     </div>
   </footer>
 
-  <script src="assets/js/draft.js?v=20260712f" defer></script>
-  <script src="assets/js/quiz-banks.js?v=20260712f" defer></script>
-  <script src="assets/js/quiz.js?v=20260712f" defer></script>
-  <script src="assets/js/settle-core.js?v=20260712f" defer></script>
-  <script src="assets/js/simulator.js?v=20260712f" defer></script>
-  <script src="assets/js/projfin.js?v=20260712f" defer></script>
-  <script src="assets/js/app.js?v=20260712f" defer></script>
-  <script src="assets/js/content.js?v=20260712f" defer></script>
+  <script src="assets/js/draft.js?v=20260808a" defer></script>
+  <script src="assets/js/quiz-banks.js?v=20260808a" defer></script>
+  <script src="assets/js/quiz.js?v=20260808a" defer></script>
+  <script src="assets/js/settle-core.js?v=20260808a" defer></script>
+  <script src="assets/js/simulator.js?v=20260808a" defer></script>
+  <script src="assets/js/projfin.js?v=20260808a" defer></script>
+  <script src="assets/js/app.js?v=20260808a" defer></script>
+  <script src="assets/js/content.js?v=20260808a" defer></script>
 </body>
 </html>
