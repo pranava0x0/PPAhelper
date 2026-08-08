@@ -1423,6 +1423,101 @@
         <p class="src"><a href="https://www.eia.gov/todayinenergy/includes/sparkspread_explain.php">EIA — heat rates &amp; spark spreads</a> · <a href="https://www.eia.gov/tools/glossary/index.php?id=T">EIA glossary — tolling arrangement</a> · <a href="https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities">Carnegie Endowment (June 2026) — nuclear commitments vs. delivery</a></p>
       </div><!-- /data-level="2" tolling-mechanics -->
 
+      <hr class="rule">
+
+      <h2 id="serve-the-load">Serve the load — build a gigawatt stack</h2>
+      <p class="lede" style="max-width:72ch">A 1,000 MW campus consumes 24,000 MWh every day, flat. No single row of the table above delivers that: a same-size solar PPA produces about a third of the energy, all in daylight. This is why gigawatt buyers sign portfolios. Pick your contracts and watch what they cover — and what stays exposed.</p>
+
+      <div class="sim-layout" style="margin-top:14px">
+        <form class="controls" id="st-controls" aria-label="Supply stack inputs">
+          <fieldset>
+            <legend>Strategy preset</legend>
+            <div class="scenario-row" id="st-presets">
+              <button type="button" class="scenario-btn" data-preset="solar" aria-pressed="false">Solar-only mirage</button>
+              <button type="button" class="scenario-btn" data-preset="renstor" aria-pressed="false">Renewables + storage</button>
+              <button type="button" class="scenario-btn" data-preset="anchored" aria-pressed="true">Anchored stack</button>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>The load</legend>
+            <div class="field">
+              <label for="st-load">Campus load <span class="hint">MW, flat 24/7</span></label>
+              <input type="number" id="st-load" value="1000" min="0" max="5000" step="50">
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Contracted supply</legend>
+            <div class="field">
+              <label for="st-nuclear">Nuclear block <span class="hint">MW around-the-clock</span></label>
+              <input type="number" id="st-nuclear" value="400" min="0" max="5000" step="50">
+            </div>
+            <div class="field">
+              <label for="st-solar">Solar PPA <span class="hint">MW nameplate</span></label>
+              <input type="number" id="st-solar" value="1200" min="0" max="10000" step="100">
+            </div>
+            <div class="field">
+              <label for="st-wind">Wind PPA <span class="hint">MW nameplate</span></label>
+              <input type="number" id="st-wind" value="400" min="0" max="10000" step="100">
+            </div>
+            <div class="field">
+              <label for="st-batt">Battery toll <span class="hint">MW of discharge power</span></label>
+              <input type="number" id="st-batt" value="300" min="0" max="5000" step="50">
+            </div>
+            <div class="field">
+              <label for="st-batthrs">Battery duration <span class="hint">hours at full power</span></label>
+              <input type="number" id="st-batthrs" value="4" min="0" max="12" step="1">
+            </div>
+            <div class="field">
+              <label for="st-gas">Gas toll <span class="hint">MW dispatchable</span></label>
+              <input type="number" id="st-gas" value="300" min="0" max="5000" step="50">
+            </div>
+          </fieldset>
+        </form>
+
+        <div class="readout">
+          <div class="direction-banner" id="st-banner" role="status" aria-live="polite">—</div>
+
+          <div class="kpis">
+            <div class="kpi">
+              <div class="k-label">Hours fully covered</div>
+              <div class="k-val mono" id="st-covered">—</div>
+              <div class="k-sub">of 24, without buying from the grid</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">Carbon-free share</div>
+              <div class="k-val mono" id="st-cfe">—</div>
+              <div class="k-sub">of consumption, hourly-matched</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">Open position</div>
+              <div class="k-val mono" id="st-open">—</div>
+              <div class="k-sub">MWh/day bought at spot — unhedged</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">Clean surplus</div>
+              <div class="k-val mono" id="st-surplus">—</div>
+              <div class="k-sub">MWh/day beyond load &amp; battery — sold</div>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <svg id="st-chart" viewBox="0 0 720 260" role="img" aria-label="Hourly supply stack against the flat load line"></svg>
+            <div class="chart-legend">
+              <span><span class="swatch" style="background:var(--stack-nuclear)"></span> Nuclear</span>
+              <span><span class="swatch" style="background:var(--stack-solar)"></span> Solar</span>
+              <span><span class="swatch" style="background:var(--stack-wind)"></span> Wind</span>
+              <span><span class="swatch" style="background:var(--stack-batt)"></span> Battery</span>
+              <span><span class="swatch" style="background:var(--stack-gas)"></span> Gas toll</span>
+              <span><span class="swatch" style="background:var(--stack-grid)"></span> Grid (open)</span>
+            </div>
+          </div>
+
+          <p class="hint">One representative clear day, flat load. Dispatch order: nuclear → solar → wind → battery → gas toll → grid, with the battery scheduled into the deepest deficit hours. It charges only from clean surplus and returns 82% of it — the US fleet average round-trip efficiency. Clear-day shapes flatter solar and wind; annual capacity factors are lower (solar ~25%, onshore wind ~34%), so a real year needs <em>more</em> of everything. An illustration of portfolio mechanics, not a production-cost model. <a href="https://www.eia.gov/todayinenergy/detail.php?id=46756">EIA — battery round-trip efficiency</a> · <a href="https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_6_07_b">EIA — capacity factors</a></p>
+        </div>
+      </div>
+
       <div data-level="2">
         <hr class="rule">
         <h2 id="large-load">Connecting the load — the other half of the job <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
@@ -1633,6 +1728,8 @@
   <script src="assets/js/quiz.js?v=20260808a" defer></script>
   <script src="assets/js/settle-core.js?v=20260808a" defer></script>
   <script src="assets/js/simulator.js?v=20260808a" defer></script>
+  <script src="assets/js/stack-core.js?v=20260808a" defer></script>
+  <script src="assets/js/stack.js?v=20260808a" defer></script>
   <script src="assets/js/projfin.js?v=20260808a" defer></script>
   <script src="assets/js/app.js?v=20260808a" defer></script>
   <script src="assets/js/content.js?v=20260808a" defer></script>

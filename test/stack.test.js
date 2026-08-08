@@ -81,6 +81,20 @@ test("dispatch order: battery displaces the marginal source (gas when gas is mar
   assert.ok(close(deep.kpis.gasMWh, deepNoBatt.kpis.gasMWh), "gas stays maxed under a deep deficit");
 });
 
+test("battery discharge targets the deepest deficit hours first", () => {
+  const r = computeStack({ loadMW: 1000, solarMW: 1000, windMW: 500, battMW: 300, battHours: 3 });
+  const drained = r.hours.filter((h) => h.batt > 0);
+  const skipped = r.hours.filter((h) => h.deficit > 0 && h.batt === 0);
+  if (drained.length && skipped.length) {
+    const minServed = Math.min(...drained.map((h) => h.deficit));
+    const maxSkipped = Math.max(...skipped.map((h) => h.deficit));
+    assert.ok(minServed >= maxSkipped - 1e-9,
+      "an hour with deficit " + maxSkipped + " was skipped while " + minServed + " got battery");
+  }
+  const discharged = r.hours.reduce((a, h) => a + h.batt, 0);
+  assert.ok(discharged > 0, "scenario should exercise the battery");
+});
+
 test("kpis are internally consistent (clean + gas + open = load energy)", () => {
   const r = computeStack({ loadMW: 1200, nuclearMW: 400, gasMW: 300, solarMW: 900, windMW: 500, battMW: 300, battHours: 2 });
   assert.ok(close(r.kpis.cleanMWh + r.kpis.gasMWh + r.kpis.openMWh, r.kpis.loadMWh));

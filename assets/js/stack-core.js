@@ -6,8 +6,9 @@
    hour: nuclear → solar → wind → battery discharge → gas toll → grid residual.
    The battery charges only from surplus zero-marginal supply (nuclear + solar
    + wind above load), never from gas or grid, and returns rte (default 0.82,
-   EIA fleet average) of what it stores. Discharge is chronological across
-   deficit hours, limited by power (MW) and stored energy (MWh).
+   EIA fleet average) of what it stores. Discharge is allocated to the deepest
+   deficit hours first (how an operator schedules against scarcity), limited by
+   power (MW) and stored energy (MWh).
 
    This is an illustration of portfolio mechanics, not a production-cost model:
    the solar/wind shapes are a clear-day profile; annual capacity factors are
@@ -59,16 +60,20 @@
       stored += charge;
     }
 
-    // Pass 3: discharge into deficit hours, chronologically; then gas, then grid.
+    // Pass 3: discharge into the deepest deficit hours first; then gas, then grid.
     var deliverable = stored * rte;
-    for (h = 0; h < 24; h++) {
-      var d = hours[h].deficit;
-      var batt = Math.min(d, battMW, deliverable);
+    var order = hours.map(function (_, i) { return i; })
+      .sort(function (a, b) { return hours[b].deficit - hours[a].deficit || a - b; });
+    order.forEach(function (i) {
+      var batt = Math.min(hours[i].deficit, battMW, deliverable);
       deliverable -= batt;
-      var gasUsed = Math.min(d - batt, gas);
-      hours[h].batt = batt;
+      hours[i].batt = batt;
+    });
+    for (h = 0; h < 24; h++) {
+      var d = hours[h].deficit - hours[h].batt;
+      var gasUsed = Math.min(d, gas);
       hours[h].gas = gasUsed;
-      hours[h].grid = d - batt - gasUsed;
+      hours[h].grid = d - gasUsed;
     }
 
     var loadMWh = load * 24, cleanMWh = 0, openMWh = 0, surplusMWh = 0,

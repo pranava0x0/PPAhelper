@@ -27,6 +27,14 @@
   --flow-debit: #d64545;      /* party pays */
   --warn: #d64545;
 
+  /* supply-stack layers (Serve the load chart) — never for money flow */
+  --stack-nuclear: #2563eb;
+  --stack-solar: #d97706;
+  --stack-wind: #0d9488;
+  --stack-batt: #7c3aed;
+  --stack-gas: #8a7357;
+  --stack-grid: #c3ccd8;
+
   --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.08);
   --shadow-pop: 0 10px 30px rgba(16, 24, 40, 0.14);
 
@@ -47,6 +55,13 @@
   --flow-credit: #3fb27f;
   --flow-debit: #e06c6c;
   --warn: #e06c6c;
+
+  --stack-nuclear: #5b9bff;
+  --stack-solar: #f0a94a;
+  --stack-wind: #45c4b5;
+  --stack-batt: #a78bfa;
+  --stack-gas: #b09a7d;
+  --stack-grid: #3a4653;
 
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-pop: 0 10px 30px rgba(0, 0, 0, 0.55);
