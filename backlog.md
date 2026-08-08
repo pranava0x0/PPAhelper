@@ -14,6 +14,17 @@ Second job-market pass, this time on the *buyer-side* archetype: "Energy Lead / 
 - ✅ **Buyer's-chair role card** — Learn tab accordion next to the originator card: the data-center energy lead role, how it differs from developer-side origination, who hires (hyperscalers, neoclouds, DC developers/REITs, AI labs), what postings require, which tab teaches each skill.
 - ✅ **5 glossary terms** — Tolling Agreement, Heat Rate, Spark Spread, Hybrid PPA (Solar + Storage), Large Load Interconnection (wired into tooltips); datacenter quiz bank 3 → 6 questions; PRAC_INDEX, coverage page, README, footer date + cache-bust updated.
 
+### CEO-lens follow-up (2026-08-08, same day)
+
+Re-evaluated as the buyer's chief executive: "my campus energizes on a date; I need someone who can execute gigawatt-scale supply against it." Six things that person does that the site didn't teach after the morning pass:
+
+1. **Assemble a portfolio that serves a flat gigawatt.** 1 GW flat = 8.76 TWh/yr. A 1 GW solar PPA delivers ~a quarter of that, in the wrong hours. Nothing on the site showed the aggregation problem — the anchor-block + shaped-renewables + storage + bridge-gas + grid-residual stack every GW buyer actually signs. → *Ship: "Serve the load" interactive stack builder (representative day, EIA-anchored capacity factors and battery RTE) + playbook section.*
+2. **Execute against a date.** The generator-side lifecycle (4–7 yr) and the load-side queue both exist on the site, but nobody co-schedules them. Bridge-then-replace sequencing, RFP waves, long-lead locks. → *Ship: gigawatt playbook critical path.*
+3. **Command the balance sheet.** ERCOT queue security alone is $50M at 1 GW; add LC ladders across a dozen PPAs and MtM on multi-billion strips. Per-deal credit support was covered; the treasury program wasn't. → *Ship: credit-at-scale subsection.*
+4. **Use anchor-tenant leverage.** Framework agreements (Microsoft × Brookfield 10.5 GW), development-stage entry (Google × Intersect), paying the speed premium knowingly. Deals table had the examples; no negotiation framing. → *Ship: leverage subsection.*
+5. **Know what kills the campus.** Utility refusal, queue slip, counterparty failure, community/political opposition, unhedged market blowout — the CEO-seat risk list, distinct from per-contract failure modes. → *Ship: playbook risk list.*
+6. **Pass the hiring bar.** What the executive actually tests for this role, and the red flags. → *Ship: hiring rubric in the buyer's-chair card.*
+
 ### Logged, not built (this pass)
 - **Heat-rate call options / structured gas products** — HRCOs and reverse tolls as hedges; niche beyond the tolling basics. *Priority: low*
 - **Storage augmentation & degradation clause depth** — capacity maintenance schedules, augmentation obligations, RTE guarantees at clause level. *Priority: low*

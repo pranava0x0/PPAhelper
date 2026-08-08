@@ -266,6 +266,12 @@ Buyer-side job scan plus the contract mechanics those roles test. Sources fetche
 - FERC issued §206 show-cause orders to all six RTOs/ISOs on large-load interconnection rules on June 18, 2026 (Items E-7 to E-12, Dockets EL26-67-000 through EL26-72-000), following DOE's Oct 2025 §403 ANOPR (RM26-4-000). Tracked docket-by-docket on the companion microsite. *([Large Load Interconnection — FERC §206 arc](https://pranava0x0.github.io/FERC-Orders-June-2026/))*
 - The regulated-utility counterpart of the PPA for these loads is the large-load ESA (electric service agreement) with ramp schedules, contract-demand minimums, and collateral — worked example: DTE × hyperscaler 1.4 GW (Round 7).
 
+**Portfolio-model anchors (CEO-lens follow-up, verified):**
+
+- Utility-scale batteries return roughly 80% of the electricity they store — the US fleet's average monthly round-trip efficiency was 82% (2019, latest EIA analysis of the metric); pumped storage ~79%. Used as the stack builder's default RTE. *([EIA — Today in Energy #46756](https://www.eia.gov/todayinenergy/detail.php?id=46756))*
+- Capacity-factor anchors for representative-day profiles: utility-scale solar PV ~25%, onshore wind ~34% (EIA Electric Power Monthly, Table 6.07.B; varies by region and vintage). *([EIA — EPM Table 6.07.B](https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_6_07_b))*
+- Arithmetic anchor: a 1,000 MW flat load consumes 8,760 GWh/yr (1 GW × 8,760 h); a same-nameplate solar project at ~25% CF generates ~2,190 GWh — a quarter of the energy, concentrated in ~8 daylight hours.
+
 ---
 
 ## Coverage scorecard (be honest in the UI)
