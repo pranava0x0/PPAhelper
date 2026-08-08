@@ -3,6 +3,15 @@
 (function () {
   "use strict";
 
+  /* Data fetches carry the same ?v= as this script tag, so a deploy that
+     changes JSON busts the browser cache with it (scar: stale datacenter.json
+     hid new content while fresh JS rendered nothing, 2026-08-08). */
+  var DATA_V = (function () {
+    var m = ((document.currentScript && document.currentScript.src) || "").match(/[?&]v=([\w-]+)/);
+    return m ? m[1] : "";
+  })();
+  function dataUrl(path) { return DATA_V ? path + "?v=" + DATA_V : path; }
+
   function elem(tag, cls, html) {
     var e = document.createElement(tag);
     if (cls) e.className = cls;
@@ -102,7 +111,7 @@
   }
 
   function loadExamples() {
-    return fetch("data/examples.json").then(function (r) { return r.json(); }).then(function (data) {
+    return fetch(dataUrl("data/examples.json")).then(function (r) { return r.json(); }).then(function (data) {
       examples = (data && data.examples) || [];
       if (!examples.length) return;
       activeExample = examples[0].id;
@@ -145,6 +154,9 @@
       wireChips(det);
     });
 
+    renderCases(data.caseStudies, "dc-cases");
+    renderCases(data.vppCases, "vpp-cases");
+
     // deals filter + table
     var types = ["All"].concat((data.deals || []).map(function (x) { return x.buyerType; })
       .filter(function (v, i, a) { return a.indexOf(v) === i; }));
@@ -181,8 +193,50 @@
     drawDeals();
   }
 
+  /* Case studies (data-center + VPP): richer accordions than structures —
+     load/gen/wires narrative, agreement stack, filed-documents history,
+     participants, and multi-source citation lines. */
+  function renderCases(cases, containerId) {
+    var wrap = document.getElementById(containerId);
+    if (!wrap) return;
+    wrap.replaceChildren();
+    (cases || []).forEach(function (c) {
+      var det = elem("details", "dc-structure case-study");
+      det.setAttribute("data-level", c.level);
+      var lvlLabel = c.level === 1 ? "Newcomer" : "Practitioner";
+
+      var history = (c.history || []).map(function (h) {
+        return '<li><span class="mono case-date">' + esc(h.date) + "</span> " + esc(h.event) + "</li>";
+      }).join("");
+      var sources = (c.sources || []).map(function (s) {
+        return '<a href="' + esc(s.url) + '">' + esc(s.label) + "</a>";
+      }).join(" · ");
+
+      det.append(
+        elem("summary", null,
+          '<span class="dc-s-name">' + esc(c.title) + "</span>" +
+          '<span class="pill outline">' + lvlLabel + "</span>"),
+        elem("div", "dc-s-body",
+          '<p class="case-meta"><span class="pill outline">' + esc(c.market) + "</span></p>" +
+          '<p class="case-participants"><strong>Participants.</strong> ' + esc(c.participants) + "</p>" +
+          "<p><strong>The load.</strong> " + esc(c.load) + "</p>" +
+          "<p><strong>The generation.</strong> " + esc(c.gen) + "</p>" +
+          "<p><strong>The wires.</strong> " + esc(c.tnd) + "</p>" +
+          "<p><strong>The agreement stack.</strong> " + esc(c.agreement) + "</p>" +
+          "<p><strong>Unlike a standard PPA.</strong> " + esc(c.unique) + "</p>" +
+          '<p style="margin-bottom:4px"><strong>Filings &amp; history.</strong></p>' +
+          '<ul class="case-history">' + history + "</ul>" +
+          "<p><strong>The lesson.</strong> " + esc(c.lesson) + "</p>" +
+          glossaryChips(c.glossaryRefs) +
+          '<p class="src" style="margin-top:10px"><strong>Documents &amp; sources:</strong> ' + sources + "</p>")
+      );
+      wrap.appendChild(det);
+      wireChips(det);
+    });
+  }
+
   function loadDatacenter() {
-    return fetch("data/datacenter.json").then(function (r) { return r.json(); }).then(renderDatacenter)
+    return fetch(dataUrl("data/datacenter.json")).then(function (r) { return r.json(); }).then(renderDatacenter)
       .catch(function (e) {
         var w = document.getElementById("dc-why");
         if (w) w.textContent = "Could not load data-center deals (" + e.message + "). Serve over http (see README).";
@@ -210,7 +264,7 @@
     }).join("");
   }
   function loadPerspectives() {
-    return fetch("data/perspectives.json").then(function (r) { return r.json(); }).then(renderPerspectives)
+    return fetch(dataUrl("data/perspectives.json")).then(function (r) { return r.json(); }).then(renderPerspectives)
       .catch(function (e) {
         var v = document.getElementById("voices");
         if (v) v.innerHTML = '<p class="src" style="border:none">Could not load perspectives (' + e.message + ").</p>";

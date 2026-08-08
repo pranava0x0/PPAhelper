@@ -274,6 +274,19 @@ Buyer-side job scan plus the contract mechanics those roles test. Sources fetche
 
 ---
 
+## Round 9 — load/gen/T&D case studies + VPP examples (2026-08-08)
+
+Eight cases for `data/datacenter.json` (`caseStudies`, `vppCases`), each with participants, market, agreement stack, uniqueness-vs-standard-PPA, filed-document history, and 2–4 citations. Key primary documents verified this round:
+
+- **FERC ER24-2172** (Nov 1, 2024, 189 FERC ¶ 61,078): PJM's amended ISA to raise Susquehanna co-located BTM load 300 → 480 MW rejected 2–1 ("high burden" for non-conforming terms not met); Chairman Phillips dissented that the first-of-its-kind configuration warranted one. *([Order PDF](https://www.ferc.gov/sites/default/files/2024-11/20241101-3061_ER24-2172-000.pdf); [Phillips dissent](https://www.ferc.gov/news-events/news/chairman-phillips-dissent-pjms-susquehanna-co-location-proposal-er24-2172))*
+- **PUCO Case No. 24-508-EL-ATA** (approved Jul 9, 2025): AEP Ohio data-center tariff — new large data centers pay ≥85% of contracted capacity for up to 12 years; settlement with staff and the Consumers' Counsel; appeal at the Ohio Supreme Court (2025-1458). *([PUCO release](https://puco.ohio.gov/news/puco-orders-aep-ohio-to-create-data-center-specific-tariff))*
+- **Meta × Entergy** (LPSC, Aug 2025, 4–1): three CCGTs totaling 2.26 GW (two Richland Parish online late 2028, one Waterford) for the ~$10B, ~2–2.5 GW Hyperion campus; settlement signed by LPSC staff, Walmart, Sierra Club, SREA. *([Entergy release](https://www.entergy.com/news/entergy-louisiana-receives-lpsc-approval-for-major-infrastructure-investments-to-support-metas-data-center-and-improve-reliability); [KPLC — the vote](https://www.kplctv.com/2025/08/21/entergy-la-gets-green-light-plant-power-metas-ai-data-center/))*
+- **Crusoe Abilene**: 1.2 GW grid interconnection at the Lancium Clean Campus plus BTM solar/storage and ~1 GW of on-site turbines; four of eight buildings operational by Mar 2026; further 900 MW Microsoft AI-factory campus with its own on-site plant. *([Crusoe — 1.2 GW](https://www.crusoe.ai/resources/newsroom/crusoe-expands-ai-data-center-campus-in-abilene-to-1-2-gigawatts); [Crusoe — 900 MW](https://www.crusoe.ai/resources/newsroom/crusoe-announces-new-900-mw-ai-factory-campus-in-abilene-texas-to-support-microsoft-ai-infrastructure))*
+- **xAI Memphis**: TVA board approvals (150 MW, then +150 MW) via MLGW (TVA's largest customer); Shelby County air permit (Jul 2025) covers 15 turbines / ~247 MW through Jan 2027; reporting and aerial imagery identified ~35 turbines with alleged unpermitted operation. *([WREG](https://wreg.com/news/local/tva-approves-xai-request-for-electricity-supply/); [DCD](https://www.datacenterdynamics.com/en/news/xai-doubles-number-of-onsite-gas-turbines-at-memphis-data-center-in-violation-of-permit-limits/))*
+- **VPP anchors**: FERC Order 2222 (DER aggregations in wholesale markets); DOE VPP Liftoff (80–160 GW by 2030, ~$10B/yr savings); NRG × Renew Home × Google Cloud ~1 GW Texas VPP by 2035 (~200k homes equivalent, free thermostats, Renew Home co-funds $150 CAC); Sunrun CalReady 2025 fleet: ~56k customers / 75k batteries / ~250 MW two-hour dispatch, 4–9 p.m. May–Oct, up to ~$150/battery/season; Sunrun × PG&E SAVE dispatched 50+ times, 1,200+ dispatching hours Jul–Oct 2025. *([NRG](https://www.nrg.com/about/newsroom/2024/43921.html); [Sunrun](https://investors.sunrun.com/news-events/press-releases/detail/340/sunruns-distributed-power-plant-quadruples-in-size-to); [FERC 2222](https://www.ferc.gov/ferc-order-no-2222-explainer-facilitating-participation-electricity-markets-distributed-energy); [DOE](https://www.energy.gov/edf/articles/doe-releases-new-report-pathways-commercial-liftoff-virtual-power-plants))*
+
+---
+
 ## Coverage scorecard (be honest in the UI)
 
 | Topic | Status |

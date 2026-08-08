@@ -2,6 +2,18 @@
 
 Living audit trail. Each: date · area · description · root cause (**content bug** / **code bug** / **test bug**) · status.
 
+## 2026-08-08 — data fetches served stale JSON
+
+- **2026-08-08 · Caching · `data/*.json` fetches carried no version string.** *(code bug — Fixed)*
+  Script tags were cache-busted with `?v=`, but the four JSON fetches (glossary, examples,
+  datacenter, perspectives) were not — so a deploy that changed data could serve fresh JS
+  against stale JSON. Surfaced live: newly added `caseStudies` rendered as nothing because
+  the browser replayed the cached pre-edit `datacenter.json` (confirmed by fetching the same
+  URL with `cache: "no-store"`). *Fix:* `dataUrl()` helper in `app.js` + `content.js` reads the
+  `?v=` off its own `document.currentScript.src` and appends it to every data fetch — single
+  source of truth stays the HTML. *Regression guard:* ui.test.js now fails on any unversioned
+  `fetch("data/…")`.
+
 ## 2026-07-12 — masthead/scroll + Pass C review pass
 
 Energy-expert + code review of the mode-consistency and masthead/scroll UX work.
