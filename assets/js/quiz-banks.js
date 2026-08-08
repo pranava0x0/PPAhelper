@@ -313,6 +313,26 @@
         explain: "ERCOT tracked ~475 GW of large-load requests by June 2026 — over five times its all-time peak — and most of it is phantom load shopped into several queues at once. Ratchets, security postings ($50,000/MW under ERCOT's SB6 process), and termination payments make the load, not existing ratepayers, carry the cost of infrastructure built on its promise."
       },
       {
+        prompt: "A 1,000 MW campus signs one 1,000 MW solar PPA. What does that actually cover?",
+        opts: [
+          { t: "Roughly a quarter of its annual energy — and none of it at night. The rest is an open position bought at spot", correct: true },
+          { t: "All of it — nameplate matches the load" },
+          { t: "All daytime needs, and the RECs cover the night hours" },
+          { t: "Nothing usable — solar can't serve data centers" }
+        ],
+        explain: "Utility-scale solar runs at ~25% annual capacity factor (EIA), concentrated in daylight hours, while the campus draws flat 24/7. RECs transfer a clean-energy claim, not electricity at night. This mismatch is why gigawatt buyers assemble stacks — an anchor firm block, shaped renewables, storage, a dispatchable toll — instead of one contract. The 'Serve the load' builder on this tab lets you feel it."
+      },
+      {
+        prompt: "Why does a gigawatt buyer lock the firm anchor block (existing nuclear, geothermal) before sizing its batteries?",
+        opts: [
+          { t: "Firm, long-tenor deals take longest to negotiate and finance; batteries build fastest, so they're sized last against the gap that remains", correct: true },
+          { t: "Batteries are always the most expensive resource" },
+          { t: "Regulators require firm power to be contracted first" },
+          { t: "Storage RECs expire before nuclear RECs" }
+        ],
+        explain: "Sequencing runs on lead time. A 20-year nuclear block needs years of negotiation, approvals, and financing; a battery toll can be in service in one or two. So the program locks the slowest, scarcest piece first and sizes the fastest piece deliberately late — against the holes the anchor leaves, which the stack builder makes visible."
+      },
+      {
         prompt: "How does 24/7 hourly carbon-free matching differ from annual REC matching?",
         opts: [
           { t: "Carbon-free supply must match consumption every hour in the region, not net out across a year", correct: true },

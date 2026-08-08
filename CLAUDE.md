@@ -152,7 +152,7 @@ A living audit trail in the project root.
 - **Only load libraries used on the page.** No backend-only deps in read-only frontends.
 - **Responsive CSS, not duplicate DOM trees.**
 - **The `[hidden]` trap.** A `display: ...` rule overrides the `hidden` attribute. Always ship a `[hidden] { display: none }` rule alongside it.
-- **Cache-bust per shipped state, not per day.** Two same-day passes rewriting the same assets under one `?v=` string serve stale JS silently (bitten 2026-07-12). If assets changed, the string changes.
+- **Cache-bust per shipped state, not per day.** Two same-day passes rewriting the same assets under one `?v=` string serve stale JS silently (bitten 2026-07-12; again 2026-08-08, when a second same-day editing pass under the reused string served stale `app.js` even in local preview — bump per editing pass, not per day). If assets changed, the string changes.
 
 ---
 

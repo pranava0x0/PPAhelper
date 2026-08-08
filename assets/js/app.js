@@ -33,7 +33,9 @@
     { view: "projfin",     target: "pf-workbench",         label: "Debt-sizing workbench" },
     { view: "projfin",     target: "tax-equity-flip",      label: "Tax equity & the flip" },
     { view: "datacenter",  target: "tech-contracts",       label: "Technology → contract map" },
+    { view: "datacenter",  target: "serve-the-load",       label: "Gigawatt stack builder" },
     { view: "datacenter",  target: "large-load",           label: "Large-load queue & ESA terms" },
+    { view: "datacenter",  target: "gigawatt-playbook",    label: "Gigawatt playbook" },
     { view: "datacenter",  target: "recent-deals",         label: "Hyperscaler deals table" }
   ];
 
