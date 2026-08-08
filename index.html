@@ -1374,6 +1374,62 @@
         <p class="src"><a href="https://www.eia.gov/todayinenergy/includes/sparkspread_explain.php">EIA — heat rates &amp; spark spreads</a> · <a href="https://www.eia.gov/tools/glossary/index.php?id=T">EIA glossary — tolling arrangement</a> · <a href="https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities">Carnegie Endowment (June 2026) — nuclear commitments vs. delivery</a></p>
       </div><!-- /data-level="2" tolling-mechanics -->
 
+      <div data-level="2">
+        <hr class="rule">
+        <h2 id="large-load">Connecting the load — the other half of the job <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <p>Everything above secures supply. The load itself still has to get connected and served, and that runs through two counterparties the generator-side course never meets: the ISO, which studies whether the grid can take the load, and the utility, which writes the service agreement. The postings call this "utility tariff negotiation" — it is where an energy lead spends much of the week.</p>
+
+        <h3 style="margin-top:14px">The load-side queue</h3>
+        <p>Generators have waited in interconnection queues for years; giant loads now do too. Texas moved first: under SB6 (June 2025), ERCOT's <span class="gterm" data-term="Large Load Interconnection">large-load interconnection</span> process studies every load of 75 MW or more in batches and requires $50,000/MW of financial security plus documented site control and backup-generation disclosure. The queue it revealed is the market's defining number: ~474.7 GW of large-load requests by June 2026 — ~420.8 GW of it data centers — more than five times ERCOT's all-time peak demand (91,308 MW, set July 22, 2026). Most of that is <em>phantom load</em>: the same project shopped into several utility queues at once, which is exactly why utilities demand security postings and site control before studying anything. FERC followed in June 2026 with §206 show-cause orders to all six RTOs/ISOs (Dockets EL26-67 through EL26-72) to reform their large-load rules — the co-location fight from the structures above was the opening round.</p>
+
+        <h3>The large-load ESA — terms an energy lead actually negotiates</h3>
+        <p>Where supply is a regulated utility (the DTE deal in the table below), the contract is an <span class="gterm" data-term="Energy Supply Agreement (ESA)">ESA</span> under a large-load tariff, and its terms exist to answer one regulatory question: if this load never shows up, who eats the cost of the wires and plants built for it? The utility's answer is: not the existing ratepayers.</p>
+        <div class="table-wrap">
+          <table class="coverage" style="width:100%;table-layout:auto">
+            <thead>
+              <tr>
+                <th style="width:22%">Term</th>
+                <th style="width:44%">What it says</th>
+                <th style="width:34%">What the energy lead pushes for</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Ramp schedule</strong></td>
+                <td>The MW the load may draw each year as it energizes — a 1 GW campus might step up 200 MW at a time.</td>
+                <td>A ramp that tracks the real IT fit-out, with rights to accelerate if racks land early.</td>
+              </tr>
+              <tr>
+                <td><strong>Contract demand + minimum charge</strong></td>
+                <td>A demand ratchet: pay for a set share of contracted MW whether consumed or not.</td>
+                <td>A lower ratchet percentage, and a start date tied to energization rather than signing.</td>
+              </tr>
+              <tr>
+                <td><strong>Term + exit fees</strong></td>
+                <td>Multi-year minimum term with termination payments covering the utility's unrecovered investment.</td>
+                <td>Step-downs over time; credit for infrastructure that serves the next customer.</td>
+              </tr>
+              <tr>
+                <td><strong>Collateral</strong></td>
+                <td>Letter of credit or deposit sized to months of expected bills, posted before construction.</td>
+                <td>Parent guarantee instead of cash; collateral that shrinks as billing history accrues.</td>
+              </tr>
+              <tr>
+                <td><strong>Curtailability option</strong></td>
+                <td>Interruptible or flexible service: the load sheds during system peaks in exchange for faster or cheaper interconnection.</td>
+                <td>Taking it — <span class="gterm" data-term="Curtailment-Enabled Headroom">curtailment-enabled headroom</span> is often the fastest route to energization.</td>
+              </tr>
+              <tr>
+                <td><strong>Network upgrades (CIAC)</strong></td>
+                <td>Contribution in aid of construction: the load pays up front for substations and lines built for it.</td>
+                <td>Clarity on which upgrades are truly load-specific versus system benefits others share.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="src"><a href="https://www.utilitydive.com/news/texas-facing-438-gw-queue-approves-initial-large-load-interconnection-pro/823367/">Utility Dive — ERCOT large-load process (SB6)</a> · <a href="https://www.ercot.com/services/rq/large-load-integration">ERCOT — Large Load Integration</a> · <a href="https://www.ercot.com/static-assets/data/news/content/a-peak-demand/all-time-records.htm">ERCOT — peak-demand records</a> · <a href="https://www.utilitydive.com/news/dte-data-center-deal-transformational-growth-earnings/804231/">Utility Dive — DTE 1.4 GW ESA</a> · <a href="https://pranava0x0.github.io/FERC-Orders-June-2026/">Companion site — the FERC §206 show-cause arc, docket by docket</a></p>
+      </div><!-- /data-level="2" large-load -->
+
       <h2 style="margin-top:30px" id="recent-deals">Recent deals</h2>
       <p class="src" style="border:none">As of mid-2026 — worked examples of the structures above, not a live deal tracker. Each links to a source.</p>
       <div class="dc-filter" id="dc-filter" role="group" aria-label="Filter deals by buyer type"></div>
@@ -1382,7 +1438,7 @@
       <hr class="rule">
 
       <h2 id="checkpoint-datacenter">Checkpoint</h2>
-      <p class="quiz-note">Five questions on the structures, the contracts behind them, and the demand shock. Four right marks this stop done.</p>
+      <p class="quiz-note">Six questions on the structures, the contracts behind them, and the load side of the queue. Five right marks this stop done.</p>
       <div class="quiz" data-quiz="datacenter"></div>
     </section>
 

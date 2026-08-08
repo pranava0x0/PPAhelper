@@ -303,6 +303,16 @@
         explain: "The battery doesn't generate — it shifts. So hybrid PPAs price it as availability: a storage adder on the energy price or a separate capacity payment, backed by availability and round-trip-efficiency guarantees. The negotiated clauses are the charging rules (grid vs. solar-only, which drives tax treatment and whose clean-energy claim the stored energy carries) and degradation over the term."
       },
       {
+        prompt: "Why do utilities demand minimum-demand ratchets, collateral, and exit fees in large-load ESAs?",
+        opts: [
+          { t: "To protect existing ratepayers — if the load never materializes, the wires and plants built for it must not become everyone else's bill", correct: true },
+          { t: "To maximize profit on each data center" },
+          { t: "Because FERC requires identical terms for all customers" },
+          { t: "To discourage data centers from connecting at all" }
+        ],
+        explain: "ERCOT tracked ~475 GW of large-load requests by June 2026 — over five times its all-time peak — and most of it is phantom load shopped into several queues at once. Ratchets, security postings ($50,000/MW under ERCOT's SB6 process), and termination payments make the load, not existing ratepayers, carry the cost of infrastructure built on its promise."
+      },
+      {
         prompt: "How does 24/7 hourly carbon-free matching differ from annual REC matching?",
         opts: [
           { t: "Carbon-free supply must match consumption every hour in the region, not net out across a year", correct: true },
