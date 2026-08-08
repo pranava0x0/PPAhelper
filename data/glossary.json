@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-01",
+  "updated": "2026-08-08",
   "note": "Single source of truth for terms. Feeds the glossary view and inline tooltips. Every entry is from a research finding (see docs/research-us-ppa.md). status: 'verified' = cited primary/government source; 'secondary' = cited but non-primary (e.g. job postings for the originator role); 'needs-research' = placeholder.",
   "terms": [
     {
@@ -665,6 +665,46 @@
       "status": "verified",
       "source": "PJM / FERC",
       "url": "https://www.pjm.com/markets-and-operations/ftr"
+    },
+    {
+      "term": "Tolling Agreement",
+      "category": "Types",
+      "def": "A contract where the buyer supplies the fuel to a power plant and takes the electricity, paying a fixed toll (capacity payment) for the conversion. The buyer keeps fuel-price risk and gains dispatch control — the structure behind many data-center gas deals where the load wants a dedicated plant without owning it.",
+      "status": "verified",
+      "source": "EIA glossary",
+      "url": "https://www.eia.gov/tools/glossary/index.php?id=T"
+    },
+    {
+      "term": "Heat Rate",
+      "category": "Market",
+      "def": "How much fuel a plant burns to make one unit of electricity, in Btu per kWh — lower is more efficient. At a 7,000 Btu/kWh heat rate and $3.50/MMBtu gas, the fuel cost of a MWh is about $24.50. The number that links gas prices to power prices.",
+      "status": "verified",
+      "source": "EIA",
+      "url": "https://www.eia.gov/todayinenergy/includes/sparkspread_explain.php"
+    },
+    {
+      "term": "Spark Spread",
+      "category": "Market",
+      "def": "The difference between the price of electricity and the cost of the natural gas needed to generate it — the standard back-of-envelope margin for a gas plant. A tolling buyer pays the toll precisely to capture this spread for itself.",
+      "status": "verified",
+      "source": "EIA",
+      "url": "https://www.eia.gov/todayinenergy/includes/sparkspread_explain.php"
+    },
+    {
+      "term": "Hybrid PPA (Solar + Storage)",
+      "category": "Types",
+      "def": "One PPA covering a co-located generator and battery. Pricing is usually the energy price plus a storage adder or a separate $/kW-month capacity payment for the battery; the negotiated clauses are charging rules (grid vs. solar-only), availability guarantees, and degradation.",
+      "status": "verified",
+      "source": "Berkeley Lab — Utility-Scale Solar",
+      "url": "https://emp.lbl.gov/utility-scale-solar"
+    },
+    {
+      "term": "Large Load Interconnection",
+      "category": "Data centers",
+      "def": "The formal process for connecting big new loads to the grid — the demand-side mirror of the generator queue. ERCOT under Texas SB6 (2025) studies loads of 75 MW and up in batches and requires $50,000/MW of financial security; roughly 475 GW of requests were pending by mid-2026, most of it data centers.",
+      "status": "verified",
+      "source": "ERCOT — Large Load Integration",
+      "url": "https://www.ercot.com/services/rq/large-load-integration"
     }
   ]
 }
