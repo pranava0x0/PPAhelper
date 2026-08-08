@@ -2,6 +2,24 @@
 
 Ideas and deferred scope. Each: description + priority (low / medium / high).
 
+## Data-center energy-lead scan (2026-08-08)
+
+Second job-market pass, this time on the *buyer-side* archetype: "Energy Lead / Power Procurement / Energy Strategy" roles at hyperscalers, neoclouds, data-center developers, and AI labs sourcing power for new large loads across technologies (solar/storage, gas, nuclear, geothermal). Postings scanned: CoreWeave (Principal Energy Strategy — "energy markets, utility tariffs, and power purchase agreements"; Energy Procurement Manager), Antora (Principal Power Procurement — "8+ PPAs, energy service agreements, or equivalent utility contracts, including negotiating at least 3 original or custom tariff structures"), plus the Umbrex data-center energy-strategy primer and 2026 deal coverage. Full findings: `docs/research-us-ppa.md` Round 8.
+
+**The diff.** The site taught the solar VPPA deeply and cataloged data-center deal *archetypes*, but three things these roles test were missing entirely (grep-confirmed zero hits): (1) how the **contract itself changes with the technology** — gas tolling / heat rate / spark spread, storage tolling, hybrid solar+storage PPAs, nuclear around-the-clock blocks; (2) the **load side of interconnection** — ERCOT's ≥75 MW large-load process, ramp schedules, minimum-demand ratchets, collateral in large-load ESAs; (3) the **buyer-side career frame** — the site's only role card was the developer-side originator.
+
+### Shipping this pass
+- **Technology → contract map** — Data centers tab, level-1 comparison table (solar/wind VPPA, hybrid solar+storage, storage toll, gas tolling/BYOP, existing nuclear, SMR/frontier) + practitioner deep-dive on tolling mechanics (heat rate, spark spread, who bears fuel risk), storage/hybrid clauses, nuclear block + clean-firm premium with the Carnegie reality-check numbers.
+- **Large-load interconnection + ESA terms** — Data centers tab, practitioner section: ERCOT SB6 batch process (≥75 MW, $50k/MW security, 474.7 GW queued June 2026), phantom-load problem, and the ESA terms an energy lead negotiates (ramp, contract demand + ratchet, term/exit fees, collateral, flexibility option, CIAC).
+- **Buyer's-chair role card** — Learn tab accordion next to the originator card: the data-center energy lead role, how it differs from developer-side origination, who hires (hyperscalers, neoclouds, DC developers/REITs, AI labs), what postings require, which tab teaches each skill.
+- **6 glossary terms** — Tolling Agreement, Heat Rate, Spark Spread, Hybrid PPA (Solar + Storage), Large Load Interconnection (+ wiring into tooltips); datacenter quiz bank +3 questions; PRAC_INDEX, coverage page, README updated.
+
+### Logged, not built (this pass)
+- **Heat-rate call options / structured gas products** — HRCOs and reverse tolls as hedges; niche beyond the tolling basics. *Priority: low*
+- **Storage augmentation & degradation clause depth** — capacity maintenance schedules, augmentation obligations, RTE guarantees at clause level. *Priority: low*
+- **Load forecasting methods** — already logged from the June scan; confirmed again by buyer-side postings. *Priority: medium (unchanged)*
+- **Mark-to-market / portfolio risk** — confirmed again (CoreWeave "monitor energy market data"); already medium. *Priority: medium (unchanged)*
+
 ## Masthead + in-tab navigation UX — shipped 2026-07-12
 
 User feedback on the header: the controls row under the title was cramped, the theme

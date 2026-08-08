@@ -243,6 +243,30 @@ Deal refresh (data/datacenter.json, 19 deals): added Google × Ormat (up to 150 
 
 ---
 
+## Round 8 — data-center energy-lead roles & multi-technology contracting (2026-08-08)
+
+Buyer-side job scan plus the contract mechanics those roles test. Sources fetched 2026-08-08.
+
+**The role archetype.** Hyperscalers, neoclouds, data-center developers, and AI labs are hiring energy leads to source power for new large loads across technologies, not to sign one solar VPPA:
+
+- CoreWeave, *Principal, Energy Strategy* (NYC): requires knowledge of "energy markets, utility tariffs, and power purchase agreements (PPAs)"; 5+ years energy procurement, "preferably within the data center or cloud industry"; $180k–264k base. *([Built In NYC](https://www.builtinnyc.com/job/principal-energy-strategy/6804601))* CoreWeave also listed an *Energy Procurement Manager* (Sunnyvale) — develop strategies, negotiate contracts, mitigate risk.
+- Antora Energy, *Principal, Power Procurement*: 12+ years in power procurement / energy origination / utility negotiations; "closing 8+ PPAs, energy service agreements, or equivalent utility contracts, including negotiating at least 3 original or custom tariff structures." (Listing via Jobgether, since expired — quoted from the posting text.)
+- The function, per the Umbrex data-center primer: load forecasting and capacity planning, grid-interconnection coordination, procurement across PPAs / utility tariffs / RECs / green tariffs, flexible-interconnection deals, on-site generation and storage, 24/7 CFE accounting. *([Umbrex — Energy Strategy & Power Procurement](https://umbrex.com/resources/data-center-primer/energy-strategy-power-procurement/))*
+
+**Multi-technology portfolio facts (verified):**
+
+- Heat rate (Btu/kWh) measures how efficiently a plant converts fuel to electricity; the spark spread is the difference between the power price and the gas cost to generate it — the standard profitability metric for gas generation, and the quantity a tolling counterparty captures. *([EIA — spark spread explainer](https://www.eia.gov/todayinenergy/includes/sparkspread_explain.php))*
+- Tolling arrangement (EIA): a "contract arrangement under which a raw material … from one company is delivered to the production facility of another company in exchange for the equivalent volume of finished products and payment of a processing fee" — in power: buyer supplies the gas, pays a fixed toll (capacity payment), takes the electricity; fuel-price risk stays with the buyer. *([EIA glossary](https://www.eia.gov/tools/glossary/index.php?id=T))*
+- Hybrid (solar + storage) PPA pricing — energy price plus a storage adder / capacity payment — documented with market data in LBNL's *Utility-Scale Solar*. *([Berkeley Lab](https://emp.lbl.gov/utility-scale-solar))*
+- Hyperscaler nuclear commitments "could provide up to 13 gigawatts (GW) in total, split roughly equally between PPAs and direct partnerships" (~6.9 GW PPAs / ~6.1 GW direct); even if all materialize (~102 TWh/y) they "cover less than 20 percent of projected demand through 2035"; new plants have traditionally taken "ten to fifteen years from initial planning to commission." *([Carnegie Endowment, June 2026](https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities))*
+
+**Load-side interconnection (verified):**
+
+- Texas SB6 (June 2025) created ERCOT's formal large-load interconnection process: loads ≥ 75 MW studied in batches, $50,000/MW financial security, documented site control, backup-generation disclosure. As of June 2026 ERCOT tracked ~474.7 GW of large-load interconnection requests, ~420.8 GW of it data centers — far beyond what will be built (the "phantom load" problem: the same load shopped into several utility queues at once). *([Utility Dive](https://www.utilitydive.com/news/texas-facing-438-gw-queue-approves-initial-large-load-interconnection-pro/823367/); [ERCOT — Large Load Integration](https://www.ercot.com/services/rq/large-load-integration))*
+- The regulated-utility counterpart of the PPA for these loads is the large-load ESA (electric service agreement) with ramp schedules, contract-demand minimums, and collateral — worked example: DTE × hyperscaler 1.4 GW (Round 7).
+
+---
+
 ## Coverage scorecard (be honest in the UI)
 
 | Topic | Status |
@@ -267,3 +291,10 @@ Deal refresh (data/datacenter.json, 19 deals): added Google × Ormat (up to 150 
 | Internal approval/signing (PUC prudence review, signature authority, EEI architecture) | ✅ Verified (R6, primary; corporate chain secondary) |
 | Assignment/step-in, dispute resolution (clause-level) | ⚠️ Needs research |
 | Time-of-delivery / hourly (ToD) pricing; 24/7 CFE matching | ⚠️ Needs research |
+| Heat rate, spark spread, tolling mechanics | ✅ Verified (R8, EIA) |
+| ERCOT large-load interconnection (SB6 ≥75 MW process, queue size) | ✅ Verified (R8, ERCOT + trade press) |
+| Hybrid solar+storage PPA pricing | ✅ Verified (R8, LBNL) |
+| Hyperscaler nuclear commitments vs. delivery reality | ✅ Verified (R8, Carnegie) |
+| Energy-lead role / buyer-side career frame | 🟡 Covered (R8, secondary — job postings + primer) |
+| Storage tolling / hybrid clause depth (augmentation, degradation, RTE guarantees) | ⚠️ Needs research |
+| Heat-rate call options / structured gas hedges | ⚠️ Needs research |
