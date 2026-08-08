@@ -26,6 +26,12 @@ Re-evaluated as the buyer's chief executive: "my campus energizes on a date; I n
 6. ✅ **Pass the hiring bar.** → *Shipped: hiring-bar rubric + red flags in the buyer's-chair card; two capstone checkpoint questions (portfolio necessity, anchor-first sequencing).*
 - Deferred from this lens: portfolio *cost* modeling (blended $/MWh needs deal-specific prices — false precision risk; revisit with LevelTen index bands). *Priority: low.* Hourly 8,760 modeling and multi-day weather stress also out of scope for a teaching tool. *Priority: low.*
 
+### Case studies (user-requested, same day) — shipped 2026-08-08
+- ✅ **Six load/gen/wires case studies** (`data/datacenter.json` → `caseStudies`, rendered in Data centers): AWS × Talen (ER24-2172 order PDF + Phillips dissent), Microsoft × Crane restart, Meta × Entergy (LPSC 2.26 GW), Crusoe Abilene, xAI Memphis, AEP Ohio tariff (24-508-EL-ATA). Each: market, participants, load/gen/wires, agreement stack, unique-vs-standard-PPA, filings history, lesson, primary citations. data.test.js enforces completeness + that FERC/PUCO primary docs stay cited.
+- ✅ **Two VPP examples** (`vppCases`): NRG × Renew Home × Google Cloud (1 GW TX by 2035), Sunrun CalReady / PG&E SAVE — framed by FERC Order 2222 + DOE Liftoff; new VPP glossary term.
+- ✅ **Stale-JSON cache bug fixed en route** — `dataUrl()` versions all data fetches (issues.md 2026-08-08; ui.test.js guard).
+- Open follow-ups: a physical/paper trail deep-link per history event (each row → its eLibrary/docket URL) *low*; a seventh case on a transmission-build (e.g. a 765 kV data-center line) once one has a filed record *low*; VPP third example if Base Power or a 2222-aggregator deal gets a primary source *low*.
+
 ### Logged, not built (this pass)
 - **Heat-rate call options / structured gas products** — HRCOs and reverse tolls as hedges; niche beyond the tolling basics. *Priority: low*
 - **Storage augmentation & degradation clause depth** — capacity maintenance schedules, augmentation obligations, RTE guarantees at clause level. *Priority: low*
