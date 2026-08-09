@@ -2,6 +2,19 @@
 
 Living audit trail. Each: date · area · description · root cause (**content bug** / **code bug** / **test bug**) · status.
 
+## 2026-08-09 — energy-expert review of the energy-leads branch
+
+Directional sweep over the 17 commits of `jam/energy-leads-ppa-opportunities-08a96d` (technology → contract map, tolling deep-dive, large-load section, playbook, stack builder, case studies, VPP examples), reconciled against settle-core's convention, the risk-allocation matrix, and draft.js.
+
+### Fixed
+
+- **2026-08-09 · Data centers · Technology → contract map put basis risk on the buyer.** *(content bug — Fixed)*
+  Row 1 ("Solar / wind, offsite") listed the buyer's residual risks as "Shape, volume, basis." The site's own risk-allocation matrix and draft.js §2.3 teach the opposite for the hub-settled norm: the **developer absorbs the node-to-hub gap**; the buyer's as-generated exposures are shape and volume. Cell now reads "Shape and volume (as-generated) — basis goes to the seller when hub-settled." Grep of the branch found no other instance of the flip. *Fix: index.html tech-contracts table; `?v=` bumped to 20260809a.*
+
+### Checked clean
+
+- Tolling fuel-risk direction (buyer holds the spark spread) consistent across the deep-dive, glossary, and quiz bank; storage-toll market risk on the buyer; negative-price §3.4 in draft.js still states the corrected buyer-pays direction; playbook arithmetic (24 GWh/day, $50k/MW × 1 GW, 474.7 GW vs 91,308 MW peak ≈ 5×) verified; case-study facts trace to their cited FERC/PUCO/LPSC/company documents; stack-builder claims match stack-core's tested behavior (82% RTE, deficit-first dispatch).
+
 ## 2026-08-08 — data fetches served stale JSON
 
 - **2026-08-08 · Caching · `data/*.json` fetches carried no version string.** *(code bug — Fixed)*
