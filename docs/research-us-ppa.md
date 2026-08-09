@@ -243,6 +243,50 @@ Deal refresh (data/datacenter.json, 19 deals): added Google × Ormat (up to 150 
 
 ---
 
+## Round 8 — data-center energy-lead roles & multi-technology contracting (2026-08-08)
+
+Buyer-side job scan plus the contract mechanics those roles test. Sources fetched 2026-08-08.
+
+**The role archetype.** Hyperscalers, neoclouds, data-center developers, and AI labs are hiring energy leads to source power for new large loads across technologies, not to sign one solar VPPA:
+
+- CoreWeave, *Principal, Energy Strategy* (NYC): requires knowledge of "energy markets, utility tariffs, and power purchase agreements (PPAs)"; 5+ years energy procurement, "preferably within the data center or cloud industry"; $180k–264k base. *([Built In NYC](https://www.builtinnyc.com/job/principal-energy-strategy/6804601))* CoreWeave also listed an *Energy Procurement Manager* (Sunnyvale) — develop strategies, negotiate contracts, mitigate risk.
+- Antora Energy, *Principal, Power Procurement*: 12+ years in power procurement / energy origination / utility negotiations; "closing 8+ PPAs, energy service agreements, or equivalent utility contracts, including negotiating at least 3 original or custom tariff structures." (Listing via Jobgether, since expired — quoted from the posting text.)
+- The function, per the Umbrex data-center primer: load forecasting and capacity planning, grid-interconnection coordination, procurement across PPAs / utility tariffs / RECs / green tariffs, flexible-interconnection deals, on-site generation and storage, 24/7 CFE accounting. *([Umbrex — Energy Strategy & Power Procurement](https://umbrex.com/resources/data-center-primer/energy-strategy-power-procurement/))*
+
+**Multi-technology portfolio facts (verified):**
+
+- Heat rate (Btu/kWh) measures how efficiently a plant converts fuel to electricity; the spark spread is the difference between the power price and the gas cost to generate it — the standard profitability metric for gas generation, and the quantity a tolling counterparty captures. *([EIA — spark spread explainer](https://www.eia.gov/todayinenergy/includes/sparkspread_explain.php))*
+- Tolling arrangement (EIA): a "contract arrangement under which a raw material … from one company is delivered to the production facility of another company in exchange for the equivalent volume of finished products and payment of a processing fee" — in power: buyer supplies the gas, pays a fixed toll (capacity payment), takes the electricity; fuel-price risk stays with the buyer. *([EIA glossary](https://www.eia.gov/tools/glossary/index.php?id=T))*
+- Hybrid (solar + storage) PPA pricing — energy price plus a storage adder / capacity payment — documented with market data in LBNL's *Utility-Scale Solar*. *([Berkeley Lab](https://emp.lbl.gov/utility-scale-solar))*
+- Hyperscaler nuclear commitments "could provide up to 13 gigawatts (GW) in total, split roughly equally between PPAs and direct partnerships" (~6.9 GW PPAs / ~6.1 GW direct); even if all materialize (~102 TWh/y) they "cover less than 20 percent of projected demand through 2035"; new plants have traditionally taken "ten to fifteen years from initial planning to commission." *([Carnegie Endowment, June 2026](https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities))*
+
+**Load-side interconnection (verified):**
+
+- Texas SB6 (June 2025) created ERCOT's formal large-load interconnection process: loads ≥ 75 MW studied in batches, $50,000/MW financial security, documented site control, backup-generation disclosure. As of June 2026 ERCOT tracked ~474.7 GW of large-load interconnection requests, ~420.8 GW of it data centers — more than five times ERCOT's all-time peak demand (91,308 MW, set July 22, 2026) and far beyond what will be built (the "phantom load" problem: the same load shopped into several utility queues at once). *([Utility Dive](https://www.utilitydive.com/news/texas-facing-438-gw-queue-approves-initial-large-load-interconnection-pro/823367/); [ERCOT — Large Load Integration](https://www.ercot.com/services/rq/large-load-integration); [ERCOT — peak-demand records](https://www.ercot.com/static-assets/data/news/content/a-peak-demand/all-time-records.htm))*
+- FERC issued §206 show-cause orders to all six RTOs/ISOs on large-load interconnection rules on June 18, 2026 (Items E-7 to E-12, Dockets EL26-67-000 through EL26-72-000), following DOE's Oct 2025 §403 ANOPR (RM26-4-000). Tracked docket-by-docket on the companion microsite. *([Large Load Interconnection — FERC §206 arc](https://pranava0x0.github.io/FERC-Orders-June-2026/))*
+- The regulated-utility counterpart of the PPA for these loads is the large-load ESA (electric service agreement) with ramp schedules, contract-demand minimums, and collateral — worked example: DTE × hyperscaler 1.4 GW (Round 7).
+
+**Portfolio-model anchors (CEO-lens follow-up, verified):**
+
+- Utility-scale batteries return roughly 80% of the electricity they store — the US fleet's average monthly round-trip efficiency was 82% (2019, latest EIA analysis of the metric); pumped storage ~79%. Used as the stack builder's default RTE. *([EIA — Today in Energy #46756](https://www.eia.gov/todayinenergy/detail.php?id=46756))*
+- Capacity-factor anchors for representative-day profiles: utility-scale solar PV ~25%, onshore wind ~34% (EIA Electric Power Monthly, Table 6.07.B; varies by region and vintage). *([EIA — EPM Table 6.07.B](https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_6_07_b))*
+- Arithmetic anchor: a 1,000 MW flat load consumes 8,760 GWh/yr (1 GW × 8,760 h); a same-nameplate solar project at ~25% CF generates ~2,190 GWh — a quarter of the energy, concentrated in ~8 daylight hours.
+
+---
+
+## Round 9 — load/gen/T&D case studies + VPP examples (2026-08-08)
+
+Eight cases for `data/datacenter.json` (`caseStudies`, `vppCases`), each with participants, market, agreement stack, uniqueness-vs-standard-PPA, filed-document history, and 2–4 citations. Key primary documents verified this round:
+
+- **FERC ER24-2172** (Nov 1, 2024, 189 FERC ¶ 61,078): PJM's amended ISA to raise Susquehanna co-located BTM load 300 → 480 MW rejected 2–1 ("high burden" for non-conforming terms not met); Chairman Phillips dissented that the first-of-its-kind configuration warranted one. *([Order PDF](https://www.ferc.gov/sites/default/files/2024-11/20241101-3061_ER24-2172-000.pdf); [Phillips dissent](https://www.ferc.gov/news-events/news/chairman-phillips-dissent-pjms-susquehanna-co-location-proposal-er24-2172))*
+- **PUCO Case No. 24-508-EL-ATA** (approved Jul 9, 2025): AEP Ohio data-center tariff — new large data centers pay ≥85% of contracted capacity for up to 12 years; settlement with staff and the Consumers' Counsel; appeal at the Ohio Supreme Court (2025-1458). *([PUCO release](https://puco.ohio.gov/news/puco-orders-aep-ohio-to-create-data-center-specific-tariff))*
+- **Meta × Entergy** (LPSC, Aug 2025, 4–1): three CCGTs totaling 2.26 GW (two Richland Parish online late 2028, one Waterford) for the ~$10B, ~2–2.5 GW Hyperion campus; settlement signed by LPSC staff, Walmart, Sierra Club, SREA. *([Entergy release](https://www.entergy.com/news/entergy-louisiana-receives-lpsc-approval-for-major-infrastructure-investments-to-support-metas-data-center-and-improve-reliability); [KPLC — the vote](https://www.kplctv.com/2025/08/21/entergy-la-gets-green-light-plant-power-metas-ai-data-center/))*
+- **Crusoe Abilene**: 1.2 GW grid interconnection at the Lancium Clean Campus plus BTM solar/storage and ~1 GW of on-site turbines; four of eight buildings operational by Mar 2026; further 900 MW Microsoft AI-factory campus with its own on-site plant. *([Crusoe — 1.2 GW](https://www.crusoe.ai/resources/newsroom/crusoe-expands-ai-data-center-campus-in-abilene-to-1-2-gigawatts); [Crusoe — 900 MW](https://www.crusoe.ai/resources/newsroom/crusoe-announces-new-900-mw-ai-factory-campus-in-abilene-texas-to-support-microsoft-ai-infrastructure))*
+- **xAI Memphis**: TVA board approvals (150 MW, then +150 MW) via MLGW (TVA's largest customer); Shelby County air permit (Jul 2025) covers 15 turbines / ~247 MW through Jan 2027; reporting and aerial imagery identified ~35 turbines with alleged unpermitted operation. *([WREG](https://wreg.com/news/local/tva-approves-xai-request-for-electricity-supply/); [DCD](https://www.datacenterdynamics.com/en/news/xai-doubles-number-of-onsite-gas-turbines-at-memphis-data-center-in-violation-of-permit-limits/))*
+- **VPP anchors**: FERC Order 2222 (DER aggregations in wholesale markets); DOE VPP Liftoff (80–160 GW by 2030, ~$10B/yr savings); NRG × Renew Home × Google Cloud ~1 GW Texas VPP by 2035 (~200k homes equivalent, free thermostats, Renew Home co-funds $150 CAC); Sunrun CalReady 2025 fleet: ~56k customers / 75k batteries / ~250 MW two-hour dispatch, 4–9 p.m. May–Oct, up to ~$150/battery/season; Sunrun × PG&E SAVE dispatched 50+ times, 1,200+ dispatching hours Jul–Oct 2025. *([NRG](https://www.nrg.com/about/newsroom/2024/43921.html); [Sunrun](https://investors.sunrun.com/news-events/press-releases/detail/340/sunruns-distributed-power-plant-quadruples-in-size-to); [FERC 2222](https://www.ferc.gov/ferc-order-no-2222-explainer-facilitating-participation-electricity-markets-distributed-energy); [DOE](https://www.energy.gov/edf/articles/doe-releases-new-report-pathways-commercial-liftoff-virtual-power-plants))*
+
+---
+
 ## Coverage scorecard (be honest in the UI)
 
 | Topic | Status |
@@ -267,3 +311,10 @@ Deal refresh (data/datacenter.json, 19 deals): added Google × Ormat (up to 150 
 | Internal approval/signing (PUC prudence review, signature authority, EEI architecture) | ✅ Verified (R6, primary; corporate chain secondary) |
 | Assignment/step-in, dispute resolution (clause-level) | ⚠️ Needs research |
 | Time-of-delivery / hourly (ToD) pricing; 24/7 CFE matching | ⚠️ Needs research |
+| Heat rate, spark spread, tolling mechanics | ✅ Verified (R8, EIA) |
+| ERCOT large-load interconnection (SB6 ≥75 MW process, queue size) | ✅ Verified (R8, ERCOT + trade press) |
+| Hybrid solar+storage PPA pricing | ✅ Verified (R8, LBNL) |
+| Hyperscaler nuclear commitments vs. delivery reality | ✅ Verified (R8, Carnegie) |
+| Energy-lead role / buyer-side career frame | 🟡 Covered (R8, secondary — job postings + primer) |
+| Storage tolling / hybrid clause depth (augmentation, degradation, RTE guarantees) | ⚠️ Needs research |
+| Heat-rate call options / structured gas hedges | ⚠️ Needs research |

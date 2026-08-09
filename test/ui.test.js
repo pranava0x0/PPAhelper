@@ -109,6 +109,17 @@ test("per-view TOC is built, level-synced, and uses data-scroll-to (not hash lin
     ".toc-link styles or the sticky-masthead scroll-margin offset missing");
 });
 
+// --- Data fetches must ride the asset version (stale-JSON scar, 2026-08-08) ---
+test("every data/*.json fetch is versioned via dataUrl()", () => {
+  const fs2 = require("node:fs");
+  ["assets/js/app.js", "assets/js/content.js"].forEach((f) => {
+    const src = read(f);
+    assert.ok(!/fetch\(\s*"data\//.test(src),
+      f + " fetches data/*.json without dataUrl() — a deploy can serve stale JSON to fresh JS");
+    if (/fetch\(/.test(src)) assert.ok(/function dataUrl/.test(src), f + " missing dataUrl helper");
+  });
+});
+
 // --- DESIGN.md scar tissue: the [hidden] guard must exist ---
 test("[hidden] display guard is present in CSS", () => {
   const css = read("assets/css/styles.css");

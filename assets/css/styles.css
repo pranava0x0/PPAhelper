@@ -27,6 +27,14 @@
   --flow-debit: #d64545;      /* party pays */
   --warn: #d64545;
 
+  /* supply-stack layers (Serve the load chart) — never for money flow */
+  --stack-nuclear: #2563eb;
+  --stack-solar: #d97706;
+  --stack-wind: #0d9488;
+  --stack-batt: #7c3aed;
+  --stack-gas: #8a7357;
+  --stack-grid: #c3ccd8;
+
   --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.08);
   --shadow-pop: 0 10px 30px rgba(16, 24, 40, 0.14);
 
@@ -47,6 +55,13 @@
   --flow-credit: #3fb27f;
   --flow-debit: #e06c6c;
   --warn: #e06c6c;
+
+  --stack-nuclear: #5b9bff;
+  --stack-solar: #f0a94a;
+  --stack-wind: #45c4b5;
+  --stack-batt: #a78bfa;
+  --stack-gas: #b09a7d;
+  --stack-grid: #3a4653;
 
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-pop: 0 10px 30px rgba(0, 0, 0, 0.55);
@@ -297,6 +312,13 @@ main { max-width: 1180px; margin: 0 auto; padding: 28px 22px 80px; }
 .swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
 
 /* capital-stack bar (project finance) */
+/* case studies (Data centers tab) */
+.case-history { margin: 0 0 12px; padding-left: 18px; font-size: 13.5px; }
+.case-history li { margin: 3px 0; }
+.case-date { color: var(--text-muted); font-size: 12px; white-space: nowrap; margin-right: 4px; }
+.case-meta { margin: 0 0 8px; }
+.case-participants { font-size: 13.5px; color: var(--text-muted); max-width: none; }
+
 .cap-stack { display: flex; width: 100%; height: 40px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
 .cap-seg { display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; white-space: nowrap; transition: width 220ms ease; letter-spacing: 0.02em; }
 .cap-seg.cap-tax { background: var(--text-muted); }

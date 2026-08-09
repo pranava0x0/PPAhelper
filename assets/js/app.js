@@ -32,6 +32,12 @@
     { view: "examples",    target: "annotated-examples",   label: "Annotated real PPAs (SEC-filed)" },
     { view: "projfin",     target: "pf-workbench",         label: "Debt-sizing workbench" },
     { view: "projfin",     target: "tax-equity-flip",      label: "Tax equity & the flip" },
+    { view: "datacenter",  target: "tech-contracts",       label: "Technology → contract map" },
+    { view: "datacenter",  target: "serve-the-load",       label: "Gigawatt stack builder" },
+    { view: "datacenter",  target: "large-load",           label: "Large-load queue & ESA terms" },
+    { view: "datacenter",  target: "gigawatt-playbook",    label: "Gigawatt playbook" },
+    { view: "datacenter",  target: "case-studies",         label: "Load/gen/wires case studies" },
+    { view: "datacenter",  target: "vpp-ppas",             label: "VPP examples" },
     { view: "datacenter",  target: "recent-deals",         label: "Hyperscaler deals table" }
   ];
 
@@ -336,8 +342,16 @@
     });
   }
 
+  /* Same ?v= as this script tag rides on the data fetch, so a deploy that
+     changes the JSON busts the browser cache with it (see content.js note). */
+  var DATA_V = (function () {
+    var m = ((document.currentScript && document.currentScript.src) || "").match(/[?&]v=([\w-]+)/);
+    return m ? m[1] : "";
+  })();
+  function dataUrl(path) { return DATA_V ? path + "?v=" + DATA_V : path; }
+
   function loadGlossary() {
-    fetch("data/glossary.json")
+    fetch(dataUrl("data/glossary.json"))
       .then(function (r) { if (!r.ok) throw new Error("glossary " + r.status); return r.json(); })
       .then(function (data) {
         glossary = (data && data.terms) || [];

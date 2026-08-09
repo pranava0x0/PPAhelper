@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
-  <link rel="preload" href="data/glossary.json" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260712f">
+  <link rel="preload" href="data/glossary.json?v=20260809b" as="fetch" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260809b">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -515,6 +515,66 @@
             <li>Track the LevelTen PPA Price Index and CEBA's annual procurement survey — the real-time market benchmarks that originators watch.</li>
           </ol>
           <p class="src" style="margin-top:12px"><a href="https://cebuyers.org/">CEBA — Clean Energy Buyers Alliance</a> · <a href="https://www.leveltenenergy.com/ppa">LevelTen PPA Price Index</a> · <a href="https://rmi.org/insight/corporate-purchasers-guide-risk-mitigation/">RMI — Risk Mitigation Guide</a></p>
+        </div>
+      </details>
+
+      <details class="acc" style="margin-top:10px">
+        <summary><strong>The buyer's chair — the data-center energy lead</strong></summary>
+        <div class="acc-body">
+          <p style="margin-bottom:10px">The originator above sits on the seller's side of the table. The 2025–26 hiring wave is on the other side: hyperscalers, neoclouds, data-center developers, and AI labs staffing teams to source power for gigawatt campuses. The titles read "Energy Lead," "Energy Procurement Manager," "Principal — Energy Strategy," "Power Procurement." Same contracts, opposite chair — and a wider portfolio.</p>
+
+          <p style="margin-bottom:12px"><strong>How it differs from origination.</strong> An originator sells one project's output and defends a strike price. An energy lead buys for a fleet of loads and defends an energization date — <span class="gterm" data-term="Speed-to-Power">speed-to-power</span> beats price in most 2026 decisions. The portfolio spans every row of the technology → contract map in <button class="nav-link-btn" data-view="datacenter">Data centers</button>, and the counterparties include two the seller's side rarely faces alone: the utility writing a large-load <span class="gterm" data-term="Energy Supply Agreement (ESA)">ESA</span>, and the ISO studying whether the grid can even take the load.</p>
+
+          <h3 style="margin-top:4px">A day in the life</h3>
+          <ul style="margin:0 0 12px;padding-left:20px;font-size:14px">
+            <li><strong>Site power due diligence:</strong> Before real estate commits, verify the megawatts are real — queue position, utility capacity, energization dates. A site without power is land.</li>
+            <li><strong>Utility negotiation:</strong> The large-load ESA — ramp schedule, demand ratchets, collateral, curtailability. The terms table is in <button class="nav-link-btn" data-view="datacenter">Data centers</button>.</li>
+            <li><strong>Portfolio origination:</strong> RFPs and bilateral talks across solar, storage, gas tolls, nuclear blocks, geothermal — matching each campus to the contract its timeline allows.</li>
+            <li><strong>Market analytics:</strong> Forward prices, congestion, basis on the existing book. CoreWeave's posting asks for exactly this: "collect and analyze energy market data."</li>
+            <li><strong>Regulatory watch:</strong> FERC's co-location and large-load dockets, state tariff cases — each can re-price or re-time a campus.</li>
+            <li><strong>Internal alignment:</strong> A capacity roadmap that finance, data-center ops, and the investment committee all sign — the approval chain from Drafting → Getting to signature.</li>
+          </ul>
+
+          <h3>Who hires</h3>
+          <div class="grid cols-2" style="margin-bottom:12px">
+            <div class="card">
+              <p class="eyebrow">Hyperscalers</p>
+              <p style="margin:0;font-size:14px;max-width:none">Google, Amazon, Microsoft, Meta, Oracle — regional energy teams doing PPAs, tariffs, and interconnection in parallel. Every one signed nuclear by mid-2026.</p>
+            </div>
+            <div class="card">
+              <p class="eyebrow">Neoclouds &amp; AI labs</p>
+              <p style="margin:0;font-size:14px;max-width:none">CoreWeave, Crusoe, xAI, OpenAI, Anthropic — small teams, speed-to-power first. CoreWeave's Principal, Energy Strategy asked for "energy markets, utility tariffs, and power purchase agreements" at a $180k–264k base.</p>
+            </div>
+            <div class="card">
+              <p class="eyebrow">Data-center developers &amp; REITs</p>
+              <p style="margin:0;font-size:14px;max-width:none">Vantage, QTS, Aligned, Switch, Digital Realty, Equinix — power feasibility now drives site selection, so energy sits inside the deal team.</p>
+            </div>
+            <div class="card">
+              <p class="eyebrow">Suppliers building data-center desks</p>
+              <p style="margin:0;font-size:14px;max-width:none">NextEra, Constellation, Vistra, Talen — the sell side reorganized around the same loads. Antora's power-procurement lead role wanted "8+ PPAs, energy service agreements, or equivalent utility contracts" including "3 original or custom tariff structures."</p>
+            </div>
+          </div>
+
+          <h3>The hiring bar — what the executive across the table tests</h3>
+          <p style="margin:0 0 8px;font-size:14px">For a gigawatt-scale role, the interview is war stories, not definitions. What gets probed, and where this course preps each:</p>
+          <ul style="margin:0 0 10px;padding-left:20px;font-size:14px">
+            <li><strong>Closed deals across at least two technologies and two markets.</strong> "Walk me through the hardest one" — the technology → contract map in Data centers is the vocabulary check.</li>
+            <li><strong>A utility scar.</strong> A ratchet you negotiated down, a ramp you accelerated, a collateral step-down you won — the large-load ESA table is the terrain.</li>
+            <li><strong>Credit fluency.</strong> Size a letter of credit aloud; explain when a parent guarantee substitutes for cash. Drafting → credit support.</li>
+            <li><strong>A basis story with numbers.</strong> The Sunridge August wipe in Learn is the shape of the answer they want — from your own book.</li>
+            <li><strong>Sequencing.</strong> "Campus energizes Q3 2028 — what do you do this quarter?" The gigawatt playbook in Data centers is that answer's skeleton.</li>
+          </ul>
+          <p style="margin:0 0 12px;font-size:14px"><strong>Red flags</strong> the interviewer is watching for: a book that's only annual-REC solar VPPAs, never having sat across a utility, and hesitating on who bears fuel risk in a tolling agreement.</p>
+
+          <h3>Where this course covers it</h3>
+          <ol style="margin:0;padding-left:20px;font-size:14px">
+            <li>The settlement mechanic and basis risk (this tab + the simulator) — table stakes on either side of the table.</li>
+            <li>The technology → contract map and tolling mechanics (Data centers) — the multi-technology breadth the postings name.</li>
+            <li>The large-load queue and ESA terms (Data centers, Practitioner) — the utility-negotiation half of the job.</li>
+            <li>ISO/RTO differences (this tab, Practitioner) — which market rules shape each campus.</li>
+            <li>Approvals and signature authority (Drafting) — how a 17-year commitment actually gets signed.</li>
+          </ol>
+          <p class="src" style="margin-top:12px">Role requirements as of mid-2026; postings age fast. <a href="https://www.builtinnyc.com/job/principal-energy-strategy/6804601">CoreWeave — Principal, Energy Strategy</a> · <a href="https://umbrex.com/resources/data-center-primer/energy-strategy-power-procurement/">Umbrex — Energy Strategy &amp; Power Procurement</a></p>
         </div>
       </details>
 
@@ -1297,6 +1357,312 @@
       <p class="level-count" data-level-count="#dc-structures" data-count-noun="structures" hidden></p>
       <div id="dc-structures"></div>
 
+      <h2 style="margin-top:30px" id="tech-contracts">How the contract follows the technology</h2>
+      <p>The 2026 job postings for this market ask for one thing the solar-era ones didn't: PPA experience <em>across</em> technologies — solar and storage, gas, nuclear. The reason is in this table. Each machine sells a different product, so each gets a different contract, and the buyer keeps a different residual risk. An energy lead runs a portfolio of all of them at once — the role itself (who hires, what the postings ask) is the buyer's-chair card in <button class="nav-link-btn" data-view="foundations">Learn</button>.</p>
+      <div class="table-wrap">
+        <table class="coverage" style="width:100%;table-layout:auto">
+          <thead>
+            <tr>
+              <th style="width:16%">Technology</th>
+              <th style="width:20%">What you're buying</th>
+              <th style="width:24%">The contract you'll see</th>
+              <th style="width:20%">The clause that defines it</th>
+              <th style="width:20%">Risk that stays with the buyer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Solar / wind, offsite</strong></td>
+              <td>As-generated energy + <span class="gterm" data-term="Renewable Energy Certificate (REC)">RECs</span></td>
+              <td><span class="gterm" data-term="Virtual / Financial PPA (VPPA)">VPPA</span> or physical PPA — the structure this whole course teaches</td>
+              <td><span class="gterm" data-term="Settlement Location">Settlement point</span> (hub vs. node)</td>
+              <td><span class="gterm" data-term="Shape Risk">Shape</span> and <span class="gterm" data-term="Volume Risk">volume</span> (as-generated) — <span class="gterm" data-term="Basis Risk">basis</span> goes to the seller when hub-settled</td>
+            </tr>
+            <tr>
+              <td><strong>Solar + storage</strong></td>
+              <td>Energy shifted into the hours the load needs</td>
+              <td><span class="gterm" data-term="Hybrid PPA (Solar + Storage)">Hybrid PPA</span> — energy price plus a storage adder or capacity payment</td>
+              <td>Charging rules + battery availability guarantee</td>
+              <td>Paying for a battery that underdelivers — degradation, availability</td>
+            </tr>
+            <tr>
+              <td><strong>Standalone battery</strong></td>
+              <td>Dispatch rights — not energy</td>
+              <td>Storage <span class="gterm" data-term="Tolling Agreement">tolling agreement</span>: fixed $/kW-month for the box</td>
+              <td>Availability + round-trip-efficiency guarantee</td>
+              <td>Every charge/discharge decision — the buyer schedules it and eats the market outcome</td>
+            </tr>
+            <tr>
+              <td><strong>Gas, contracted or on-site</strong></td>
+              <td>Firm MW on the buyer's schedule</td>
+              <td><span class="gterm" data-term="Tolling Agreement">Tolling agreement</span> (buyer supplies the fuel) or outright <span class="gterm" data-term="Bring-Your-Own-Power (BYOP)">BYOP</span> ownership</td>
+              <td><span class="gterm" data-term="Heat Rate">Heat-rate</span> guarantee + start charges</td>
+              <td>Fuel price — under a toll the <span class="gterm" data-term="Spark Spread">spark spread</span> is the buyer's problem — plus carbon and permits</td>
+            </tr>
+            <tr>
+              <td><strong>Existing nuclear</strong></td>
+              <td>A flat 24/7 block of <span class="gterm" data-term="Clean Firm Power">clean firm power</span></td>
+              <td>Long-tenor PPA (17–20 yr) or front-of-meter retail supply (AWS × Talen)</td>
+              <td>Around-the-clock delivery at one price</td>
+              <td>A premium over hub power, and the additionality question — repricing a plant, not adding one</td>
+            </tr>
+            <tr>
+              <td><strong>SMR / frontier</strong></td>
+              <td>A claim on firm power that doesn't exist yet</td>
+              <td>Development offtake: milestones, CPs, price re-openers</td>
+              <td><span class="gterm" data-term="Commercial Operation Date (COD)">COD</span> milestones + walk rights</td>
+              <td>First-of-a-kind technology and schedule — it may never deliver</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src"><a href="https://www.eia.gov/todayinenergy/includes/sparkspread_explain.php">EIA — spark spreads</a> · <a href="https://emp.lbl.gov/utility-scale-solar">Berkeley Lab — Utility-Scale Solar (hybrid pricing)</a> · <a href="https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities">Carnegie — hyperscaler nuclear commitments</a></p>
+
+      <div data-level="2">
+        <hr class="rule">
+        <h2 id="tolling-mechanics">The toll, the heat rate, and the premium <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <p>Three contract mechanics from that table that interviews for these roles actually test.</p>
+
+        <h3 style="margin-top:14px">Gas — who owns the spark spread</h3>
+        <p>A <span class="gterm" data-term="Tolling Agreement">tolling agreement</span> splits a gas plant into two businesses. The owner gets a fixed toll — a $/kW-month capacity payment that covers capex and fixed O&amp;M — plus variable O&amp;M and start charges when dispatched. The buyer procures the fuel (which means firm gas transport, its own contract), schedules the plant, and takes the power. The contract's core promise is the <span class="gterm" data-term="Heat Rate">heat rate</span>: burn no more than X Btu per kWh. At a guaranteed 7,000 Btu/kWh and $3.50/MMBtu gas, a MWh costs $24.50 in fuel; if power is worth $45, the <span class="gterm" data-term="Spark Spread">spark spread</span> — $20.50 — belongs to the buyer, and so does the loss when gas spikes. A fixed-price ESA flips that: the seller embeds the fuel hedge and charges for it. Neoclouds building <span class="gterm" data-term="Bring-Your-Own-Power (BYOP)">BYOP</span> campuses (Crusoe at Abilene, the Stargate microgrid) take the same economics one step further and own the machine outright.</p>
+
+        <h3>Batteries — renting the box</h3>
+        <p>A storage toll is the same idea without fuel: fixed $/kW-month for dispatch rights over someone else's battery. The owner guarantees availability (typically ~95%+) and round-trip efficiency; the buyer decides every charge and discharge, so market risk sits entirely on the buyer's desk — which is the point, for a load that wants to shape its own supply. In a <span class="gterm" data-term="Hybrid PPA (Solar + Storage)">hybrid PPA</span> the battery instead rides inside the generator's offer: one contract, an energy price plus a storage adder or separate capacity payment. The clauses that get negotiated are the charging rules — whether the battery may charge from the grid or only from the paired solar, which drives both tax treatment and whose clean-energy claim the stored energy carries — plus degradation schedules and availability guarantees.</p>
+
+        <h3>Nuclear — buying the block</h3>
+        <p>An existing-fleet nuclear PPA is the simplest shape in the table — a flat around-the-clock block at one price for 17–20 years — and the hardest to price. The buyer pays a premium over prevailing hub power for firmness and the carbon-free claim (deal prices are undisclosed, but every disclosed structure is long-tenor and full-output). Scale check: announced hyperscaler nuclear agreements total up to ~13 GW, split roughly evenly between PPAs and direct partnerships — and even if all of it materializes, it covers less than 20% of projected data-center demand growth through 2035. New plants have historically taken 10–15 years from planning to commissioning, which is why the near-term deals contract <em>existing</em> plants — raising the additionality question from the Scope 2 chain in <button class="nav-link-btn" data-view="foundations">Learn</button>: the grid gains no new carbon-free MWh when an operating plant changes offtaker.</p>
+        <p class="src"><a href="https://www.eia.gov/todayinenergy/includes/sparkspread_explain.php">EIA — heat rates &amp; spark spreads</a> · <a href="https://www.eia.gov/tools/glossary/index.php?id=T">EIA glossary — tolling arrangement</a> · <a href="https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities">Carnegie Endowment (June 2026) — nuclear commitments vs. delivery</a></p>
+      </div><!-- /data-level="2" tolling-mechanics -->
+
+      <hr class="rule">
+
+      <h2 id="serve-the-load">Serve the load — build a gigawatt stack</h2>
+      <p class="lede" style="max-width:72ch">A 1,000 MW campus consumes 24,000 MWh every day, flat. No single row of the table above delivers that: a same-size solar PPA produces about a third of the energy, all in daylight. This is why gigawatt buyers sign portfolios. Pick your contracts and watch what they cover — and what stays exposed.</p>
+
+      <div class="sim-layout" style="margin-top:14px">
+        <form class="controls" id="st-controls" aria-label="Supply stack inputs">
+          <fieldset>
+            <legend>Strategy preset</legend>
+            <div class="scenario-row" id="st-presets">
+              <button type="button" class="scenario-btn" data-preset="solar" aria-pressed="false">Solar-only mirage</button>
+              <button type="button" class="scenario-btn" data-preset="renstor" aria-pressed="false">Renewables + storage</button>
+              <button type="button" class="scenario-btn" data-preset="anchored" aria-pressed="true">Anchored stack</button>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>The load</legend>
+            <div class="field">
+              <label for="st-load">Campus load <span class="hint">MW, flat 24/7</span></label>
+              <input type="number" id="st-load" value="1000" min="0" max="5000" step="50">
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Contracted supply</legend>
+            <div class="field">
+              <label for="st-nuclear">Nuclear block <span class="hint">MW around-the-clock</span></label>
+              <input type="number" id="st-nuclear" value="400" min="0" max="5000" step="50">
+            </div>
+            <div class="field">
+              <label for="st-solar">Solar PPA <span class="hint">MW nameplate</span></label>
+              <input type="number" id="st-solar" value="1200" min="0" max="10000" step="100">
+            </div>
+            <div class="field">
+              <label for="st-wind">Wind PPA <span class="hint">MW nameplate</span></label>
+              <input type="number" id="st-wind" value="400" min="0" max="10000" step="100">
+            </div>
+            <div class="field">
+              <label for="st-batt">Battery toll <span class="hint">MW of discharge power</span></label>
+              <input type="number" id="st-batt" value="300" min="0" max="5000" step="50">
+            </div>
+            <div class="field">
+              <label for="st-batthrs">Battery duration <span class="hint">hours at full power</span></label>
+              <input type="number" id="st-batthrs" value="4" min="0" max="12" step="1">
+            </div>
+            <div class="field">
+              <label for="st-gas">Gas toll <span class="hint">MW dispatchable</span></label>
+              <input type="number" id="st-gas" value="300" min="0" max="5000" step="50">
+            </div>
+          </fieldset>
+        </form>
+
+        <div class="readout">
+          <div class="direction-banner" id="st-banner" role="status" aria-live="polite">—</div>
+
+          <div class="kpis">
+            <div class="kpi">
+              <div class="k-label">Hours fully covered</div>
+              <div class="k-val mono" id="st-covered">—</div>
+              <div class="k-sub">of 24, without buying from the grid</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">Carbon-free share</div>
+              <div class="k-val mono" id="st-cfe">—</div>
+              <div class="k-sub">of consumption, hourly-matched</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">Open position</div>
+              <div class="k-val mono" id="st-open">—</div>
+              <div class="k-sub">MWh/day bought at spot — unhedged</div>
+            </div>
+            <div class="kpi">
+              <div class="k-label">Clean surplus</div>
+              <div class="k-val mono" id="st-surplus">—</div>
+              <div class="k-sub">MWh/day beyond load &amp; battery — sold</div>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <svg id="st-chart" viewBox="0 0 720 260" role="img" aria-label="Hourly supply stack against the flat load line"></svg>
+            <div class="chart-legend">
+              <span><span class="swatch" style="background:var(--stack-nuclear)"></span> Nuclear</span>
+              <span><span class="swatch" style="background:var(--stack-solar)"></span> Solar</span>
+              <span><span class="swatch" style="background:var(--stack-wind)"></span> Wind</span>
+              <span><span class="swatch" style="background:var(--stack-batt)"></span> Battery</span>
+              <span><span class="swatch" style="background:var(--stack-gas)"></span> Gas toll</span>
+              <span><span class="swatch" style="background:var(--stack-grid)"></span> Grid (open)</span>
+            </div>
+          </div>
+
+          <p class="hint">One representative clear day, flat load. Dispatch order: nuclear → solar → wind → battery → gas toll → grid, with the battery scheduled into the deepest deficit hours. Duration means delivery: a 4-hour battery discharges four full-power hours, charging only from clean surplus and absorbing ~22% more than it returns at 82% round-trip efficiency — the US fleet average round-trip efficiency. Clear-day shapes flatter solar and wind; annual capacity factors are lower (solar ~25%, onshore wind ~34%), so a real year needs <em>more</em> of everything. An illustration of portfolio mechanics, not a production-cost model. <a href="https://www.eia.gov/todayinenergy/detail.php?id=46756">EIA — battery round-trip efficiency</a> · <a href="https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_6_07_b">EIA — capacity factors</a></p>
+        </div>
+      </div>
+
+      <div data-level="2">
+        <hr class="rule">
+        <h2 id="large-load">Connecting the load — the other half of the job <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <p>Everything above secures supply. The load itself still has to get connected and served, and that runs through two counterparties the generator-side course never meets: the ISO, which studies whether the grid can take the load, and the utility, which writes the service agreement. The postings call this "utility tariff negotiation" — it is where an energy lead spends much of the week.</p>
+
+        <h3 style="margin-top:14px">The load-side queue</h3>
+        <p>Generators have waited in interconnection queues for years; giant loads now do too. Texas moved first: under SB6 (June 2025), ERCOT's <span class="gterm" data-term="Large Load Interconnection">large-load interconnection</span> process studies every load of 75 MW or more in batches and requires $50,000/MW of financial security plus documented site control and backup-generation disclosure. The queue it revealed is the market's defining number: ~474.7 GW of large-load requests by June 2026 — ~420.8 GW of it data centers — more than five times ERCOT's all-time peak demand (91,308 MW, set July 22, 2026). Most of that is <em>phantom load</em>: the same project shopped into several utility queues at once, which is exactly why utilities demand security postings and site control before studying anything. FERC followed in June 2026 with §206 show-cause orders to all six RTOs/ISOs (Dockets EL26-67 through EL26-72) to reform their large-load rules — the co-location fight from the structures above was the opening round.</p>
+
+        <h3>The large-load ESA — terms an energy lead actually negotiates</h3>
+        <p>Where supply is a regulated utility (the DTE deal in the table below), the contract is an <span class="gterm" data-term="Energy Supply Agreement (ESA)">ESA</span> under a large-load tariff, and its terms exist to answer one regulatory question: if this load never shows up, who eats the cost of the wires and plants built for it? The utility's answer is: not the existing ratepayers.</p>
+        <div class="table-wrap">
+          <table class="coverage" style="width:100%;table-layout:auto">
+            <thead>
+              <tr>
+                <th style="width:22%">Term</th>
+                <th style="width:44%">What it says</th>
+                <th style="width:34%">What the energy lead pushes for</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Ramp schedule</strong></td>
+                <td>The MW the load may draw each year as it energizes — a 1 GW campus might step up 200 MW at a time.</td>
+                <td>A ramp that tracks the real IT fit-out, with rights to accelerate if racks land early.</td>
+              </tr>
+              <tr>
+                <td><strong>Contract demand + minimum charge</strong></td>
+                <td>A demand ratchet: pay for a set share of contracted MW whether consumed or not.</td>
+                <td>A lower ratchet percentage, and a start date tied to energization rather than signing.</td>
+              </tr>
+              <tr>
+                <td><strong>Term + exit fees</strong></td>
+                <td>Multi-year minimum term with termination payments covering the utility's unrecovered investment.</td>
+                <td>Step-downs over time; credit for infrastructure that serves the next customer.</td>
+              </tr>
+              <tr>
+                <td><strong>Collateral</strong></td>
+                <td>Letter of credit or deposit sized to months of expected bills, posted before construction.</td>
+                <td>Parent guarantee instead of cash; collateral that shrinks as billing history accrues.</td>
+              </tr>
+              <tr>
+                <td><strong>Curtailability option</strong></td>
+                <td>Interruptible or flexible service: the load sheds during system peaks in exchange for faster or cheaper interconnection.</td>
+                <td>Taking it — <span class="gterm" data-term="Curtailment-Enabled Headroom">curtailment-enabled headroom</span> is often the fastest route to energization.</td>
+              </tr>
+              <tr>
+                <td><strong>Network upgrades (CIAC)</strong></td>
+                <td>Contribution in aid of construction: the load pays up front for substations and lines built for it.</td>
+                <td>Clarity on which upgrades are truly load-specific versus system benefits others share.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="src"><a href="https://www.utilitydive.com/news/texas-facing-438-gw-queue-approves-initial-large-load-interconnection-pro/823367/">Utility Dive — ERCOT large-load process (SB6)</a> · <a href="https://www.ercot.com/services/rq/large-load-integration">ERCOT — Large Load Integration</a> · <a href="https://www.ercot.com/static-assets/data/news/content/a-peak-demand/all-time-records.htm">ERCOT — peak-demand records</a> · <a href="https://www.utilitydive.com/news/dte-data-center-deal-transformational-growth-earnings/804231/">Utility Dive — DTE 1.4 GW ESA</a> · <a href="https://pranava0x0.github.io/FERC-Orders-June-2026/">Companion site — the FERC §206 show-cause arc, docket by docket</a></p>
+      </div><!-- /data-level="2" large-load -->
+
+      <div data-level="2">
+        <hr class="rule">
+        <h2 id="gigawatt-playbook">The gigawatt playbook — running it as one program <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <p>Every piece is now on the table: the contract per technology, the stack that serves the load, the queue, the ESA. What the chief executive actually buys when they hire an energy lead is the ability to run all of it as one program against an energization date. Four disciplines separate that person from a deal-by-deal originator.</p>
+
+        <h3 style="margin-top:14px">1 · Sequence against the date</h3>
+        <div class="table-wrap">
+          <table class="coverage" style="width:100%;table-layout:auto">
+            <thead>
+              <tr>
+                <th style="width:18%">Clock</th>
+                <th style="width:44%">Workstream</th>
+                <th style="width:38%">Why it can't wait</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="mono">T−48 → 36 mo</td>
+                <td>Site power due diligence; file large-load interconnection, post security; reserve long-lead equipment.</td>
+                <td>Queue position and transformers gate everything behind them.</td>
+              </tr>
+              <tr>
+                <td class="mono">T−36 → 24</td>
+                <td>Utility ESA — ramp, ratchets, collateral. Decide the bridge (gas toll / BYOP) in case the grid date slips.</td>
+                <td>The ESA sets the campus's cost floor and its legal right to exist at scale.</td>
+              </tr>
+              <tr>
+                <td class="mono">T−30 → 18</td>
+                <td>First RFP wave: the firm anchor block (existing nuclear, geothermal, hydro) plus shaped renewables.</td>
+                <td>Long-tenor firm deals take the longest to negotiate, approve, and finance.</td>
+              </tr>
+              <tr>
+                <td class="mono">T−24 → 12</td>
+                <td>Storage tolls and hybrid additions, sized to the holes the anchor leaves (the stack builder above).</td>
+                <td>Batteries build fastest — so they're sized last, deliberately, against a known gap.</td>
+              </tr>
+              <tr>
+                <td class="mono">T−18 → 6</td>
+                <td>Credit program: LC ladder, parent guarantees, board approvals; hedge the residual open position.</td>
+                <td>Collateral capacity and signature authority, not negotiation, set deal velocity by now.</td>
+              </tr>
+              <tr>
+                <td class="mono">T−6 → 0 →</td>
+                <td>Energize per the ESA ramp; measure hourly CFE against claims; recontract as the load grows.</td>
+                <td>The portfolio is never finished — every new building reopens it.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="hint" style="margin-top:6px">Sequencing logic, not a schedule — every market, utility, and campus differs. The generator's own 4–7-year journey runs in parallel: see Drafting → Deal lifecycle.</p>
+
+        <h3>2 · Use the buyer's leverage</h3>
+        <p>At gigawatt scale the buyer's credit is the scarcest input in the market — it is what makes projects <span class="gterm" data-term="Bankability">bankable</span>. That buys three things a 100 MW buyer never gets: <strong>framework agreements</strong> that lock a multi-year pipeline instead of one project (Microsoft × Brookfield, 10.5 GW — roughly 8× the largest single corporate PPA before it); <strong>development-stage entry</strong>, buying into the developer itself to control the timeline (Google × Intersect Power, $4.75B); and the standing to pay the <strong>speed premium</strong> knowingly — announced hyperscaler nuclear covers less than 20% of projected data-center demand growth through 2035, so firm supply is scarce, and the premium over hub power is the price of a date, not a mistake.</p>
+
+        <h3>3 · Run the balance sheet like a desk</h3>
+        <p>A gigawatt program is a trading book wearing a procurement badge. ERCOT's queue security alone is $50,000/MW — $50M for one campus before a single PPA is signed. Every VPPA in the portfolio carries two-way credit support, so letters of credit ladder across a dozen counterparties; and a 500 MW, 15-year contracted strip swings by tens of millions in mark-to-market value when forward prices move. That is why treasury sits in the deal team, why <button class="nav-link-btn" data-view="examples">Drafting → Getting to signature</button> matters as much as the term sheet, and why delegation-of-authority thresholds — who can sign what without a board meeting — quietly determine how fast the program moves.</p>
+
+        <h3>4 · Know what kills a campus</h3>
+        <ul style="margin:0 0 10px;padding-left:20px;font-size:14px">
+          <li><strong>The utility can't serve the date.</strong> Queue slip or a stalled ESA — the reason the bridge decision (gas toll, BYOP) is made years early, while it's still cheap to change course.</li>
+          <li><strong>A counterparty fails mid-build.</strong> The SunEdison lesson from Learn's failure modes, at 10× the exposure — lender step-in rights and replacement planning are portfolio hygiene, not paperwork.</li>
+          <li><strong>The community says no.</strong> Air permits, water, noise, local politics — xAI's Memphis turbines drew exactly this scrutiny. A signed PPA doesn't energize a campus the town is fighting.</li>
+          <li><strong>The open position blows out.</strong> A spike like ERCOT's February 2021 lands squarely on whatever the stack left unhedged — the builder's "open position" KPI is the CEO's risk line.</li>
+          <li><strong>The rules move mid-game.</strong> SB6 ratchets, FERC's §206 orders, co-location dockets — terms tighten while you negotiate. Regulatory watch is a line function, not an afterthought.</li>
+        </ul>
+        <p class="src"><a href="https://www.globenewswire.com/news-release/2024/05/01/2873042/0/en/Brookfield-and-Microsoft-Collaborating-to-Deliver-Over-10-5-GW-of-New-Renewable-Power-Capacity-Globally.html">Brookfield × Microsoft — 10.5 GW framework</a> · <a href="https://www.spglobal.com/sustainable1/en/insights/special-editorial/hyperscaler-procurement-to-shape-us-power-investment">S&amp;P — Google × Intersect</a> · <a href="https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities">Carnegie — nuclear vs. demand</a> · <a href="https://www.utilitydive.com/news/texas-facing-438-gw-queue-approves-initial-large-load-interconnection-pro/823367/">Utility Dive — SB6 security</a></p>
+      </div><!-- /data-level="2" gigawatt-playbook -->
+
+      <h2 style="margin-top:30px" id="case-studies">Case studies — the load, the generation, and the wires</h2>
+      <p class="src" style="border:none">Six real programs read end-to-end: the participants, what got filed where, what the agreement actually is, and why it doesn't look like a standard corporate VPPA. Every case links to its underlying documents — FERC orders, commission releases, company filings. Point-in-time as of Aug 2026. Select to expand.</p>
+      <p class="level-count" data-level-count="#dc-cases" data-count-noun="case studies" hidden></p>
+      <div id="dc-cases"></div>
+
+      <h2 style="margin-top:30px" id="vpp-ppas">Virtual power plants — the other kind of PPA</h2>
+      <p class="src" style="border:none">A <span class="gterm" data-term="Virtual Power Plant (VPP)">VPP</span> contracts thousands of small resources — home batteries, smart thermostats, flexible load — as one dispatchable plant. <a href="https://www.ferc.gov/ferc-order-no-2222-explainer-facilitating-participation-electricity-markets-distributed-energy">FERC Order 2222</a> opened the wholesale markets to these aggregations, and <a href="https://www.energy.gov/edf/articles/doe-releases-new-report-pathways-commercial-liftoff-virtual-power-plants">DOE's Liftoff analysis</a> puts the potential at 80–160 GW by 2030 — peak capacity that recruits in months while the large-load queue above waits in years. The agreements look nothing like a PPA, which is the point of studying them.</p>
+      <p class="level-count" data-level-count="#vpp-cases" data-count-noun="examples" hidden></p>
+      <div id="vpp-cases"></div>
+
       <h2 style="margin-top:30px" id="recent-deals">Recent deals</h2>
       <p class="src" style="border:none">As of mid-2026 — worked examples of the structures above, not a live deal tracker. Each links to a source.</p>
       <div class="dc-filter" id="dc-filter" role="group" aria-label="Filter deals by buyer type"></div>
@@ -1305,7 +1671,7 @@
       <hr class="rule">
 
       <h2 id="checkpoint-datacenter">Checkpoint</h2>
-      <p class="quiz-note">Three questions on the structures and the demand shock. Two right marks this stop done.</p>
+      <p class="quiz-note">Eight questions on the structures, the contracts, the stack, and the load side of the queue. Seven right marks this stop done.</p>
       <div class="quiz" data-quiz="datacenter"></div>
     </section>
 
@@ -1339,7 +1705,7 @@
     <section class="view" id="view-coverage" role="tabpanel" aria-labelledby="tab-coverage" hidden>
       <p class="eyebrow">Honest scope</p>
       <h1>Coverage &amp; sources</h1>
-      <p class="lede">This tool only teaches what the research actually verified, and it grows over time. Three passes are done: a fact-checked deep-research run, a government/national-lab pass (FERC, IRS, EPA, NREL, Berkeley Lab), and a data-center deals pass. Items still open are marked as gaps, not dressed up as fact.</p>
+      <p class="lede">This tool only teaches what the research actually verified, and it grows over time. Five passes are done: a fact-checked deep-research run, a government/national-lab pass (FERC, IRS, EPA, NREL, Berkeley Lab), a data-center deals pass, an expert-perspectives pass, and a 2026 energy-lead pass (buyer-side job scan + multi-technology contract mechanics). Items still open are marked as gaps, not dressed up as fact.</p>
 
       <h2>Verified — primary / government sources</h2>
       <table class="coverage">
@@ -1369,6 +1735,12 @@
           <tr><td>Load flexibility / curtailment-enabled headroom (Duke 2025)</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Annotated example term sheets (VPPA, utility physical, data-center nuclear)</td><td><span class="pill verified">verified</span></td></tr>
           <tr><td>Internal approval &amp; signing (corporate approval chain, PUC prudence review, signature authority)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Heat rate, spark spread, tolling mechanics (EIA)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>ERCOT large-load interconnection (SB6 process, 75 MW threshold, queue vs. record peak)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Hybrid solar + storage PPA pricing (Berkeley Lab)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Portfolio mechanics for a flat load — stack builder (EIA battery RTE + capacity-factor anchors)</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>Load/gen/wires case studies — FERC ER24-2172 order, PUCO 24-508-EL-ATA, LPSC/Entergy, TVA/county permits</td><td><span class="pill verified">verified</span></td></tr>
+          <tr><td>VPP examples &amp; framing — FERC Order 2222, DOE Liftoff, NRG/Sunrun primary releases</td><td><span class="pill verified">verified</span></td></tr>
         </tbody>
       </table>
 
@@ -1377,6 +1749,10 @@
         <thead><tr><th>Topic</th><th>Status</th></tr></thead>
         <tbody>
           <tr><td>PPA originator role: responsibilities, skills, background (from job postings)</td><td><span class="pill secondary">secondary</span></td></tr>
+          <tr><td>Data-center energy-lead role: scope, employers, requirements (2026 job postings + primer)</td><td><span class="pill secondary">secondary</span></td></tr>
+          <tr><td>Hyperscaler nuclear commitments vs. delivery reality (Carnegie Endowment, June 2026)</td><td><span class="pill secondary">secondary</span></td></tr>
+          <tr><td>Large-load ESA terms (ratchets, ramp, collateral — trade press + worked deal examples)</td><td><span class="pill secondary">secondary</span></td></tr>
+          <tr><td>Gigawatt execution playbook (sequencing, leverage, credit at scale — synthesis of the verified deals)</td><td><span class="pill secondary">secondary</span></td></tr>
           <tr><td>Expert perspectives (Shah, Norris, Tian, Powell) — summaries of public work</td><td><span class="pill secondary">paraphrased</span></td></tr>
         </tbody>
       </table>
@@ -1387,6 +1763,8 @@
         <tbody>
           <tr><td>Clause-level: assignment / lender step-in, dispute resolution</td><td><span class="pill gap">needs research</span></td></tr>
           <tr><td>Time-of-delivery / hourly pricing — clause-level mechanics (concept &amp; 24/7 matching now covered)</td><td><span class="pill gap">needs research</span></td></tr>
+          <tr><td>Storage clause depth: augmentation, degradation schedules, RTE guarantees</td><td><span class="pill gap">needs research</span></td></tr>
+          <tr><td>Heat-rate call options &amp; structured gas hedges</td><td><span class="pill gap">needs research</span></td></tr>
         </tbody>
       </table>
 
@@ -1399,7 +1777,8 @@
             <a href="https://www.irs.gov/credits-deductions/elective-pay-and-transferability">IRS — Elective Pay &amp; Transferability</a><br>
             <a href="https://emp.lbl.gov/utility-scale-solar">Berkeley Lab — Utility-Scale Solar</a><br>
             <a href="https://www.epa.gov/statelocalenergy/customer-power-purchase-agreements">EPA — Customer PPAs</a><br>
-            <a href="https://docs.nrel.gov/docs/fy14osti/60983.pdf">NREL — Wind &amp; Solar Curtailment</a>
+            <a href="https://docs.nrel.gov/docs/fy14osti/60983.pdf">NREL — Wind &amp; Solar Curtailment</a><br>
+            <a href="https://www.eia.gov/todayinenergy/includes/sparkspread_explain.php">EIA — Heat Rates &amp; Spark Spreads</a>
           </p>
         </div>
         <div class="card">
@@ -1420,7 +1799,10 @@
             <a href="https://www.energy.gov/oe/clean-energy-resources-meet-data-center-electricity-demand">DOE — Clean Energy for Data Centers</a><br>
             <a href="https://www.constellationenergy.com/news/2024/Constellation-to-Launch-Crane-Clean-Energy-Center-Restoring-Jobs-and-Carbon-Free-Power-to-The-Grid.html">Constellation — Crane (Three Mile Island)</a><br>
             <a href="https://www.utilitydive.com/news/talen-amazon-aws-susquehanna-nuclear-data-centert/750440/">Utility Dive — Amazon/Talen</a><br>
-            <a href="https://blog.google/company-news/outreach-and-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/">Google — Kairos SMR</a>
+            <a href="https://blog.google/company-news/outreach-and-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/">Google — Kairos SMR</a><br>
+            <a href="https://www.ercot.com/services/rq/large-load-integration">ERCOT — Large Load Integration</a><br>
+            <a href="https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities">Carnegie — Hyperscaler Nuclear Commitments</a><br>
+            <a href="https://pranava0x0.github.io/FERC-Orders-June-2026/">FERC §206 Large-Load Orders — companion site</a>
           </p>
         </div>
       </div>
@@ -1430,17 +1812,19 @@
 
   <footer role="contentinfo">
     <div class="footer-inner">
-      <p style="margin:0">PPA Helper · a learning tool for US power purchase agreements. Content as of <span class="mono">2026-06-01</span>, built on a fact-checked research pass (<a href="docs/research-us-ppa.md">research notes</a>). The settlement simulator is an illustration of contract mechanics, not market data or financial advice.</p>
+      <p style="margin:0">PPA Helper · a learning tool for US power purchase agreements. Content as of <span class="mono">2026-08-08</span>, built on five fact-checked research passes (<a href="docs/research-us-ppa.md">research notes</a>). The settlement simulator is an illustration of contract mechanics, not market data or financial advice.</p>
     </div>
   </footer>
 
-  <script src="assets/js/draft.js?v=20260712f" defer></script>
-  <script src="assets/js/quiz-banks.js?v=20260712f" defer></script>
-  <script src="assets/js/quiz.js?v=20260712f" defer></script>
-  <script src="assets/js/settle-core.js?v=20260712f" defer></script>
-  <script src="assets/js/simulator.js?v=20260712f" defer></script>
-  <script src="assets/js/projfin.js?v=20260712f" defer></script>
-  <script src="assets/js/app.js?v=20260712f" defer></script>
-  <script src="assets/js/content.js?v=20260712f" defer></script>
+  <script src="assets/js/draft.js?v=20260809b" defer></script>
+  <script src="assets/js/quiz-banks.js?v=20260809b" defer></script>
+  <script src="assets/js/quiz.js?v=20260809b" defer></script>
+  <script src="assets/js/settle-core.js?v=20260809b" defer></script>
+  <script src="assets/js/simulator.js?v=20260809b" defer></script>
+  <script src="assets/js/stack-core.js?v=20260809b" defer></script>
+  <script src="assets/js/stack.js?v=20260809b" defer></script>
+  <script src="assets/js/projfin.js?v=20260809b" defer></script>
+  <script src="assets/js/app.js?v=20260809b" defer></script>
+  <script src="assets/js/content.js?v=20260809b" defer></script>
 </body>
 </html>

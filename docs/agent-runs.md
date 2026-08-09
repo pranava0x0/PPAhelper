@@ -96,3 +96,23 @@ relative burn between runs, not billing figures.
   the price of dying during exploration. Mitigations now in protocol: rules 3 and 4.
 - Failure notifications embed a reset time, but the orchestrator may act on them hours
   later. Recompute against the clock every time (rule 3 exists because of run 2).
+
+---
+
+## Run log — 2026-08-08 · energy-lead pass (branch jam/energy-leads-ppa-opportunities-08a96d)
+
+Single inline session (no delegation), three user-driven phases, 13 commits, all shipped and verified. If resuming with lost context: `git log 680be26..HEAD --oneline` is the map; every phase has its research in `docs/research-us-ppa.md` Rounds 8–9 and its evaluation in `backlog.md` (2026-08-08 sections).
+
+**Phase 1 — job-scan pass (Round 8).** Buyer-side "energy lead" postings (CoreWeave, Antora, Umbrex primer) diffed against the site. Shipped: technology → contract map + tolling/heat-rate/nuclear practitioner deep-dive (Data centers), large-load queue + ESA-terms section (ERCOT SB6, FERC §206), buyer's-chair role card (Learn), 5 glossary terms, datacenter quiz 3→6.
+
+**Phase 2 — CEO lens (gigawatt execution).** Shipped: "Serve the load" stack builder (`stack-core.js` pure math + `stack.js` UI + `test/stack.test.js`, 10 cases; battery targets deepest deficit hours at EIA 82% RTE), gigawatt playbook (T−48 sequencing table, leverage, credit-at-scale, campus-killers), hiring-bar rubric, quiz 6→8.
+
+**Phase 3 — case studies (Round 9).** `data/datacenter.json` gains `caseStudies` (6: AWS×Talen ER24-2172, Microsoft×Crane, Meta×Entergy LPSC, Crusoe Abilene, xAI Memphis, AEP Ohio 24-508-EL-ATA) and `vppCases` (2: NRG×Renew Home, Sunrun CalReady) with participants / agreement stack / unique-vs-PPA / filings history / primary citations; renderer in `content.js`; validation in `data.test.js`.
+
+**Lessons that cost time (already codified):**
+1. **The `?v=` scar bit twice more.** Stale `app.js` mid-session (bumped a→b), then stale `datacenter.json` — data fetches carried no version at all. Fix: `dataUrl()` threads each script's own `?v=` onto its JSON fetches; ui.test.js guard; issues.md entry; CLAUDE.md note now says "bump per editing pass."
+2. **Browser-pane collapse mimics layout bugs.** `window.innerWidth === 0` (pane hidden) makes overflow numbers meaningless (a phantom "218px overflow" appeared twice). Check `innerWidth`/`document.hidden` before trusting any rect; re-establish with `resize_window` + reload.
+3. **Quiz containers render `.quiz-q` divs, not fieldsets** — a smoke-test selector regression falsely reported dead checkpoints once.
+4. **Test-the-test:** two "failures" this session were wrong assertions (battery-displaces-gas economics; slug-length check), not wrong code. Hand-verify the scenario before touching the model.
+
+**State at pause:** worktree clean; 55 tests green across 5 suites; preview on :8129 (python http.server). Not yet done: /ship ritual (PR + review), and the ppa-expert-review directional sweep over the new copy would be a sensible pre-PR step.

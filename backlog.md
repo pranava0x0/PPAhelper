@@ -2,6 +2,42 @@
 
 Ideas and deferred scope. Each: description + priority (low / medium / high).
 
+## Data-center energy-lead scan (2026-08-08)
+
+Second job-market pass, this time on the *buyer-side* archetype: "Energy Lead / Power Procurement / Energy Strategy" roles at hyperscalers, neoclouds, data-center developers, and AI labs sourcing power for new large loads across technologies (solar/storage, gas, nuclear, geothermal). Postings scanned: CoreWeave (Principal Energy Strategy — "energy markets, utility tariffs, and power purchase agreements"; Energy Procurement Manager), Antora (Principal Power Procurement — "8+ PPAs, energy service agreements, or equivalent utility contracts, including negotiating at least 3 original or custom tariff structures"), plus the Umbrex data-center energy-strategy primer and 2026 deal coverage. Full findings: `docs/research-us-ppa.md` Round 8.
+
+**The diff.** The site taught the solar VPPA deeply and cataloged data-center deal *archetypes*, but three things these roles test were missing entirely (grep-confirmed zero hits): (1) how the **contract itself changes with the technology** — gas tolling / heat rate / spark spread, storage tolling, hybrid solar+storage PPAs, nuclear around-the-clock blocks; (2) the **load side of interconnection** — ERCOT's ≥75 MW large-load process, ramp schedules, minimum-demand ratchets, collateral in large-load ESAs; (3) the **buyer-side career frame** — the site's only role card was the developer-side originator.
+
+### Shipped 2026-08-08
+- ✅ **Technology → contract map** — Data centers tab, level-1 comparison table (solar/wind VPPA, hybrid solar+storage, storage toll, gas tolling/BYOP, existing nuclear, SMR/frontier) + practitioner deep-dive on tolling mechanics (heat rate, spark spread, who bears fuel risk), storage/hybrid clauses, nuclear block + clean-firm premium with the Carnegie reality-check numbers.
+- ✅ **Large-load interconnection + ESA terms** — Data centers tab, practitioner section: ERCOT SB6 batch process (≥75 MW, $50k/MW security, 474.7 GW queued June 2026), phantom-load problem, and the ESA terms an energy lead negotiates (ramp, contract demand + ratchet, term/exit fees, collateral, flexibility option, CIAC).
+- ✅ **Buyer's-chair role card** — Learn tab accordion next to the originator card: the data-center energy lead role, how it differs from developer-side origination, who hires (hyperscalers, neoclouds, DC developers/REITs, AI labs), what postings require, which tab teaches each skill.
+- ✅ **5 glossary terms** — Tolling Agreement, Heat Rate, Spark Spread, Hybrid PPA (Solar + Storage), Large Load Interconnection (wired into tooltips); datacenter quiz bank 3 → 6 questions; PRAC_INDEX, coverage page, README, footer date + cache-bust updated.
+
+### CEO-lens follow-up (2026-08-08, same day)
+
+Re-evaluated as the buyer's chief executive: "my campus energizes on a date; I need someone who can execute gigawatt-scale supply against it." Six things that person does that the site didn't teach after the morning pass:
+
+1. ✅ **Assemble a portfolio that serves a flat gigawatt.** 1 GW flat = 8.76 TWh/yr. A 1 GW solar PPA delivers ~a quarter of that, in the wrong hours. Nothing on the site showed the aggregation problem. → *Shipped: "Serve the load" stack builder (`stack-core.js` + `stack.js` + 10 tests) — three presets walk solar-only (50% CFE) → renewables+storage (77%) → anchored stack (83%, 640 MWh open), battery scheduled into deepest deficits at EIA's 82% RTE.*
+2. ✅ **Execute against a date.** → *Shipped: playbook sequencing table (T−48 → energization).*
+3. ✅ **Command the balance sheet.** → *Shipped: credit-at-scale subsection (queue security, LC ladder, MtM, delegation of authority).*
+4. ✅ **Use anchor-tenant leverage.** → *Shipped: leverage subsection (frameworks, development-stage entry, speed premium).*
+5. ✅ **Know what kills the campus.** → *Shipped: five campus-killers list in the playbook.*
+6. ✅ **Pass the hiring bar.** → *Shipped: hiring-bar rubric + red flags in the buyer's-chair card; two capstone checkpoint questions (portfolio necessity, anchor-first sequencing).*
+- Deferred from this lens: portfolio *cost* modeling (blended $/MWh needs deal-specific prices — false precision risk; revisit with LevelTen index bands). *Priority: low.* Hourly 8,760 modeling and multi-day weather stress also out of scope for a teaching tool. *Priority: low.*
+
+### Case studies (user-requested, same day) — shipped 2026-08-08
+- ✅ **Six load/gen/wires case studies** (`data/datacenter.json` → `caseStudies`, rendered in Data centers): AWS × Talen (ER24-2172 order PDF + Phillips dissent), Microsoft × Crane restart, Meta × Entergy (LPSC 2.26 GW), Crusoe Abilene, xAI Memphis, AEP Ohio tariff (24-508-EL-ATA). Each: market, participants, load/gen/wires, agreement stack, unique-vs-standard-PPA, filings history, lesson, primary citations. data.test.js enforces completeness + that FERC/PUCO primary docs stay cited.
+- ✅ **Two VPP examples** (`vppCases`): NRG × Renew Home × Google Cloud (1 GW TX by 2035), Sunrun CalReady / PG&E SAVE — framed by FERC Order 2222 + DOE Liftoff; new VPP glossary term.
+- ✅ **Stale-JSON cache bug fixed en route** — `dataUrl()` versions all data fetches (issues.md 2026-08-08; ui.test.js guard).
+- Open follow-ups: a physical/paper trail deep-link per history event (each row → its eLibrary/docket URL) *low*; a seventh case on a transmission-build (e.g. a 765 kV data-center line) once one has a filed record *low*; VPP third example if Base Power or a 2222-aggregator deal gets a primary source *low*; stack builder — an oversized battery charges surplus it can never redeliver into the day's deficits (stored-then-stranded rather than never-charged; identity holds, but clamping charge to expected discharge need would model operator behavior better) *low*.
+
+### Logged, not built (this pass)
+- **Heat-rate call options / structured gas products** — HRCOs and reverse tolls as hedges; niche beyond the tolling basics. *Priority: low*
+- **Storage augmentation & degradation clause depth** — capacity maintenance schedules, augmentation obligations, RTE guarantees at clause level. *Priority: low*
+- **Load forecasting methods** — already logged from the June scan; confirmed again by buyer-side postings. *Priority: medium (unchanged)*
+- **Mark-to-market / portfolio risk** — confirmed again (CoreWeave "monitor energy market data"); already medium. *Priority: medium (unchanged)*
+
 ## Masthead + in-tab navigation UX — shipped 2026-07-12
 
 User feedback on the header: the controls row under the title was cramped, the theme

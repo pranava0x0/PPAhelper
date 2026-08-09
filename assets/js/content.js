@@ -3,6 +3,15 @@
 (function () {
   "use strict";
 
+  /* Data fetches carry the same ?v= as this script tag, so a deploy that
+     changes JSON busts the browser cache with it (scar: stale datacenter.json
+     hid new content while fresh JS rendered nothing, 2026-08-08). */
+  var DATA_V = (function () {
+    var m = ((document.currentScript && document.currentScript.src) || "").match(/[?&]v=([\w-]+)/);
+    return m ? m[1] : "";
+  })();
+  function dataUrl(path) { return DATA_V ? path + "?v=" + DATA_V : path; }
+
   function elem(tag, cls, html) {
     var e = document.createElement(tag);
     if (cls) e.className = cls;
@@ -102,7 +111,7 @@
   }
 
   function loadExamples() {
-    return fetch("data/examples.json").then(function (r) { return r.json(); }).then(function (data) {
+    return fetch(dataUrl("data/examples.json")).then(function (r) { return r.json(); }).then(function (data) {
       examples = (data && data.examples) || [];
       if (!examples.length) return;
       activeExample = examples[0].id;
@@ -145,6 +154,9 @@
       wireChips(det);
     });
 
+    renderCases(data.caseStudies, "dc-cases");
+    renderCases(data.vppCases, "vpp-cases");
+
     // deals filter + table
     var types = ["All"].concat((data.deals || []).map(function (x) { return x.buyerType; })
       .filter(function (v, i, a) { return a.indexOf(v) === i; }));
@@ -181,8 +193,93 @@
     drawDeals();
   }
 
+  /* Case studies (data-center + VPP): richer accordions than structures —
+     load/gen/wires narrative, agreement stack, filed-documents history,
+     participants, and multi-source citation lines. Built with plain DOM
+     APIs per the AGENTS.md markup-assignment invariant for new render code. */
+  function renderCases(cases, containerId) {
+    var wrap = document.getElementById(containerId);
+    if (!wrap) return;
+
+    function el(tag, cls, text) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text != null) e.textContent = text;
+      return e;
+    }
+    function labeled(label, text, cls) {
+      var p = el("p", cls || null);
+      p.appendChild(el("strong", null, label));
+      p.appendChild(document.createTextNode(" " + text));
+      return p;
+    }
+
+    wrap.replaceChildren();
+    (cases || []).forEach(function (c) {
+      var det = el("details", "dc-structure case-study");
+      det.setAttribute("data-level", c.level);
+
+      var summary = document.createElement("summary");
+      summary.append(
+        el("span", "dc-s-name", c.title),
+        el("span", "pill outline", c.level === 1 ? "Newcomer" : "Practitioner"));
+
+      var body = el("div", "dc-s-body");
+      var meta = el("p", "case-meta");
+      meta.appendChild(el("span", "pill outline", c.market));
+      body.appendChild(meta);
+      body.appendChild(labeled("Participants.", c.participants, "case-participants"));
+      body.appendChild(labeled("The load.", c.load));
+      body.appendChild(labeled("The generation.", c.gen));
+      body.appendChild(labeled("The wires.", c.tnd));
+      body.appendChild(labeled("The agreement stack.", c.agreement));
+      body.appendChild(labeled("Unlike a standard PPA.", c.unique));
+
+      var hLabel = el("p");
+      hLabel.setAttribute("style", "margin-bottom:4px");
+      hLabel.appendChild(el("strong", null, "Filings & history."));
+      body.appendChild(hLabel);
+      var ul = el("ul", "case-history");
+      (c.history || []).forEach(function (h) {
+        var li = document.createElement("li");
+        li.appendChild(el("span", "mono case-date", h.date));
+        li.appendChild(document.createTextNode(" " + h.event));
+        ul.appendChild(li);
+      });
+      body.appendChild(ul);
+      body.appendChild(labeled("The lesson.", c.lesson));
+
+      if (c.glossaryRefs && c.glossaryRefs.length) {
+        var chips = el("div", "chips");
+        c.glossaryRefs.forEach(function (r) {
+          var b = el("button", "chip gloss-chip", r);
+          b.type = "button";
+          b.setAttribute("data-term", r);
+          chips.appendChild(b);
+        });
+        body.appendChild(chips);
+      }
+
+      var src = el("p", "src");
+      src.setAttribute("style", "margin-top:10px");
+      src.appendChild(el("strong", null, "Documents & sources: "));
+      (c.sources || []).forEach(function (s, i) {
+        if (i) src.appendChild(document.createTextNode(" · "));
+        var a = document.createElement("a");
+        a.href = s.url;
+        a.textContent = s.label;
+        src.appendChild(a);
+      });
+      body.appendChild(src);
+
+      det.append(summary, body);
+      wrap.appendChild(det);
+      wireChips(det);
+    });
+  }
+
   function loadDatacenter() {
-    return fetch("data/datacenter.json").then(function (r) { return r.json(); }).then(renderDatacenter)
+    return fetch(dataUrl("data/datacenter.json")).then(function (r) { return r.json(); }).then(renderDatacenter)
       .catch(function (e) {
         var w = document.getElementById("dc-why");
         if (w) w.textContent = "Could not load data-center deals (" + e.message + "). Serve over http (see README).";
@@ -210,7 +307,7 @@
     }).join("");
   }
   function loadPerspectives() {
-    return fetch("data/perspectives.json").then(function (r) { return r.json(); }).then(renderPerspectives)
+    return fetch(dataUrl("data/perspectives.json")).then(function (r) { return r.json(); }).then(renderPerspectives)
       .catch(function (e) {
         var v = document.getElementById("voices");
         if (v) v.innerHTML = '<p class="src" style="border:none">Could not load perspectives (' + e.message + ").</p>";
