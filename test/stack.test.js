@@ -59,13 +59,22 @@ test("battery stores only surplus and returns rte of it", () => {
   const charged = r.hours.reduce((a, h) => a + h.battCharge, 0);
   const discharged = r.hours.reduce((a, h) => a + h.batt, 0);
   assert.ok(close(r.kpis.storedMWh, charged));
-  assert.ok(charged <= 500 * 4 + 1e-9, "cannot exceed energy capacity");
+  assert.ok(charged <= (500 * 4) / rte + 1e-9, "charge side cannot exceed deliverable ÷ rte");
   assert.ok(discharged <= charged * rte + 1e-9, "cannot discharge more than rte of stored");
   assert.ok(close(discharged, charged * rte), "fully discharges into a deep deficit");
   r.hours.forEach((h, i) => {
     assert.ok(h.battCharge === 0 || h.deficit <= 1e-9, "hour " + i + " charges only from surplus");
     assert.ok(h.batt === 0 || h.battCharge === 0, "hour " + i + " never charges and discharges at once");
   });
+});
+
+test("duration means hours at full power: a 500 MW / 4 h battery delivers 2,000 MWh", () => {
+  // Codex PR #8 finding: the old model capped *charged* energy at MW × hours and
+  // took RTE off it, so a "4-hour" battery delivered 3.28 hours. Losses belong
+  // on the charge side; the label promises deliverable energy.
+  const r = computeStack({ loadMW: 1000, solarMW: 3000, battMW: 500, battHours: 4, rte: 0.82 });
+  const discharged = r.hours.reduce((a, h) => a + h.batt, 0);
+  assert.ok(close(discharged, 500 * 4, 1e-6), "expected 2,000 MWh delivered, got " + discharged);
 });
 
 test("dispatch order: battery displaces the marginal source (gas when gas is marginal)", () => {

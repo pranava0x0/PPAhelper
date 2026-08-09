@@ -195,41 +195,84 @@
 
   /* Case studies (data-center + VPP): richer accordions than structures —
      load/gen/wires narrative, agreement stack, filed-documents history,
-     participants, and multi-source citation lines. */
+     participants, and multi-source citation lines. Built with plain DOM
+     APIs per the AGENTS.md markup-assignment invariant for new render code. */
   function renderCases(cases, containerId) {
     var wrap = document.getElementById(containerId);
     if (!wrap) return;
+
+    function el(tag, cls, text) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text != null) e.textContent = text;
+      return e;
+    }
+    function labeled(label, text, cls) {
+      var p = el("p", cls || null);
+      p.appendChild(el("strong", null, label));
+      p.appendChild(document.createTextNode(" " + text));
+      return p;
+    }
+
     wrap.replaceChildren();
     (cases || []).forEach(function (c) {
-      var det = elem("details", "dc-structure case-study");
+      var det = el("details", "dc-structure case-study");
       det.setAttribute("data-level", c.level);
-      var lvlLabel = c.level === 1 ? "Newcomer" : "Practitioner";
 
-      var history = (c.history || []).map(function (h) {
-        return '<li><span class="mono case-date">' + esc(h.date) + "</span> " + esc(h.event) + "</li>";
-      }).join("");
-      var sources = (c.sources || []).map(function (s) {
-        return '<a href="' + esc(s.url) + '">' + esc(s.label) + "</a>";
-      }).join(" · ");
+      var summary = document.createElement("summary");
+      summary.append(
+        el("span", "dc-s-name", c.title),
+        el("span", "pill outline", c.level === 1 ? "Newcomer" : "Practitioner"));
 
-      det.append(
-        elem("summary", null,
-          '<span class="dc-s-name">' + esc(c.title) + "</span>" +
-          '<span class="pill outline">' + lvlLabel + "</span>"),
-        elem("div", "dc-s-body",
-          '<p class="case-meta"><span class="pill outline">' + esc(c.market) + "</span></p>" +
-          '<p class="case-participants"><strong>Participants.</strong> ' + esc(c.participants) + "</p>" +
-          "<p><strong>The load.</strong> " + esc(c.load) + "</p>" +
-          "<p><strong>The generation.</strong> " + esc(c.gen) + "</p>" +
-          "<p><strong>The wires.</strong> " + esc(c.tnd) + "</p>" +
-          "<p><strong>The agreement stack.</strong> " + esc(c.agreement) + "</p>" +
-          "<p><strong>Unlike a standard PPA.</strong> " + esc(c.unique) + "</p>" +
-          '<p style="margin-bottom:4px"><strong>Filings &amp; history.</strong></p>' +
-          '<ul class="case-history">' + history + "</ul>" +
-          "<p><strong>The lesson.</strong> " + esc(c.lesson) + "</p>" +
-          glossaryChips(c.glossaryRefs) +
-          '<p class="src" style="margin-top:10px"><strong>Documents &amp; sources:</strong> ' + sources + "</p>")
-      );
+      var body = el("div", "dc-s-body");
+      var meta = el("p", "case-meta");
+      meta.appendChild(el("span", "pill outline", c.market));
+      body.appendChild(meta);
+      body.appendChild(labeled("Participants.", c.participants, "case-participants"));
+      body.appendChild(labeled("The load.", c.load));
+      body.appendChild(labeled("The generation.", c.gen));
+      body.appendChild(labeled("The wires.", c.tnd));
+      body.appendChild(labeled("The agreement stack.", c.agreement));
+      body.appendChild(labeled("Unlike a standard PPA.", c.unique));
+
+      var hLabel = el("p");
+      hLabel.setAttribute("style", "margin-bottom:4px");
+      hLabel.appendChild(el("strong", null, "Filings & history."));
+      body.appendChild(hLabel);
+      var ul = el("ul", "case-history");
+      (c.history || []).forEach(function (h) {
+        var li = document.createElement("li");
+        li.appendChild(el("span", "mono case-date", h.date));
+        li.appendChild(document.createTextNode(" " + h.event));
+        ul.appendChild(li);
+      });
+      body.appendChild(ul);
+      body.appendChild(labeled("The lesson.", c.lesson));
+
+      if (c.glossaryRefs && c.glossaryRefs.length) {
+        var chips = el("div", "chips");
+        c.glossaryRefs.forEach(function (r) {
+          var b = el("button", "chip gloss-chip", r);
+          b.type = "button";
+          b.setAttribute("data-term", r);
+          chips.appendChild(b);
+        });
+        body.appendChild(chips);
+      }
+
+      var src = el("p", "src");
+      src.setAttribute("style", "margin-top:10px");
+      src.appendChild(el("strong", null, "Documents & sources: "));
+      (c.sources || []).forEach(function (s, i) {
+        if (i) src.appendChild(document.createTextNode(" · "));
+        var a = document.createElement("a");
+        a.href = s.url;
+        a.textContent = s.label;
+        src.appendChild(a);
+      });
+      body.appendChild(src);
+
+      det.append(summary, body);
       wrap.appendChild(det);
       wireChips(det);
     });

@@ -5,10 +5,11 @@
    Model: one representative clear day, 24 hours, flat load. Dispatch order per
    hour: nuclear → solar → wind → battery discharge → gas toll → grid residual.
    The battery charges only from surplus zero-marginal supply (nuclear + solar
-   + wind above load), never from gas or grid, and returns rte (default 0.82,
-   EIA fleet average) of what it stores. Discharge is allocated to the deepest
-   deficit hours first (how an operator schedules against scarcity), limited by
-   power (MW) and stored energy (MWh).
+   + wind above load), never from gas or grid. battMW × battHours is DELIVERABLE
+   energy ("hours at full power"), so charging may absorb up to that amount ÷ rte
+   (default 0.82, EIA fleet average) — losses are taken on the way in. Discharge
+   is allocated to the deepest deficit hours first (how an operator schedules
+   against scarcity), limited by power (MW) and deliverable energy (MWh).
 
    This is an illustration of portfolio mechanics, not a production-cost model:
    the solar/wind shapes are a clear-day profile; annual capacity factors are
@@ -34,7 +35,10 @@
     var sol = nn(inputs.solarMW), win = nn(inputs.windMW);
     var battMW = nn(inputs.battMW), battHours = nn(inputs.battHours);
     var rte = inputs.rte == null ? 0.82 : Math.min(1, nn(inputs.rte));
-    var battCap = battMW * battHours; // MWh of storage (energy in)
+    // battMW × battHours is deliverable energy; charging absorbs the losses,
+    // so the charge-side cap is deliverable ÷ rte.
+    var battCapOut = battMW * battHours;
+    var battCapIn = rte > 0 ? battCapOut / rte : 0;
 
     var hours = [], h;
     // Pass 1: direct dispatch of must-run supply; find surplus + deficit.
@@ -54,7 +58,7 @@
     // Pass 2: charge from surplus, chronologically, limited by power and capacity.
     var stored = 0;
     for (h = 0; h < 24; h++) {
-      var charge = Math.min(hours[h].surplus, battMW, battCap - stored);
+      var charge = Math.min(hours[h].surplus, battMW, battCapIn - stored);
       hours[h].battCharge = charge;
       hours[h].surplus -= charge;
       stored += charge;
