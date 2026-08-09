@@ -273,8 +273,8 @@ main { max-width: 1180px; margin: 0 auto; padding: 28px 22px 80px; }
 
 .scenario-row { display: flex; flex-wrap: wrap; gap: 6px; }
 .scenario-btn {
-  font-size: 12px; font-weight: 600; padding: 7px 11px; border-radius: 8px;
-  border: 1px solid var(--border); background: var(--surface-2); color: var(--text); cursor: pointer; min-height: 38px;
+  font-size: 12px; font-weight: 600; padding: 7px 12px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface-2); color: var(--text); cursor: pointer; min-height: 44px;
 }
 .scenario-btn[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
 

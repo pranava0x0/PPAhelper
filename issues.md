@@ -15,6 +15,11 @@ Directional sweep over the 17 commits of `jam/energy-leads-ppa-opportunities-08a
 
 - Tolling fuel-risk direction (buyer holds the spark spread) consistent across the deep-dive, glossary, and quiz bank; storage-toll market risk on the buyer; negative-price §3.4 in draft.js still states the corrected buyer-pays direction; playbook arithmetic (24 GWh/day, $50k/MW × 1 GW, 474.7 GW vs 91,308 MW peak ≈ 5×) verified; case-study facts trace to their cited FERC/PUCO/LPSC/company documents; stack-builder claims match stack-core's tested behavior (82% RTE, deficit-first dispatch).
 
+### Fixed post-merge (Codex re-review of PR #8's fix commit)
+
+- **2026-08-09 · A11y · `.scenario-btn` preset buttons were 38px, below the 44px touch minimum.** *(code bug — Fixed)*
+  Codex flagged the new stack-builder presets inheriting the 38px `min-height`; the same class serves the simulator and project-finance preset rows, so all three were under the repo's 44px rule (same class of miss as the 2026-07-12 back-to-top FAB). Raised `.scenario-btn` to `min-height: 44px` globally — computed style and all three preset rows verified at 44px. *Fix: assets/css/styles.css; `?v=` bumped to 20260809c. PR follow-up to the merged #8.*
+
 ## 2026-08-08 — data fetches served stale JSON
 
 - **2026-08-08 · Caching · `data/*.json` fetches carried no version string.** *(code bug — Fixed)*
