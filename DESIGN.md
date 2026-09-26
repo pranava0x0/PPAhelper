@@ -30,6 +30,7 @@ The giveaways of an unconsidered, model-generated UI. Each right-hand cell is th
 | Everything rounded to the same `1rem`/`2xl` radius | Vary radius with meaning (§5). Sharper corners read as editorial/authoritative; soft corners as friendly/consumer. Pick per project, don't default. |
 | Dark mode = slate `#0f172a` with indigo accents | Derive the dark surface from the project's own palette, not the framework default. |
 | "✨ New", "Beta" pill ceremony; vague benefit-copy ("Powerful insights at your fingertips") | Concrete labels, real counts, source trails. Say what the thing *is*, with a number. |
+| Small uppercase eyebrow above every heading | Omit it when the heading is clear. When orientation helps, use a direct sentence-case label such as “Buyer” or “Worked example,” without decorative tracking. |
 
 **Get creative on purpose:** before writing CSS, name the identity in one line in the project `design.md` — a reference point (a publication, era, or object), a subject-anchored palette, a type pairing, and **one memorable move** that's yours (a masthead rule, textured paper ground, monospace data spine, hand-tuned chart style). One deliberate move escapes the default; the rest of this document keeps it disciplined.
 
@@ -239,7 +240,7 @@ These apply to any project that surfaces data, claims, or content from external 
 - **"Not available", not blank.** Optional fields render as italic muted placeholders.
 - **"Adjacent", not "0.0 mi".** Render `n < threshold` as a meaningful word, not a misleading number.
 - **No emojis by default** — outline pills do the badge work. If the project's voice needs emoji (consumer/social), use sparingly and document in `design.md`.
-- **Lowercase prose, uppercase labels.** Eyebrows, KPI labels, table heads, outline-pill text are uppercase with `0.04–0.14em` tracking; everything else sentence case.
+- **Sentence case for prose and orientation.** Section labels and card context use ordinary sentence case without decorative tracking. Reserve uppercase tracking for compact data furniture where it improves scanning: KPI labels, table heads, and status pills.
 - **AI-generated content is visibly distinguished** — a 3px accent left-border plus a model-credit meta line. The reader should never confuse primary data with generated narrative.
 - **Borrow design *values*, never imitate a brand.** Take the useful values from a reference publication (high-contrast type, disciplined grids, rule lines, source trails, calm authority) — not its masthead, logo, proprietary fonts, or furniture that implies you *are* them. The first screen is the tool, not a marketing page.
 

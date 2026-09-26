@@ -212,7 +212,7 @@ Full pedagogical audit: read every file, walked every tab as a PPA expert teachi
 - ✅ **Focus management on view switch — shipped 2026-06-05.** `showView()` now accepts a `moveFocus` flag; tab clicks and hashchange pass `true`, so keyboard/screen-reader users land on the new view's `<h1>` (tabindex="-1"). Initial page load does not move focus.
 - ✅ **Persist the level filter — shipped 2026-06-05.** `applyLevel()` writes to `localStorage("ppa-level")`; `wireLevel()` restores on init and syncs the `aria-pressed` state of the buttons. Joins theme persistence.
 - ✅ **Deal-lifecycle walkthrough — shipped 2026-06-05.** Six-stage numbered timeline (Origination → Term Sheet → Diligence → Execution/CPs → Construction → Operations) in the Drafting tab, with timelines, parties, and glossary links. Directly maps to the "Now on deck" Phase 2 item.
-- ✅ **Who's-who ecosystem map — shipped 2026-06-05.** Nine-card grid in the Learn tab covering Developer/IPP, EPC, O&M, Lender, Tax-Equity, Offtaker, Utility, ISO/RTO, and Broker/Advisor — each with eyebrow role label and glossary links.
+- ✅ **Who's-who ecosystem map — shipped 2026-06-05.** Nine-card grid in the Learn tab covering Developer/IPP, EPC, O&M, Lender, Tax-Equity, Offtaker, Utility, ISO/RTO, and Broker/Advisor — each with a short role label and glossary links.
 - ✅ **Asset cache-busting — shipped 2026-06-05.** Added `?v=20260605` query strings to all four asset references (styles.css, settle-core.js, simulator.js, app.js, content.js) so returning visitors always get fresh assets.
 - ✅ **Mobile nav scroll affordance — shipped 2026-06-05.** CSS `mask-image` gradient fades the right 48px of the nav on screens ≤860px, hinting at off-screen tabs.
 
@@ -349,7 +349,7 @@ Practitioner:
    {title} · Switch to Practitioner to read →" (button = `setLevelViaFilter("2")` + scroll to
    the anchor). Generated in app.js (`buildLevelStubs`) from the gated h2s; stubs carry
    `data-level-only="1"` so the existing `applyLevel` swaps stub ↔ section for free. Reuses the
-   chip/eyebrow idiom, no new colors. Verified: all 10 gated-h2 sections get a stub at Newcomer;
+   chip/section-label idiom, no new colors. Verified: all 10 gated-h2 sections get a stub at Newcomer;
    clicking one switches to Practitioner and lands on the revealed section; 0 stubs visible at
    Practitioner. *Effort: M. Priority: high.*
 3. ✅ **Count lines where lists are level-filtered — shipped 2026-07-12.** `[data-level-count]` host

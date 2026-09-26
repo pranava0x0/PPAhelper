@@ -143,7 +143,7 @@ var PRAC_INDEX = [
   (Resolve each `target` to the real h2 `id` — the TOC builder already assigns
   `{view}-s{n}` ids to h2s without ids; prefer adding stable explicit ids to these h2s in
   index.html, e.g. `id="basis-risk"`, so the index and tests don't depend on section order.)
-- Render: eyebrow "Practitioner index", then compact jump chips grouped by tab
+- Render: sentence-case label "Practitioner index", then compact jump chips grouped by tab
   (`Learn · Drafting · Project finance · Data centers` group labels). Chip = pill button,
   44px min height on touch, mono number optional. Click = `showView(view)` then scroll to
   target (after the view unhides — next frame).
