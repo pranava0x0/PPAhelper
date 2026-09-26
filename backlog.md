@@ -1,5 +1,15 @@
 # Backlog — PPA Helper
 
+## Load/generation signing path + case-study expansion (2026-09-26)
+
+User-requested curriculum pass. Spec: `docs/learning-path-expansion-spec.md`.
+
+- **Choose a contract from the load and generator.** Add an option-first map that connects load shape, market access, delivery need, and generation technology to the likely agreement and residual risk. *Priority: high — in progress.*
+- **From need to signature.** Add a from-zero sequence with explicit inputs, deliverables, and handoffs to the existing simulator, Drafting, Draft PPA, project-finance, and data-center tools. *Priority: high — in progress.*
+- **Case studies as decisions.** Expand every load/gen/wires case with a brief, four decision steps, a failure test, and a learner prompt. *Priority: high — in progress.*
+- **Remove default-AI presentation cues.** Replace decorative eyebrow labels with functional sentence-case labels; sweep the touched curriculum for repeated or inflated copy. *Priority: high — in progress.*
+- **Course benchmark.** Incorporate the transaction sequence and stakeholder framing from U.S. Commerce CLDP, the explicit outcomes and short bridges from OpenLearn, and the option-first/artifact approach from DOE Better Buildings/FEMP. *Priority: high — research complete.*
+
 Ideas and deferred scope. Each: description + priority (low / medium / high).
 
 ## Data-center energy-lead scan (2026-08-08)
