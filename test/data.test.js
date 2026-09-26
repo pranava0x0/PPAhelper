@@ -107,6 +107,13 @@ test("case studies (DC + VPP) are complete, sourced, and cite real terms", () =>
       assert.ok(c.id && /^[a-z0-9-]+$/.test(c.id), key + ": bad id " + c.id);
       ["title", "market", "participants", "load", "gen", "tnd", "agreement", "unique", "lesson"]
         .forEach(f => assert.ok(c[f] && String(c[f]).length > 10, c.id + ": missing/short field '" + f + "'"));
+      if (key === "caseStudies") {
+        ["brief", "failureTest", "yourTurn"].forEach(f =>
+          assert.ok(c[f] && String(c[f]).length > 10, c.id + ": missing/short teaching field '" + f + "'"));
+        assert.ok(Array.isArray(c.decisions) && c.decisions.length === 4,
+          c.id + ": decision path must contain exactly 4 steps");
+        c.decisions.forEach((d, i) => assert.ok(d.length > 20, c.id + ": short decision step " + i));
+      }
       assert.ok([1, 2].includes(c.level), c.id + ": bad level");
       assert.ok(Array.isArray(c.history) && c.history.length >= 3, c.id + ": history needs 3+ events");
       c.history.forEach(h => assert.ok(h.date && h.event && h.event.length > 10, c.id + ": bad history row"));

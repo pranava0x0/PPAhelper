@@ -47,6 +47,13 @@ test("path chooser and practitioner index slots exist (index is level-2 gated)",
   assert.ok(/data-level="2"/.test(prac[0]), '#prac-index must carry data-level="2"');
 });
 
+test("from-scratch path includes contract choice and signature sequence", () => {
+  assert.ok(html.includes('id="choose-contract"'), "load/generation contract-choice section missing");
+  assert.ok(html.includes('id="need-to-signature"'), "need-to-signature section missing");
+  assert.ok(/12 months of hourly use/.test(html), "signing path must begin from interval load data");
+  assert.ok(/conditions precedent/.test(html), "signing path must distinguish signature from operation");
+});
+
 test("quiz banks are well-formed (>=3 options, exactly one correct, explanations)", () => {
   const names = Object.keys(banks);
   assert.ok(names.length >= 5, "expected 5 banks, got " + names.length);

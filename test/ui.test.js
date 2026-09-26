@@ -126,5 +126,18 @@ test("[hidden] display guard is present in CSS", () => {
   assert.ok(/\[hidden\]\s*\{\s*display:\s*none/.test(css), "[hidden] { display: none } guard missing");
 });
 
+test("decorative eyebrow labels are removed", () => {
+  assert.ok(!/class=["'][^"']*eyebrow/.test(html), "index.html still uses decorative eyebrow labels");
+  assert.ok(!/\.eyebrow\s*\{/.test(read("assets/css/styles.css")), "eyebrow CSS rule still exists");
+  assert.ok(!/className\s*=\s*["']eyebrow/.test(appJs), "app.js still generates eyebrow labels");
+});
+
+test("browser scripts remain valid JavaScript", () => {
+  const vm = require("node:vm");
+  ["assets/js/app.js", "assets/js/content.js", "assets/js/quiz-banks.js"].forEach((file) => {
+    assert.doesNotThrow(() => new vm.Script(read(file)), file + " has a syntax error");
+  });
+});
+
 console.log("\nui.test.js: " + passed + " passed (" + tabNames.length + " tabs, " +
   [...html.matchAll(/data-term="([^"]+)"/g)].length + " inline terms checked)");

@@ -4,11 +4,11 @@
 
 User-requested curriculum pass. Spec: `docs/learning-path-expansion-spec.md`.
 
-- **Choose a contract from the load and generator.** Add an option-first map that connects load shape, market access, delivery need, and generation technology to the likely agreement and residual risk. *Priority: high — in progress.*
-- **From need to signature.** Add a from-zero sequence with explicit inputs, deliverables, and handoffs to the existing simulator, Drafting, Draft PPA, project-finance, and data-center tools. *Priority: high — in progress.*
-- **Case studies as decisions.** Expand every load/gen/wires case with a brief, four decision steps, a failure test, and a learner prompt. *Priority: high — in progress.*
-- **Remove default-AI presentation cues.** Replace decorative eyebrow labels with functional sentence-case labels; sweep the touched curriculum for repeated or inflated copy. *Priority: high — in progress.*
-- **Course benchmark.** Incorporate the transaction sequence and stakeholder framing from U.S. Commerce CLDP, the explicit outcomes and short bridges from OpenLearn, and the option-first/artifact approach from DOE Better Buildings/FEMP. *Priority: high — research complete.*
+- ✅ **Choose a contract from the load and generator — shipped 2026-09-26.** Six starting situations connect load shape, market access, delivery need, and generation technology to the likely agreement and residual risk.
+- ✅ **From need to signature — shipped 2026-09-26.** Eight steps carry a beginner from interval load data to an operating calendar, with explicit outputs and handoffs to the existing tools.
+- ✅ **Case studies as decisions — shipped 2026-09-26.** Every load/gen/wires case now has a brief, four decision steps, a failure test, and a learner prompt.
+- ✅ **Remove default-AI presentation cues — shipped 2026-09-26.** Decorative eyebrow labels became functional sentence-case labels; touched copy was tightened and the duplicate price-cannibal paragraph removed.
+- ✅ **Course benchmark — shipped 2026-09-26.** The sequence and exercises borrow from U.S. Commerce CLDP, OpenLearn, and DOE Better Buildings/FEMP. Sources are listed in the app and the implementation spec.
 
 Ideas and deferred scope. Each: description + priority (low / medium / high).
 

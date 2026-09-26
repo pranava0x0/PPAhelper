@@ -2,6 +2,15 @@
 
 Living audit trail. Each: date · area · description · root cause (**content bug** / **code bug** / **test bug**) · status.
 
+## 2026-09-26 — learning-path and visual-language pass
+
+### Fixed
+
+- **2026-09-26 · JavaScript · A mechanical class rename also changed two local variable names into invalid hyphenated identifiers.** *(code bug — Fixed)*
+  The static content tests passed because they read `app.js` as text; the first live browser run caught the syntax error and non-working navigation. The variables now use valid descriptive names, and `ui.test.js` compiles the browser scripts with Node's VM so the same failure cannot pass again. *Fix: `assets/js/app.js`, `test/ui.test.js`.*
+- **2026-09-26 · Captions · Plain captions rendered with a false “Source:” prefix.** *(code bug — Fixed)*
+  The shared source class had been reused for list notes, empty states, and section introductions. Those lines now use a neutral caption class; real citations retain the source label. *Fix: `index.html`, `assets/js/app.js`, `assets/js/content.js`, `assets/css/styles.css`.*
+
 ## 2026-08-09 — energy-expert review of the energy-leads branch
 
 Directional sweep over the 17 commits of `jam/energy-leads-ppa-opportunities-08a96d` (technology → contract map, tolling deep-dive, large-load section, playbook, stack builder, case studies, VPP examples), reconciled against settle-core's convention, the risk-allocation matrix, and draft.js.

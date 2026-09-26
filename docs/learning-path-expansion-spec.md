@@ -62,4 +62,3 @@ Every new instructional block follows the same order:
 - Flow/UI tests require the new anchors and forbid the old eyebrow class.
 - Full Node test suite passes.
 - Browser UAT at desktop and 375×812: load the page, switch levels, use the new cross-tab links, open case studies, check console/errors and horizontal overflow.
-
