@@ -71,6 +71,26 @@
           { t: "The ISO covers the gap" }
         ],
         explain: "Market price below the strike: the buyer pays the generator the difference, so the generator gets its fixed revenue regardless of the market. Above the strike it reverses — the generator pays the buyer. That two-way swap is the whole mechanic."
+      },
+      {
+        prompt: "A company has offices in several regulated utility territories and wants to support one new wind project without routing its power to each meter. Which route should it test first?",
+        opts: [
+          { t: "A VPPA alongside its existing retail supply", correct: true },
+          { t: "A behind-the-meter physical PPA at every office" },
+          { t: "A gas tolling agreement" },
+          { t: "An interruptible large-load tariff" }
+        ],
+        explain: "A VPPA lets a buyer settle financially with one project and receive its RECs while keeping the retail supply already serving each site. The project's market and settlement hub still have to support the transaction."
+      },
+      {
+        prompt: "What should a buyer prepare before asking developers for PPA bids?",
+        opts: [
+          { t: "A load brief with interval use, growth, location, target date, and clean-energy goal", correct: true },
+          { t: "A finished long-form PPA with no open terms" },
+          { t: "Only its annual electricity bill" },
+          { t: "A final board approval for an unnamed project" }
+        ],
+        explain: "The procurement starts with the need. A one-page load brief gives every bidder the same hourly use, ramp, site, timing, and goal. Annual MWh alone hides the shape and open hours that the contract must cover."
       }
     ],
 

@@ -144,9 +144,9 @@
         '<span class="pill outline">' + lvlLabel + "</span></summary>" +
         '<div class="dc-s-body">' +
           "<p><strong>What it is.</strong> " + esc(s.what) + "</p>" +
-          "<p><strong>Why it's clever.</strong> " + esc(s.whyClever) + "</p>" +
+          "<p><strong>Why it fits.</strong> " + esc(s.whyClever) + "</p>" +
           "<p><strong>Trade-offs.</strong> " + esc(s.tradeoffs) + "</p>" +
-          '<p class="src" style="border:none"><strong>Seen in:</strong> ' + esc(s.example) +
+          '<p class="caption"><strong>Seen in:</strong> ' + esc(s.example) +
             (s.url ? ' · <a href="' + esc(s.url) + '">' + esc(s.source) + "</a>" : "") + "</p>" +
           glossaryChips(s.glossaryRefs) +
         "</div>";
@@ -173,7 +173,7 @@
             "<td>" + esc(x.seller) + "</td>" +
             "<td>" + esc(x.tech) + "</td>" +
             "<td class=\"mono\">" + esc(x.capacity) + "</td>" +
-            "<td>" + esc(x.structure) + (x.note ? '<br><span class="src" style="border:none">' + esc(x.note) + "</span>" : "") + "</td>" +
+            "<td>" + esc(x.structure) + (x.note ? '<br><span class="caption">' + esc(x.note) + "</span>" : "") + "</td>" +
             "<td><a href=\"" + esc(x.url) + "\">" + esc(x.source) + "</a></td></tr>";
         }).join("") + "</tbody>";
     }
@@ -228,12 +228,27 @@
       var meta = el("p", "case-meta");
       meta.appendChild(el("span", "pill outline", c.market));
       body.appendChild(meta);
+      if (c.brief) body.appendChild(labeled("The brief.", c.brief));
       body.appendChild(labeled("Participants.", c.participants, "case-participants"));
       body.appendChild(labeled("The load.", c.load));
       body.appendChild(labeled("The generation.", c.gen));
       body.appendChild(labeled("The wires.", c.tnd));
       body.appendChild(labeled("The agreement stack.", c.agreement));
       body.appendChild(labeled("Unlike a standard PPA.", c.unique));
+
+      if (c.decisions && c.decisions.length) {
+        var dLabel = el("p");
+        dLabel.setAttribute("style", "margin-bottom:4px");
+        dLabel.appendChild(el("strong", null, "How the decision unfolded."));
+        body.appendChild(dLabel);
+        var decisions = el("ol", "case-decisions");
+        c.decisions.forEach(function (decision) {
+          decisions.appendChild(el("li", null, decision));
+        });
+        body.appendChild(decisions);
+        body.appendChild(labeled("What would make it fail.", c.failureTest, "case-failure"));
+        body.appendChild(labeled("Your turn.", c.yourTurn, "case-prompt"));
+      }
 
       var hLabel = el("p");
       hLabel.setAttribute("style", "margin-bottom:4px");
@@ -291,7 +306,7 @@
     var v = document.getElementById("voices");
     if (v) v.innerHTML = (data.voices || []).map(function (p) {
       return '<article class="card voice-card" data-level="' + p.level + '">' +
-        '<p class="eyebrow">' + esc(p.angle) + "</p>" +
+        '<p class="section-label">' + esc(p.angle) + "</p>" +
         "<h3>" + esc(p.name) + "</h3>" +
         '<div class="voice-role">' + esc(p.role) + "</div>" +
         "<p>" + esc(p.view) + "</p>" +
@@ -310,7 +325,7 @@
     return fetch(dataUrl("data/perspectives.json")).then(function (r) { return r.json(); }).then(renderPerspectives)
       .catch(function (e) {
         var v = document.getElementById("voices");
-        if (v) v.innerHTML = '<p class="src" style="border:none">Could not load perspectives (' + e.message + ").</p>";
+        if (v) v.innerHTML = '<p class="caption">Could not load perspectives (' + e.message + ").</p>";
       });
   }
 

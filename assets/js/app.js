@@ -152,7 +152,7 @@
     if (count) count.textContent = rows.length + (rows.length === 1 ? " term" : " terms") +
       (activeCat !== "All" || q ? " shown" : " total");
     if (rows.length === 0) {
-      list.innerHTML = '<p class="src" style="border:none">No terms match. Clear the filter or search.</p>';
+      list.innerHTML = '<p class="caption">No terms match. Clear the filter or search.</p>';
     }
   }
 
@@ -365,7 +365,7 @@
       })
       .catch(function (err) {
         var list = document.getElementById("glossary-list");
-        if (list) list.innerHTML = '<p class="src" style="border:none">Could not load the glossary (' +
+        if (list) list.innerHTML = '<p class="caption">Could not load the glossary (' +
           err.message + '). If you opened this file directly, serve it over http (see README).</p>';
         console.error(err);
       });
@@ -436,16 +436,16 @@
       stub.type = "button";
       stub.className = "level-stub";
       stub.setAttribute("data-level-only", "1");
-      var eyebrow = document.createElement("span");
-      eyebrow.className = "level-stub-eyebrow";
-      eyebrow.textContent = "Practitioner section";
+      var stubLabel = document.createElement("span");
+      stubLabel.className = "level-stub-label";
+      stubLabel.textContent = "Practitioner section";
       var label = document.createElement("span");
       label.className = "level-stub-title";
       label.textContent = title;
       var cta = document.createElement("span");
       cta.className = "level-stub-cta";
       cta.textContent = "Switch to Practitioner to read →";
-      stub.appendChild(eyebrow);
+      stub.appendChild(stubLabel);
       stub.appendChild(label);
       stub.appendChild(cta);
       stub.addEventListener("click", function () {
@@ -680,7 +680,7 @@
       var foot = document.createElement("div");
       foot.className = "ref-footer";
       var label = document.createElement("span");
-      label.className = "eyebrow";
+      label.className = "section-label";
       label.textContent = "Reference";
       var rb = document.createElement("button");
       rb.type = "button";
@@ -763,10 +763,10 @@
   function buildPracIndex() {
     var box = document.getElementById("prac-index");
     if (!box) return;
-    var eyebrow = document.createElement("p");
-    eyebrow.className = "eyebrow";
-    eyebrow.textContent = "Practitioner index · jump straight to the deep sections";
-    box.appendChild(eyebrow);
+    var indexLabel = document.createElement("p");
+    indexLabel.className = "section-label";
+    indexLabel.textContent = "Practitioner index · jump straight to the deep sections";
+    box.appendChild(indexLabel);
     var groups = {};
     var wrap = document.createElement("div");
     wrap.className = "prac-groups";

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-08",
+  "updated": "2026-09-26",
   "note": "Data-center & generation PPAs. Deals are point-in-time (as of mid-2026) and will age — treat them as worked examples of structures, not a live deal tracker. Each carries a primary or reputable-trade source. 'level': 1=newcomer, 2=practitioner.",
   "demand": {
     "stat": "US data-center electricity demand more than doubled (2.3x) from 2018 to 2024 and could reach 325–580 TWh by 2028 — up to roughly 12% of US electricity.",
@@ -175,6 +175,15 @@
       "tnd": "The whole dispute was wires. Behind-the-meter co-location bypasses the transmission network, so PJM filed an amended Interconnection Service Agreement to raise the co-located load from 300 to 480 MW. FERC rejected it 2–1 (Docket ER24-2172, Nov 1, 2024): PJM hadn't met the 'high burden' for non-conforming ISA terms, with Chairman Phillips dissenting that a first-of-its-kind configuration deserved one. The rejection froze the BTM expansion and triggered FERC's industry-wide co-location review.",
       "agreement": "Original: a BTM power supply arrangement riding on a non-conforming ISA among PJM, Susquehanna Nuclear, and PPL. After the rejection: restructured (June 2025) into front-of-meter retail supply — a 17-year commitment for up to 1,920 MW with Talen acting as AWS's licensed retail electricity provider in Pennsylvania, the load paying full grid charges.",
       "unique": "The commercial deal survived but its legal form flipped — from behind-the-meter ISA to front-of-meter retail ESA — because of a docket, not a negotiation. Unlike a VPPA, no strike price or CfD: the contested document was the interconnection agreement itself, and the 'price' of losing was paying transmission charges the structure was built to avoid.",
+      "brief": "Need: scale a large, firm load beside an operating nuclear plant. Constraint: the preferred behind-the-meter structure depended on a non-standard PJM interconnection agreement.",
+      "decisions": [
+        "Use an existing nuclear site and its established grid position instead of waiting for a new generator.",
+        "Start behind the meter so the campus can take plant output without ordinary transmission delivery.",
+        "Ask PJM and FERC to expand the non-conforming interconnection agreement from 300 to 480 MW.",
+        "After FERC rejected that filing, preserve the supply relationship by moving front of meter and paying grid charges under a 17-year retail arrangement."
+      ],
+      "failureTest": "The replacement structure fails if Talen cannot serve the load as a licensed retail supplier, if the grid cannot support the scale, or if full transmission charges erase the value of the arrangement.",
+      "yourTurn": "Build a two-column comparison: behind the meter versus front of meter. Price the grid charges, approval path, maximum MW, and schedule in each column before choosing.",
       "history": [
         {
           "date": "Mar 2024",
@@ -238,6 +247,15 @@
       "tnd": "Grid-connected — the opposite answer to Susquehanna. By selling into PJM and matching Microsoft's regional load, the deal avoids the co-location fight entirely; the T&D work is reactivating the plant's interconnection, not litigating a new configuration.",
       "agreement": "A 20-year, single-buyer PPA for the full output of one unit — price undisclosed. The tenor is the financing: two decades of investment-grade offtake is what makes a nine-figure restart bankable.",
       "unique": "Most PPAs finance new construction; this one finances un-retirement. Full-output single-buyer nuclear at 20 years is an outlier against the 12–15-year solar VPPA norm — and there is no CfD mechanic to study, because the point is the block and the balance sheet, not a hub settlement.",
+      "brief": "Need: a large, round-the-clock carbon-free block for regional data-center demand. Constraint: restarting an existing plant requires long-term revenue, licensing, capital, and a credible delivery date.",
+      "decisions": [
+        "Match a 24/7 load with an existing nuclear unit rather than an intermittent project of the same nameplate size.",
+        "Use grid delivery across PJM instead of tying the plant to one campus.",
+        "Contract the unit's full output for 20 years so the restart has financeable revenue.",
+        "Run the NRC, interconnection, workforce, and financing workstreams in parallel toward the restart date."
+      ],
+      "failureTest": "The PPA cannot make power appear if the NRC approvals, equipment condition, workforce rebuild, financing, or PJM work do not support the target restart date.",
+      "yourTurn": "Write the buyer's four-item diligence request: restart budget, licensing milestones, interconnection status, and the remedy if commercial operation slips.",
       "history": [
         {
           "date": "Sep 2019",
@@ -284,6 +302,15 @@
       "tnd": "The utility also builds the delivery: new substations and transmission approved in the same proceeding. Because Louisiana is vertically integrated, generation, wires, and the service agreement all run through one docket at the Louisiana PSC.",
       "agreement": "A long-term electric service agreement under Entergy's tariff, with terms designed to shield other ratepayers — Meta commits to pay for the plants built for it. Approved 4–1 by the LPSC in August 2025 as a settlement; opponents argued the utility bypassed competitive solicitation.",
       "unique": "There is no PPA at all. The 'negotiation' is a regulatory proceeding: intervenors sign the settlement, the commission votes, and counterparty protections live in the tariff rather than in bilateral credit annexes. This is the default path for gigawatt loads across the vertically integrated South and Midwest.",
+      "brief": "Need: serve a 2,000–2,500 MW campus in a vertically integrated utility territory. Constraint: Meta cannot choose a retail supplier, and new plants and wires require commission approval and ratepayer protection.",
+      "decisions": [
+        "Use the incumbent utility rather than a direct developer PPA because Louisiana does not offer the needed retail path.",
+        "Plan generation, substations, transmission, and the campus ramp in one service case.",
+        "Put the long-term payment obligation into an ESA and tariff terms so the dedicated build does not fall on other customers.",
+        "Obtain approval through a contested LPSC proceeding and settlement before construction."
+      ],
+      "failureTest": "The program stalls if the commission rejects cost recovery, the load commitment does not cover dedicated investment, or generation and transmission miss the campus ramp.",
+      "yourTurn": "Draft three protections for existing ratepayers and three protections Meta would ask for if the utility misses an energization milestone.",
       "history": [
         {
           "date": "Dec 2024",
@@ -338,6 +365,15 @@
       "tnd": "Both answers at once. Lancium's energy park holds a 1.2 GW ERCOT grid interconnection — among the largest load connections in the market — while the on-site turbines energize buildings before and beside it. ERCOT's energy-only market and its new ≥75 MW large-load process are the backdrop.",
       "agreement": "No headline PPA. The 'contract stack' is turbine supply and EPC agreements, the park's interconnection agreement, land/energy-park arrangements with Lancium, tenant leases with OpenAI/Oracle/Microsoft, and JV agreements for the gas fleet. Ownership replaces offtake.",
       "unique": "Inverts the corporate-PPA model completely: instead of contracting a developer's electrons at a strike price, the operator becomes the generator. Speed is the strike — turbines on pads beat queue positions — and the exposure is fuel, permits, and carbon rather than basis and shape.",
+      "brief": "Need: energize a multi-gigawatt campus in phases faster than a single grid or generation project can arrive. Constraint: the load, interconnection, turbines, tenants, and fuel arrangements have different schedules and counterparties.",
+      "decisions": [
+        "Choose an energy park that already controls a large ERCOT load interconnection.",
+        "Add on-site gas turbines so early buildings do not wait for the full grid ramp.",
+        "Layer solar, batteries, wind, and a larger gas venture around the grid and turbine base.",
+        "Use ownership, equipment, EPC, land, tenant, interconnection, and joint-venture contracts rather than one PPA."
+      ],
+      "failureTest": "The campus misses its date if the grid ramp and on-site plant both slip, or if fuel, air permits, turbine delivery, and tenant obligations are not managed as one critical path.",
+      "yourTurn": "Draw the contract stack and put one accountable owner beside each interface: grid, turbines, fuel, site, tenants, and clean-energy supply.",
       "history": [
         {
           "date": "Jun 2024",
@@ -397,6 +433,15 @@
       "tnd": "TVA is a federal power authority — its board, not FERC or a state PUC, approves serving large new loads, and MLGW delivers. Grid approvals (Nov 2024, then +150 MW) came fast; the binding process turned out to be county air permitting and community opposition in a neighborhood with a long pollution history.",
       "agreement": "A municipal power supply agreement (MLGW service backed by TVA board-approved wholesale supply) plus self-owned BTM generation under county air permits — no corporate PPA anywhere in the stack.",
       "unique": "Shows the non-contract constraints that no PPA clause can fix: permits, environmental-justice opposition, and a utility governance path (TVA board votes) that most playbooks ignore. The 'counterparty' that can stop the campus is the community.",
+      "brief": "Need: energize a fast-built computing campus in months. Constraint: utility supply was limited at first, while on-site turbines required air permits and affected a community with an existing pollution burden.",
+      "decisions": [
+        "Reuse an existing industrial site to shorten the building schedule.",
+        "Combine MLGW/TVA grid service with mobile on-site generation rather than wait for one source to cover the load.",
+        "Seek TVA board approval for the grid increments and county permits for the turbines.",
+        "Continue expanding while environmental groups and residents challenge the permit and operating record."
+      ],
+      "failureTest": "Fast electrical work does not secure the site if air permits, monitoring, public-health impacts, or community consent can stop or constrain the turbines.",
+      "yourTurn": "Rebuild the original critical path with permitting and community engagement before turbine deployment. Name the evidence required at each gate.",
       "history": [
         {
           "date": "Jun 2024",
@@ -455,6 +500,15 @@
       "tnd": "AEP Ohio faced billions in transmission and distribution buildout for loads that might never materialize. The PUCO-approved tariff makes new large data centers pay for at least 85% of contracted capacity for up to 12 years — whether or not they draw it — with exit fees, before the wires get built.",
       "agreement": "Not a bilateral contract: a class tariff (Case No. 24-508-EL-ATA, approved July 9, 2025) that functions as the standard-form ESA every new large load must sign. The 'negotiation' happened once, in a settlement among the utility, staff, and consumer advocates.",
       "unique": "The inverse of every other case: no buyer and seller shaking hands, but a regulator writing default contract terms for an entire customer class. Its 85%/12-year ratchet became the reference point other states now copy — the market's minimum-take clause is being drafted in dockets, not deal rooms.",
+      "brief": "Need: decide which large-load requests are firm enough to justify billions in grid investment. Constraint: roughly 30 GW of requests included projects that could withdraw after the utility built for them.",
+      "decisions": [
+        "Treat speculative load as a portfolio risk to the utility and its existing customers, not only as bilateral credit risk.",
+        "Create one data-center customer class instead of negotiating a different minimum-take term for every campus.",
+        "Use an 85% minimum demand obligation, a term of up to 12 years, and exit provisions to test commitment.",
+        "Set the commercial rule through a PUCO tariff case and settlement, with appeals handled in the regulatory process."
+      ],
+      "failureTest": "The tariff misses its purpose if obligations are too weak to cover stranded upgrades, or so rigid that financeable projects leave the territory instead of committing.",
+      "yourTurn": "For a campus that ramps 100, 300, 600, then 900 MW, compare the bill under an 85% ratchet with actual use and identify the hardest year to finance.",
       "history": [
         {
           "date": "May 2024",
@@ -567,7 +621,7 @@
           "event": "PG&E SAVE / Local PeakShift Power dispatches 50+ times, 1,200+ dispatching hours of targeted local relief."
         }
       ],
-      "lesson": "For a market drowning in large-load requests, distributed capacity is the fastest 'new build' there is — and contracting it means buying statistics and dispatch rights, not electrons from a fence line.",
+      "lesson": "When large-load requests exceed available grid capacity, distributed resources can add capacity faster than a new central plant. Contracting them means buying measured performance and dispatch rights, not output at one plant meter.",
       "glossaryRefs": [
         "Virtual Power Plant (VPP)",
         "Firm / Dispatchable Power",
