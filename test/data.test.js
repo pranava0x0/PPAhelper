@@ -113,6 +113,7 @@ test("case studies (DC + VPP) are complete, sourced, and cite real terms", () =>
         assert.ok(Array.isArray(c.decisions) && c.decisions.length === 4,
           c.id + ": decision path must contain exactly 4 steps");
         c.decisions.forEach((d, i) => assert.ok(d.length > 20, c.id + ": short decision step " + i));
+        assert.ok(/^\d{4}-\d{2}-\d{2}$/.test(c.capturedAt || ""), c.id + ": capturedAt must be an ISO date");
         assert.ok(c.glance && typeof c.glance === "object", c.id + ": missing glance summary");
         ["load", "supply", "contract", "status"].forEach(f => {
           const v = c.glance[f];
