@@ -155,6 +155,7 @@
     });
 
     renderCases(data.caseStudies, "dc-cases");
+    renderCaseGlance(data.caseStudies, data.casesAsOf, "dc-cases-glance", "dc-cases");
     renderCases(data.vppCases, "vpp-cases");
 
     // deals filter + table
@@ -217,6 +218,7 @@
     wrap.replaceChildren();
     (cases || []).forEach(function (c) {
       var det = el("details", "dc-structure case-study");
+      det.id = containerId + "-" + c.id;
       det.setAttribute("data-level", c.level);
 
       var summary = document.createElement("summary");
@@ -228,6 +230,18 @@
       var meta = el("p", "case-meta");
       meta.appendChild(el("span", "pill outline", c.market));
       body.appendChild(meta);
+      // Key facts and the takeaway lead, so an opened case answers
+      // "what happened" before the long-form narrative starts.
+      if (c.glance) {
+        var facts = el("dl", "case-facts");
+        GLANCE_FIELDS.forEach(function (f) {
+          var cell = el("div");
+          cell.append(el("dt", null, f.label), el("dd", null, c.glance[f.key] || "—"));
+          facts.appendChild(cell);
+        });
+        body.appendChild(facts);
+      }
+      body.appendChild(labeled("The lesson.", c.lesson));
       if (c.brief) body.appendChild(labeled("The brief.", c.brief));
       body.appendChild(labeled("Participants.", c.participants, "case-participants"));
       body.appendChild(labeled("The load.", c.load));
@@ -262,7 +276,6 @@
         ul.appendChild(li);
       });
       body.appendChild(ul);
-      body.appendChild(labeled("The lesson.", c.lesson));
 
       if (c.glossaryRefs && c.glossaryRefs.length) {
         var chips = el("div", "chips");
@@ -291,6 +304,92 @@
       wrap.appendChild(det);
       wireChips(det);
     });
+  }
+
+  var GLANCE_FIELDS = [
+    { key: "load", label: "Load" },
+    { key: "supply", label: "Supply" },
+    { key: "contract", label: "Contract" },
+    { key: "status", label: "Status" }
+  ];
+
+  /* One-row-per-case summary above the accordions. Each title opens and
+     scrolls to its case. Rows carry data-level so the Newcomer filter hides
+     Practitioner cases here too. Stacks into cards under 640px (CSS). */
+  function renderCaseGlance(cases, asOf, hostId, casesId) {
+    var host = document.getElementById(hostId);
+    if (!host) return;
+    host.replaceChildren();
+    if (!cases || !cases.length) return;
+
+    var columns = ["Case", "Market"].concat(GLANCE_FIELDS.map(function (f) { return f.label; }));
+    var table = document.createElement("table");
+    table.className = "case-glance";
+    // explicit roles keep table semantics when the mobile CSS restyles rows as blocks
+    table.setAttribute("role", "table");
+    var caption = document.createElement("caption");
+    caption.className = "visually-hidden";
+    caption.textContent = "Case studies at a glance";
+    table.appendChild(caption);
+
+    var thead = document.createElement("thead");
+    thead.setAttribute("role", "rowgroup");
+    var hr = document.createElement("tr");
+    hr.setAttribute("role", "row");
+    columns.forEach(function (name) {
+      var th = document.createElement("th");
+      th.scope = "col";
+      th.setAttribute("role", "columnheader");
+      th.textContent = name === "Status" && asOf ? "Status · as of " + asOf : name;
+      hr.appendChild(th);
+    });
+    thead.appendChild(hr);
+
+    var tbody = document.createElement("tbody");
+    tbody.setAttribute("role", "rowgroup");
+    cases.forEach(function (c) {
+      var g = c.glance || {};
+      var tr = document.createElement("tr");
+      tr.setAttribute("role", "row");
+      tr.setAttribute("data-level", c.level);
+
+      function cell(label) {
+        var td = document.createElement("td");
+        td.setAttribute("role", "cell");
+        td.setAttribute("data-label", label);
+        tr.appendChild(td);
+        return td;
+      }
+
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "glance-link";
+      btn.textContent = c.title;
+      btn.addEventListener("click", function () { openCase(casesId + "-" + c.id); });
+      var caseTd = cell("Case");
+      caseTd.className = "glance-case";
+      caseTd.appendChild(btn);
+      cell("Market").textContent = c.market || "—";
+      GLANCE_FIELDS.forEach(function (f) { cell(f.label).textContent = g[f.key] || "—"; });
+      tbody.appendChild(tr);
+    });
+
+    table.append(thead, tbody);
+    var wrapDiv = document.createElement("div");
+    wrapDiv.className = "table-wrap";
+    wrapDiv.appendChild(table);
+    host.appendChild(wrapDiv);
+    reapplyLevel();
+  }
+
+  function openCase(detailsId) {
+    var det = document.getElementById(detailsId);
+    if (!det) return;
+    det.open = true;
+    var smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    det.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+    var summary = det.querySelector("summary");
+    if (summary) summary.focus({ preventScroll: true });
   }
 
   function loadDatacenter() {

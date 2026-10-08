@@ -361,6 +361,16 @@
           { t: "It's cheaper because midday solar is abundant" }
         ],
         explain: "Hourly matching is a far more rigorous claim than annual RECs — it forces procurement of firm and storage resources, not just cheap midday solar. It's also harder and more expensive; some analyses find it isn't always the most cost-effective way to cut system-wide emissions."
+      },
+      {
+        prompt: "In the NIPSCO × Amazon special contract (IURC Cause 46322, June 2026), who builds the new gas and battery capacity and how does it reach the data center?",
+        opts: [
+          { t: "A non-regulated NIPSCO affiliate (GenCo) builds it and sells to NIPSCO under a PPA; NIPSCO serves Amazon under a 15-year special contract with a fixed capacity charge", correct: true },
+          { t: "Amazon signs a virtual PPA with a third-party developer and keeps buying grid power from NIPSCO at the standard industrial tariff" },
+          { t: "NIPSCO builds the plants in its regulated rate base and recovers the cost from all customers" },
+          { t: "Amazon builds behind-the-meter turbines on the campus and NIPSCO supplies only backup service" }
+        ],
+        explain: "GenCo owns the dedicated plants and files its sales at MISO and FERC, so other NIPSCO customers are not on the hook for them. Those customers also receive about $1B of Shared System Charge credits over the 15 years."
       }
     ]
   };

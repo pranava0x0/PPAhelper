@@ -113,6 +113,12 @@ test("case studies (DC + VPP) are complete, sourced, and cite real terms", () =>
         assert.ok(Array.isArray(c.decisions) && c.decisions.length === 4,
           c.id + ": decision path must contain exactly 4 steps");
         c.decisions.forEach((d, i) => assert.ok(d.length > 20, c.id + ": short decision step " + i));
+        assert.ok(c.glance && typeof c.glance === "object", c.id + ": missing glance summary");
+        ["load", "supply", "contract", "status"].forEach(f => {
+          const v = c.glance[f];
+          assert.ok(typeof v === "string" && v.trim().length > 0, c.id + ": glance." + f + " empty");
+          assert.ok(v.length <= 90, c.id + ": glance." + f + " over 90 chars (" + v.length + ")");
+        });
       }
       assert.ok([1, 2].includes(c.level), c.id + ": bad level");
       assert.ok(Array.isArray(c.history) && c.history.length >= 3, c.id + ": history needs 3+ events");
@@ -131,6 +137,11 @@ test("case studies (DC + VPP) are complete, sourced, and cite real terms", () =>
   const allUrls = dc.caseStudies.flatMap(c => c.sources.map(s => s.url));
   assert.ok(allUrls.some(u => /ferc\.gov/.test(u)), "no FERC primary document cited");
   assert.ok(allUrls.some(u => /puco\.ohio\.gov/.test(u)), "no PUCO primary document cited");
+  assert.ok(allUrls.some(u => /in\.gov\/iurc/.test(u)), "no IURC primary document cited");
+  const allSources = dc.caseStudies.flatMap(c => c.sources);
+  assert.ok(allSources.some(s => /ER26-3380/.test(s.label) && /pjm\.com|ferc\.gov/.test(s.url)),
+    "no PJM/FERC source for ER26-3380");
+  assert.ok(typeof dc.casesAsOf === "string" && dc.casesAsOf.trim().length > 0, "casesAsOf missing");
 });
 
 let persp;

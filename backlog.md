@@ -1,5 +1,21 @@
 # Backlog — PPA Helper
 
+## Case-study refresh + at-a-glance table (2026-10-08)
+
+Checked the six load/gen/wires cases against what moved in the last year (FERC's co-location and show-cause orders, PJM's backstop procurement, the NIPSCO×Amazon order, Fervo's Cape Station PPA, the Entergy second build, the xAI Clean Air Act suit, the spread of large-load tariffs) and against the UX cost of reaching them: at 375px the case studies sat ~5.4k px into a ~16k px view, closed, with title-only summaries and the lesson at the bottom of a ~2,750 px accordion. Sources: `docs/research-us-ppa.md` Round 10.
+
+- ✅ **Six cases brought to Oct 2026 — shipped 2026-10-08.** New history rows and primary sources for each; load/gen/agreement fields corrected where the facts moved (Crane 2027, Hyperion ~5 GW, Colossus 2 in Southaven, Ohio's ~30 GW → ~5.7 GW).
+- ✅ **Three new cases — shipped 2026-10-08.** Google × Fervo (level 1: the firm PPA with a dated expansion option), NIPSCO × Amazon (level 2: the inter-affiliate PPA inside a regulated utility, IURC 46322), PJM reliability backstop (level 2: the market as counterparty, ER26-3380). Each picked because it is a contract *form* the site did not yet teach, not another instance of one it did.
+- ✅ **At-a-glance table — shipped 2026-10-08.** Load / supply / contract / status for every case, dated "as of Oct 2026", above the accordions; a row's title opens and scrolls to its case; stacked cards under 640px; level-filtered with the rest of the view.
+- ✅ **Lesson first inside each case — shipped 2026-10-08.** Four-cell fact strip, then the lesson, then the brief; the duplicate lesson at the bottom removed. Datacenter quiz 8 → 9 (NIPSCO structure). Coverage row, README, `casesAsOf`, cache-bust `20261008a`.
+
+### Logged, not built (this pass)
+
+- **Shuffle quiz options.** Every bank lists the correct option first, so the answer is guessable by position across all banks. Shuffle at render time and keep `correct` by reference. *Priority: medium.*
+- **Case-study filter by contract form** (PPA / ESA-tariff / self-supply / market procurement) on the glance table, once a tenth case makes nine rows too many to scan. *Priority: low.*
+- **Follow-ups with dates**: PJM §205 large-load filing due Nov 16, 2026; LPSC U-37882 vote ~Dec 2026; RBP effective Feb 28, 2027 unless FERC acts on the paper hearing; Crane restart 2027. Refresh the status cells when each lands. *Priority: medium.*
+- **Fermi America / NRG large-load deals** as cases once a signed, public supply contract exists. *Priority: low.*
+
 ## Load/generation signing path + case-study expansion (2026-09-26)
 
 User-requested curriculum pass. Spec: `docs/learning-path-expansion-spec.md`.
