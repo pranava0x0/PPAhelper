@@ -116,3 +116,22 @@ Single inline session (no delegation), three user-driven phases, 13 commits, all
 4. **Test-the-test:** two "failures" this session were wrong assertions (battery-displaces-gas economics; slug-length check), not wrong code. Hand-verify the scenario before touching the model.
 
 **State at pause:** worktree clean; 55 tests green across 5 suites; preview on :8129 (python http.server). Not yet done: /ship ritual (PR + review), and the ppa-expert-review directional sweep over the new copy would be a sensible pre-PR step.
+
+---
+
+## Run log — 2026-10-08 · case-study refresh (branch jam/case-studies-site-refresh-c1847a)
+
+Orchestrated per the user's cost ladder: web searches and haiku for breadth, primary PDFs read inline for depth, one opus agent for the build, max two agents at a time.
+
+| # | Agent | Job | Tokens | Outcome |
+|---|---|---|---|---|
+| 1 | haiku (general) | Scan the last 12 months: FERC large-load dockets, PJM auction/backstop, new data-center supply deals, tariff spread | ~100k | Useful map; several dates and one docket number wrong (46362 for 46322; show-cause deadline), all re-verified by direct search before use |
+| 2 | haiku (general) | Fetch the six existing cases' follow-on events and candidate new cases | ~125k | Good leads (Fervo, NIPSCO, PJM RBP); Fermi/NRG flagged as thin |
+| 3 | opus (general) | Build: glance table renderer, fact strip + lesson-first, CSS incl. <640px stacking, tests, copy, quiz, cache-bust | ~110k, 24 tool uses | Clean; four of five suites green before data landed, all five after |
+
+Inline (no agent): the two order PDFs (ER26-3380, 97 pp; IURC 46322, 73 pp) were saved to the scratchpad and read with pypdf — WebFetch returns binary for them. The JSON mutation was a scratchpad Python script (indent 2, `ensure_ascii=False`, trailing newline) so re-running is idempotent.
+
+**Lessons:**
+1. **Haiku is a lead generator, not a source.** Every date or docket it returns goes through one direct check before it reaches `data/*.json`.
+2. **The browser pane's mobile emulation misreports scroll geometry.** `scrollIntoView` appeared not to move the page at 375px (element top stayed at 1,129px in a reported 1,845px-tall viewport); the same click at desktop landed the case at 150px, exactly under the sticky nav. Verify scroll behaviour at desktop and trust screenshots, not rects, at emulated widths (see the 2026-08-08 note on `innerWidth`).
+3. **Glance strings need a hard cap.** `data.test.js` enforces ≤ 90 chars per cell; two of mine were 92–93 before the test caught them. Write the cell first, the prose second.

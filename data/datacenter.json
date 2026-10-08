@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-26",
-  "note": "Data-center & generation PPAs. Deals are point-in-time (as of mid-2026) and will age — treat them as worked examples of structures, not a live deal tracker. Each carries a primary or reputable-trade source. 'level': 1=newcomer, 2=practitioner.",
+  "updated": "2026-10-08",
+  "note": "Data-center & generation PPAs. Deals are point-in-time (as of Oct 2026) and will age — treat them as worked examples of structures, not a live deal tracker. Each carries a primary or reputable-trade source. 'level': 1=newcomer, 2=practitioner.",
   "demand": {
     "stat": "US data-center electricity demand more than doubled (2.3x) from 2018 to 2024 and could reach 325–580 TWh by 2028 — up to roughly 12% of US electricity.",
     "source": "LBNL — 2024 US Data Center Energy Usage Report",
@@ -168,6 +168,7 @@
       "id": "aws-talen",
       "title": "AWS × Talen — Susquehanna: the co-location fight",
       "level": 1,
+      "capturedAt": "2026-10-08",
       "market": "PJM · Salem Township, PA",
       "participants": "Amazon (AWS, buyer) · Talen Energy / Susquehanna Nuclear (seller) · PJM (RTO, filed the ISA) · PPL (transmission owner) · FERC (jurisdiction) · Exelon & AEP (protesting utilities)",
       "load": "An AI campus built next to the 2.5 GW Susquehanna nuclear plant, bought by AWS in March 2024, designed to draw hundreds of MW behind the meter and scale toward 960 MW.",
@@ -206,8 +207,16 @@
           "event": "Deal restructured front-of-meter: 17 years, up to 1,920 MW, Talen as retail supplier; ~$18B value reported."
         },
         {
-          "date": "Jun 2026",
-          "event": "FERC issues §206 show-cause orders on large-load interconnection to all six RTOs/ISOs."
+          "date": "Dec 18, 2025",
+          "event": "FERC finds PJM's tariff unjust and unreasonable for lacking co-location rules (EL25-49) and orders new transmission services for co-located load."
+        },
+        {
+          "date": "Jun 18, 2026",
+          "event": "On rehearing (EL25-49-002) FERC keeps the finding, accepts interim NITS plus firm and non-firm contract-demand service for co-located load, and orders more compliance; the same day it issues §206 show-cause orders on large-load interconnection to all six RTOs (EL26-67 to EL26-72)."
+        },
+        {
+          "date": "Sep 21, 2026",
+          "event": "FERC holds the PJM show-cause docket in abeyance: PJM and its transmission owners must file §205 large-load rules by Nov 16, 2026 or answer the order."
         }
       ],
       "lesson": "Interconnection is not paperwork after the deal — it can be the deal. Read the ISA as hard as the PPA, and model the outcome where the regulator makes you pay for the grid you hoped to bypass.",
@@ -233,17 +242,32 @@
         {
           "label": "PowerMag — the $18B front-of-meter restructure",
           "url": "https://www.powermag.com/talen-amazon-launch-18b-nuclear-ppa-a-grid-connected-ipp-model-for-the-data-center-era/"
+        },
+        {
+          "label": "Troutman — FERC's June 18, 2026 co-location rehearing order (EL25-49-002)",
+          "url": "https://www.troutmanenergyreport.com/2026/06/ferc-addresses-arguments-on-rehearing-and-requires-additional-pjm-tariff-revisions-to-accommodate-co-located-load/"
+        },
+        {
+          "label": "FERC — Sep 21, 2026 abeyance order in the PJM show-cause docket (EL26-67-001)",
+          "url": "https://www.pjm.com/-/media/DotCom/documents/ferc/orders/2026/20260921-el26-67-001.pdf"
         }
-      ]
+      ],
+      "glance": {
+        "load": "AI campus beside Susquehanna, up to 1,920 MW",
+        "supply": "Existing 2.5 GW nuclear, nothing new built",
+        "contract": "BTM interconnection deal rejected, then a 17-year front-of-meter retail ESA",
+        "status": "FERC wrote co-location rules in EL25-49; PJM's large-load tariff is due Nov 16, 2026"
+      }
     },
     {
       "id": "msft-crane",
       "title": "Microsoft × Constellation — Crane: the restart PPA",
       "level": 1,
+      "capturedAt": "2026-10-08",
       "market": "PJM · Londonderry Township, PA",
       "participants": "Microsoft (buyer) · Constellation Energy (seller/owner) · NRC (licensing) · DOE Loan Programs Office (~$1B loan) · PJM (interconnection)",
       "load": "Microsoft's PJM-region data centers — supply is grid-connected and matched to load across the region, not wired to one campus.",
-      "gen": "Three Mile Island Unit 1 (835 MW), retired in 2019 for economics, restarted as the Crane Clean Energy Center. ~$1.6B of restart capex, supported by a ~$1B DOE loan; target online 2027–28, ahead of original schedule.",
+      "gen": "Three Mile Island Unit 1 (835 MW), retired in 2019 for economics, restarted as the Crane Clean Energy Center. ~$1.6B of restart capex, supported by a ~$1B DOE loan; target online 2027, a year ahead of the original 2028 plan.",
       "tnd": "Grid-connected — the opposite answer to Susquehanna. By selling into PJM and matching Microsoft's regional load, the deal avoids the co-location fight entirely; the T&D work is reactivating the plant's interconnection, not litigating a new configuration.",
       "agreement": "A 20-year, single-buyer PPA for the full output of one unit — price undisclosed. The tenor is the financing: two decades of investment-grade offtake is what makes a nine-figure restart bankable.",
       "unique": "Most PPAs finance new construction; this one finances un-retirement. Full-output single-buyer nuclear at 20 years is an outlier against the 12–15-year solar VPPA norm — and there is no CfD mechanic to study, because the point is the block and the balance sheet, not a hub settlement.",
@@ -267,11 +291,19 @@
         },
         {
           "date": "2025",
-          "event": "NRC restart reviews and workforce rebuild proceed; DOE Loan Programs Office commits ~$1B."
+          "event": "NRC restart reviews and the workforce rebuild proceed; restart target pulled forward to 2027."
         },
         {
-          "date": "2027–28",
-          "event": "Targeted return to service — roughly a year ahead of the original 2028 plan."
+          "date": "Nov 18, 2025",
+          "event": "DOE Loan Programs Office closes a $1B loan for the restart, the first time the office finalized a conditional commitment and financial close together."
+        },
+        {
+          "date": "Jun 2026",
+          "event": "NRC issues a draft finding of no significant impact for reauthorizing operations and refueling; public comments run to July 8."
+        },
+        {
+          "date": "2027",
+          "event": "Targeted return to service."
         }
       ],
       "lesson": "A long-tenor offtake can resurrect firm capacity faster than anything can be built new. When you can't co-locate, buy the block and let the grid deliver it.",
@@ -288,19 +320,30 @@
         {
           "label": "Carnegie Endowment — commitments, capex, and the DOE loan",
           "url": "https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities"
+        },
+        {
+          "label": "Constellation — $1B DOE loan closes, Nov 18, 2025",
+          "url": "https://www.constellationenergy.com/newsroom/2025/11/us-government-backs-constellations-plan-to-launch-crane-clean-energy-center-adding-835-mws-of-new-baseload-power-to-the-grid.html"
         }
-      ]
+      ],
+      "glance": {
+        "load": "Microsoft's PJM-region data centers, matched across the grid",
+        "supply": "Three Mile Island Unit 1 restart, 835 MW nuclear",
+        "contract": "20-year full-output PPA, price undisclosed",
+        "status": "$1B DOE loan closed Nov 2025; NRC draft finding Jun 2026; restart targeted 2027"
+      }
     },
     {
       "id": "meta-entergy",
       "title": "Meta × Entergy — Louisiana: the regulated-utility build",
       "level": 1,
+      "capturedAt": "2026-10-08",
       "market": "MISO South · Richland Parish, LA (vertically integrated state)",
       "participants": "Meta (customer) · Entergy Louisiana (utility, builds and owns) · Louisiana PSC (approves) · settlement signatories incl. LPSC staff, Walmart, Sierra Club, Southern Renewable Energy Association · Louisiana consumer advocates (opposing)",
-      "load": "Hyperion — Meta's largest data center, a ~$10B campus in Richland Parish needing on the order of 2,000–2,500 MW as it ramps.",
+      "load": "Hyperion — Meta's largest data center, a Richland Parish campus first planned at 2,000–2,500 MW and now described at roughly 5 GW as it ramps.",
       "gen": "Entergy builds and rate-bases three combined-cycle gas plants totaling 2.26 GW — two in Richland Parish (online late 2028), one at the existing Waterford site — plus contracted solar additions. Meta doesn't sign a PPA with a developer; it takes utility service from new-build generation.",
       "tnd": "The utility also builds the delivery: new substations and transmission approved in the same proceeding. Because Louisiana is vertically integrated, generation, wires, and the service agreement all run through one docket at the Louisiana PSC.",
-      "agreement": "A long-term electric service agreement under Entergy's tariff, with terms designed to shield other ratepayers — Meta commits to pay for the plants built for it. Approved 4–1 by the LPSC in August 2025 as a settlement; opponents argued the utility bypassed competitive solicitation.",
+      "agreement": "A 20-year electric service agreement under Entergy's tariff, with terms designed to shield other ratepayers — Meta commits to pay for the plants built for it. Approved 4–1 by the LPSC in August 2025 as a settlement; opponents argued the utility bypassed competitive solicitation.",
       "unique": "There is no PPA at all. The 'negotiation' is a regulatory proceeding: intervenors sign the settlement, the commission votes, and counterparty protections live in the tariff rather than in bilateral credit annexes. This is the default path for gigawatt loads across the vertically integrated South and Midwest.",
       "brief": "Need: serve a 2,000–2,500 MW campus in a vertically integrated utility territory. Constraint: Meta cannot choose a retail supplier, and new plants and wires require commission approval and ratepayer protection.",
       "decisions": [
@@ -322,11 +365,23 @@
         },
         {
           "date": "Aug 2025",
-          "event": "LPSC approves the settlement 4–1; groundbreaking follows."
+          "event": "LPSC approves the settlement 4–1."
         },
         {
-          "date": "Late 2028",
-          "event": "First Richland Parish units targeted online."
+          "date": "Dec 2025",
+          "event": "Groundbreaking on the first Richland Parish plant; the LPSC adopts 'Lightning' fast-track rules that skip the market test when a customer funds most of a dedicated build."
+        },
+        {
+          "date": "Mar 25, 2026",
+          "event": "Entergy files a second application (Docket U-37882): seven more combined-cycle units (~5.2 GW), 2,500 MW of solar, three battery projects, roughly 250 miles of transmission and nuclear uprates, about $12.9B, recovered from Meta through a contribution-in-aid-of-construction agreement."
+        },
+        {
+          "date": "Apr 15, 2026",
+          "event": "LPSC approves the expedited schedule 4–1; Commissioner Lewis dissents over the lack of competitive bidding."
+        },
+        {
+          "date": "Oct 7–9, 2026",
+          "event": "Evidentiary hearing on the second build; a final vote is expected around December 2026. First Richland Parish units from the 2025 approval remain targeted for late 2028."
         }
       ],
       "lesson": "In regulated states the energy lead's counterparty is a commission as much as a company. The winning skill is the docket — settlement coalitions, ratepayer-protection terms, and timeline discipline through a contested case.",
@@ -351,13 +406,28 @@
         {
           "label": "KPLC — the 4–1 LPSC vote",
           "url": "https://www.kplctv.com/2025/08/21/entergy-la-gets-green-light-plant-power-metas-ai-data-center/"
+        },
+        {
+          "label": "Shreveport-Bossier Advocate — the seven-plant second application and the 4–1 schedule vote",
+          "url": "https://www.shreveportbossieradvocate.com/news/meta-entergy-louisiana-data-center-power/article_6325d895-ea93-5451-84b5-815ccb8ac578.html"
+        },
+        {
+          "label": "Entergy Louisiana — response on the Meta build, Jun 18, 2026",
+          "url": "https://www.entergy.com/entergy-louisianas-response-to-the-advocate"
         }
-      ]
+      ],
+      "glance": {
+        "load": "Hyperion campus: ~2.3 GW approved, ~5 GW more requested",
+        "supply": "Utility-built gas: 2.26 GW approved, 5.2 GW gas + 2.5 GW solar pending",
+        "contract": "20-year tariff service agreement, no PPA; Meta pays through CIAC terms",
+        "status": "Second build (U-37882) in hearing Oct 7–9, 2026; vote expected ~Dec 2026"
+      }
     },
     {
       "id": "crusoe-abilene",
       "title": "Crusoe — Abilene (Stargate): the energy-park hybrid",
       "level": 2,
+      "capturedAt": "2026-10-08",
       "market": "ERCOT · Lancium Clean Campus, Abilene, TX",
       "participants": "Crusoe (developer/operator) · Lancium (energy-park developer, holds the interconnection) · OpenAI / Oracle (Stargate tenants) · Microsoft (900 MW AI-factory tenant) · GE Vernova (turbine supply) · Engine No. 1 & Chevron (gas JV partners)",
       "load": "The flagship Stargate campus: eight buildings and 1.2 GW in phase two, four buildings operational by March 2026, plus a further 900 MW AI-factory campus for Microsoft — 2.1 GW on one site.",
@@ -392,6 +462,10 @@
           "event": "Phase two begins: eight buildings, 1.2 GW, backed by the park's grid interconnection plus BTM solar and storage."
         },
         {
+          "date": "Sep–Oct 2025",
+          "event": "First ~200 MW phase energized with Oracle as anchor tenant; permit filings show the first on-site turbines (~360 MW) alongside the grid tie."
+        },
+        {
           "date": "Mar 2026",
           "event": "Four buildings operational; new 900 MW Microsoft AI-factory campus announced with its own on-site plant."
         }
@@ -419,16 +493,27 @@
         {
           "label": "DCD — GE Vernova turbine orders",
           "url": "https://www.datacenterdynamics.com/en/news/crusoe-orders-19-natural-gas-turbines-from-ge-vernova-to-power-data-centers/"
+        },
+        {
+          "label": "Cleanview — Stargate Abilene behind-the-meter report (permit detail)",
+          "url": "https://cleanview.co/reports/behind-the-meter-data-centers/full-report/stargate-abilene"
         }
-      ]
+      ],
+      "glance": {
+        "load": "Stargate flagship 1.2 GW plus a 900 MW Microsoft campus",
+        "supply": "~1 GW on-site GE Vernova gas, BTM solar and storage, 1.2 GW grid tie",
+        "contract": "No PPA: turbine, EPC, land, tenant, JV and interconnection contracts",
+        "status": "Phase one online since late 2025; Microsoft campus under construction"
+      }
     },
     {
       "id": "xai-memphis",
       "title": "xAI — Colossus, Memphis: speed vs. social license",
       "level": 2,
+      "capturedAt": "2026-10-08",
       "market": "TVA territory · Memphis, TN (federal utility — outside FERC rate jurisdiction)",
       "participants": "xAI (owner) · Memphis Light, Gas & Water (municipal utility, TVA's largest customer) · TVA (wholesale supplier; board approves large loads) · Shelby County Health Department (air permits) · SELC and South Memphis residents (opposing)",
-      "load": "The Colossus supercomputer, stood up in months inside a former appliance factory — grid demand of 150 MW growing by another 150 MW, alongside self-supplied turbines.",
+      "load": "The Colossus supercomputer, stood up in months inside a former appliance factory — grid demand of 150 MW growing by another 150 MW, alongside self-supplied turbines — and a second site, Colossus 2, powered from a turbine plant across the state line in Southaven, Mississippi.",
       "gen": "Grid supply from MLGW/TVA plus dozens of mobile gas turbines on site. The July 2025 air permit covers 15 turbines (~247 MW) through January 2027; reporting and aerial imagery identified roughly 35 units on site, and residents allege months of unpermitted operation.",
       "tnd": "TVA is a federal power authority — its board, not FERC or a state PUC, approves serving large new loads, and MLGW delivers. Grid approvals (Nov 2024, then +150 MW) came fast; the binding process turned out to be county air permitting and community opposition in a neighborhood with a long pollution history.",
       "agreement": "A municipal power supply agreement (MLGW service backed by TVA board-approved wholesale supply) plus self-owned BTM generation under county air permits — no corporate PPA anywhere in the stack.",
@@ -460,8 +545,16 @@
           "event": "Shelby County issues an air permit: 15 turbines, ~247 MW, expiring January 2027."
         },
         {
-          "date": "2025–26",
-          "event": "TVA approves a further 150 MW; opposition and monitoring continue; second Memphis site advances."
+          "date": "Aug–Dec 2025",
+          "event": "27 turbines are installed and run in Southaven, MS to power Colossus 2 before any state air permit, per the later complaint; TVA approves a further 150 MW for Memphis."
+        },
+        {
+          "date": "Mar 2026",
+          "event": "Mississippi DEQ grants an air permit for the 27 Southaven turbines; the NAACP says the state moved too fast."
+        },
+        {
+          "date": "Apr 14, 2026",
+          "event": "NAACP (SELC and Earthjustice) sues xAI and its subsidiary MZX Tech under the Clean Air Act in federal court; a preliminary-injunction motion follows May 6, and groups appeal the permit."
         }
       ],
       "lesson": "Speed-to-power has a social bill. An energy lead who wins the megawatts but loses the neighborhood has not secured the site — permit strategy and community engagement belong in the power plan.",
@@ -486,13 +579,24 @@
         {
           "label": "CNBC — the turbine permit",
           "url": "https://www.cnbc.com/2025/07/03/musks-xai-gets-permit-for-turbines-to-power-supercomputer-in-memphis.html"
+        },
+        {
+          "label": "Action News 5 — NAACP Clean Air Act suit over the Southaven turbines, Apr 14, 2026",
+          "url": "https://www.actionnews5.com/2026/04/14/naacp-sues-xai-alleging-unlawful-operation-gas-turbines-southaven/"
         }
-      ]
+      ],
+      "glance": {
+        "load": "Colossus (150 + 150 MW grid) and Colossus 2, Memphis and Southaven",
+        "supply": "MLGW/TVA grid plus dozens of self-owned gas turbines on site",
+        "contract": "Municipal supply agreement and BTM turbines under county and state air permits; no PPA",
+        "status": "Clean Air Act suit over 27 Southaven turbines filed Apr 2026; injunction motion pending"
+      }
     },
     {
       "id": "aep-ohio",
       "title": "AEP Ohio — the tariff that wrote the terms",
       "level": 2,
+      "capturedAt": "2026-10-08",
       "market": "PJM · central Ohio (Columbus 'data center alley'), distribution tariff at the Ohio PUCO",
       "participants": "AEP Ohio (utility) · PUCO (regulator) · Ohio Consumers' Counsel and PUCO staff (settlement signatories) · data-center and hyperscale intervenors (Google, Amazon, Microsoft among parties) · appeal pending at the Ohio Supreme Court",
       "load": "Not one campus but a class: ~30 GW of central-Ohio data-center service requests against a system built for a fraction of that — the queue that forced a rule.",
@@ -523,8 +627,16 @@
           "event": "PUCO approves the settlement — ≥85% minimum demand for up to 12 years, with exit provisions."
         },
         {
-          "date": "2025–26",
-          "event": "Appeal docketed at the Ohio Supreme Court (case 2025-1458); other utilities file lookalike tariffs."
+          "date": "Sep 2025",
+          "event": "PUCO denies rehearing sought by the hyperscalers and the Ohio Manufacturers' Association; in November the OMA appeals to the Ohio Supreme Court."
+        },
+        {
+          "date": "Feb 2026",
+          "event": "AEP reports central-Ohio requests fell from about 30 GW to roughly 5.7 GW once the minimum-bill and exit terms applied."
+        },
+        {
+          "date": "2026",
+          "event": "The ratchet travels: Minnesota approves Xcel's large-load tariff (May 15, 15-year term), New Jersey signs the Data Center Fair Share Act (Jul 7, 85% for 10 years), and Pennsylvania, Wisconsin and Virginia adopt their own versions."
         }
       ],
       "lesson": "Watch the tariff dockets as closely as the deal flow: the ratchets, terms, and exit fees an energy lead will face were set in a case they may never have heard of.",
@@ -545,8 +657,247 @@
         {
           "label": "Ohio Consumers' Counsel — data centers in Ohio",
           "url": "https://www.occ.ohio.gov/factsheet/quick-facts-data-centers-ohio"
+        },
+        {
+          "label": "Ohio Capital Journal — PUCO denies rehearing, Sep 2025",
+          "url": "https://ohiocapitaljournal.com/2025/09/11/ohio-regulators-turn-down-appeal-ok-utilitys-data-center-billing-plan/"
+        },
+        {
+          "label": "T&D World — New Jersey signs the Data Center Fair Share Act, Jul 2026",
+          "url": "https://www.tdworld.com/policy/news/55389587/new-jersey-governor-signs-data-center-fair-share-act-to-address-rising-energy-costs"
+        },
+        {
+          "label": "Fresh Energy — Minnesota PUC approves Xcel's large-load tariff, May 2026",
+          "url": "https://fresh-energy.org/regulatory-update-commission-approves-xcel-energys-large-load-tariff"
         }
-      ]
+      ],
+      "glance": {
+        "load": "A class: ~30 GW of central-Ohio requests, ~5.7 GW once terms applied",
+        "supply": "None — wires and terms only; generation is bought in PJM",
+        "contract": "Class tariff: ≥85% minimum bill for up to 12 years, exit fees",
+        "status": "On appeal at the Ohio Supreme Court; NJ, MN, PA, WI and VA copied the ratchet in 2026"
+      }
+    },
+    {
+      "id": "google-fervo",
+      "title": "Google × Fervo — Cape Station: the firm PPA with an option",
+      "level": 1,
+      "capturedAt": "2026-10-08",
+      "market": "Utah · Beaver County (PacifiCorp territory); grid delivery, with Utah's SB132 opening a direct-to-load route",
+      "participants": "Google (buyer; also a 2025 Series E investor) · Fervo Energy (developer and seller) · Cape Station GeoCluster, Beaver County, UT · Utah regulators (direct-to-load approvals) · earlier: NV Energy (115 MW Clean Transition Tariff deal, 2024)",
+      "load": "A potential Google data center in Utah. Fervo calls the PPA its foundational power block, while the site itself still depends on engineering feasibility, state and local approvals, and commercial conditions.",
+      "gen": "Enhanced geothermal: horizontal wells drilled into hot dry rock feed binary-cycle plants that run around the clock. Cape Station's first ~100 MW phase (three 33 MW GeoBlocks) reached first power on Sep 24, 2026 and declared its first block in commercial operation on Sep 30, 2026. Fervo is extending the GeoCluster with repeatable GeoBlocks beyond that phase and the earlier SCE and Shell contracts; Google's 396 MW is expected online in 2028.",
+      "tnd": "Front of meter: Cape Station interconnects into the Utah grid and the output is scheduled to Google's load, the conventional offsite route. Utah's 2025 SB132 lets a large customer contract directly with a generator subject to regulatory approval, which Fervo names as a possible path.",
+      "agreement": "A 396 MW PPA signed Sep 1, 2026, price and tenor undisclosed (trade coverage reports 15 years delivered in four 99 MW tranches from Q3 2028), plus an option for Google to add about 600 MW by June 2030, taking the total to nearly 1 GW. The deal lifts Fervo's portfolio past 1 GW of binding PPAs.",
+      "unique": "This is the closest case to a textbook PPA — one buyer, one project, a fixed block — but it buys clean-firm output rather than shaped solar, and the headline term is an option: a right, not an obligation, to more than double the block as the campus and the resource prove out. The buyer pays for flexibility instead of carrying basis.",
+      "brief": "Need: a firm, carbon-free block for a Utah campus that may or may not be built at full size. Constraint: enhanced geothermal is new at scale, so the buyer wants exposure to the resource without committing the whole campus up front.",
+      "decisions": [
+        "Pick a clean-firm resource that runs around the clock instead of a larger intermittent nameplate that leaves night-time holes.",
+        "Buy from a developer with an operating record — Project Red in Nevada since 2023 and the 115 MW NV Energy tariff deal — before committing 396 MW.",
+        "Size the firm commitment to the 2028 tranche and hold a ~600 MW option to June 2030 rather than contracting the full gigawatt now.",
+        "Keep delivery front of meter through the utility grid, with Utah's direct-to-load statute as a fallback route."
+      ],
+      "failureTest": "The deal underdelivers if drilling or plant performance slips the 2028 tranche, if the Utah campus is not approved, or if the option lapses before both the resource and the load are proven.",
+      "yourTurn": "Price the option: list what Google gives up by waiting until 2030 (price, queue position, tranche timing) against what it avoids by not contracting 1 GW on day one.",
+      "history": [
+        {
+          "date": "2023",
+          "event": "Project Red, Fervo's Nevada commercial pilot, comes online and supplies the grid serving Google's Nevada data centers."
+        },
+        {
+          "date": "Jun 2024",
+          "event": "Fervo, Google and NV Energy sign a 115 MW PPA under Nevada's new Clean Transition Tariff."
+        },
+        {
+          "date": "Sep 1, 2026",
+          "event": "396 MW Cape Station PPA signed, with a ~600 MW expansion option to June 2030; Fervo's shares jump on the news."
+        },
+        {
+          "date": "Sep 24, 2026",
+          "event": "Cape Station achieves first power in Beaver County, Utah."
+        },
+        {
+          "date": "Sep 30, 2026",
+          "event": "First 33 MW GeoBlock declared in commercial operation ahead of schedule; further GeoBlocks follow toward the 2028 deliveries."
+        }
+      ],
+      "lesson": "When the resource is new, buy the proven tranche and option the rest. A clean-firm PPA with a dated expansion right turns a technology bet into a staged commitment both sides can finance.",
+      "glossaryRefs": [
+        "Enhanced Geothermal",
+        "Clean Firm Power",
+        "Commercial Operation Date (COD)",
+        "Front-of-Meter / Offsite PPA"
+      ],
+      "sources": [
+        {
+          "label": "Fervo — 396 MW PPA with Google, Sep 1, 2026",
+          "url": "https://fervoenergy.com/fervo-energy-and-google-sign-396-mw-ppa/"
+        },
+        {
+          "label": "Fervo — Cape Station declares commercial operation, Oct 1, 2026",
+          "url": "https://fervoenergy.com/fervo-energy-declares-commercial-operation-at-cape-station-ahead-of-schedule-leading-the-race-for-next-generation-geothermal-energy/"
+        },
+        {
+          "label": "Fervo — first power at Cape Station, Sep 24, 2026",
+          "url": "https://fervoenergy.com/fervo-energy-achieves-first-power-at-cape-station-a-landmark-moment-for-the-future-of-enhanced-geothermal-systems/"
+        },
+        {
+          "label": "TechCrunch — the 396 MW deal and the 1 GW option",
+          "url": "https://techcrunch.com/2026/09/02/enhanced-geothermal-notches-another-win-as-google-buys-400-mw-from-fervo/"
+        }
+      ],
+      "glance": {
+        "load": "Potential Google data center in Utah; site still contingent",
+        "supply": "Cape Station enhanced geothermal, 396 MW expected online in 2028",
+        "contract": "Front-of-meter PPA plus an option for ~600 MW more by June 2030",
+        "status": "Signed Sep 1, 2026; first GeoBlock in commercial operation Sep 30, 2026"
+      }
+    },
+    {
+      "id": "nipsco-amazon",
+      "title": "NIPSCO × Amazon — Indiana: the PPA inside the utility",
+      "level": 2,
+      "capturedAt": "2026-10-08",
+      "market": "MISO · northern Indiana (LaPorte County), vertically integrated; IURC Cause No. 46322",
+      "participants": "Amazon Data Services (customer, with a guaranty from its ultimate parent) · NIPSCO (regulated utility, retail seller) · NIPSCO Generation LLC, 'GenCo' (non-regulated affiliate that builds and owns) · IURC (approves) · OUCC, NIPSCO Industrial Group and LaPorte County (settling parties) · Citizens Action Coalition (opposing)",
+      "load": "Amazon data centers in northern Indiana energizing from Jan 1, 2027 and ramping to as much as 2,400 MW by the end of 2032.",
+      "gen": "GenCo builds roughly 3,000 MW of new dispatchable capacity for 2,400 MW of load — combined-cycle gas at the Schahfer site plus battery storage, approved in a companion order — sized with a reserve margin and spare capacity that can support the wider grid.",
+      "tnd": "Two contracts chained through the utility: GenCo sells the plants' output to NIPSCO under a PPA (GenCo makes the MISO and FERC filings), and NIPSCO serves Amazon at retail under a 15-year special contract. New transmission to the campus is built by NIPSCO and paid for under that contract rather than by other customers.",
+      "agreement": "Customer Contract dated Sep 18, 2025: 15 years from Jan 1, 2027, a fixed capacity charge plus pass-through energy and 'Shared System Charges', a parent-company guaranty, termination rights with termination payments, and — per the filing — a one-time right to cut the commitment by up to 1,200 MW by March 2029. The IURC approved the contract, the GenCo PPA, the settlement and both alternative regulatory plans on June 17, 2026.",
+      "unique": "A PPA appears here, but neither party to it is the data center: it is an inter-affiliate contract between a utility and its unregulated generation arm, built so the plants never enter NIPSCO's general rate base. Other customers are shielded by contract rather than by tariff and receive about $1B of bill credits over 15 years — the mirror image of the rate-based Entergy build.",
+      "brief": "Need: serve a 2,400 MW ramp in a vertically integrated state without putting 3,000 MW of new plant on other ratepayers. Constraint: Indiana lets the utility sell retail, but a dedicated build at that scale needs a structure the commission and consumer advocates will accept.",
+      "decisions": [
+        "Create a non-regulated affiliate (GenCo) to own the dedicated generation, keeping it out of the general rate base.",
+        "Chain the supply through a PPA from GenCo to NIPSCO, so the utility stays the retail seller while plant risk sits in the affiliate.",
+        "Fix Amazon's obligation in a 15-year special contract: capacity charge, parent guaranty, termination payments and a dated downsizing right.",
+        "Settle with the consumer counselor and industrial customers by crediting other ratepayers for shared-system use before the commission vote."
+      ],
+      "failureTest": "The structure fails if the GenCo plants slip past the 2027–2032 ramp, if Amazon exercises the 1,200 MW cut and the surplus capacity cannot be sold, or if FERC or MISO reject the affiliate PPA's terms.",
+      "yourTurn": "Map the three contracts (Amazon–NIPSCO, NIPSCO–GenCo, GenCo–MISO/FERC) and mark which party holds construction risk, fuel risk and load-loss risk in each.",
+      "history": [
+        {
+          "date": "Sep 18, 2025",
+          "event": "NIPSCO and Amazon Data Services sign the Data Center Customer #1 special contract."
+        },
+        {
+          "date": "Nov 7, 2025",
+          "event": "NIPSCO and GenCo file the joint petition (Cause 46322): special contract, GenCo PPA, alternative regulatory plans and depreciation rates."
+        },
+        {
+          "date": "Feb 2026",
+          "event": "Settlement with the OUCC, the NIPSCO Industrial Group and LaPorte County; Citizens Action Coalition opposes."
+        },
+        {
+          "date": "Jun 17, 2026",
+          "event": "IURC approves the settlement, special contract and PPA; a companion order approves GenCo's gas and battery resources; NiSource cites about $1.4B of customer savings."
+        },
+        {
+          "date": "Jan 1, 2027",
+          "event": "Scheduled: energization begins and load ramps toward 2,400 MW by end-2032, with GenCo's affiliate PPA filed at MISO/FERC."
+        }
+      ],
+      "lesson": "In a regulated state the PPA can live inside the utility. Where the plant sits on the org chart decides who carries it, so read the affiliate contract and the settlement as closely as the customer contract.",
+      "glossaryRefs": [
+        "Energy Supply Agreement (ESA)",
+        "Utility",
+        "Credit Support",
+        "Large Load Interconnection"
+      ],
+      "sources": [
+        {
+          "label": "IURC — order in Cause No. 46322, Jun 17, 2026",
+          "url": "https://www.in.gov/iurc/files/ord_46322_061726.pdf"
+        },
+        {
+          "label": "Utility Dive — NIPSCO to serve Amazon data centers in northern Indiana",
+          "url": "https://www.utilitydive.com/news/nisource-nipsco-amazon-data-centers-indiana/806396/"
+        },
+        {
+          "label": "FactSet — the special contract's terms (ramp, 1,200 MW option, guaranty)",
+          "url": "https://insight.factset.com/nipsco-proposes-special-contract-for-amazon-data-centers-in-indiana"
+        }
+      ],
+      "glance": {
+        "load": "Amazon data centers, ramping to 2,400 MW by end-2032",
+        "supply": "~3,000 MW new gas and storage owned by NIPSCO's unregulated GenCo",
+        "contract": "GenCo-to-NIPSCO PPA plus a 15-year special contract: capacity charge, parent guaranty",
+        "status": "Approved by the IURC Jun 17, 2026; service starts Jan 1, 2027"
+      }
+    },
+    {
+      "id": "pjm-backstop",
+      "title": "PJM — the reliability backstop: when the market writes the contract",
+      "level": 2,
+      "capturedAt": "2026-10-08",
+      "market": "PJM (13 states + DC) · FERC Dockets ER26-3380 and EL26-108",
+      "participants": "PJM (filed the procurement) · FERC (accepted and suspended it) · PJM Board and the 13 governors' 'Statement of Principles' states · Data Center Coalition and electric distributors (rival design) · consumer advocates and the Ohio Consumers' Counsel (protesting) · PJM Settlement, Inc. (counterparty for buyers)",
+      "load": "Not one campus but the region's forecast. Large loads drove the 2028/29 Base Residual Auction 6,831 MW short of the reliability requirement; it cleared at the $325/MW-day cap on Jul 14, 2026 ($16.4B, against $29.7B without the collar), after the 2027/28 auction had already cleared 6,623 MW short.",
+      "gen": "Whatever new capacity can commit: the Reliability Backstop Procurement (RBP) would buy up to 15-year commitments from new resources, from the 2028/29 through the 2042/43 delivery year, in a pay-as-bid auction. The target is cut by documented bilateral contracts and self-supply serving new load and by distributors that opt out.",
+      "tnd": "The wires here are market rules. PJM proposed to allocate the target, and the cost, to each distribution zone by its share of forecast load growth, so zones adding data centers pay. FERC found that allocation, the transmission-owner exit rules and the LSE collateral requirements not shown to be just and reasonable, and set a paper hearing on them.",
+      "agreement": "No bilateral PPA: tariff Attachment DD §18 — a one-time procurement with PJM Settlement as the buyers' counterparty, a must-offer into later capacity auctions as a price-taker, and (in the Board's version) a $555/MW-day cap on the average accepted offer. Filed Jul 31, 2026; accepted but suspended five months on Sep 29, 2026, effective Feb 28, 2027, subject to refund; initial briefs due 45 days after the order unless PJM refiles.",
+      "unique": "The counterparty is the market itself. A buyer that brings new generation under a signed contract of five or more delivery years nets out of the target; one that does not pays its zone's share of a 15-year commitment it never negotiated. In a capacity market a data center's PPA is also a defense.",
+      "brief": "Need: get new capacity built for a 2028 shortfall that two auctions failed to close. Constraint: a one-off, long-term procurement must pass FERC's just-and-reasonable test, with the cost landing on the loads that caused it rather than on everyone.",
+      "decisions": [
+        "Replace a failed one-year auction signal with up to 15 years of price certainty for new resources, the term the governors' principles asked for.",
+        "Run a bilateral matchmaking track alongside the auction so loads and developers can contract directly and shrink the central target.",
+        "Credit bilateral contracts and self-supply against the target so loads that bring their own generation are not charged twice.",
+        "Allocate the remaining cost by zonal load growth with hard LSE collateral, then defend it at FERC, which kept the design but reopened those three terms."
+      ],
+      "failureTest": "The backstop fails if the suspension and paper hearing push the auction past the point where 2028/29 resources can be built, if cost allocation lands on zones without new load, or if collateral rules keep load-serving entities and cooperatives out.",
+      "yourTurn": "For a 500 MW campus in a PJM zone, estimate what it would owe under a zonal load-growth allocation, then show how a signed five-delivery-year contract for new capacity changes that number.",
+      "history": [
+        {
+          "date": "Dec 2025",
+          "event": "The 2027/28 BRA clears 6,623 MW short at its $333.44/MW-day cap — the first auction in PJM history to miss the reliability requirement."
+        },
+        {
+          "date": "Jan 2026",
+          "event": "The White House energy council and all 13 PJM governors publish principles asking PJM for 15-year price certainty and a backstop auction by September 2026."
+        },
+        {
+          "date": "Jun–Jul 2026",
+          "event": "Stakeholders endorse a $555/MW-day data-center backstop; PJM runs a bilateral matchmaking RFP (responses Jul 21). On Jul 14 the 2028/29 BRA clears 6,831 MW short at the $325 cap."
+        },
+        {
+          "date": "Jul 27–31, 2026",
+          "event": "The PJM Board adopts the RBP with opt-outs, the $555 cap and LSE collateral; PJM files at FERC (ER26-3380), supplemented Aug 14."
+        },
+        {
+          "date": "Sep 29, 2026",
+          "event": "FERC accepts the RBP, suspends it five months to Feb 28, 2027, opens a paper hearing and a §206 proceeding; Chairman Swett's concurrence faults the last-day filing. PJM cancels the Sep 30 bid window."
+        }
+      ],
+      "lesson": "In a capacity market the deal you did not sign still bills you. Track the auction and the backstop like a contract: bring your own new supply under a long contract and you net out; wait, and the market assigns you a 15-year obligation.",
+      "glossaryRefs": [
+        "Capacity Market",
+        "ISO / RTO",
+        "FERC (Federal Energy Regulatory Commission)",
+        "Large Load Interconnection"
+      ],
+      "sources": [
+        {
+          "label": "FERC order — ER26-3380 (196 FERC ¶ 61,245), Sep 29, 2026",
+          "url": "https://www.pjm.com/pjmfiles/directory/etariff/FercOrders/9154/20260929-er26-3380-000.pdf"
+        },
+        {
+          "label": "PJM Board — decisional letter on the backstop and connect-and-manage, Jul 27, 2026",
+          "url": "https://www.pjm.com/-/media/DotCom/about-pjm/who-we-are/public-disclosures/2026/20260727-board-decisional-letter-on-cifp-reliability-backstop-procurement-and-connect-and-manage.pdf"
+        },
+        {
+          "label": "Utility Dive — 2028/29 auction clears at the cap, 6.8 GW short",
+          "url": "https://www.utilitydive.com/news/pjm-capacity-auction-price-cap-reserve-shortfall-grows/825282/"
+        },
+        {
+          "label": "Utility Dive — PJM delays the backstop after FERC's order",
+          "url": "https://www.utilitydive.com/news/pjm-delays-backstop-procurement-ferc-data-center/831751"
+        }
+      ],
+      "glance": {
+        "load": "2028/29 auction cleared 6,831 MW short, driven by large loads",
+        "supply": "Up to 15-year commitments from new resources, net of bilateral deals and self-supply",
+        "contract": "Tariff procurement (Attachment DD §18) with PJM Settlement as counterparty; no PPA",
+        "status": "Accepted but suspended to Feb 28, 2027 (FERC, Sep 29, 2026); Sep 30 window cancelled"
+      }
     }
   ],
   "vppCases": [
@@ -874,7 +1225,7 @@
       "tenor": "15 years",
       "announced": "2025",
       "structure": "Utility PPAs from Cape Station (Utah) — the world's largest geothermal PPA",
-      "note": "Brings Fervo's contracted Cape Station capacity to 373 MW; shows utility (not just hyperscaler) demand for clean firm power.",
+      "note": "Brought Fervo's contracted Cape Station capacity to 373 MW as of 2025, before the 396 MW Google PPA; shows utility (not just hyperscaler) demand for clean firm power.",
       "source": "Fervo Energy",
       "url": "https://fervoenergy.com/fervo-energy-announces-320-mw-power-purchase-agreements-with-southern-california-edison/"
     },
@@ -890,6 +1241,20 @@
       "note": "The utility-side counterpart to a PPA: a large-load ESA where the regulated utility builds and the commission reviews cost allocation. DTE's pipeline could add up to 7 GW more load.",
       "source": "Utility Dive",
       "url": "https://www.utilitydive.com/news/dte-data-center-deal-transformational-growth-earnings/804231/"
+    },
+    {
+      "buyer": "Google",
+      "buyerType": "Hyperscaler",
+      "seller": "Fervo Energy",
+      "tech": "Enhanced geothermal",
+      "capacity": "396 MW (+~600 MW option)",
+      "tenor": "Undisclosed (reported 15 yrs)",
+      "announced": "Sep 2026",
+      "structure": "Front-of-meter clean-firm PPA with an expansion option",
+      "note": "Cape Station, Utah; option to reach nearly 1 GW by June 2030; first GeoBlock in commercial operation Sep 30, 2026.",
+      "source": "Fervo Energy",
+      "url": "https://fervoenergy.com/fervo-energy-and-google-sign-396-mw-ppa/"
     }
-  ]
+  ],
+  "casesAsOf": "Oct 2026"
 }

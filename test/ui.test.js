@@ -132,6 +132,17 @@ test("decorative eyebrow labels are removed", () => {
   assert.ok(!/className\s*=\s*["']eyebrow/.test(appJs), "app.js still generates eyebrow labels");
 });
 
+test("case-study glance table host sits above the accordions and is rendered", () => {
+  const glanceAt = html.indexOf('id="dc-cases-glance"');
+  const casesAt = html.indexOf('id="dc-cases"');
+  assert.ok(glanceAt > -1, "index.html missing #dc-cases-glance host");
+  assert.ok(casesAt > -1 && glanceAt < casesAt, "#dc-cases-glance must come before #dc-cases");
+  const content = read("assets/js/content.js");
+  assert.ok(/dc-cases-glance/.test(content), "content.js never renders dc-cases-glance");
+  const glanceFn = content.slice(content.indexOf("function renderCaseGlance"), content.indexOf("function openCase"));
+  assert.ok(glanceFn.length > 200 && !/innerHTML/.test(glanceFn), "renderCaseGlance must build the table with createElement, not innerHTML");
+});
+
 test("browser scripts remain valid JavaScript", () => {
   const vm = require("node:vm");
   ["assets/js/app.js", "assets/js/content.js", "assets/js/quiz-banks.js"].forEach((file) => {
