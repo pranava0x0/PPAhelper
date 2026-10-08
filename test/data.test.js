@@ -142,6 +142,11 @@ test("case studies (DC + VPP) are complete, sourced, and cite real terms", () =>
   assert.ok(allSources.some(s => /ER26-3380/.test(s.label) && /pjm\.com|ferc\.gov/.test(s.url)),
     "no PJM/FERC source for ER26-3380");
   assert.ok(typeof dc.casesAsOf === "string" && dc.casesAsOf.trim().length > 0, "casesAsOf missing");
+  // ids become element ids (dc-cases-<id>, vpp-cases-<id>) and glance-row targets, so they must be unique
+  const ids = [...dc.caseStudies, ...dc.vppCases].map(c => c.id);
+  assert.equal(new Set(ids).size, ids.length, "duplicate case id: " + ids.filter((x, i) => ids.indexOf(x) !== i));
+  dc.caseStudies.forEach(c => c.sources.forEach(s =>
+    assert.ok(/^https:\/\//.test(s.url), c.id + ": source not https -> " + s.url)));
 });
 
 let persp;

@@ -365,10 +365,10 @@
       {
         prompt: "In the NIPSCO × Amazon special contract (IURC Cause 46322, June 2026), who builds the new gas and battery capacity and how does it reach the data center?",
         opts: [
-          { t: "A non-regulated NIPSCO affiliate (GenCo) builds it and sells to NIPSCO under a PPA; NIPSCO serves Amazon under a 15-year special contract with a fixed capacity charge", correct: true },
+          { t: "A non-regulated NIPSCO affiliate (GenCo) builds it and sells the output to NIPSCO under a PPA; NIPSCO then serves Amazon at retail", correct: true },
           { t: "Amazon signs a virtual PPA with a third-party developer and keeps buying grid power from NIPSCO at the standard industrial tariff" },
-          { t: "NIPSCO builds the plants in its regulated rate base and recovers the cost from all customers" },
-          { t: "Amazon builds behind-the-meter turbines on the campus and NIPSCO supplies only backup service" }
+          { t: "NIPSCO builds the plants in its regulated rate base and recovers the cost from all customers through base rates over the plants' lives" },
+          { t: "Amazon builds behind-the-meter gas turbines on the campus itself and NIPSCO supplies only standby and backup service" }
         ],
         explain: "GenCo owns the dedicated plants and files its sales at MISO and FERC, so other NIPSCO customers are not on the hook for them. Those customers also receive about $1B of Shared System Charge credits over the 15 years."
       }

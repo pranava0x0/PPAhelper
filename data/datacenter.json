@@ -362,7 +362,7 @@
         },
         {
           "date": "Aug 2025",
-          "event": "LPSC approves the settlement 4–1; groundbreaking follows."
+          "event": "LPSC approves the settlement 4–1."
         },
         {
           "date": "Dec 2025",
@@ -679,7 +679,7 @@
       "market": "Utah · Beaver County (PacifiCorp territory); grid delivery, with Utah's SB132 opening a direct-to-load route",
       "participants": "Google (buyer; also a 2025 Series E investor) · Fervo Energy (developer and seller) · Cape Station GeoCluster, Beaver County, UT · Utah regulators (direct-to-load approvals) · earlier: NV Energy (115 MW Clean Transition Tariff deal, 2024)",
       "load": "A potential Google data center in Utah. Fervo calls the PPA its foundational power block, while the site itself still depends on engineering feasibility, state and local approvals, and commercial conditions.",
-      "gen": "Enhanced geothermal: horizontal wells drilled into hot dry rock feed binary-cycle plants that run around the clock. Cape Station Phase I (~100 MW in three 33 MW GeoBlocks) reached first power on Sep 24, 2026 and declared its first block in commercial operation on Sep 30, 2026; Phase II adds ~400 MW in 2028, the tranche this contract buys.",
+      "gen": "Enhanced geothermal: horizontal wells drilled into hot dry rock feed binary-cycle plants that run around the clock. Cape Station's first ~100 MW phase (three 33 MW GeoBlocks) reached first power on Sep 24, 2026 and declared its first block in commercial operation on Sep 30, 2026. Fervo is extending the GeoCluster with repeatable GeoBlocks beyond that phase and the earlier SCE and Shell contracts; Google's 396 MW is expected online in 2028.",
       "tnd": "Front of meter: Cape Station interconnects into the Utah grid and the output is scheduled to Google's load, the conventional offsite route. Utah's 2025 SB132 lets a large customer contract directly with a generator subject to regulatory approval, which Fervo names as a possible path.",
       "agreement": "A 396 MW PPA signed Sep 1, 2026, price and tenor undisclosed (trade coverage reports 15 years delivered in four 99 MW tranches from Q3 2028), plus an option for Google to add about 600 MW by June 2030, taking the total to nearly 1 GW. The deal lifts Fervo's portfolio past 1 GW of binding PPAs.",
       "unique": "This is the closest case to a textbook PPA — one buyer, one project, a fixed block — but it buys clean-firm output rather than shaped solar, and the headline term is an option: a right, not an obligation, to more than double the block as the campus and the resource prove out. The buyer pays for flexibility instead of carrying basis.",
@@ -687,10 +687,10 @@
       "decisions": [
         "Pick a clean-firm resource that runs around the clock instead of a larger intermittent nameplate that leaves night-time holes.",
         "Buy from a developer with an operating record — Project Red in Nevada since 2023 and the 115 MW NV Energy tariff deal — before committing 396 MW.",
-        "Size the firm commitment to Phase II (2028) and hold a ~600 MW option to June 2030 rather than contracting the full gigawatt now.",
+        "Size the firm commitment to the 2028 tranche and hold a ~600 MW option to June 2030 rather than contracting the full gigawatt now.",
         "Keep delivery front of meter through the utility grid, with Utah's direct-to-load statute as a fallback route."
       ],
-      "failureTest": "The deal underdelivers if Phase II drilling or plant performance slips past 2028, if the Utah campus is not approved, or if the option lapses before both the resource and the load are proven.",
+      "failureTest": "The deal underdelivers if drilling or plant performance slips the 2028 tranche, if the Utah campus is not approved, or if the option lapses before both the resource and the load are proven.",
       "yourTurn": "Price the option: list what Google gives up by waiting until 2030 (price, queue position, tranche timing) against what it avoids by not contracting 1 GW on day one.",
       "history": [
         {
@@ -711,7 +711,7 @@
         },
         {
           "date": "Sep 30, 2026",
-          "event": "First 33 MW GeoBlock declared in commercial operation ahead of schedule; Phase II (~400 MW) targeted for 2028."
+          "event": "First 33 MW GeoBlock declared in commercial operation ahead of schedule; further GeoBlocks follow toward the 2028 deliveries."
         }
       ],
       "lesson": "When the resource is new, buy the proven tranche and option the rest. A clean-firm PPA with a dated expansion right turns a technology bet into a staged commitment both sides can finance.",
@@ -741,7 +741,7 @@
       ],
       "glance": {
         "load": "Potential Google data center in Utah; site still contingent",
-        "supply": "Cape Station enhanced geothermal, 396 MW from Phase II (2028)",
+        "supply": "Cape Station enhanced geothermal, 396 MW expected online in 2028",
         "contract": "Front-of-meter PPA plus an option for ~600 MW more by June 2030",
         "status": "Signed Sep 1, 2026; first GeoBlock in commercial operation Sep 30, 2026"
       }
@@ -785,7 +785,7 @@
         },
         {
           "date": "Jan 1, 2027",
-          "event": "Energization begins; load ramps toward 2,400 MW by end-2032; GenCo files the affiliate PPA at MISO/FERC."
+          "event": "Scheduled: energization begins and load ramps toward 2,400 MW by end-2032, with GenCo's affiliate PPA filed at MISO/FERC."
         }
       ],
       "lesson": "In a regulated state the PPA can live inside the utility. Where the plant sits on the org chart decides who carries it, so read the affiliate contract and the settlement as closely as the customer contract.",
@@ -884,7 +884,7 @@
         }
       ],
       "glance": {
-        "load": "PJM's forecast: 6,831 MW short in the 2028/29 auction, driven by large loads",
+        "load": "2028/29 auction cleared 6,831 MW short, driven by large loads",
         "supply": "Up to 15-year commitments from new resources, net of bilateral deals and self-supply",
         "contract": "Tariff procurement (Attachment DD §18) with PJM Settlement as counterparty; no PPA",
         "status": "Accepted but suspended to Feb 28, 2027 (FERC, Sep 29, 2026); Sep 30 window cancelled"
@@ -1216,7 +1216,7 @@
       "tenor": "15 years",
       "announced": "2025",
       "structure": "Utility PPAs from Cape Station (Utah) — the world's largest geothermal PPA",
-      "note": "Brings Fervo's contracted Cape Station capacity to 373 MW; shows utility (not just hyperscaler) demand for clean firm power.",
+      "note": "Brought Fervo's contracted Cape Station capacity to 373 MW as of 2025, before the 396 MW Google PPA; shows utility (not just hyperscaler) demand for clean firm power.",
       "source": "Fervo Energy",
       "url": "https://fervoenergy.com/fervo-energy-announces-320-mw-power-purchase-agreements-with-southern-california-edison/"
     },
