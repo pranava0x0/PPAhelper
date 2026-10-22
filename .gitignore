@@ -7,6 +7,7 @@
 
 # local agent/preview tooling (not part of the published site)
 .claude/
+.sessions/
 
 # env / secrets (none used yet, but per policy)
 .env
