@@ -23,6 +23,9 @@ Static persona review (nine expert chairs, three newcomer chairs) over index.htm
 - **2026-10-22 · Draft generator · Grid curtailment listed under Force Majeure; renewable-only REC language generated for nuclear.** *(code bug — Fixed)*
   Contradicted the Sunridge lesson (the seller carries grid curtailment unless deemed generation is elected). Curtailment section added, FM list trimmed, REC / WREGIS / "qualified renewable facility" clauses branch by technology.
 
+- **2026-10-22 · Asset caching · Merging two same-day branches under one `?v=` string served a pre-merge app.js.** *(process — Fixed)*
+  Both builds set `?v=20261022a`; the content build opened the page on the shared preview port before the UX branch was merged, so the pane cached the old `app.js` and every lazy-loaded tab rendered blank with no console error. Bumped to `20261022b`. A merge of two editing passes is itself a pass.
+
 ### Logged, deferred
 
 - Learn Stage 3 sends the learner to the simulator before the mechanic is taught (one line; harmless, kept).

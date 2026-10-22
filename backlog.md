@@ -16,6 +16,7 @@ Research sweep (dockets, deals, policy, discourse, x.com), a twelve-chair conten
 - **Community-and-cost case** with recorded outcomes (water, tax abatement, moratorium, bill impact). The xAI case is the only backlash example. *Priority: low.*
 - **SMR structure card**: cancelled-project precedent, fuel supply, per-design licensing status; label announced vs contracted capacity. *Priority: low.*
 - **Case-study filter by contract form** on the glance table (now 13 rows). *Priority: medium (was low).*
+- **Content-hash cache-bust.** Replace the hand-bumped `?v=` string with a `tools/bump.py` that writes a short hash of each asset into index.html; the same-string scar has now bitten four times (2026-07-12 twice, 2026-08-08, 2026-10-22). *Priority: high.*
 
 ### Dated follow-ups
 
