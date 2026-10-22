@@ -78,6 +78,13 @@ test("every data-quiz container has a bank and vice versa (perspectives exempt)"
   assert.ok(!containers.includes("perspectives"), "perspectives is opinion content — no checkpoint");
 });
 
+test("checkpoint options render shuffled; scoring never uses the position", () => {
+  const quiz = read("assets/js/quiz.js");
+  assert.ok(/function shuffled/.test(quiz) && /shuffled\(q\.opts\)/.test(quiz), "quiz.js does not shuffle q.opts");
+  assert.ok(!/q\.opts\[\w+\]\.correct/.test(quiz), "quiz.js marks the correct answer by index into q.opts");
+  assert.ok(/c\.opt\.correct/.test(quiz) && /o\.correct/.test(quiz), "scoring must read the option object");
+});
+
 test("quiz results feed course progress; storage keys are stable", () => {
   assert.ok(/quizResult/.test(read("assets/js/quiz.js")), "quiz.js never reports results to PPA.progress");
   assert.ok(/"ppa-progress"/.test(appJs), "progress storage key missing from app.js");

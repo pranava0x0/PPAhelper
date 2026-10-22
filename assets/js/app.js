@@ -62,9 +62,118 @@
     { tag: "path", attrs: { d: "M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" } }];
   var ICON_SEARCH = [{ tag: "circle", attrs: { cx: 11, cy: 11, r: 7 } }, { tag: "path", attrs: { d: "M21 21l-4.3-4.3" } }];
 
+  /* ---------- per-tab lazy loading ----------
+     Tab-only scripts load on the first visit to their tab instead of on every
+     page load. Each one already guards document.readyState, so a late insert
+     runs its init() at once. They ride app.js's own ?v= (dataUrl), so a deploy
+     busts them with everything else. content.js registers its per-tab JSON
+     fetches through PPA.onViewLoad, so ensureView resolves only when the tab's
+     scripts AND data are in (deep links scroll after that, not before). */
+  var VIEW_SCRIPTS = {
+    simulator:  ["settle-core.js", "simulator.js"],
+    ppadraft:   ["draft.js"],
+    projfin:    ["projfin.js"],
+    datacenter: ["stack-core.js", "stack.js"]
+  };
+  var scriptLoads = {};  // file -> Promise
+  var viewLoaders = {};  // view -> [function returning a Promise]
+  var viewReady = {};    // view -> Promise, set by the first ensureView
+  var currentView = null;
+
+  function loadScript(file) {
+    if (!scriptLoads[file]) {
+      scriptLoads[file] = new Promise(function (resolve, reject) {
+        var s = document.createElement("script");
+        s.src = dataUrl("assets/js/" + file);
+        s.defer = true;
+        s.async = false; // injected scripts default to async; keep insertion order
+        s.onload = function () { resolve(); };
+        s.onerror = function () {
+          delete scriptLoads[file]; // let the next visit retry
+          reject(new Error("could not load " + file));
+        };
+        document.body.appendChild(s);
+      });
+    }
+    return scriptLoads[file];
+  }
+
+  function ensureView(name) {
+    if (viewReady[name]) return viewReady[name];
+    // sequential: each *-core.js must define its global before its UI script runs
+    var p = (VIEW_SCRIPTS[name] || []).reduce(function (chain, f) {
+      return chain.then(function () { return loadScript(f); });
+    }, Promise.resolve()).then(function () {
+      return Promise.all((viewLoaders[name] || []).map(function (fn) { return fn(); }));
+    }).then(function () {
+      applyLevel(currentLevel);
+    }, function (err) {
+      delete viewReady[name];
+      console.error(err);
+      showLoadError(name, err);
+    });
+    viewReady[name] = p;
+    return p;
+  }
+
+  function onViewLoad(name, fn) {
+    (viewLoaders[name] = viewLoaders[name] || []).push(fn);
+    // the tab was already shown (initial hash) before this loader registered: run it now
+    if (viewReady[name]) {
+      viewReady[name] = viewReady[name].then(function () { return fn(); })
+        .then(function () { applyLevel(currentLevel); });
+    }
+  }
+
+  function showLoadError(name, err) {
+    var panel = document.getElementById("view-" + name);
+    if (!panel || panel.querySelector(".load-error")) return;
+    var note = document.createElement("p");
+    note.className = "caption load-error";
+    note.setAttribute("role", "alert");
+    note.textContent = "Part of this tab did not load (" + err.message +
+      "). Reload the page; if you opened the file directly, serve it over http (see README).";
+    var h1 = panel.querySelector("h1");
+    panel.insertBefore(note, h1 ? h1.nextSibling : panel.firstChild);
+  }
+
+  /* Keep the active tab on screen in the scrollable tab bar. Scrolls the bar
+     only (never the page), so it can't fight a deep link's own scroll. */
+  function revealTab(tab) {
+    var nav = tab && tab.parentElement;
+    if (!nav || typeof nav.scrollTo !== "function" || nav.scrollWidth <= nav.clientWidth) return;
+    var nr = nav.getBoundingClientRect();
+    var tr = tab.getBoundingClientRect();
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    nav.scrollTo({
+      left: nav.scrollLeft + (tr.left - nr.left) - (nav.clientWidth - tr.width) / 2,
+      behavior: reduce ? "auto" : "smooth"
+    });
+  }
+
+  /* Right-edge fade on the tab bar while tabs sit off-screen to the right. */
+  function wireNavOverflow() {
+    var nav = document.querySelector("nav.views");
+    if (!nav) return;
+    var pending = false;
+    function measure() {
+      pending = false;
+      nav.classList.toggle("overflowing", nav.scrollLeft + nav.clientWidth < nav.scrollWidth - 2);
+    }
+    function schedule() {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(measure);
+    }
+    window.addEventListener("resize", schedule);
+    nav.addEventListener("scroll", schedule, { passive: true });
+    schedule();
+  }
+
   /* ---------- view switcher ---------- */
   function showView(name, moveFocus) {
     if (VIEWS.indexOf(name) === -1) name = "foundations";
+    currentView = name;
     VIEWS.forEach(function (v) {
       var panel = document.getElementById("view-" + v);
       var tab = document.getElementById("tab-" + v);
@@ -80,7 +189,9 @@
       var h1 = panel && panel.querySelector("h1");
       if (h1) { h1.setAttribute("tabindex", "-1"); h1.focus(); }
     }
+    revealTab(document.getElementById("tab-" + name));
     updateSpy(name);
+    return ensureView(name);
   }
 
   function wireNav() {
@@ -542,6 +653,18 @@
 
   /* ---------- course chrome: nav ticks + numbers, progress chip ---------- */
   function decorateNav() {
+    // data-short labels: CSS swaps them in at <=1023px; the full label stays the accessible name
+    document.querySelectorAll("nav.views .nav-btn[data-short]").forEach(function (tab) {
+      var full = document.createElement("span");
+      full.className = "nav-label";
+      while (tab.firstChild) full.appendChild(tab.firstChild);
+      var short = document.createElement("span");
+      short.className = "nav-short";
+      short.setAttribute("aria-hidden", "true");
+      short.textContent = tab.getAttribute("data-short");
+      tab.appendChild(full);
+      tab.appendChild(short);
+    });
     COURSE.forEach(function (stop, i) {
       var tab = document.getElementById("tab-" + stop.view);
       if (!tab) return;
@@ -790,8 +913,8 @@
       chip.className = "chip prac-chip";
       chip.textContent = item.label;
       chip.addEventListener("click", function () {
-        showView(item.view);
-        scrollToId(item.target); // next frame, after the view unhides
+        // after the tab's lazy scripts/data render, so the target doesn't move under the scroll
+        showView(item.view).then(function () { scrollToId(item.target); });
       });
       groups[item.view].appendChild(chip);
     });
@@ -874,8 +997,8 @@
   function paletteGo(item) {
     closePalette();
     if (item.term) { showGlossaryTerm(item.term); return; }
-    showView(item.view, !item.id);
-    if (item.id) scrollToId(item.id);
+    var ready = showView(item.view, !item.id);
+    if (item.id) ready.then(function () { scrollToId(item.id); });
   }
 
   function buildPaletteDom() {
@@ -995,7 +1118,7 @@
     b.type = "button";
     b.id = "search-btn";
     b.className = "search-btn";
-    b.setAttribute("aria-label", "Search sections and glossary");
+    b.setAttribute("aria-label", "Search");
     b.title = "Search sections & glossary — press / or Ctrl-K";
     b.appendChild(makeIcon(ICON_SEARCH, 15));
     var lbl = document.createElement("span");
@@ -1024,6 +1147,9 @@
   // exposed for the content renderers (assets/js/content.js) and quiz.js
   window.PPA = {
     showView: showView,
+    ensureView: ensureView,
+    onViewLoad: onViewLoad,
+    currentView: function () { return currentView; },
     showGlossaryTerm: showGlossaryTerm,
     reapplyLevel: function () { applyLevel(currentLevel); },
     getLevel: function () { return currentLevel; },
@@ -1096,6 +1222,7 @@
     wireTheme();
     buildTocs();
     decorateNav();
+    wireNavOverflow();
     buildSearchButton();
     buildProgressChip();
     buildBackToTop();

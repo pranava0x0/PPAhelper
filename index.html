@@ -24,16 +24,16 @@
       <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" title="Toggle dark / light"></button>
     </div>
     <nav class="views" role="tablist" aria-label="Sections">
-      <button class="nav-btn" role="tab" id="tab-foundations" aria-controls="view-foundations" aria-selected="true" data-view="foundations">Learn</button>
-      <button class="nav-btn" role="tab" id="tab-simulator" aria-controls="view-simulator" aria-selected="false" data-view="simulator">Settlement simulator</button>
-      <button class="nav-btn" role="tab" id="tab-examples" aria-controls="view-examples" aria-selected="false" data-view="examples">Drafting</button>
-      <button class="nav-btn" role="tab" id="tab-ppadraft" aria-controls="view-ppadraft" aria-selected="false" data-view="ppadraft">Draft PPA</button>
-      <button class="nav-btn" role="tab" id="tab-projfin" aria-controls="view-projfin" aria-selected="false" data-view="projfin">Project finance</button>
-      <button class="nav-btn" role="tab" id="tab-datacenter" aria-controls="view-datacenter" aria-selected="false" data-view="datacenter">Data centers</button>
-      <button class="nav-btn" role="tab" id="tab-perspectives" aria-controls="view-perspectives" aria-selected="false" data-view="perspectives">Perspectives</button>
+      <button class="nav-btn" role="tab" id="tab-foundations" aria-controls="view-foundations" aria-selected="true" data-view="foundations" data-short="Learn">Learn</button>
+      <button class="nav-btn" role="tab" id="tab-simulator" aria-controls="view-simulator" aria-selected="false" data-view="simulator" data-short="Simulator">Settlement simulator</button>
+      <button class="nav-btn" role="tab" id="tab-examples" aria-controls="view-examples" aria-selected="false" data-view="examples" data-short="Drafting">Drafting</button>
+      <button class="nav-btn" role="tab" id="tab-ppadraft" aria-controls="view-ppadraft" aria-selected="false" data-view="ppadraft" data-short="Draft PPA">Draft PPA</button>
+      <button class="nav-btn" role="tab" id="tab-projfin" aria-controls="view-projfin" aria-selected="false" data-view="projfin" data-short="Finance">Project finance</button>
+      <button class="nav-btn" role="tab" id="tab-datacenter" aria-controls="view-datacenter" aria-selected="false" data-view="datacenter" data-short="Data centers">Data centers</button>
+      <button class="nav-btn" role="tab" id="tab-perspectives" aria-controls="view-perspectives" aria-selected="false" data-view="perspectives" data-short="Views">Perspectives</button>
       <span class="nav-sep" aria-hidden="true"></span>
-      <button class="nav-btn nav-ref" role="tab" id="tab-glossary" aria-controls="view-glossary" aria-selected="false" data-view="glossary">Glossary</button>
-      <button class="nav-btn nav-ref" role="tab" id="tab-coverage" aria-controls="view-coverage" aria-selected="false" data-view="coverage">Coverage &amp; sources</button>
+      <button class="nav-btn nav-ref" role="tab" id="tab-glossary" aria-controls="view-glossary" aria-selected="false" data-view="glossary" data-short="Glossary">Glossary</button>
+      <button class="nav-btn nav-ref" role="tab" id="tab-coverage" aria-controls="view-coverage" aria-selected="false" data-view="coverage" data-short="Coverage">Coverage &amp; sources</button>
     </nav>
   </header>
 
@@ -1160,8 +1160,8 @@
       <h1>VPPA settlement simulator</h1>
       <p class="lede">Set a strike price and a year of market prices, and watch the contract-for-differences settle month by month. Green is money flowing to a party; red is money flowing out. This is an illustration of the mechanic, not market data.</p>
 
-      <div class="sim-layout">
-        <form class="controls" id="sim-controls" aria-label="Simulator inputs">
+      <div class="sim-layout sim-settle">
+        <form class="controls sim-ctl-contract" id="sim-controls" aria-label="Simulator inputs">
           <fieldset>
             <legend>Contract</legend>
             <div class="field">
@@ -1180,7 +1180,9 @@
               </div>
             </div>
           </fieldset>
+        </form>
 
+        <div class="controls sim-ctl-market" role="group" aria-label="Market and basis inputs">
           <fieldset>
             <legend>Market scenario (12 months of LMP)</legend>
             <div class="scenario-row" id="scenarios">
@@ -1205,7 +1207,7 @@
               <p class="hint" style="margin:6px 0 0;font-size:12.5px">Node LMP = Hub LMP − spread. The VPPA swap settles at the hub; the developer earns only the node price for actual energy sales. A $5–8/MWh spread is typical in ERCOT; a congestion event can hit $40+.</p>
             </div>
           </fieldset>
-        </form>
+        </div>
 
         <div class="readout">
           <div class="direction-banner" id="banner" role="status" aria-live="polite">—</div>
@@ -1451,6 +1453,7 @@
       <h1>Power contracts for data centers &amp; generation</h1>
       <p class="lede" id="dc-why">—</p>
       <div class="kpi" id="dc-demand" style="max-width:600px"></div>
+      <p class="jump-row"><button type="button" class="nav-link-btn jump-chip" data-scroll-to="case-studies">Jump to the cases <span aria-hidden="true">↓</span></button></p>
 
       <div class="card" style="margin-top:20px" id="headline-decoder">
         <p class="section-label">Read a deal headline</p>
@@ -1977,14 +1980,9 @@
     </div>
   </footer>
 
-  <script src="assets/js/draft.js?v=20261022a" defer></script>
+  <!-- per-tab scripts (simulator, draft, projfin, stack) load on first visit: VIEW_SCRIPTS in app.js -->
   <script src="assets/js/quiz-banks.js?v=20261022a" defer></script>
   <script src="assets/js/quiz.js?v=20261022a" defer></script>
-  <script src="assets/js/settle-core.js?v=20261022a" defer></script>
-  <script src="assets/js/simulator.js?v=20261022a" defer></script>
-  <script src="assets/js/stack-core.js?v=20261022a" defer></script>
-  <script src="assets/js/stack.js?v=20261022a" defer></script>
-  <script src="assets/js/projfin.js?v=20261022a" defer></script>
   <script src="assets/js/app.js?v=20261022a" defer></script>
   <script src="assets/js/content.js?v=20261022a" defer></script>
 </body>
