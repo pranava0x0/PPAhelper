@@ -32,12 +32,12 @@
     { view: "examples",    target: "annotated-examples",   label: "Annotated real PPAs (SEC-filed)" },
     { view: "projfin",     target: "pf-workbench",         label: "Debt-sizing workbench" },
     { view: "projfin",     target: "tax-equity-flip",      label: "Tax equity & the flip" },
+    { view: "datacenter",  target: "case-studies",         label: "Load/gen/wires case studies" },
+    { view: "datacenter",  target: "vpp-ppas",             label: "VPP examples" },
     { view: "datacenter",  target: "tech-contracts",       label: "Technology → contract map" },
     { view: "datacenter",  target: "serve-the-load",       label: "Gigawatt stack builder" },
     { view: "datacenter",  target: "large-load",           label: "Large-load queue & ESA terms" },
     { view: "datacenter",  target: "gigawatt-playbook",    label: "Gigawatt playbook" },
-    { view: "datacenter",  target: "case-studies",         label: "Load/gen/wires case studies" },
-    { view: "datacenter",  target: "vpp-ppas",             label: "VPP examples" },
     { view: "datacenter",  target: "recent-deals",         label: "Hyperscaler deals table" }
   ];
 

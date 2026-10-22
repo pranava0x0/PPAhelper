@@ -540,7 +540,7 @@ button, a, input, [tabindex] { touch-action: manipulation; }
 }
 /* touch targets: 44px on coarse pointers and narrow screens, desktop density untouched */
 @media (pointer: coarse), (max-width: 860px) {
-  .level-filter button, .search-btn, .progress-chip { min-height: 44px; }
+  .level-filter button, .search-btn, .progress-chip, .quiz-reset, .cf-mark { min-height: 44px; }
   .search-btn { min-width: 44px; }
   .theme-toggle { width: 44px; height: 44px; }
   .toc ol { gap: 0 16px; }
