@@ -428,8 +428,21 @@
       });
   }
 
+  /* Each JSON loads on the first visit to its tab, not at page load
+     (glossary.json stays preloaded by app.js). app.js runs the loader inside
+     ensureView and re-applies the level filter after it. */
+  var VIEW_DATA = { examples: loadExamples, datacenter: loadDatacenter, perspectives: loadPerspectives };
+
   function init() {
-    Promise.all([loadExamples(), loadDatacenter(), loadPerspectives()]).then(reapplyLevel);
+    var ppa = window.PPA;
+    if (ppa && ppa.onViewLoad) {
+      Object.keys(VIEW_DATA).forEach(function (view) {
+        ppa.onViewLoad(view, function () { return VIEW_DATA[view]().then(reapplyLevel); });
+      });
+    } else {
+      // app.js missing: fall back to loading everything up front
+      Promise.all([loadExamples(), loadDatacenter(), loadPerspectives()]).then(reapplyLevel);
+    }
     document.addEventListener("ppa:level", function () {
       // when a level hides the active example pill, fall back to the first visible one
       var active = document.querySelector('#example-pills .example-pill[aria-selected="true"]');
