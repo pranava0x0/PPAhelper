@@ -150,6 +150,33 @@ test("case studies (DC + VPP) are complete, sourced, and cite real terms", () =>
     assert.ok(/^https:\/\//.test(s.url), c.id + ": source not https -> " + s.url)));
 });
 
+/* ---- Round 11 (2026-10-22): new contract forms, refreshed deals, glossary terms ---- */
+test("Round 11 cases exist with the schema, and terminated/split deal rows stay corrected", () => {
+  const ids = new Set(dc.caseStudies.map(c => c.id));
+  ["google-constellation-uprate", "dte-google", "blackhills-google", "oracle-weenergies"].forEach(id =>
+    assert.ok(ids.has(id), "missing Round 11 case " + id));
+  assert.ok(/^[A-Z][a-z]{2} \d{1,2}, \d{4}$/.test(dc.casesAsOf), "casesAsOf must be a full date like 'Oct 22, 2026'");
+  const cw = dc.deals.find(x => /CoreWeave/.test(x.buyer));
+  assert.ok(cw && /terminated|voted (it )?down/i.test(cw.seller + " " + cw.structure),
+    "CoreWeave × Core Scientific row must say the acquisition was terminated");
+  assert.ok(!dc.deals.some(x => /Fervo/.test(x.seller) && /Intersect/.test(x.seller)),
+    "the 115 MW Fervo deal and the Intersect acquisition must be separate rows");
+  const ix = dc.deals.find(x => /Intersect/.test(x.seller));
+  assert.ok(ix && /Dec 2025/.test(ix.announced), "Intersect acquisition must carry its Dec 2025 date");
+  const s = dc.structures.find(x => x.id === "direct-ownership");
+  assert.ok(!/Dec 2024/.test(s.example), "direct-ownership example still dates the $4.75B Intersect deal to Dec 2024");
+});
+
+test("Round 11 glossary terms exist and are sourced", () => {
+  ["Uprate", "License Renewal", "Subscription to a Utility PPA", "Bring-Your-Own-New-Capacity (BYONC)",
+   "Affiliate PPA (GenCo)", "5% Safe Harbor", "Load vs Supply Curtailment", "Minimum Take vs Demand Ratchet"]
+    .forEach(t => assert.ok(termSet.has(t), "glossary missing " + t));
+  const sleeved = data.terms.find(t => t.term === "Sleeved PPA");
+  assert.ok(!/absorbs price/i.test(sleeved.def), "Sleeved PPA must not say the utility absorbs price risk");
+  const itc = data.terms.find(t => t.term === "Investment Tax Credit (ITC)");
+  assert.ok(/Jul 4, 2026/.test(itc.def) && /Dec 31, 2027/.test(itc.def), "ITC entry must date the 2025 phase-out");
+});
+
 let persp;
 test("perspectives.json is valid; voices and resources are sourced", () => {
   persp = load("perspectives.json");

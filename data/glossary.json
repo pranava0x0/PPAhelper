@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-08",
+  "updated": "2026-10-22",
   "note": "Single source of truth for terms. Feeds the glossary view and inline tooltips. Every entry is from a research finding (see docs/research-us-ppa.md). status: 'verified' = cited primary/government source; 'secondary' = cited but non-primary (e.g. job postings for the originator role); 'needs-research' = placeholder.",
   "terms": [
     {
@@ -189,17 +189,17 @@
     {
       "term": "Investment Tax Credit (ITC)",
       "category": "Tax",
-      "def": "A federal tax credit worth a percentage of a clean-energy project's qualified investment (base 6%, rising with prevailing-wage/apprenticeship compliance plus domestic-content and energy-community adders). Lowers the developer's net cost, which lowers the achievable PPA price.",
+      "def": "A federal tax credit worth a percentage of a clean-energy project's qualified investment (base 6%, rising with prevailing-wage/apprenticeship compliance plus domestic-content and energy-community adders). Lowers the developer's net cost, which lowers the achievable PPA price. The July 2025 budget law (OBBBA) phases the credit out for wind and solar: a project must begin construction by Jul 4, 2026 or be placed in service by Dec 31, 2027. Storage, nuclear and geothermal keep full value for construction starting through 2033, then 75%, 50% and 0. Prohibited-foreign-entity limits apply to construction beginning after Dec 31, 2025 (as of Oct 2026).",
       "status": "verified",
-      "source": "IRS",
+      "source": "IRS; Orrick on the 2025 beginning-of-construction rules",
       "url": "https://www.irs.gov/credits-deductions/clean-electricity-investment-credit"
     },
     {
       "term": "Production Tax Credit (PTC)",
       "category": "Tax",
-      "def": "A per-kWh federal tax credit on electricity produced and sold (base 0.3 cents/kWh, inflation-adjusted, with the same bonus rates and adders as the ITC). An alternative to the ITC; developers model both to minimize the PPA price.",
+      "def": "A per-kWh federal tax credit on electricity produced and sold (base 0.3 cents/kWh, inflation-adjusted, with the same bonus rates and adders as the ITC). An alternative to the ITC; developers model both to minimize the PPA price. The July 2025 law applies the same wind and solar cutoff: begin construction by Jul 4, 2026 or be placed in service by Dec 31, 2027.",
       "status": "verified",
-      "source": "IRS",
+      "source": "IRS; Orrick on the 2025 beginning-of-construction rules",
       "url": "https://www.irs.gov/credits-deductions/clean-electricity-production-credit"
     },
     {
@@ -229,7 +229,7 @@
     {
       "term": "Sleeved PPA",
       "category": "Types",
-      "def": "An offsite physical PPA where the local utility acts as intermediary between developer and buyer, absorbs price-fluctuation risk, and delivers a fixed price. Useful for buyers not versed in power markets; available in deregulated markets.",
+      "def": "An offsite physical PPA where the buyer's utility or retail supplier buys a project's output and resells it to the buyer at the contract price for a fee. It is a pass-through: the buyer keeps the price and shape exposure, and the utility handles delivery and balancing. Used in regulated territories where the buyer cannot contract with a developer directly, when the utility agrees to sleeve.",
       "status": "verified",
       "source": "EPA Green Power",
       "url": "https://www.epa.gov/sites/default/files/2018-08/documents/guide-purchasing-green-power-4.pdf"
@@ -245,7 +245,7 @@
     {
       "term": "Curtailment",
       "category": "Contract",
-      "def": "When a project's output cannot be physically taken (grid congestion, oversupply). PPAs often pay on a 'deemed delivered / deemed generation' basis, but compensation varies by cause — many contracts do not pay for transmission-related curtailment outside the offtaker's control.",
+      "def": "When a project's output cannot be physically taken (grid congestion, oversupply) — supply curtailment. PPAs often pay on a 'deemed delivered / deemed generation' basis, but compensation varies by cause — many contracts do not pay for transmission-related curtailment outside the offtaker's control. Not the same as load curtailment; see Load vs Supply Curtailment.",
       "status": "verified",
       "source": "NREL — Curtailment",
       "url": "https://docs.nrel.gov/docs/fy14osti/60983.pdf"
@@ -277,7 +277,7 @@
     {
       "term": "Levelized Cost of Energy (LCOE)",
       "category": "Market",
-      "def": "The per-MWh lifetime cost of building and running a generator, used as a price benchmark. Berkeley Lab put US utility-scale solar near $46/MWh before tax credits and about $31/MWh after (2023 data) — a direct illustration of how IRA credits pull PPA prices down.",
+      "def": "The per-MWh lifetime cost of building and running a generator, used as a price benchmark. Berkeley Lab put US utility-scale solar near $46/MWh before tax credits and about $31/MWh after (2023 data, superseded). LCOE ignores firmness: a midday solar MWh and a round-the-clock MWh are different products, so for a 24/7 load compare cost per matched hour.",
       "status": "verified",
       "source": "LBNL — Utility-Scale Solar",
       "url": "https://emp.lbl.gov/utility-scale-solar"
@@ -509,7 +509,7 @@
     {
       "term": "Energy Supply Agreement (ESA)",
       "category": "Contract",
-      "def": "A bilateral supply contract between a buyer and a competitive electricity supplier in a deregulated market, setting the price, term, and renewable content for electricity supply. Amazon, Oracle, and Microsoft energy procurement roles cite negotiating and executing ESAs as a core responsibility.",
+      "def": "A bilateral contract for electricity supply to a load, in two variants. (a) Restructured market: a contract with a competitive retail supplier setting price, term and renewable content. (b) Regulated territory: a utility's large-load service agreement under a tariff, setting the ramp schedule, minimum take, collateral and exit fees. Amazon, Oracle and Microsoft energy roles list negotiating ESAs as a core responsibility.",
       "status": "secondary",
       "source": "Amazon/Oracle energy job descriptions (2025–2026)",
       "url": "https://www.amazon.jobs/en/jobs/10379535/energy-procurement-manager-aws-east-energy-and-water-team"
@@ -713,6 +713,70 @@
       "status": "verified",
       "source": "DOE — Pathways to Commercial Liftoff: Virtual Power Plants",
       "url": "https://www.energy.gov/edf/articles/doe-releases-new-report-pathways-commercial-liftoff-virtual-power-plants"
+    },
+    {
+      "term": "Uprate",
+      "category": "Data centers",
+      "def": "Added output from upgrading an operating plant: new megawatts with no new site. Google's Oct 2026 Constellation PPA pays for 890 MW of reactor uprates in PJM, first output 2028.",
+      "status": "verified",
+      "source": "Constellation; POWER",
+      "url": "https://www.powermag.com/google-deal-backs-890-mw-of-constellation-nuclear-uprates-at-11-pjm-reactors/"
+    },
+    {
+      "term": "License Renewal",
+      "category": "Regulatory",
+      "def": "An NRC extension of a reactor's operating license past its current expiry. Amazon's Sep 2026 Calvert Cliffs PPA is meant to give Constellation the revenue certainty to relicense the plant for another 20 years.",
+      "status": "verified",
+      "source": "Constellation",
+      "url": "https://www.constellationenergy.com/news/2026/09/constellation-and-amazon-announce-20-year-power-purchase-agreement-at-calvert-cliffs.html"
+    },
+    {
+      "term": "Subscription to a Utility PPA",
+      "category": "Contract",
+      "def": "A customer takes a share of the power a utility buys under its own supply contract and pays the cost of that share. Oracle's Oct 2026 proposal to subscribe to part of We Energies' Point Beach nuclear PPA is the example; the state commission decides whether the cost allocation holds.",
+      "status": "secondary",
+      "source": "WPR",
+      "url": "https://www.wpr.org/news/oracle-deal-we-energies-utility-customers"
+    },
+    {
+      "term": "Bring-Your-Own-New-Capacity (BYONC)",
+      "category": "Data centers",
+      "def": "A condition for connecting a large load: supply new capacity matched to the load, or accept curtailment until it exists. FERC rejected PJM's version on Oct 9, 2026 (ER26-3515) because it set retail curtailment order, which is state jurisdiction.",
+      "status": "verified",
+      "source": "Utility Dive",
+      "url": "https://www.utilitydive.com/news/ferc-pjm-large-load-interconnection-iras-byonc/832716/"
+    },
+    {
+      "term": "Affiliate PPA (GenCo)",
+      "category": "Contract",
+      "def": "A PPA between a regulated utility and its own non-regulated generation affiliate (a 'GenCo'), used to keep a dedicated build out of general rate base. NIPSCO Generation LLC sells to NIPSCO, which serves Amazon at retail (IURC Cause 46322).",
+      "status": "verified",
+      "source": "IURC — Cause No. 46322 order",
+      "url": "https://www.in.gov/iurc/files/ord_46322_061726.pdf"
+    },
+    {
+      "term": "5% Safe Harbor",
+      "category": "Tax",
+      "def": "An IRS test that counts a project as having begun construction once at least 5% of its total cost is paid or incurred. Treasury's Notice 2025-42 (Aug 2025) removed it for most wind and solar; the D.D.C. vacated that notice in full on Jun 6, 2026 (Oregon Environmental Council v. IRS). Appeal status unconfirmed as of Oct 2026.",
+      "status": "verified",
+      "source": "Holland & Knight",
+      "url": "https://www.hklaw.com/en/insights/publications/2026/06/court-vacates-irs-notice-2025-42"
+    },
+    {
+      "term": "Load vs Supply Curtailment",
+      "category": "Contract",
+      "def": "Two senses of one word. Supply curtailment cuts a generator's output (grid congestion, oversupply) and is a PPA risk-allocation term. Load curtailment cuts a customer's draw during system stress and is a large-load ESA term, often traded for faster or cheaper interconnection.",
+      "status": "verified",
+      "source": "NREL — Curtailment; FERC ER26-3515 coverage",
+      "url": "https://docs.nrel.gov/docs/fy14osti/60983.pdf"
+    },
+    {
+      "term": "Minimum Take vs Demand Ratchet",
+      "category": "Contract",
+      "def": "Minimum take: the share of contracted demand a large load pays for every month whether or not it uses it (AEP Ohio's data-center tariff: 85% for up to 12 years). Demand ratchet: a billing rule that holds billed demand at a share of the highest demand recorded over a look-back period, so one peak raises bills for months. Large-load ESAs mostly use the first.",
+      "status": "verified",
+      "source": "PUCO",
+      "url": "https://puco.ohio.gov/news/puco-orders-aep-ohio-to-create-data-center-specific-tariff"
     }
   ]
 }

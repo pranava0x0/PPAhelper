@@ -2,6 +2,37 @@
 
 Living audit trail. Each: date · area · description · root cause (**content bug** / **code bug** / **test bug**) · status.
 
+## 2026-10-22 — October pass: twelve-chair content review + geometry audit
+
+Static persona review (nine expert chairs, three newcomer chairs) over index.html, the JSON data, the quiz banks and the draft generator, with every flagged line re-read before it went on this list. Fixes ship in PR for branch `claude/oct-2026-pass`; see `docs/oct-2026-pass-spec.md` § 2c for the full list.
+
+### Fixed in this pass
+
+- **2026-10-22 · Drafting · Risk-allocation table had the developer and buyer asks crossed in two rows.** *(content bug — Fixed)*
+  The Basis row put "hub settlement, developer absorbs the node-to-hub gap" in the developer's column (that is the buyer's ask and the market norm, not what a developer wants — a developer wants node settlement or a basis collar); the Credit-support row put "one-way, only the developer posts" in the developer's column (the buyer's ask). The site's own Sunridge narrative says the buyer prefers hub. Columns rewritten; a drafting-bank question now tests hub-vs-node preference.
+- **2026-10-22 · Learn · Sunridge settlement table had solar volumes inverted.** *(content bug — Fixed)*
+  A 100 MW Texas solar project was shown producing 15,000 MWh in January and 10,000 MWh in July. Volumes reset to 12,000 / 24,000 / 22,000 MWh and every settlement cell recomputed under the `(LMP − strike) × MWh` convention; the August basis-wipe lesson is unchanged.
+- **2026-10-22 · Learn + draft generator · "PJM Western Hub (AEP-Dayton)" fused two different hubs.** *(content bug — Fixed)* Now "PJM Western Hub".
+- **2026-10-22 · Drafting · Utility contract types mis-described two of four structures.** *(content bug — Fixed)*
+  Standard offer was "maximum spot price exposure" (wrong for a regulated tariff); sleeved PPA said "the utility absorbs the price-fluctuation risk" (sleeving is a fee-based pass-through; the buyer keeps price and shape exposure). "ESA" meant a competitive-supplier contract in Drafting and a utility large-load agreement in Data centers; defined once with both variants.
+- **2026-10-22 · Learn + Simulator · "Most 2024–2026 VPPAs are discount-to-market" plus a workaround that cannot reproduce it.** *(content bug — Fixed)*
+  The claim contradicted the pricing-structures table, and "set the strike to your floor" cannot imitate a floor-plus-discount payoff, whose buyer upside is capped at the spread. Claim softened to "one common structure"; workaround removed.
+- **2026-10-22 · Learn, Drafting, Project finance, draft generator · Tax-credit content treated the 2025 law as hypothetical.** *(stale — Fixed)*
+  "If Congress reduces ITC/PTC" was written before the July 2025 phase-out of wind and solar credits (begin construction by Jul 4, 2026 or in service by end-2027), the foreign-entity limits, and the Jun 6, 2026 vacatur of Notice 2025-42. Rewritten as the current regime with dates; coverage row updated.
+- **2026-10-22 · Data centers · CoreWeave × Core Scientific shown as a completed acquisition.** *(stale — Fixed)* Stockholders voted it down Oct 30, 2025; row now marked terminated (it still teaches that vertical integration can fail on price).
+- **2026-10-22 · Draft generator · Grid curtailment listed under Force Majeure; renewable-only REC language generated for nuclear.** *(code bug — Fixed)*
+  Contradicted the Sunridge lesson (the seller carries grid curtailment unless deemed generation is elected). Curtailment section added, FM list trimmed, REC / WREGIS / "qualified renewable facility" clauses branch by technology.
+
+### Logged, deferred
+
+- Learn Stage 3 sends the learner to the simulator before the mechanic is taught (one line; harmless, kept).
+- "ERCOT North Hub averaged ~$45/MWh in 2024" softened to a range pending a citation.
+- Structural items (careers tab, one transaction map, vocabulary table) in `backlog.md`.
+
+### UX measurements that drove Part 1 of the spec (main @ 4f91afb, 375×812)
+
+Sticky masthead 141 px; tab bar 1,143 px wide in a 375 px viewport with six tabs hidden and no affordance; simulator KPI result 1,155 px below the inputs; 54 interactive targets under 44 px in Learn; `backdrop-filter: blur(8px)` on the sticky masthead re-blurring every scroll frame; all three data-center JSON files and all ten scripts fetched on first paint of Learn.
+
 ## 2026-09-26 — learning-path and visual-language pass
 
 ### Fixed

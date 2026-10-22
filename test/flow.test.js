@@ -120,5 +120,46 @@ test("partial-state count lines: hosts present and wired into applyLevel", () =>
   assert.ok(/updateLevelCounts\(level\)/.test(appJs), "updateLevelCounts not called from applyLevel");
 });
 
+/* ---- Round 11 (2026-10-22): section order, checkpoint counts, Sunridge arithmetic ---- */
+test("Learn: contract choice comes after the Scope 2 chain and before Who's who", () => {
+  const at = (id) => html.indexOf('id="' + id + '"');
+  ["scope-2-chain", "choose-contract", "whos-who"].forEach(id => assert.ok(at(id) > -1, "missing #" + id));
+  assert.ok(at("scope-2-chain") < at("choose-contract") && at("choose-contract") < at("whos-who"),
+    "choose-contract must sit between scope-2-chain and whos-who");
+});
+
+test("Data centers: decoder, then case studies and VPPs, then Structures", () => {
+  const view = html.slice(html.indexOf('id="view-datacenter"'), html.indexOf('id="view-perspectives"'));
+  const order = ['id="headline-decoder"', 'id="case-studies"', 'id="vpp-ppas"', 'id="dc-structures"',
+    'id="tech-contracts"', 'id="serve-the-load"', 'id="large-load"', 'id="gigawatt-playbook"',
+    'id="recent-deals"', 'id="checkpoint-datacenter"'].map(m => view.indexOf(m));
+  order.forEach((v, i) => assert.ok(v > -1, "missing data-center anchor #" + i));
+  for (let i = 1; i < order.length; i++) assert.ok(order[i - 1] < order[i], "data-center section out of order at #" + i);
+});
+
+test("checkpoint notes state the bank's real question count and pass mark", () => {
+  const words = { two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12 };
+  [...html.matchAll(/<p class="quiz-note">(\w+) questions[^<]*?(\w+) right marks[^<]*<\/p>\s*<div class="quiz" data-quiz="([a-z]+)"/g)]
+    .forEach(([, n, pass, bank]) => {
+      const total = banks[bank].length;
+      assert.strictEqual(words[n.toLowerCase()], total, bank + ": note says " + n + " questions, bank has " + total);
+      assert.strictEqual(words[pass.toLowerCase()], total - 1, bank + ": pass mark must be total − 1");
+    });
+});
+
+test("Sunridge settlement cells equal (hub − strike) × volume, with the right direction", () => {
+  const table = html.slice(html.indexOf("Three months of settlement after COD"), html.indexOf("This is basis risk in action"));
+  const rows = [...table.matchAll(/<td class="num">\$(\d+)<\/td>\s*<td class="num">\$(\d+)<\/td>\s*<td class="num">\$(\d+)<\/td>\s*<td class="num">([\d,]+) MWh<\/td>\s*<td class="num (?:debit|credit)">([−+])\$([\d,]+) (buyer→gen\.|gen\.→buyer)<\/td>/g)];
+  assert.strictEqual(rows.length, 3, "expected 3 Sunridge settlement rows, parsed " + rows.length);
+  rows.forEach(([, hub, , strike, vol, sign, amt, dir]) => {
+    const v = (Number(hub) - Number(strike)) * Number(vol.replace(/,/g, ""));
+    assert.strictEqual(Number(amt.replace(/,/g, "")), Math.abs(v), "settlement amount wrong for hub $" + hub);
+    assert.strictEqual(sign === "+" ? 1 : -1, Math.sign(v), "sign wrong for hub $" + hub);
+    assert.strictEqual(dir, v > 0 ? "gen.→buyer" : "buyer→gen.", "direction wrong for hub $" + hub);
+  });
+  const vols = rows.map(r => Number(r[4].replace(/,/g, "")));
+  assert.ok(vols[1] > vols[0] && vols[2] > vols[0], "solar volumes must be higher in Jul/Aug than in Jan");
+});
+
 console.log("\nflow.test.js: " + passed + " passed (" +
   courseViews.length + " stops, " + Object.keys(banks).length + " quiz banks checked)");
