@@ -718,7 +718,7 @@
       "gen": "None directly — this case is pure wires and terms. Generation is procured separately in PJM; the tariff governs how the distribution utility must be paid for serving very large new loads.",
       "tnd": "AEP Ohio faced billions in transmission and distribution buildout for loads that might never materialize. The PUCO-approved tariff makes new large data centers pay for at least 85% of contracted capacity for up to 12 years — whether or not they draw it — with exit fees, before the wires get built.",
       "agreement": "Not a bilateral contract: a class tariff (Case No. 24-508-EL-ATA, approved July 9, 2025) that functions as the standard-form ESA every new large load must sign. The 'negotiation' happened once, in a settlement among the utility, staff, and consumer advocates.",
-      "unique": "The inverse of every other case: no buyer and seller shaking hands, but a regulator writing default contract terms for an entire customer class. Its 85%/12-year ratchet became the reference point other states now copy — the market's minimum-take clause is being drafted in dockets, not deal rooms.",
+      "unique": "The inverse of every other case: no buyer and seller shaking hands, but a regulator writing default contract terms for an entire customer class. Its 85%/12-year minimum take became the reference point other states now copy — the market's minimum-take clause is being drafted in dockets, not deal rooms.",
       "brief": "Need: decide which large-load requests are firm enough to justify billions in grid investment. Constraint: roughly 30 GW of requests included projects that could withdraw after the utility built for them.",
       "decisions": [
         "Treat speculative load as a portfolio risk to the utility and its existing customers, not only as bilateral credit risk.",
@@ -727,7 +727,7 @@
         "Set the commercial rule through a PUCO tariff case and settlement, with appeals handled in the regulatory process."
       ],
       "failureTest": "The tariff misses its purpose if obligations are too weak to cover stranded upgrades, or so rigid that financeable projects leave the territory instead of committing.",
-      "yourTurn": "For a campus that ramps 100, 300, 600, then 900 MW, compare the bill under an 85% ratchet with actual use and identify the hardest year to finance.",
+      "yourTurn": "For a campus that ramps 100, 300, 600, then 900 MW, compare the bill under an 85% minimum take with actual use and identify the hardest year to finance.",
       "history": [
         {
           "date": "May 2024",
@@ -751,14 +751,15 @@
         },
         {
           "date": "2026",
-          "event": "The ratchet travels: Minnesota approves Xcel's large-load tariff (May 15, 15-year term), New Jersey signs the Data Center Fair Share Act (Jul 7, 85% for 10 years), and Pennsylvania, Wisconsin and Virginia adopt their own versions."
+          "event": "The minimum take travels: Minnesota approves Xcel's large-load tariff (May 15, 15-year term), New Jersey signs the Data Center Fair Share Act (Jul 7, 85% for 10 years), and Pennsylvania, Wisconsin and Virginia adopt their own versions."
         }
       ],
-      "lesson": "Watch the tariff dockets as closely as the deal flow: the ratchets, terms, and exit fees an energy lead will face were set in a case they may never have heard of.",
+      "lesson": "Watch the tariff dockets as closely as the deal flow: the minimum-take shares, terms, and exit fees an energy lead will face were set in a case they may never have heard of.",
       "glossaryRefs": [
         "Energy Supply Agreement (ESA)",
         "Large Load Interconnection",
-        "Utility"
+        "Utility",
+        "Minimum Take vs Demand Ratchet"
       ],
       "sources": [
         {
@@ -790,7 +791,7 @@
         "load": "A class: ~30 GW of central-Ohio requests, ~5.7 GW once terms applied",
         "supply": "None — wires and terms only; generation is bought in PJM",
         "contract": "Class tariff: ≥85% minimum bill for up to 12 years, exit fees",
-        "status": "On appeal at the Ohio Supreme Court; NJ, MN, PA, WI and VA copied the ratchet in 2026"
+        "status": "On appeal at the Ohio Supreme Court; NJ, MN, PA, WI, VA copied the minimum take in 2026"
       }
     },
     {
@@ -1015,8 +1016,8 @@
       "participants": "Google (customer) · Black Hills Corp. and its Wyoming utility (serve the campus under the Large Power Contract Service tariff) · a non-regulated Black Hills affiliate (builds and owns the new gas units) · third-party Wyoming resource owners (supply the microgrid) · Wyoming regulators (permits and the cost-adjustment filing)",
       "load": "A planned Google data center in Cheyenne: energy service from late 2027, ramping to peak load in 2030.",
       "gen": "564 MW (nameplate) of new gas at the Cheyenne Prairie Generating Station, $1.8B built 2027–29 and owned by a non-regulated affiliate, plus about 2.1 GW of third-party Wyoming resources whose output Black Hills manages: about 2.7 GW in all, including reserve margins.",
-      "tnd": "Up to 590 MW of grid-connected service: the 564 MW of new gas, with the last 26 MW from market purchases and retail utility service. The third-party resources run as a privately managed microgrid. The Robinson substation's CPCN was approved in May 2026.",
-      "agreement": "A Large Power Contract Services Agreement and a Generation Facilities Agreement under the LPCS tariff, effective Sep 30, 2026 with terms through 2048 (per Black Hills' 8-K). Google has advanced $399M, which Black Hills expects to reimburse by Jun 30, 2027. A Large Customer Transmission Cost Adjustment Mechanism was filed in June 2026. Prices undisclosed.",
+      "tnd": "Up to 590 MW of grid-connected service: the 564 MW of new gas, with the remainder (about 26 MW, inferred from the 8-K's 590 MW and 564 MW figures) from market purchases and retail utility service. The third-party resources run as a privately managed microgrid. The Robinson substation's CPCN was approved in May 2026.",
+      "agreement": "A Large Power Contract Services Agreement and a Generation Facilities Agreement under the Large Power Contract Service tariff, effective Sep 30, 2026 with terms through 2048 (per Black Hills' 8-K). Google has advanced $399M, which Black Hills expects to reimburse by Jun 30, 2027. A Large Customer Transmission Cost Adjustment Mechanism was filed in June 2026. Prices undisclosed.",
       "unique": "Black Hills' 8-K says 'Google bears all costs associated with serving the planned data center.' That claim is only as good as the contract behind it: the affiliate ownership, the advances, the term to 2048 and a cost-adjustment mechanism are what keep plant and transmission cost with one customer instead of the rate base.",
       "brief": "Need: firm supply for a hyperscale campus from late 2027, more than the local system was built to carry. Constraint: other Black Hills customers must not pay for plant and transmission built for one campus.",
       "decisions": [
@@ -1073,7 +1074,7 @@
       "glance": {
         "load": "Planned Google campus, Cheyenne; service late 2027, peak load 2030",
         "supply": "564 MW new affiliate-owned gas plus ~2.1 GW third-party microgrid",
-        "contract": "Large Power Contract Service agreements to 2048; $399M refundable advances",
+        "contract": "Large Power Contract Services Agreement to 2048; $399M refundable advances",
         "status": "Effective Sep 30, 2026; industrial siting permit pending as of Oct 2026"
       }
     },

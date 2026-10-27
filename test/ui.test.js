@@ -219,9 +219,27 @@ test("every nav tab carries a data-short label, swapped in by CSS below 1024px",
   assert.strictEqual(navBtns.length, tabNames.length, "nav-btn count != tab count");
   navBtns.forEach((b) => assert.ok(/data-short="[^"]+"/.test(b), "nav button lacks data-short: " + b));
   assert.ok(/getAttribute\("data-short"\)/.test(appJs), "app.js never reads data-short");
-  assert.ok(/@media \(max-width: 1023px\)\s*\{[^}]*\.nav-btn/.test(css), "no <=1023px nav label rule");
-  assert.ok(/nav\.views\.overflowing::after/.test(css) && /"overflowing"/.test(appJs),
-    "tab-bar overflow fade (class + pseudo-element) missing");
+  const narrowNav = css.match(/@media \(max-width: 1023px\) \{([\s\S]*?)\n\}/);
+  assert.ok(narrowNav, "no <=1023px nav label block");
+  assert.ok(/\.nav-btn\[data-short\] \.nav-short \{ display: inline; \}/.test(narrowNav[1]),
+    "the <=1023px block never shows .nav-short");
+  const fade = css.match(/nav\.views\.overflowing::after \{([^}]*)\}/);
+  assert.ok(fade && /"overflowing"/.test(appJs), "tab-bar overflow fade (class + pseudo-element) missing");
+  assert.ok(/pointer-events: none/.test(fade[1]), "overflow fade must not swallow taps on the last tab");
+});
+
+test("Resume chip stays reachable on phones: icon-only at the start of the tab row", () => {
+  const phone = [...css.matchAll(/@media \(max-width: 639px\) \{([\s\S]*?)\n\}/g)].map((m) => m[1]).join("\n");
+  assert.ok(!/\.progress-chip \{ display: none; \}/.test(phone), "the <=639px CSS hides the Resume chip again");
+  assert.ok(/\.masthead > \.progress-chip \{[^}]*width: 44px; height: 44px/.test(phone), "phone chip is not 44x44");
+  assert.ok(/\.masthead > \.progress-chip \.pc-label \{ display: none; \}/.test(phone), "phone chip label not hidden");
+  const fn = appJs.slice(appJs.indexOf("function buildProgressChip"), appJs.indexOf("function buildBackToTop"));
+  assert.ok(/matchMedia\("\(max-width: 639px\)"\)/.test(fn) && /insertBefore\(b, nav\)/.test(fn),
+    "buildProgressChip no longer moves the chip before the tab bar on narrow screens");
+  assert.ok(/makeIcon\(ICON_RESUME/.test(fn), "chip has no icon for its icon-only state");
+  const refresh = appJs.slice(appJs.indexOf("function refreshProgressUI"), appJs.indexOf("/* ---------- first-visit"));
+  assert.ok(!/chip\.textContent =/.test(refresh), "refreshProgressUI overwrites the chip's icon with text");
+  assert.ok(/chip\.setAttribute\("aria-label", "Resume the course/.test(refresh), "chip lost its full aria-label");
 });
 
 test("masthead controls reach 44px on coarse pointers / narrow screens", () => {

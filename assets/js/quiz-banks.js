@@ -291,7 +291,7 @@
       {
         prompt: "A solar project did not begin construction by Jul 4, 2026. What does that do to the PPA price it needs?",
         opts: [
-          { t: "It must be in service by end-2027 to keep the credit, or price higher without it", correct: true },
+          { t: "In service by end-2027 keeps the credit; otherwise it needs a higher price", correct: true },
           { t: "Nothing: the 2025 law kept wind and solar credits at full value through 2033" },
           { t: "Its price falls, because a larger depreciation deduction replaces the credit" },
           { t: "It must move to a node-settled VPPA, since hub settlement loses the credit" }

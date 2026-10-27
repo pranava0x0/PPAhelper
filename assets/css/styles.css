@@ -146,6 +146,7 @@ p { margin: 0 0 14px; max-width: 68ch; }
   border-radius: 8px; padding: 6px 12px; cursor: pointer; min-height: 34px;
 }
 .progress-chip:hover { border-color: var(--accent); color: var(--accent); }
+.progress-chip svg { display: none; }
 
 /* masthead search button — reads as a search field (opens the quick-nav palette) */
 .search-btn {
@@ -529,9 +530,19 @@ button, a, input, [tabindex] { touch-action: manipulation; }
   .level-filter button { padding: 6px 7px; font-size: 11.5px; }
   .search-btn { width: 44px; padding: 0; justify-content: center; }
   .search-btn .sb-label, .search-btn .sb-key { display: none; }
-  /* no room on one row; the done ticks on the tabs carry progress on phones */
-  .progress-chip { display: none; }
   nav.views { padding: 0 4px; }
+  /* no room in the top row: app.js moves the Resume chip to the start of the
+     tab row, icon-only. Column 1 is empty (0px) while the chip is hidden. */
+  .masthead { display: grid; grid-template-columns: auto minmax(0, 1fr); }
+  .masthead-inner { grid-column: 1 / -1; width: 100%; }
+  .masthead > nav.views { grid-column: 2; width: 100%; }
+  .masthead > .progress-chip {
+    grid-column: 1; align-self: center; margin-left: 8px;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; min-height: 44px; padding: 0;
+  }
+  .masthead > .progress-chip svg { display: block; }
+  .masthead > .progress-chip .pc-label { display: none; }
 }
 @media (max-width: 374px) {
   /* 360px Android widths: shave the toggle so the row still fits */

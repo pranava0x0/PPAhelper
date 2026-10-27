@@ -85,6 +85,90 @@ test("checkpoint options render shuffled; scoring never uses the position", () =
   assert.ok(/c\.opt\.correct/.test(quiz) && /o\.correct/.test(quiz), "scoring must read the option object");
 });
 
+/* A tiny fake DOM: just what quiz.js touches (createElement, appendChild,
+   textContent, dataset, classList, click listeners, one querySelectorAll). */
+function fakeDom() {
+  function node(tag) {
+    const n = {
+      tagName: tag, className: "", children: [], dataset: {}, hidden: false, disabled: false,
+      attrs: {}, listeners: {}, ownText: "",
+      get firstChild() { return n.children[0] || null; },
+      appendChild(c) { n.children.push(c); return c; },
+      removeChild(c) { n.children.splice(n.children.indexOf(c), 1); return c; },
+      setAttribute(k, v) { n.attrs[k] = String(v); },
+      getAttribute(k) { return k in n.attrs ? n.attrs[k] : null; },
+      addEventListener(type, fn) { (n.listeners[type] = n.listeners[type] || []).push(fn); },
+      click() { if (!n.disabled) (n.listeners.click || []).forEach((fn) => fn()); },
+      classList: {
+        add(c) { if (!n.className.split(" ").includes(c)) n.className = (n.className + " " + c).trim(); },
+        contains(c) { return n.className.split(" ").includes(c); }
+      },
+      set textContent(v) { n.children = []; n.ownText = String(v); },
+      get textContent() { return n.ownText + n.children.map((c) => c.textContent).join(""); }
+    };
+    return n;
+  }
+  const root = node("div");
+  root.setAttribute("data-quiz", "simulator");
+  const document = {
+    readyState: "complete",
+    createElement: node,
+    createTextNode: (t) => ({ textContent: String(t) }),
+    querySelectorAll: (sel) => (sel === "[data-quiz]" ? [root] : [])
+  };
+  return { document, root };
+}
+function findAll(n, pred, out = []) {
+  if (pred(n)) out.push(n);
+  (n.children || []).forEach((c) => findAll(c, pred, out));
+  return out;
+}
+
+test("quiz.js in a fake DOM: shuffled options, clicking the correct one scores it", () => {
+  const vm = require("node:vm");
+  const { document, root } = fakeDom();
+  const results = [];
+  const ctx = { document };
+  ctx.window = ctx;
+  ctx.PPA_QUIZ_BANKS = { simulator: banks.simulator };
+  ctx.PPA = { progress: { quizResult: (id, score, total) => results.push([id, score, total]) } };
+  vm.createContext(ctx);
+  vm.runInContext("Math.random = function () { return 0; };", ctx); // j = 0 every swap: first option ends last
+  vm.runInContext(read("assets/js/quiz.js"), ctx);
+
+  const cards = findAll(root, (n) => n.className === "quiz-q");
+  assert.strictEqual(cards.length, banks.simulator.length, "rendered " + cards.length + " questions");
+  const score = findAll(root, (n) => n.className === "quiz-score")[0];
+  assert.strictEqual(score.textContent, "0 / 0");
+
+  cards.forEach((card, qi) => {
+    const q = banks.simulator[qi];
+    const correctText = q.opts.find((o) => o.correct).t;
+    const btns = findAll(card, (n) => n.tagName === "button" && n.className.startsWith("quiz-opt"));
+    assert.strictEqual(btns.length, q.opts.length);
+    const at = btns.findIndex((b) => b.children[1].textContent === correctText);
+    assert.ok(at > -1, "correct option not rendered for question " + (qi + 1));
+    if (q.opts[0].correct) assert.notStrictEqual(at, 0, "question " + (qi + 1) + ": correct option was not shuffled off A");
+    if (qi === 0) {
+      btns[at].click();
+      assert.strictEqual(score.textContent, "1 / 1", "clicking the correct option did not score");
+      assert.ok(btns[at].classList.contains("correct"), "correct option not marked");
+      btns[(at + 1) % btns.length].click(); // a second click on an answered card is ignored
+      assert.strictEqual(score.textContent, "1 / 1", "an answered question scored twice");
+    } else if (qi === 1) {
+      const wrong = btns[(at + 1) % btns.length];
+      wrong.click();
+      assert.strictEqual(score.textContent, "1 / 2", "a wrong answer changed the score");
+      assert.ok(wrong.classList.contains("wrong") && btns[at].classList.contains("correct"));
+    } else {
+      btns[at].click();
+    }
+  });
+  const total = banks.simulator.length;
+  assert.strictEqual(score.textContent, (total - 1) + " / " + total);
+  assert.deepStrictEqual(results, [["simulator", total - 1, total]], "finished run not reported to PPA.progress");
+});
+
 test("quiz results feed course progress; storage keys are stable", () => {
   assert.ok(/quizResult/.test(read("assets/js/quiz.js")), "quiz.js never reports results to PPA.progress");
   assert.ok(/"ppa-progress"/.test(appJs), "progress storage key missing from app.js");
