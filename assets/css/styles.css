@@ -113,10 +113,10 @@ p { margin: 0 0 14px; max-width: 68ch; }
 }
 
 /* ---- masthead ---- */
+/* opaque, no filter: a blurred sticky band repaints on every scroll frame */
 .masthead {
   border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: saturate(1.4) blur(8px);
+  background: var(--bg);
   position: sticky; top: 0; z-index: 40;
 }
 .masthead-inner {
@@ -146,6 +146,7 @@ p { margin: 0 0 14px; max-width: 68ch; }
   border-radius: 8px; padding: 6px 12px; cursor: pointer; min-height: 34px;
 }
 .progress-chip:hover { border-color: var(--accent); color: var(--accent); }
+.progress-chip svg { display: none; }
 
 /* masthead search button — reads as a search field (opens the quick-nav palette) */
 .search-btn {
@@ -197,6 +198,26 @@ nav.views {
 .nav-sep { align-self: center; width: 1px; height: 18px; background: var(--border); margin: 0 6px; flex-shrink: 0; }
 .nav-ref { color: color-mix(in srgb, var(--text-muted) 75%, transparent); }
 .nav-ref:hover, .nav-ref[aria-selected="true"] { color: var(--text); }
+
+/* short tab labels (data-short, built by app.js decorateNav) below 1024px;
+   the full label stays in the DOM, visually hidden, as the accessible name */
+.nav-short { display: none; }
+@media (max-width: 1023px) {
+  .nav-btn { padding: 12px 10px; position: relative; }
+  .nav-btn .course-num { margin-right: 4px; }
+  .nav-btn[data-short] .nav-label {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .nav-btn[data-short] .nav-short { display: inline; }
+}
+/* right-edge fade while tabs sit off-screen (class toggled by app.js wireNavOverflow) */
+nav.views.overflowing::after {
+  content: ""; position: sticky; right: 0; z-index: 1;
+  flex: 0 0 40px; margin-left: -40px;
+  background: linear-gradient(to right, transparent, var(--bg) 80%);
+  pointer-events: none;
+}
 
 /* Newcomer level stubs: slim in-place row where a practitioner section is hidden */
 .level-stub {
@@ -260,6 +281,24 @@ main { max-width: 1180px; margin: 0 auto; padding: 28px 22px 80px; }
 /* ---- simulator ---- */
 .sim-layout { display: grid; gap: 22px; }
 @media (min-width: 1024px) { .sim-layout { grid-template-columns: 320px 1fr; align-items: start; } }
+/* settlement simulator: the controls are two blocks (Contract | Market + basis).
+   Desktop joins them into one left-column card; below 1024px the result strip
+   (banner + KPIs) sits between them, right under the strike the learner edits. */
+@media (min-width: 1024px) {
+  .sim-settle { grid-template-rows: auto 1fr; row-gap: 0; }
+  .sim-settle .sim-ctl-contract { grid-column: 1; grid-row: 1; border-bottom: none; border-radius: 12px 12px 0 0; padding-bottom: 0; }
+  .sim-settle .sim-ctl-market { grid-column: 1; grid-row: 2; border-top: none; border-radius: 0 0 12px 12px; padding-top: 0; }
+  .sim-settle .readout { grid-column: 2; grid-row: 1 / span 2; }
+}
+@media (max-width: 1023px) {
+  .sim-settle .readout { display: contents; }
+  .sim-settle .readout > * { order: 5; }
+  .sim-settle .sim-ctl-contract { order: 1; }
+  .sim-settle .readout > .direction-banner { order: 2; }
+  .sim-settle .readout > .kpis { order: 3; }
+  .sim-settle .sim-ctl-market { order: 4; }
+  .sim-settle .sim-ctl-contract fieldset { margin-bottom: 0; }
+}
 
 .controls { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
 .controls fieldset { border: none; margin: 0 0 18px; padding: 0; }
@@ -422,7 +461,7 @@ table.coverage th { font-size: 11px; text-transform: uppercase; letter-spacing: 
 .toc-link::before { content: counter(toc); color: var(--accent); font-weight: 700; margin-right: 5px; font-feature-settings: "tnum" 1; }
 .toc-link:hover, .toc-link:focus-visible { color: var(--text); border-bottom-color: var(--accent); }
 .toc-link.active { color: var(--text); border-bottom-style: solid; border-bottom-color: var(--accent); }
-h2[id], .case-study { scroll-margin-top: 96px; }
+h2[id], .case-study { scroll-margin-top: 112px; } /* clears the ~99-111px sticky masthead */
 
 /* on wide screens the contents bar sticks just under the masthead (scroll-spy highlights the section) */
 @media (min-width: 900px) {
@@ -470,9 +509,6 @@ button, a, input, [tabindex] { touch-action: manipulation; }
   h1 { font-size: 1.6rem; }
   main { padding: 20px 16px 70px; }
   .lede { font-size: 1.06rem; }
-  /* brand + theme share the top row; controls flow to their own row below */
-  .masthead-inner { grid-template-columns: 1fr auto; grid-template-areas: "brand theme" "controls controls"; }
-  .masthead-controls { justify-self: stretch; width: 100%; justify-content: space-between; }
 }
 
 /* ---- level filter + inline nav links ---- */
@@ -481,6 +517,54 @@ button, a, input, [tabindex] { touch-action: manipulation; }
 .level-filter button { font-size: 12px; font-weight: 600; padding: 6px 10px; border: none; background: var(--surface); color: var(--text-muted); cursor: pointer; min-height: 32px; }
 .level-filter button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
 .nav-link-btn { background: none; border: none; color: var(--accent); font: inherit; cursor: pointer; padding: 0; text-decoration: underline; }
+.jump-row { margin: 12px 0 0; }
+.nav-link-btn.jump-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600; }
+
+/* ---- compact masthead + touch targets (after the base control rules so they win) ---- */
+@media (max-width: 639px) {
+  /* one row: wordmark · level toggle · icon-only search · theme; the tab bar is the second row */
+  .masthead-inner { padding: 4px 12px; gap: 6px; grid-template-columns: auto minmax(0, 1fr) auto; }
+  .wordmark { font-size: 1.05rem; white-space: nowrap; }
+  /* wrap (never overlap the wordmark) on screens narrower than ~360px */
+  .masthead-controls { gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  .level-filter button { padding: 6px 7px; font-size: 11.5px; }
+  .search-btn { width: 44px; padding: 0; justify-content: center; }
+  .search-btn .sb-label, .search-btn .sb-key { display: none; }
+  nav.views { padding: 0 4px; }
+  /* no room in the top row: app.js moves the Resume chip to the start of the
+     tab row, icon-only. Column 1 is empty (0px) while the chip is hidden. */
+  .masthead { display: grid; grid-template-columns: auto minmax(0, 1fr); }
+  .masthead-inner { grid-column: 1 / -1; width: 100%; }
+  .masthead > nav.views { grid-column: 2; width: 100%; }
+  .masthead > .progress-chip {
+    grid-column: 1; align-self: center; margin-left: 8px;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; min-height: 44px; padding: 0;
+  }
+  .masthead > .progress-chip svg { display: block; }
+  .masthead > .progress-chip .pc-label { display: none; }
+}
+@media (max-width: 374px) {
+  /* 360px Android widths: shave the toggle so the row still fits */
+  .masthead-inner, .masthead-controls { gap: 4px; }
+  .level-filter button { padding: 6px 5px; font-size: 11px; }
+}
+/* touch targets: 44px on coarse pointers and narrow screens, desktop density untouched */
+@media (pointer: coarse), (max-width: 860px) {
+  .level-filter button, .search-btn, .progress-chip, .quiz-reset, .cf-mark { min-height: 44px; }
+  .search-btn { min-width: 44px; }
+  .theme-toggle { width: 44px; height: 44px; }
+  .toc ol { gap: 0 16px; }
+  .toc-link { min-height: 44px; display: inline-flex; align-items: center; }
+  /* inline prose buttons: 44px hit box, but negative margins keep the line box
+     (and so the paragraph's line spacing) unchanged. !important beats the inline
+     padding:0 a few of these carry in index.html. */
+  .nav-link-btn:not(.jump-chip) {
+    display: inline-block;
+    padding-top: calc((44px - 1lh) / 2) !important; padding-bottom: calc((44px - 1lh) / 2) !important;
+    margin-top: calc((1lh - 44px) / 2); margin-bottom: calc((1lh - 44px) / 2);
+  }
+}
 
 /* ---- example PPAs (annotated) ---- */
 .example-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
@@ -694,10 +778,3 @@ ol.steps li::before { content: counter(step); position: absolute; left: 0; top: 
 .pal-ctx { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; flex-shrink: 0; }
 .palette-empty { padding: 14px 12px; font-size: 13px; color: var(--text-muted); }
 
-/* mobile nav scroll affordance — fade right edge to hint at off-screen tabs */
-@media (max-width: 860px) {
-  nav.views {
-    -webkit-mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%);
-    mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%);
-  }
-}

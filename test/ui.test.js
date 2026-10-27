@@ -145,9 +145,110 @@ test("case-study glance table host sits above the accordions and is rendered", (
 
 test("browser scripts remain valid JavaScript", () => {
   const vm = require("node:vm");
-  ["assets/js/app.js", "assets/js/content.js", "assets/js/quiz-banks.js"].forEach((file) => {
+  ["assets/js/app.js", "assets/js/content.js", "assets/js/quiz-banks.js", "assets/js/quiz.js"].forEach((file) => {
     assert.doesNotThrow(() => new vm.Script(read(file)), file + " has a syntax error");
   });
+});
+
+// --- Per-tab lazy loading (Oct 2026 pass): manifest in app.js replaces the script tags ---
+const manifestBlock = appJs.match(/var VIEW_SCRIPTS = \{([\s\S]*?)\};/);
+const manifest = {};
+if (manifestBlock) {
+  for (const m of manifestBlock[1].matchAll(/(\w+):\s*\[([^\]]*)\]/g)) {
+    manifest[m[1]] = [...m[2].matchAll(/"([\w.-]+\.js)"/g)].map((x) => x[1]);
+  }
+}
+const lazyFiles = Object.values(manifest).flat();
+
+test("lazy-load manifest maps each tab to its scripts", () => {
+  assert.ok(manifestBlock, "VIEW_SCRIPTS manifest missing from app.js");
+  assert.deepStrictEqual(manifest, {
+    simulator: ["settle-core.js", "simulator.js"],
+    ppadraft: ["draft.js"],
+    projfin: ["projfin.js"],
+    datacenter: ["stack-core.js", "stack.js"]
+  }, "manifest drifted (core files must precede their UI script)");
+  Object.keys(manifest).forEach((v) => assert.ok(viewIds.has(v), "manifest view '" + v + "' has no #view-" + v));
+});
+
+test("every lazy file exists on disk and is valid JavaScript", () => {
+  const vm = require("node:vm");
+  lazyFiles.forEach((f) => {
+    const p = path.join(__dirname, "..", "assets/js", f);
+    assert.ok(fs.existsSync(p), "manifest file missing: assets/js/" + f);
+    assert.doesNotThrow(() => new vm.Script(fs.readFileSync(p, "utf8")), f + " has a syntax error");
+    assert.ok(/document\.readyState/.test(fs.readFileSync(p, "utf8")) || /-core\.js$/.test(f),
+      f + " must guard document.readyState so a late insert still runs init()");
+  });
+});
+
+test("lazy files ride the same ?v= as the page (no script tags, versioned src)", () => {
+  lazyFiles.forEach((f) => assert.ok(!new RegExp('<script[^>]+' + f.replace(".", "\\.")).test(html),
+    f + " is still a <script> tag in index.html — it should load via the manifest"));
+  const tags = [...html.matchAll(/<script src="assets\/js\/([\w.-]+)\?v=([\w-]+)"/g)];
+  assert.deepStrictEqual(tags.map((m) => m[1]), ["quiz-banks.js", "quiz.js", "app.js", "content.js"],
+    "eager scripts changed");
+  const versions = new Set([...html.matchAll(/\?v=([\w-]+)/g)].map((m) => m[1]));
+  assert.strictEqual(versions.size, 1, "index.html mixes ?v= strings: " + [...versions].join(", "));
+  assert.ok(/s\.src = dataUrl\("assets\/js\/" \+ file\)/.test(appJs),
+    "lazy script src must go through dataUrl() so it carries app.js's ?v=");
+  assert.ok(/return ensureView\(name\)/.test(appJs), "showView must return ensureView(name)");
+});
+
+test("content.js fetches tab JSON on first visit via PPA.onViewLoad", () => {
+  const content = read("assets/js/content.js");
+  const map = content.match(/var VIEW_DATA = \{([^}]*)\}/);
+  assert.ok(map, "VIEW_DATA map missing from content.js");
+  ["examples: loadExamples", "datacenter: loadDatacenter", "perspectives: loadPerspectives"].forEach((pair) =>
+    assert.ok(map[1].includes(pair), "VIEW_DATA missing " + pair));
+  assert.ok(/ppa\.onViewLoad\(/.test(content), "content.js never registers with PPA.onViewLoad");
+  assert.ok(/function onViewLoad/.test(appJs), "app.js missing onViewLoad");
+});
+
+// --- Masthead + tab bar (Oct 2026 pass) ---
+const css = read("assets/css/styles.css");
+test("masthead is opaque: no backdrop-filter", () => {
+  const block = css.match(/\.masthead \{[^}]*\}/);
+  assert.ok(block, ".masthead rule not found");
+  assert.ok(!/backdrop-filter/.test(block[0]), ".masthead still sets backdrop-filter");
+  assert.ok(/background: var\(--bg\)/.test(block[0]), ".masthead background must be opaque var(--bg)");
+});
+
+test("every nav tab carries a data-short label, swapped in by CSS below 1024px", () => {
+  const navBtns = [...html.matchAll(/<button class="nav-btn[^"]*"[^>]*>/g)].map((m) => m[0]);
+  assert.strictEqual(navBtns.length, tabNames.length, "nav-btn count != tab count");
+  navBtns.forEach((b) => assert.ok(/data-short="[^"]+"/.test(b), "nav button lacks data-short: " + b));
+  assert.ok(/getAttribute\("data-short"\)/.test(appJs), "app.js never reads data-short");
+  const narrowNav = css.match(/@media \(max-width: 1023px\) \{([\s\S]*?)\n\}/);
+  assert.ok(narrowNav, "no <=1023px nav label block");
+  assert.ok(/\.nav-btn\[data-short\] \.nav-short \{ display: inline; \}/.test(narrowNav[1]),
+    "the <=1023px block never shows .nav-short");
+  const fade = css.match(/nav\.views\.overflowing::after \{([^}]*)\}/);
+  assert.ok(fade && /"overflowing"/.test(appJs), "tab-bar overflow fade (class + pseudo-element) missing");
+  assert.ok(/pointer-events: none/.test(fade[1]), "overflow fade must not swallow taps on the last tab");
+});
+
+test("Resume chip stays reachable on phones: icon-only at the start of the tab row", () => {
+  const phone = [...css.matchAll(/@media \(max-width: 639px\) \{([\s\S]*?)\n\}/g)].map((m) => m[1]).join("\n");
+  assert.ok(!/\.progress-chip \{ display: none; \}/.test(phone), "the <=639px CSS hides the Resume chip again");
+  assert.ok(/\.masthead > \.progress-chip \{[^}]*width: 44px; height: 44px/.test(phone), "phone chip is not 44x44");
+  assert.ok(/\.masthead > \.progress-chip \.pc-label \{ display: none; \}/.test(phone), "phone chip label not hidden");
+  const fn = appJs.slice(appJs.indexOf("function buildProgressChip"), appJs.indexOf("function buildBackToTop"));
+  assert.ok(/matchMedia\("\(max-width: 639px\)"\)/.test(fn) && /insertBefore\(b, nav\)/.test(fn),
+    "buildProgressChip no longer moves the chip before the tab bar on narrow screens");
+  assert.ok(/makeIcon\(ICON_RESUME/.test(fn), "chip has no icon for its icon-only state");
+  const refresh = appJs.slice(appJs.indexOf("function refreshProgressUI"), appJs.indexOf("/* ---------- first-visit"));
+  assert.ok(!/chip\.textContent =/.test(refresh), "refreshProgressUI overwrites the chip's icon with text");
+  assert.ok(/chip\.setAttribute\("aria-label", "Resume the course/.test(refresh), "chip lost its full aria-label");
+});
+
+test("masthead controls reach 44px on coarse pointers / narrow screens", () => {
+  const m = css.match(/@media \(pointer: coarse\), \(max-width: 860px\) \{([\s\S]*?)\n\}/);
+  assert.ok(m, "coarse-pointer touch-target block missing");
+  assert.ok(/\.level-filter button[^{]*\{[^}]*min-height: 44px/.test(m[1]), "level toggle not 44px");
+  assert.ok(/\.theme-toggle \{ width: 44px; height: 44px/.test(m[1]), "theme toggle not 44px");
+  assert.ok(/\.toc-link \{ min-height: 44px/.test(m[1]), "TOC links not 44px");
+  assert.ok(/\.nav-link-btn/.test(m[1]), "inline nav-link buttons not enlarged");
 });
 
 console.log("\nui.test.js: " + passed + " passed (" + tabNames.length + " tabs, " +

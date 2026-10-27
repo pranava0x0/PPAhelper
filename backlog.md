@@ -1,5 +1,32 @@
 # Backlog — PPA Helper
 
+## October 2026 pass (2026-10-22)
+
+Research sweep (dockets, deals, policy, discourse, x.com), a twelve-chair content review, and a measured UX/perf audit. Spec: `docs/oct-2026-pass-spec.md`. Shipped items are ticked in the spec's tables once the PR merges; the review items below were deliberately deferred.
+
+### Deferred from the content review (not this pass)
+
+- **Careers tab.** Move the originator and energy-lead role cards (Learn, ~110 lines) into their own stop and merge the two "what to study next" lists. The Learn stop is 15k px on a phone; this is the largest block a first-day learner does not need. *Priority: medium.*
+- **One transaction map.** Merge the four sequencing frameworks (8-step need-to-signature, 6-stage deal lifecycle, getting-to-signature, T−48 gigawatt playbook) into one map with a generator lane and a load lane. *Priority: medium.*
+- **Counterparty vocabulary table.** Define retail supply, utility ESA, large-load tariff, sleeved PPA and green tariff once, in one table, and delete the duplicates in Drafting and Data centers. *Priority: medium.*
+- **Strike build-up and solve-for-price.** The workbench takes price as an input; an originator solves for the strike at a target DSCR/IRR. Add a "solve for price" output and a dated benchmark table (LevelTen index quoted, not just named). *Priority: medium.*
+- **Hedge effectiveness, mark-to-market and swap status.** A corporate VPPA is often a CFTC swap (end-user exception, ISDA schedule) and is marked to market quarterly; the site never says so. *Priority: medium.*
+- **Nuclear-restart workbench preset** with a government-loan layer and a 20-year full-output offtake (the Crane case). *Priority: low.*
+- **Flexible-connection term sheet with numbers.** The pass adds the terms list; the ranges (notice, event length, annual-hours cap) need a primary source such as a filed non-firm tariff. *Priority: low.*
+- **Community-and-cost case** with recorded outcomes (water, tax abatement, moratorium, bill impact). The xAI case is the only backlash example. *Priority: low.*
+- **SMR structure card**: cancelled-project precedent, fuel supply, per-design licensing status; label announced vs contracted capacity. *Priority: low.*
+- **Case-study filter by contract form** on the glance table (now 13 rows). *Priority: medium (was low).*
+- **Content-hash cache-bust.** Replace the hand-bumped `?v=` string with a `tools/bump.py` that writes a short hash of each asset into index.html; the same-string scar has now bitten four times (2026-07-12 twice, 2026-08-08, 2026-10-22). *Priority: high.*
+
+### Dated follow-ups
+
+- Nov 16, 2026: PJM and its TOs' §205 large-load filing.
+- Dec 16, 2026: LPSC vote on U-37882 (Meta × Entergy second build).
+- Dec 2026: PJM 2029/30 BRA.
+- Feb 28, 2027: PJM reliability backstop effective unless FERC acts.
+- Jun 30, 2027: Black Hills × Google advances reimbursed.
+- Undated: Wisconsin PSC on the Oracle × We Energies subscription; appeal status of the Notice 2025-42 vacatur; end of the Texas data-center audit; NRC Crane restart (2H 2027).
+
 ## Case-study refresh + at-a-glance table (2026-10-08)
 
 Checked the six load/gen/wires cases against what moved in the last year (FERC's co-location and show-cause orders, PJM's backstop procurement, the NIPSCO×Amazon order, Fervo's Cape Station PPA, the Entergy second build, the xAI Clean Air Act suit, the spread of large-load tariffs) and against the UX cost of reaching them: at 375px the case studies sat ~5.4k px into a ~16k px view, closed, with title-only summaries and the lesson at the bottom of a ~2,750 px accordion. Sources: `docs/research-us-ppa.md` Round 10.

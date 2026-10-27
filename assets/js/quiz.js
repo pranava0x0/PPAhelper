@@ -5,7 +5,18 @@
 (function () {
   "use strict";
 
-  var KEYS = ["A", "B", "C", "D"];
+  var KEYS = ["A", "B", "C", "D", "E", "F"];
+
+  /* Banks list the correct option first; show a shuffled copy so the answer
+     isn't always A. Scoring reads the option object, never its position. */
+  function shuffled(list) {
+    var out = list.slice();
+    for (var i = out.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = out[i]; out[i] = out[j]; out[j] = t;
+    }
+    return out;
+  }
 
   function renderBank(root, bankId, questions) {
     var answered, correctCount, scoreEl, resultEl;
@@ -33,7 +44,9 @@
       explain.hidden = true;
       explain.textContent = q.explain;
 
-      q.opts.forEach(function (o, oi) {
+      var shown = shuffled(q.opts);
+      var buttons = [];
+      shown.forEach(function (o, oi) {
         var btn = document.createElement("button");
         btn.type = "button";
         btn.className = "quiz-opt";
@@ -49,15 +62,16 @@
           card.dataset.done = "1";
           answered++;
           if (o.correct) correctCount++;
-          opts.querySelectorAll(".quiz-opt").forEach(function (c, ci) {
-            c.disabled = true;
-            if (q.opts[ci].correct) c.classList.add("correct");
+          buttons.forEach(function (c) {
+            c.btn.disabled = true;
+            if (c.opt.correct) c.btn.classList.add("correct");
           });
           if (!o.correct) btn.classList.add("wrong");
           explain.hidden = false;
           updateScore();
           if (answered === questions.length) finish();
         });
+        buttons.push({ btn: btn, opt: o });
         opts.appendChild(btn);
       });
 

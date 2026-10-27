@@ -50,7 +50,7 @@
           { t: "It locks in the price of solar panels" },
           { t: "The ISO refuses to interconnect uncontracted projects" }
         ],
-        explain: "Bankability: a creditworthy buyer's long-term contract is the predictable revenue lenders need. No offtake, no project — which is why PPAs are now the main way new US generation gets financed (~27 GW contracted by corporate buyers in 2025)."
+        explain: "Bankability: a creditworthy buyer's long-term contract is the predictable revenue lenders need. No offtake, no project — which is why PPAs are a major route to financing wind and solar in the merchant (ISO/RTO) regions (~27 GW contracted by corporate buyers in 2025)."
       },
       {
         prompt: "In a virtual PPA (VPPA), what does the buyer actually receive?",
@@ -171,6 +171,16 @@
         explain: "The buyer's hedge references the hub; the developer earns its local node price but settles at the hub, so it absorbs the node-to-hub difference. Choosing the settlement point is the single most consequential economic term in the contract."
       },
       {
+        prompt: "Developer and corporate buyer are negotiating a VPPA's settlement point. Which opening positions are typical?",
+        opts: [
+          { t: "Developer asks for node settlement or a basis collar; buyer asks for the hub", correct: true },
+          { t: "Developer asks for hub settlement to avoid congestion; buyer asks for the node" },
+          { t: "Both ask for the node, because that is where the project really sells power" },
+          { t: "Both ask for the hub, because hub prices swing less than any single node" }
+        ],
+        explain: "The developer earns its node price, so settling at the node, or capping the node-to-hub gap with a basis collar, keeps basis off its books. The buyer's own costs track the hub, so a hub-settled swap is its cleaner hedge. The usual outcome is hub settlement with basis on the seller, which is why the Sunridge August wipe lands on the developer."
+      },
+      {
         prompt: "A company's load sits in Georgia (regulated, no in-state organized market). It wants to hedge a solar project located in ERCOT. What's the natural fit?",
         opts: [
           { t: "A virtual PPA settled at an ERCOT hub", correct: true },
@@ -276,7 +286,17 @@
           { t: "Repays the senior lenders first" },
           { t: "Covers the project's operating costs" }
         ],
-        explain: "At construction the project is funded by senior debt and sponsor equity; the ITC then comes back to equity as year-1 cash (the model assumes post-IRA transferability). Route it through a tax-equity partnership flip instead and the tax-equity investor takes most of the credit and early cash, lowering the sponsor's own return."
+        explain: "At construction the project is funded by senior debt and sponsor equity; the ITC then comes back to equity as year-1 cash (the model assumes post-IRA transferability, and a project that still qualifies under the July 2025 law). Route it through a tax-equity partnership flip instead and the tax-equity investor takes most of the credit and early cash, lowering the sponsor's own return."
+      },
+      {
+        prompt: "A solar project did not begin construction by Jul 4, 2026. What does that do to the PPA price it needs?",
+        opts: [
+          { t: "In service by end-2027 keeps the credit; otherwise it needs a higher price", correct: true },
+          { t: "Nothing: the 2025 law kept wind and solar credits at full value through 2033" },
+          { t: "Its price falls, because a larger depreciation deduction replaces the credit" },
+          { t: "It must move to a node-settled VPPA, since hub settlement loses the credit" }
+        ],
+        explain: "Under the July 2025 law a wind or solar project that began construction by Jul 4, 2026 escapes the in-service deadline; a later start must be in service by Dec 31, 2027 to claim the credit. Miss it and the ITC the workbench assumes (30% of capex) is gone, so the same debt and equity need a higher PPA price — set the tax-credit share to 0 and watch. Storage, nuclear and geothermal keep full credits for construction starting through 2033."
       }
     ],
 
@@ -323,14 +343,14 @@
         explain: "The battery doesn't generate — it shifts. So hybrid PPAs price it as availability: a storage adder on the energy price or a separate capacity payment, backed by availability and round-trip-efficiency guarantees. The negotiated clauses are the charging rules (grid vs. solar-only, which drives tax treatment and whose clean-energy claim the stored energy carries) and degradation over the term."
       },
       {
-        prompt: "Why do utilities demand minimum-demand ratchets, collateral, and exit fees in large-load ESAs?",
+        prompt: "Why do utilities demand minimum-take charges, collateral, and exit fees in large-load ESAs?",
         opts: [
           { t: "To protect existing ratepayers — if the load never materializes, the wires and plants built for it must not become everyone else's bill", correct: true },
           { t: "To maximize profit on each data center" },
           { t: "Because FERC requires identical terms for all customers" },
           { t: "To discourage data centers from connecting at all" }
         ],
-        explain: "ERCOT tracked ~475 GW of large-load requests by June 2026 — over five times its all-time peak — and most of it is phantom load shopped into several queues at once. Ratchets, security postings ($50,000/MW under ERCOT's SB6 process), and termination payments make the load, not existing ratepayers, carry the cost of infrastructure built on its promise."
+        explain: "ERCOT tracked ~475 GW of large-load requests by June 2026 — over five times its all-time peak — and most of it is phantom load shopped into several queues at once. Minimum-take charges, security postings ($50,000/MW under ERCOT's SB6 process), and termination payments make the load, not existing ratepayers, carry the cost of infrastructure built on its promise."
       },
       {
         prompt: "A 1,000 MW campus signs one 1,000 MW solar PPA. What does that actually cover?",
@@ -371,6 +391,26 @@
           { t: "Amazon builds behind-the-meter gas turbines on the campus itself and NIPSCO supplies only standby and backup service" }
         ],
         explain: "GenCo owns the dedicated plants and files its sales at MISO and FERC, so other NIPSCO customers are not on the hook for them. Those customers also receive about $1B of Shared System Charge credits over the 15 years."
+      },
+      {
+        prompt: "Google's Oct 2026 Constellation deal pays for 890 MW of reactor uprates. Why does that answer the additionality objection to existing-nuclear PPAs?",
+        opts: [
+          { t: "It pays for megawatts that did not exist, so the grid gains new carbon-free output", correct: true },
+          { t: "An uprated reactor earns two RECs for every MWh it produced before the upgrade" },
+          { t: "PJM treats any nuclear PPA longer than 15 years as additional under its rules" },
+          { t: "The plant's existing output is retired, so Google's purchase replaces it 1:1" }
+        ],
+        explain: "Additionality asks whether your money caused new clean supply. Buying an operating plant's output adds none: the grid gains no new carbon-free MWh when a plant changes offtaker. An uprate adds output at a reactor already running, so the 890 MW is new. The trade is schedule risk: Google now waits on construction and licensing, from first output in 2028 to the end of 2032."
+      },
+      {
+        prompt: "In a customer-funded utility build (DTE × Google, Black Hills × Google), which terms keep other ratepayers from paying if the data center leaves early?",
+        opts: [
+          { t: "A term matched to cost recovery, plus exit charges and advances or collateral", correct: true },
+          { t: "A REC price high enough for the utility to resell credits if the load leaves" },
+          { t: "A FERC transmission rate that spreads the plant's cost across the whole RTO" },
+          { t: "A short contract, so the utility can find a replacement customer sooner" }
+        ],
+        explain: "The commission's question is stranded cost: if the load leaves, who pays for what was built? DTE's answer is a 20-year term against a 5-year standard; Black Hills' is $399M of refundable advances, agreements to 2048 and a cost-adjustment mechanism. A term shorter than the cost recovery, or cost spread over other customers, is what the five commission tests on this tab are built to catch."
       }
     ]
   };

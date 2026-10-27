@@ -135,3 +135,25 @@ Inline (no agent): the two order PDFs (ER26-3380, 97 pp; IURC 46322, 73 pp) were
 1. **Haiku is a lead generator, not a source.** Every date or docket it returns goes through one direct check before it reaches `data/*.json`.
 2. **The browser pane's mobile emulation misreports scroll geometry.** `scrollIntoView` appeared not to move the page at 375px (element top stayed at 1,129px in a reported 1,845px-tall viewport); the same click at desktop landed the case at 150px, exactly under the sticky nav. Verify scroll behaviour at desktop and trust screenshots, not rects, at emulated widths (see the 2026-08-08 note on `innerWidth`).
 3. **Glance strings need a hard cap.** `data.test.js` enforces ≤ 90 chars per cell; two of mine were 92–93 before the test caught them. Write the cell first, the prose second.
+
+---
+
+## Run log — 2026-10-22 · October pass (branch claude/oct-2026-pass)
+
+Ladder as the user asked: Haiku for research, Sonnet to adjudicate and review, Opus to build, Fable to plan, scan x.com, measure, merge and verify. Project hook caps concurrent agents at two.
+
+| # | Agent | Job | Tokens | Outcome |
+|---|---|---|---|---|
+| 1–4 | haiku ×4 | Dockets since Oct 8; new deals; policy/economics; expert discourse map (≤18 searches each) | ~110k each | Lead lists with many UNVERIFIED flags; useful as a map, wrong on three dates and one docket (re-checked before use) |
+| — | fable (inline) | x.com scan in the user's Chrome: 16 searches, ~465 posts scraped via DOM into sessionStorage, dumped as text (the site's CSP blocks a localhost POST; clipboard needs focus) | ~60k | Surfaced the Oct 9 FERC order, the Google × Constellation uprate PPA, NiSource × Microsoft and the Oct 19 xAI ruling before any search did |
+| 5 | sonnet | Adjudicate the five research files against primary sources (22 web calls) | ~174k | Rejected 20+ leads; confirmed the four new cases; wrongly rejected the xAI Oct 19 ruling and Meta's 4,500 MW (both real, confirmed inline with two searches) |
+| 6 | sonnet | Twelve-chair static content review of index.html, data, quiz banks, draft generator | ~210k | 50+ findings; the eight highest (crossed risk-table columns, inverted solar volumes, fused PJM hub, wrong sleeving/standard-offer text, stale tax regime, terminated CoreWeave deal, curtailment under FM) all confirmed by re-reading the lines |
+| 7 | opus | Build A: content and data (spec Part 2) in the main checkout | ~367k, 71 tool uses | All 19 corrections, 4 cases, 8 terms, 4 questions, Round 11; deviated from the spec where the 8-K disagreed, and said so |
+| 8 | opus | Build B: UX and perf (spec Part 1) in a worktree; drove headless Chrome itself for before/after geometry | ~225k, 49 tool uses | Masthead 141 → 99 px; lazy per-tab assets; one stray CSS brace |
+| 9 | sonnet | Code review round 1 over `git diff main` | see below | |
+
+**Lessons:**
+1. **The `?v=` scar, fourth bite, new mechanism.** Two builds each set `?v=20261022a`; the content build loaded the page on the shared preview port, so the pane cached the pre-merge `app.js` under that string; after the merge every lazy tab was blank with no console error. Rule stays "bump once per editing pass" and a merge of two passes is a pass. Backlog: replace the hand-bumped string with a content hash written by a script.
+2. **Agents' x.com is the user's Chrome, and the page fights exfiltration.** `fetch` to 127.0.0.1 is blocked by the site's connect-src; clipboard writes need focus. Render the data into the DOM and read it with `get_page_text` in 50k-char chunks.
+3. **A rejection is not a verification.** The adjudicator dropped two true facts because its 22-call budget found no coverage; one targeted search each confirmed them. Spend two calls re-checking the adjudicator's rejections that came from a scan with a timestamp.
+4. **Parallel builds on one file work when the regions are disjoint and the spec says which lines each owns.** The only conflict was the script-tag block both builds had reason to touch.

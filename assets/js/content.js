@@ -35,6 +35,12 @@
     });
   }
   function reapplyLevel() { if (window.PPA) window.PPA.reapplyLevel(); }
+  function getJson(path) {
+    return fetch(dataUrl(path)).then(function (r) {
+      if (!r.ok) throw new Error(path + " " + r.status);
+      return r.json();
+    });
+  }
 
   /* ============ EXAMPLE PPAs ============ */
   var examples = [], activeExample = null;
@@ -111,7 +117,7 @@
   }
 
   function loadExamples() {
-    return fetch(dataUrl("data/examples.json")).then(function (r) { return r.json(); }).then(function (data) {
+    return getJson("data/examples.json").then(function (data) {
       examples = (data && data.examples) || [];
       if (!examples.length) return;
       activeExample = examples[0].id;
@@ -120,6 +126,7 @@
     }).catch(function (e) {
       var s = document.getElementById("example-summary");
       if (s) s.textContent = "Could not load examples (" + e.message + "). Serve over http (see README).";
+      throw e; // let app.js's ensureView clear the tab and retry on the next visit
     });
   }
 
@@ -393,10 +400,11 @@
   }
 
   function loadDatacenter() {
-    return fetch(dataUrl("data/datacenter.json")).then(function (r) { return r.json(); }).then(renderDatacenter)
+    return getJson("data/datacenter.json").then(renderDatacenter)
       .catch(function (e) {
         var w = document.getElementById("dc-why");
         if (w) w.textContent = "Could not load data-center deals (" + e.message + "). Serve over http (see README).";
+        throw e;
       });
   }
 
@@ -421,15 +429,30 @@
     }).join("");
   }
   function loadPerspectives() {
-    return fetch(dataUrl("data/perspectives.json")).then(function (r) { return r.json(); }).then(renderPerspectives)
+    return getJson("data/perspectives.json").then(renderPerspectives)
       .catch(function (e) {
         var v = document.getElementById("voices");
         if (v) v.innerHTML = '<p class="caption">Could not load perspectives (' + e.message + ").</p>";
+        throw e;
       });
   }
 
+  /* Each JSON loads on the first visit to its tab, not at page load
+     (glossary.json stays preloaded by app.js). app.js runs the loader inside
+     ensureView and re-applies the level filter after it. */
+  var VIEW_DATA = { examples: loadExamples, datacenter: loadDatacenter, perspectives: loadPerspectives };
+
   function init() {
-    Promise.all([loadExamples(), loadDatacenter(), loadPerspectives()]).then(reapplyLevel);
+    var ppa = window.PPA;
+    if (ppa && ppa.onViewLoad) {
+      Object.keys(VIEW_DATA).forEach(function (view) {
+        ppa.onViewLoad(view, function () { return VIEW_DATA[view]().then(reapplyLevel); });
+      });
+    } else {
+      // app.js missing: fall back to loading everything up front
+      Promise.all([loadExamples(), loadDatacenter(), loadPerspectives()])
+        .then(reapplyLevel, function (e) { console.error(e); reapplyLevel(); });
+    }
     document.addEventListener("ppa:level", function () {
       // when a level hides the active example pill, fall back to the first visible one
       var active = document.querySelector('#example-pills .example-pill[aria-selected="true"]');
