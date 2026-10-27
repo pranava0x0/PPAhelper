@@ -125,13 +125,15 @@
          "         prior to COD."];
 
     var startDef = isNuclear
-      ? ["\"Delivery Start Date\" means " + cod + ", or if later, the",
-         "first day of the month after the last condition in",
-         "Exhibit B is satisfied."]
+      ? ["\"Delivery Start Date\" means [" + cod + "], or if",
+         "later, the first day of the month after the last",
+         "condition in Exhibit B is satisfied."]
       : ["\"COD\" or \"Commercial Operation Date\" means the date on",
          "which the Project first delivers energy to the " + iso,
          "grid following completion of commissioning tests, as",
          "certified in writing by Seller."];
+    startDef = startDef.concat(["\"Contract Year\" means each successive twelve-month",
+      "period beginning on " + start + "."]);
     var codCovenant = isNuclear
       ? ["     (a) maintain the Project's NRC operating license in",
          "         effect throughout the Contract Term;"]
@@ -181,7 +183,8 @@
          "   " + iso + " or the applicable transmission provider.",
          "3. Financing: Seller has closed project financing (debt",
          "   and tax equity, if any)."];
-    var taxContext = ["[To be negotiated.]",
+    var taxContext = ["[To be negotiated. Options A–C below are alternatives;",
+      " keep one and delete the others.]",
       "",
       " [Drafting note: re-verify the Project's federal tax-credit",
       " status, and the foreign-entity and tariff rules that apply",

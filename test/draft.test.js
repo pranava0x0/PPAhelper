@@ -59,7 +59,8 @@ test("nuclear: no construction-era terms", () => {
 });
 
 test("nuclear: operating-plant terms replace them", () => {
-  assert.ok(/"Delivery Start Date" means December 31, 2027/.test(nuclear), "no Delivery Start Date definition");
+  assert.ok(/"Delivery Start Date" means \[December 31, 2027\]/.test(nuclear), "no Delivery Start Date definition");
+  assert.ok(/"Contract Year" means each successive twelve-month/.test(nuclear), "no Contract Year definition");
   assert.ok(/8\.2  Availability Guarantee\./.test(nuclear), "no availability clause in place of delay damages");
   assert.ok(/NRC\s+operating license/.test(section(nuclear, "EXHIBIT B", "EXHIBIT C")),
     "Exhibit B does not ask for the operating license");
