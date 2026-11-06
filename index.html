@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
-  <link rel="preload" href="data/glossary.json?v=20261106c" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261106c">
+  <link rel="preload" href="data/glossary.json?v=20261106e" as="fetch" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261106e">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -1286,7 +1286,7 @@
               <button type="button" class="scenario-btn" data-preset="wind">Onshore wind</button>
               <button type="button" class="scenario-btn" data-preset="storage">Solar + storage</button>
             </div>
-            <button type="button" class="nav-link-btn" data-scroll-to="pf-results">View finance results ↓</button>
+            <button type="button" class="nav-link-btn result-jump" data-scroll-to="pf-results">View finance results ↓</button>
           </fieldset>
 
           <fieldset>
@@ -1352,7 +1352,7 @@
         </form>
 
         <div class="readout">
-          <button type="button" class="nav-link-btn" data-scroll-to="pf-controls">Edit finance inputs ↑</button>
+          <button type="button" class="nav-link-btn result-jump" data-scroll-to="pf-controls">Edit finance inputs ↑</button>
           <div class="direction-banner" id="pf-banner" role="status" aria-live="polite">—</div>
 
           <div class="kpis" id="pf-results">
@@ -1577,7 +1577,7 @@
               <button type="button" class="scenario-btn" data-preset="renstor" aria-pressed="false">Renewables + storage</button>
               <button type="button" class="scenario-btn" data-preset="anchored" aria-pressed="true">Anchored stack</button>
             </div>
-            <button type="button" class="nav-link-btn" data-scroll-to="st-results">View supply results ↓</button>
+            <button type="button" class="nav-link-btn result-jump" data-scroll-to="st-results">View supply results ↓</button>
           </fieldset>
 
           <fieldset>
@@ -1618,7 +1618,7 @@
         </form>
 
         <div class="readout">
-          <button type="button" class="nav-link-btn" data-scroll-to="st-controls">Edit supply inputs ↑</button>
+          <button type="button" class="nav-link-btn result-jump" data-scroll-to="st-controls">Edit supply inputs ↑</button>
           <div class="direction-banner" id="st-banner" role="status" aria-live="polite">—</div>
 
           <div class="kpis" id="st-results">
@@ -1981,14 +1981,14 @@
 
   <footer role="contentinfo">
     <div class="footer-inner">
-      <p style="margin:0">PPA Helper · a learning tool for US power purchase agreements. Content as of <span class="mono">2026-10-22</span>, built on five fact-checked domain passes plus a curriculum benchmark (<a href="docs/research-us-ppa.md">research notes</a>). The settlement simulator is an illustration of contract mechanics, not market data or financial advice.</p>
+      <p style="margin:0">PPA Helper · a learning tool for US power purchase agreements. Updated <span class="mono">2026-11-06</span>; cases retain their capture dates. Built on five domain research passes plus a curriculum benchmark (<a href="docs/research-us-ppa.md">research notes</a>). The settlement simulator is an illustration of contract mechanics, not market data or financial advice.</p>
     </div>
   </footer>
 
   <!-- per-tab scripts (simulator, draft, projfin, stack) load on first visit: VIEW_SCRIPTS in app.js -->
-  <script src="assets/js/quiz-banks.js?v=20261106c" defer></script>
-  <script src="assets/js/quiz.js?v=20261106c" defer></script>
-  <script src="assets/js/app.js?v=20261106c" defer></script>
-  <script src="assets/js/content.js?v=20261106c" defer></script>
+  <script src="assets/js/quiz-banks.js?v=20261106e" defer></script>
+  <script src="assets/js/quiz.js?v=20261106e" defer></script>
+  <script src="assets/js/app.js?v=20261106e" defer></script>
+  <script src="assets/js/content.js?v=20261106e" defer></script>
 </body>
 </html>

@@ -110,10 +110,7 @@
     wireChips(d);
     // On a stacked (mobile) layout the detail sits below a long clause list —
     // bring it into view so a tap doesn't strand the reader at the top.
-    if (userScroll && window.innerWidth < 860) {
-      var smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      d.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
-    }
+    if (userScroll && window.PPA) window.PPA.jumpTo("clause-detail");
   }
 
   function loadExamples() {
@@ -348,7 +345,7 @@
       var th = document.createElement("th");
       th.scope = "col";
       th.setAttribute("role", "columnheader");
-      th.textContent = name === "Status" && asOf ? "Status · as of " + asOf : name;
+      th.textContent = name === "Status" ? "Status · capture date below" : name;
       hr.appendChild(th);
     });
     thead.appendChild(hr);
@@ -378,7 +375,16 @@
       caseTd.className = "glance-case";
       caseTd.appendChild(btn);
       cell("Market").textContent = c.market || "—";
-      GLANCE_FIELDS.forEach(function (f) { cell(f.label).textContent = g[f.key] || "—"; });
+      GLANCE_FIELDS.forEach(function (f) {
+        var td = cell(f.label);
+        td.textContent = g[f.key] || "—";
+        if (f.key === "status" && (c.capturedAt || asOf)) {
+          var date = document.createElement("div");
+          date.className = "caption";
+          date.textContent = "Captured " + (c.capturedAt || asOf);
+          td.appendChild(date);
+        }
+      });
       tbody.appendChild(tr);
     });
 

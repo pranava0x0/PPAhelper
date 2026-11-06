@@ -11,6 +11,7 @@ const shots = path.resolve("uat-screenshots");
 fs.mkdirSync(out, { recursive: true });
 fs.mkdirSync(shots, { recursive: true });
 const cases = require("../data/datacenter.json");
+const caseCount = cases.caseStudies.length + cases.vppCases.length;
 const pause = p => p.waitForTimeout(100); // let scroll and paint observers deliver
 
 async function reset(p) {
@@ -174,6 +175,20 @@ async function main() {
       assert.equal(await p.locator("#glossary-list .term").count(), 1);
       journeys.push(await snapshot(p, "Glossary definition", 0, start));
 
+      await reset(p); start = performance.now();
+      await search(p, "Annotated examples", "Annotated examples");
+      const example = p.locator('.example-pill[data-id="real-epe-suntower"]');
+      let clauseWheels = await reach(p, example);
+      await example.click();
+      const clause = p.locator("#clause-list .clause-row").nth(2);
+      clauseWheels += await reach(p, clause);
+      await clause.click();
+      await pause(p);
+      clauseWheels += await reach(p, p.locator("#clause-detail"));
+      assert.ok((await p.locator("#clause-detail").textContent()).trim().length > 30);
+      assert.equal(await p.locator("#clause-detail").evaluate(el => el === document.activeElement), true);
+      journeys.push(await snapshot(p, "Filed PPA clause explanation", clauseWheels, start));
+
       // Every case is reachable, including VPPs and level-gated cases.
       for (const [group, prefix] of [[cases.caseStudies, "dc-cases-"], [cases.vppCases, "vpp-cases-"]]) {
         for (const c of group) {
@@ -197,13 +212,25 @@ async function main() {
       await p.locator(".palette input").fill("Clinton");
       await p.keyboard.press("ArrowDown"); await p.keyboard.press("Enter");
       await p.waitForFunction(() => document.querySelector("#dc-cases-meta-clinton").open);
+      await p.locator('[data-setlevel="2"]').click();
+      await search(p, "Electricity from scratch", "Electricity from scratch");
+      assert.equal(await p.locator('[data-setlevel="1"]').getAttribute("aria-pressed"), "true");
+      assert.equal(await p.locator("#stage-1").isVisible(), true);
+      const views = await p.locator("nav.views [data-view]").evaluateAll(els => els.map(el => el.dataset.view));
+      for (const view of views) {
+        await p.locator("#tab-" + view).click();
+        await p.waitForFunction(view => window.PPA.currentView() === view, view);
+        if (view === "perspectives") await p.locator("#voices .voice-card").first().waitFor();
+        assert.equal(await p.locator("#view-" + view).isVisible(), true);
+        assert.equal(await p.locator(".load-error:visible").count(), 0);
+      }
       await p.locator("#theme-toggle").click();
       assert.equal(await p.locator("html").getAttribute("data-theme"), "dark");
       await p.screenshot({ path: path.join(shots, `2026-11-06_${width}-dark.png`) });
-      report.viewports.push({ width, height, cold, journeys, casesTested: 17, errors });
+      report.viewports.push({ width, height, cold, journeys, casesTested: caseCount, viewsTested: views.length, errors });
       assert.deepEqual(errors, []);
       await context.close();
-      console.log(`Passed ${width}×${height}: ${journeys.length} measured journeys, 17 cases`);
+      console.log(`Passed ${width}×${height}: ${journeys.length} measured journeys, ${caseCount} cases, ${views.length} views`);
     }
 
     const context = await browser.newContext({ viewport: { width: 375, height: 812 }, reducedMotion: "reduce" });
@@ -216,11 +243,34 @@ async function main() {
     await p.locator(".palette input").fill("Brookfield");
     await p.getByRole("button", { name: "Retry case search" }).waitFor();
     fail = false;
-    await p.getByRole("button", { name: "Retry case search" }).click();
+    await p.getByRole("button", { name: "Retry case search" }).focus();
+    await p.keyboard.press("Enter");
     await p.locator('.palette-list [role="option"]').filter({ hasText: "Pennsylvania hydro" }).click();
     await p.waitForFunction(() => document.querySelector("#dc-cases-google-brookfield-hydro")?.open);
     report.retry = "503 then retry reaches requested case";
     await context.close();
+
+    // Optional lab stress run: the same machine and browser, simulated slower
+    // CPU/network. This does not emulate a particular physical phone.
+    if (process.env.PPA_UAT_STRESS === "1") {
+      const slow = await browser.newContext({ viewport: { width: 375, height: 812 } });
+      await instrument(slow);
+      const page = await slow.newPage();
+      const session = await slow.newCDPSession(page);
+      await session.send("Network.enable");
+      await session.send("Network.emulateNetworkConditions", {
+        offline: false, latency: 150, downloadThroughput: 200000, uploadThroughput: 75000
+      });
+      await session.send("Emulation.setCPUThrottlingRate", { rate: 4 });
+      await reset(page);
+      await page.waitForTimeout(300);
+      report.throttled = await page.evaluate(() => ({
+        domMs: performance.getEntriesByType("navigation")[0].domContentLoadedEventEnd,
+        fcpMs: performance.getEntriesByName("first-contentful-paint")[0]?.startTime,
+        lcpMs: window.lab.lcp, cls: window.lab.cls, longTasks: window.lab.longTasks
+      }));
+      await slow.close();
+    }
     fs.writeFileSync(path.join(out, "report.json"), JSON.stringify(report, null, 2) + "\n");
     console.log("Saved .sessions/uat/report.json");
   } finally { await browser.close(); }

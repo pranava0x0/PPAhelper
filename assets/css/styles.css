@@ -360,6 +360,8 @@ main { max-width: 1180px; margin: 0 auto; padding: 28px 22px 80px; }
 .case-history li { margin: 3px 0; }
 .case-date { color: var(--text-muted); font-size: 12px; white-space: nowrap; margin-right: 4px; }
 .case-meta { margin: 0 0 8px; }
+.case-study .src a { display: inline-flex; align-items: center; min-height: 44px; }
+.result-jump { min-height: 44px; }
 .case-participants { font-size: 13.5px; color: var(--text-muted); max-width: none; }
 .case-decisions { margin: 0 0 14px; padding-left: 22px; font-size: 14px; }
 .case-decisions li { margin: 5px 0; padding-left: 3px; }

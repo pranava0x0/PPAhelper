@@ -1,6 +1,6 @@
 {
   "updated": "2026-11-06",
-  "note": "Data-center & generation PPAs. Deals are point-in-time (as of Oct 2026) and will age — treat them as worked examples of structures, not a live deal tracker. Each carries a primary or reputable-trade source. 'level': 1=newcomer, 2=practitioner.",
+  "note": "Data-center & generation PPAs. Earlier deal statuses were captured in October 2026; new case studies carry individual capture dates. Facts will age — treat them as worked examples of structures, not a live deal tracker. Each carries a primary or reputable-trade source. 'level': 1=newcomer, 2=practitioner.",
   "demand": {
     "stat": "US data-center electricity demand more than doubled (2.3x) from 2018 to 2024 and could reach 325–580 TWh by 2028 — up to roughly 12% of US electricity.",
     "source": "LBNL — 2024 US Data Center Energy Usage Report",
@@ -1309,12 +1309,12 @@
           "event": "Meta and Constellation announce the 20-year PPA and a 30 MW uprate."
         },
         {
-          "date": "Jun 2027",
-          "event": "Announced PPA start following expiry of state support; this is a future contract milestone, not a completed delivery event."
-        },
-        {
           "date": "Nov 6, 2026",
           "event": "Teaching case captured from the two company announcements; undisclosed pricing and outage terms remain unknown."
+        },
+        {
+          "date": "Jun 2027",
+          "event": "Announced PPA start following expiry of state support; this is a future contract milestone, not a completed delivery event."
         }
       ],
       "lesson": "A PPA can support an operating plant after state support ends. Separate that revenue change from a restart and from the incremental megawatts of an uprate.",

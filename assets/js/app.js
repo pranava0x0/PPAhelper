@@ -995,8 +995,8 @@
   }
 
   /* ---------- quick-nav palette (/ or Ctrl-K) ----------
-     Built on first open; the index is rebuilt per open so it respects the
-     current level filter. Course tabs, every visible h2, every glossary term. */
+     Built on first open. Results include both levels; selecting a gated
+     section changes mode before jumping. Case data loads on first search. */
   var pal = null;
   var caseData = null;
   var caseDataLoad = null;
@@ -1040,15 +1040,20 @@
       view.querySelectorAll("h2").forEach(function (h, hi) {
         if (!h.id) h.id = name + "-x" + (hi + 1);
         var gated = h.closest("[data-level]");
+        var exclusive = h.closest("[data-level-only]");
         var clean = h.cloneNode(true);
         clean.querySelectorAll(".pill, .stage-n").forEach(function (x) { x.remove(); });
         items.push({ label: clean.textContent.replace(/\s+/g, " ").trim(), ctx: paletteCtx(name), view: name, id: h.id,
-          level: gated ? Number(gated.dataset.level) : 1 });
+          level: exclusive ? Number(exclusive.dataset.levelOnly) : gated ? Number(gated.dataset.level) : 1,
+          onlyLevel: !!exclusive });
       });
     });
     PRAC_INDEX.forEach(function (entry) {
-      if (!document.getElementById(entry.target) || items.some(function (it) { return it.id === entry.target; })) return;
-      items.push({ label: entry.label, ctx: paletteCtx(entry.view), view: entry.view, id: entry.target, level: 2 });
+      var target = document.getElementById(entry.target);
+      if (!target || items.some(function (it) { return it.id === entry.target; })) return;
+      var gated = target.closest("[data-level]");
+      items.push({ label: entry.label, ctx: paletteCtx(entry.view), view: entry.view, id: entry.target,
+        level: gated ? Number(gated.dataset.level) : 1 });
     });
     if (caseData) {
       ["caseStudies", "vppCases"].forEach(function (group) {
@@ -1086,7 +1091,9 @@
   function paletteGo(item) {
     closePalette();
     if (item.term) { showGlossaryTerm(item.term); return; }
-    if (item.level > Number(currentLevel)) setLevelViaFilter(String(item.level));
+    if (item.level > Number(currentLevel) || item.onlyLevel && item.level !== Number(currentLevel)) {
+      setLevelViaFilter(String(item.level));
+    }
     var ready = showView(item.view, !item.id);
     if (item.id) ready.then(function () {
       if (currentView === item.view) scrollToId(item.id);
@@ -1141,7 +1148,7 @@
       }
       else if (e.key === "ArrowDown") { e.preventDefault(); movePalette(1); }
       else if (e.key === "ArrowUp") { e.preventDefault(); movePalette(-1); }
-      else if (e.key === "Enter") {
+      else if (e.key === "Enter" && e.target === input) {
         e.preventDefault();
         var row = pal.rows[pal.active];
         if (row) paletteGo(row.item);
@@ -1174,7 +1181,8 @@
       lab.textContent = item.label;
       var ctx = document.createElement("span");
       ctx.className = "pal-ctx";
-      ctx.textContent = (item.ctx || "") + (item.level === 2 && item.ctx !== "Case · Practitioner" ? " · Practitioner" : "");
+      ctx.textContent = (item.ctx || "") + (item.onlyLevel ? " · Newcomer" :
+        item.level === 2 && item.ctx !== "Case · Practitioner" ? " · Practitioner" : "");
       li.appendChild(lab);
       li.appendChild(ctx);
       li.addEventListener("pointerdown", function (e) { e.preventDefault(); });
