@@ -236,7 +236,10 @@
       var body = el("div", "dc-s-body");
       var meta = el("p", "case-meta");
       meta.appendChild(el("span", "pill outline", c.market));
+      if (c.capturedAt) meta.appendChild(document.createTextNode(" · Captured " + c.capturedAt));
       body.appendChild(meta);
+      var lesson = labeled("The lesson.", c.lesson);
+      body.appendChild(lesson);
       // Key facts and the takeaway lead, so an opened case answers
       // "what happened" before the long-form narrative starts.
       if (c.glance) {
@@ -248,7 +251,6 @@
         });
         body.appendChild(facts);
       }
-      body.appendChild(labeled("The lesson.", c.lesson));
       if (c.brief) body.appendChild(labeled("The brief.", c.brief));
       body.appendChild(labeled("Participants.", c.participants, "case-participants"));
       body.appendChild(labeled("The load.", c.load));
@@ -305,7 +307,7 @@
         a.textContent = s.label;
         src.appendChild(a);
       });
-      body.appendChild(src);
+      lesson.after(src);
 
       det.append(summary, body);
       wrap.appendChild(det);

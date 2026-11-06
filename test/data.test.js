@@ -177,6 +177,20 @@ test("Round 11 glossary terms exist and are sourced", () => {
   assert.ok(/Jul 4, 2026/.test(itc.def) && /Dec 31, 2027/.test(itc.def), "ITC entry must date the 2025 phase-out");
 });
 
+test("hydro and Clinton cases distinguish signed supply, operating output and unknown terms", () => {
+  const hydro = dc.caseStudies.find(c => c.id === "google-brookfield-hydro");
+  const clinton = dc.caseStudies.find(c => c.id === "meta-clinton");
+  assert.ok(hydro && clinton, "missing new contract examples");
+  assert.match(hydro.agreement, /financially settled/);
+  assert.match(hydro.gen, /670 MW/);
+  assert.match(hydro.gen, /3,000 MW/);
+  assert.match(hydro.agreement, /does not disclose/);
+  assert.match(clinton.agreement, /June 2027/);
+  assert.match(clinton.gen, /30 MW/);
+  assert.match(clinton.agreement, /do not disclose/);
+  [hydro, clinton].forEach(c => assert.strictEqual(c.capturedAt, "2026-11-06"));
+});
+
 let persp;
 test("perspectives.json is valid; voices and resources are sourced", () => {
   persp = load("perspectives.json");
