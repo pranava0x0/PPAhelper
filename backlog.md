@@ -4,7 +4,7 @@
 
 - ✅ Two additional contract cases: Google × Brookfield hydro and Meta × Clinton, with primary sources and dated limits.
 - ✅ **Direct case lookup and document access.** Search includes case names, contract facts and practitioner targets; lessons and documents lead the case.
-- **Measured UAT and copy pass.** Record performance and interaction costs across phone, tablet and desktop; tighten teaching copy. *Priority: high; in progress.*
+- ✅ **Measured UAT and copy pass.** Added a repeatable browser runner and three-width measurements; revised the teaching copy around delivery, cost and contract requirements.
 
 Spec: `docs/nov-2026-improvements.md`.
 

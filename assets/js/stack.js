@@ -50,12 +50,8 @@
 
   function banner(k) {
     if (k.loadMWh <= 0) return "Set a campus load to start.";
-    var cfe = pct.format(k.cfeShare);
-    if (k.coveredHours === 24 && k.cfeShare >= 0.9) {
-      return "Covered 24/24 at " + cfe + " carbon-free — the stack gigawatt buyers actually sign.";
-    }
     if (k.coveredHours === 24) {
-      return "Covered around the clock — but only " + cfe + " carbon-free. The gas toll is doing the firming.";
+      return "Contracted supply covers all 24 modeled hours. Check the mix and surplus below.";
     }
     return (24 - k.coveredHours) + " hours/day short: " + num.format(Math.round(k.openMWh)) +
       " MWh bought at spot. That open position is unhedged market risk.";

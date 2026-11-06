@@ -1,6 +1,6 @@
 # PPA Helper
 
-A hands-on tool for learning to originate, negotiate, and approve **US power purchase agreements**. Built around a virtual-PPA settlement simulator, with cited foundations, a glossary, and an honest coverage scorecard.
+A hands-on tool for learning to originate, negotiate, and approve **US power purchase agreements**. Built around a virtual-PPA settlement simulator, with cited foundations, a glossary, and a source-coverage table.
 
 Static site — plain HTML, CSS, and vanilla JS. No build step, no dependencies, no backend. Deploys to GitHub Pages as-is.
 

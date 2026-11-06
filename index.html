@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
-  <link rel="preload" href="data/glossary.json?v=20261106b" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261106b">
+  <link rel="preload" href="data/glossary.json?v=20261106c" as="fetch" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261106c">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -43,7 +43,7 @@
     <section class="view" id="view-foundations" role="tabpanel" aria-labelledby="tab-foundations">
       <p class="section-label">Start here · your learning path</p>
       <h1>Power purchase agreements, from scratch</h1>
-      <p class="lede">A PPA is a long-term contract to buy electricity — and its clean-energy attributes — from a generator. This page takes you from "I know nothing about power" to a deal's first settlement — step by step.</p>
+      <p class="lede">A PPA sets the price, term and obligations for buying a generator's output or settling its market value. Start with the delivery route, work through the cash flows, then compare contract terms.</p>
 
       <div id="path-chooser" class="chooser" hidden>
         <div class="chooser-choices">
@@ -117,7 +117,7 @@
         <div class="card">
           <p class="section-label">Buyer</p>
           <h3>Price certainty</h3>
-          <p>A long fixed price hedges against volatile wholesale markets — and, for a corporate buyer, conveys the <span class="gterm" data-term="Renewable Energy Certificate (REC)">RECs</span> behind a clean-energy claim.</p>
+          <p>A long fixed price hedges against volatile wholesale markets — and, for a corporate buyer, conveys the <span class="gterm" data-term="Renewable Energy Certificate (REC)">RECs</span> used for renewable-electricity reporting.</p>
         </div>
         <div class="card">
           <p class="section-label">Developer</p>
@@ -253,8 +253,8 @@
 
       <hr class="rule">
 
-      <h2>RECs — what the buyer is really paying for</h2>
-      <p>A <span class="gterm" data-term="Renewable Energy Certificate (REC)">renewable energy certificate</span> represents the environmental attributes of renewable generation — one REC per MWh delivered to the grid. In a VPPA the fixed price is the consideration for those RECs, which the seller conveys to the buyer. The buyer can then claim the clean-energy use.</p>
+      <h2>RECs — ownership and retirement</h2>
+      <p>A <span class="gterm" data-term="Renewable Energy Certificate (REC)">renewable energy certificate</span> represents the environmental attributes of renewable generation — one REC per MWh delivered to the grid. A VPPA can bundle certificate conveyance with a financial price hedge; read the agreement to see which attributes transfer. Certificate ownership and retirement determine who may report the associated renewable-electricity use; the VPPA does not deliver electricity to the buyer's meter.</p>
       <p class="src"><a href="https://www.epa.gov/green-power-markets/renewable-energy-certificates-recs">EPA — Renewable Energy Certificates</a></p>
 
       <div data-level="2">
@@ -265,20 +265,20 @@
         <div class="grid cols-3">
           <div class="card">
             <p class="section-label">Step 1 — the method</p>
-            <p style="max-width:none;margin:0">The GHG Protocol gives two ways to count electricity emissions. <strong>Location-based</strong> uses the grid average — the same for everyone on the wires. <strong>Market-based</strong> reflects what you contracted for. A clean-energy claim only shows up under the <span class="gterm" data-term="Scope 2 (Market-Based)">market-based method</span>.</p>
+            <p style="max-width:none;margin:0">The GHG Protocol gives two ways to count electricity emissions. <strong>Location-based</strong> uses the grid average — the same for everyone on the wires. <strong>Market-based</strong> reflects what you contracted for. Eligible contractual instruments affect the <span class="gterm" data-term="Scope 2 (Market-Based)">market-based method</span>.</p>
           </div>
           <div class="card">
             <p class="section-label">Step 2 — retire the REC</p>
-            <p style="max-width:none;margin:0">Each MWh you want to claim needs one REC, retired in a registry against your name so no one else can use it. The VPPA is the vehicle: the fixed price is the consideration, and the seller conveys the RECs. Retire them and those MWh count as zero market-based emissions.</p>
+            <p style="max-width:none;margin:0">Each MWh you want to claim needs one REC, retired in a registry against your name so no one else can use it. A VPPA can require the seller to convey RECs. Eligible retired certificates support market-based reporting when the applicable Scope 2 Quality Criteria are met.</p>
           </div>
           <div class="card">
-            <p class="section-label">Step 3 — how good is the claim</p>
-            <p style="max-width:none;margin:0"><span class="gterm" data-term="Additionality">Additionality</span> is the quality test: did your money cause a new plant to get built? A long-term PPA with a new-build project scores high. An <span class="gterm" data-term="Unbundled REC">unbundled REC</span> from an old plant scores low — same one-MWh claim, far weaker story.</p>
+            <p class="section-label">Step 3 — distinguish new investment from certificate ownership</p>
+            <p style="max-width:none;margin:0"><span class="gterm" data-term="Additionality">Additionality</span> asks whether the purchase causes investment that would not otherwise occur. Assess that financing question separately from ownership of an <span class="gterm" data-term="Unbundled REC">unbundled REC</span>. A certificate records generation attributes; it does not prove new capacity was built.</p>
           </div>
         </div>
         <div class="card" style="border-left:3px solid var(--accent);margin-top:12px">
           <p class="section-label">Annual matching vs. 24/7</p>
-          <p style="max-width:none;margin:0">The default is <strong>annual volumetric</strong> matching: buy enough RECs to cover a year's consumption, netted over the whole year. <span class="gterm" data-term="24/7 Carbon-Free Energy (CFE)">24/7 CFE</span> is stricter — every hour's load must be met by carbon-free generation in that same hour and grid region. A solar-only annual match can be "100% renewable" on paper while running on gas at night; hourly matching closes that gap and is where scrutiny is heading. <em>Proposed, not final: the GHG Protocol's consultation on hourly matching and a deliverability test closed Jan 31, 2026. Most respondents opposed both proposals, and the timing of a final standard is disputed (2027 or later). Until a revision is adopted, today's market-based rules stay in force (as of Oct 2026).</em></p>
+          <p style="max-width:none;margin:0">The default is <strong>annual volumetric</strong> matching: buy enough RECs to cover a year's consumption, netted over the whole year. <span class="gterm" data-term="24/7 Carbon-Free Energy (CFE)">24/7 CFE</span> measures matching in each hour and grid region using a specified generation mix. An annual solar certificate purchase does not establish night-time supply. Treat annual and hourly matching as different procurement and reporting criteria. <em>Proposed, not final: the GHG Protocol's consultation on hourly matching and a deliverability test closed Jan 31, 2026. Most respondents opposed both proposals, and the timing of a final standard is disputed (2027 or later). Until a revision is adopted, today's market-based rules stay in force (as of Oct 2026).</em></p>
         </div>
         <p class="src"><a href="https://ghgprotocol.org/scope-2-guidance">GHG Protocol — Scope 2 Guidance</a> · <a href="https://www.epa.gov/green-power-markets/green-power-partnership-additionality">EPA — Additionality</a> · <a href="https://www.argusmedia.com/en/news-and-insights/latest-market-news/2858486-ghg-protocol-faces-pushback-on-scope-2-reforms">Argus — consultation feedback on the Scope 2 proposals</a></p>
       </div><!-- /data-level="2" rec-scope2 -->
@@ -409,7 +409,7 @@
       <div data-level="2">
         <hr class="rule">
 
-        <h2 id="bankable">What "bankable" actually means <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
+        <h2 id="bankable">What lenders require <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
         <p>The site says "bankable" a lot. Here's the machinery behind the word. A utility-scale project is built with <span class="gterm" data-term="Non-Recourse Project Finance">non-recourse project finance</span> — the lenders can look only to the project's own cash flow, not the developer's balance sheet. So the PPA <em>is</em> the collateral, and every clause gets read by someone deciding how much debt it can carry.</p>
         <div class="grid cols-3">
           <div class="card">
@@ -545,11 +545,11 @@
       <details class="acc">
         <summary><strong>Become a PPA originator — the role, who hires, how to break in</strong></summary>
         <div class="acc-body">
-          <p style="margin-bottom:10px">This tool's stated goal is to help you learn to originate PPAs. Here's what that job actually looks like and how people get into it.</p>
+          <p style="margin-bottom:10px">An originator finds buyers, negotiates terms and carries a project through financing and delivery. These are the main responsibilities and entry routes.</p>
 
           <h3 style="margin-top:4px">A day in the life</h3>
           <ul style="margin:0 0 12px;padding-left:20px;font-size:14px">
-            <li><strong>Lead generation:</strong> Identifying corporate buyers with renewable targets — data-center build-out announcements, sustainability commitments, RE100 pledges. Pitching projects at RE+, CEBA Summit, and CleanPower conferences.</li>
+            <li><strong>Lead generation:</strong> Identifying buyers with new load, expiring supply contracts or a price-hedging need. Match project location, delivery date and contract size to the buyer's requirements.</li>
             <li><strong>Pricing runs:</strong> Modeling strike prices — what strike covers project LCOE and hits target returns at the given capital stack, and where the buyer's avoided-cost benchmark sits.</li>
             <li><strong>Term sheet drafting:</strong> Writing a non-binding term sheet that anchors the commercial core: price, contract quantity, settlement point, term, REC ownership, credit support structure.</li>
             <li><strong>Negotiations:</strong> Driving the commercial discussion with the buyer's energy procurement team and counsel. The risk allocation matrix is your negotiating map.</li>
@@ -583,7 +583,7 @@
             <li><strong>Utility or ISO regulatory background:</strong> Understanding dispatch, interconnection, and tariff structures builds instant credibility in technical negotiations.</li>
             <li><strong>Corporate energy procurement:</strong> Time inside a buyer's energy team is rare and valued by developers — you already know what an investment committee needs to approve a 15-year VPPA.</li>
             <li><strong>Energy law:</strong> A PPA is a legal contract. Transactional energy attorneys who understand the clauses — not just who wrote them — move into business development roles regularly.</li>
-            <li><strong>Clean energy organizations:</strong> CEBA, RMI, and Berkeley Lab publish deal data and market benchmarks; analyst roles there build the vocabulary and network.</li>
+            <li><strong>Market research organizations:</strong> CEBA, RMI, and Berkeley Lab publish deal data and market benchmarks; analyst roles there build the vocabulary and network.</li>
           </ol>
 
           <h3>What to study next</h3>
@@ -661,15 +661,15 @@
       <hr class="rule">
 
       <h2 id="need-to-signature">From an energy need to a signed PPA</h2>
-      <p class="lede">This is the whole transaction in eight steps. Each step ends with a document or decision. If you cannot produce it, do not move to the next one.</p>
+      <p class="lede">Each of these eight steps ends with a document or decision needed for the next stage.</p>
       <ol class="steps signing-path">
-        <li><strong>Write the load brief.</strong> Record site, 12 months of hourly use, growth or ramp, target energization date, clean-energy goal, and hours that may curtail. <em>Output: one-page load brief.</em></li>
+        <li><strong>Write the load brief.</strong> Record site, 12 months of hourly use, growth or ramp, target energization date, procurement requirements, and hours that may curtail. <em>Output: one-page load brief.</em></li>
         <li><strong>Check the market path.</strong> Identify the utility, ISO/RTO, retail-choice rules, load and generator interconnection status, and whether a published hub can support a VPPA. <em>Output: physical, virtual, utility, or onsite route.</em></li>
         <li><strong>Size the product.</strong> Compare hourly load with expected generation. Do not match annual MWh and call the load served. Use <button class="nav-link-btn" data-view="datacenter">Serve the load</button> for a flat profile. <em>Output: MW, MWh, shape, and open-hour schedule.</em></li>
         <li><strong>Set the commercial guardrails.</strong> Define price structure, term, settlement or delivery point, REC ownership, volume tolerance, and the maximum credit exposure. Test a VPPA in the <button class="nav-link-btn" data-view="simulator">settlement simulator</button>. <em>Output: approval-ready term sheet.</em></li>
         <li><strong>Run a competitive process or bilateral comparison.</strong> Give every bidder the same load brief and score price, delivery date, interconnection, credit, and contract exceptions on the same basis. <em>Output: shortlist and decision memo.</em></li>
         <li><strong>Negotiate the risk table before the prose.</strong> Assign price, basis, shape, volume, curtailment, fuel, performance, change in law, default, and termination. Then use <button class="nav-link-btn" data-view="examples">Drafting</button> and the <button class="nav-link-btn" data-view="ppadraft">practice VPPA</button> to see how the choices become clauses. <em>Output: marked risk matrix and draft.</em></li>
-        <li><strong>Secure approvals and financing.</strong> The buyer clears treasury, accounting, legal, sustainability, and signature authority; a utility may need commission approval. The seller proves permits, interconnection, site control, financing, and lender acceptance. Use <button class="nav-link-btn" data-view="projfin">Project finance</button> to test whether the price supports debt. <em>Output: signed agreement with listed conditions precedent.</em></li>
+        <li><strong>Secure approvals and financing.</strong> The buyer clears treasury, accounting, legal, reporting, and signature authority; a utility may need commission approval. The seller proves permits, interconnection, site control, financing, and lender acceptance. Use <button class="nav-link-btn" data-view="projfin">Project finance</button> to test whether the price supports debt. <em>Output: signed agreement with listed conditions precedent.</em></li>
         <li><strong>Hand the deal to operations.</strong> Track construction milestones, metering, settlement data, invoices, REC delivery, collateral, curtailment notices, and renewal dates. <em>Output: contract-management calendar and named owners.</em></li>
       </ol>
       <div class="card" style="margin-top:12px">
@@ -766,7 +766,7 @@
           <tbody>
             <tr>
               <td><strong>Fixed (flat)</strong></td>
-              <td>One $/MWh for the whole term. The cleanest hedge and the easiest to budget.</td>
+              <td>One $/MWh for the whole term. A constant unit price makes contracted energy costs predictable.</td>
               <td><strong>Buyer</strong> — goes out-of-the-money if market prices fall below the strike.</td>
             </tr>
             <tr>
@@ -893,7 +893,7 @@
         </div>
       </div>
       <div class="card" style="border-left:3px solid var(--accent);margin-top:12px">
-        <p class="section-label">The geography constraint — what actually gates each structure</p>
+        <p class="section-label">Which market rules each structure needs</p>
         <p style="margin:0 0 8px">A common myth is that a VPPA needs the <em>buyer</em> to be in a deregulated, retail-choice state. It doesn't. A VPPA is a purely financial hedge: the buyer keeps its existing retail supply and separately settles a swap against a wholesale <span class="gterm" data-term="Hub">hub</span>. So a company headquartered in a fully regulated state routinely signs a VPPA on an ERCOT or PJM project. What a VPPA actually requires is that <strong>the project</strong> sit in an organized wholesale (<span class="gterm" data-term="ISO / RTO">ISO/RTO</span>) market with a transparent <span class="gterm" data-term="Locational Marginal Price (LMP)">LMP</span> to settle against.</p>
         <p style="margin:0">What <em>does</em> turn on the buyer's geography is a <strong>physical retail</strong> deal: buying the actual electrons for your site from a chosen supplier needs <strong>retail choice</strong>. Where there is no organized market at all (much of the Southeast, the non-CAISO West), there is no clean index to settle a VPPA against — so buyers fall back to <span class="gterm" data-term="Green Tariff">green tariffs</span>, <span class="gterm" data-term="Energy Supply Agreement (ESA)">utility ESAs</span>, or <span class="gterm" data-term="Sleeved PPA">sleeved</span> deals. Note that ISO/RTO membership and retail deregulation are different things: PJM and MISO span both regulated (e.g. Virginia, Michigan) and restructured states. Geography is the first question in any procurement conversation — but ask it about the <em>project</em> for a VPPA and about the <em>buyer's territory</em> for a physical retail deal.</p>
       </div>
@@ -983,7 +983,7 @@
             <p class="section-label">Track A · corporate buyer</p>
             <p style="max-width:none;margin:0 0 8px">Four internal gates, usually in this order:</p>
             <ol style="margin:0;padding-left:20px;font-size:14px">
-              <li><strong>Sustainability</strong> confirms the deal supports the company's clean-energy claim — <span class="gterm" data-term="Renewable Energy Certificate (REC)">RECs</span> convey, and the accounting works under the buyer's Scope 2 method.</li>
+              <li><strong>Reporting</strong> checks the agreed generation attributes — <span class="gterm" data-term="Renewable Energy Certificate (REC)">RECs</span> convey, and the accounting works under the buyer's Scope 2 method.</li>
               <li><strong>Treasury / finance</strong> sizes the exposure: a VPPA is a long-dated swap, so it gets marked to market, and finance decides whether it qualifies for hedge accounting or runs through the P&amp;L.</li>
               <li><strong>Legal</strong> closes the risk table — <span class="gterm" data-term="Credit Support">credit support</span>, termination, <span class="gterm" data-term="Change in Law">change in law</span> — often with outside energy counsel.</li>
               <li><strong>Investment committee or board</strong> gives final approval. Whoever signs must hold a <span class="gterm" data-term="Delegation of Authority">delegation of authority</span> covering a commitment of this size — a 15-year, 100&nbsp;MW VPPA is a nine-figure notional obligation.</li>
@@ -1027,7 +1027,7 @@
       <hr class="rule">
 
       <h2>Test yourself</h2>
-      <p class="lede">Seven questions on the mechanics interviewers actually probe — settlement direction, basis, hub vs node, structure choice, credit support. Answer to reveal the worked reasoning.</p>
+      <p class="lede">Seven questions test settlement direction, basis, hub versus node, contract structure and credit support. Each answer includes the calculation or reasoning.</p>
       <div id="quiz" class="quiz" data-quiz="drafting"></div>
     </section>
 
@@ -1273,9 +1273,9 @@
 
     <!-- ============ PROJECT FINANCE ============ -->
     <section class="view" id="view-projfin" role="tabpanel" aria-labelledby="tab-projfin" hidden>
-      <p class="section-label">Interactive · the number the PPA is really about</p>
+      <p class="section-label">Debt and equity model</p>
       <h1>Project-finance workbench</h1>
-      <p class="lede">University finance courses don't stop at "a PPA must be bankable" — they make you size the debt and solve for the equity return. This does the same: set the project and the contract, and watch how much debt the cash flow supports at your target DSCR, how the capital stack splits, and what the equity investor earns. A teaching model, not investment advice.</p>
+      <p class="lede">Set project costs and PPA terms to estimate the debt supported at a target DSCR and the resulting equity return. The model separates contracted revenue from the merchant tail. Inputs are illustrative; this is a teaching model.</p>
 
       <div class="sim-layout" id="pf-workbench">
         <form class="controls" id="pf-controls" aria-label="Project finance inputs">
@@ -1482,7 +1482,7 @@
       <div id="vpp-cases"></div>
 
       <h2 style="margin-top:28px">Structures — how these deals are built</h2>
-      <p class="caption">Each is one answer to the same question: how do you get large, firm, often carbon-free power faster than the grid can build it? Select to expand.</p>
+      <p class="caption">Each is one answer to the same question: how do you contract enough supply and connect the load by its target date? Select to expand.</p>
       <p class="level-count" data-level-count="#dc-structures" data-count-noun="structures" hidden></p>
       <div id="dc-structures"></div>
 
@@ -1530,7 +1530,7 @@
             </tr>
             <tr>
               <td><strong>Existing nuclear</strong></td>
-              <td>A flat 24/7 block of <span class="gterm" data-term="Clean Firm Power">clean firm power</span></td>
+              <td>A flat 24/7 block of <span class="gterm" data-term="Firm Power">firm power</span></td>
               <td>Long-tenor PPA (17–20 yr) or front-of-meter retail supply (AWS × Talen)</td>
               <td>Around-the-clock delivery at one price</td>
               <td>A premium over hub power, and the additionality question — repricing a plant, not adding one</td>
@@ -1550,16 +1550,16 @@
       <div data-level="2">
         <hr class="rule">
         <h2 id="tolling-mechanics">The toll, the heat rate, and the premium <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
-        <p>Three contract mechanics from that table that interviews for these roles actually test.</p>
+        <p>The following examples show fuel, dispatch and outage risk under three contract forms.</p>
 
         <h3 style="margin-top:14px">Gas — who owns the spark spread</h3>
         <p>A <span class="gterm" data-term="Tolling Agreement">tolling agreement</span> splits a gas plant into two businesses. The owner gets a fixed toll — a $/kW-month capacity payment that covers capex and fixed O&amp;M — plus variable O&amp;M and start charges when dispatched. The buyer procures the fuel (which means firm gas transport, its own contract), schedules the plant, and takes the power. The contract's core promise is the <span class="gterm" data-term="Heat Rate">heat rate</span>: burn no more than X Btu per kWh. At a guaranteed 7,000 Btu/kWh and $3.50/MMBtu gas, a MWh costs $24.50 in fuel; if power is worth $45, the <span class="gterm" data-term="Spark Spread">spark spread</span> — $20.50 — belongs to the buyer, and so does the loss when gas spikes. A fixed-price ESA flips that: the seller embeds the fuel hedge and charges for it. Neoclouds building <span class="gterm" data-term="Bring-Your-Own-Power (BYOP)">BYOP</span> campuses (Crusoe at Abilene, the Stargate microgrid) take the same economics one step further and own the machine outright.</p>
 
         <h3>Batteries — renting the box</h3>
-        <p>A storage toll is the same idea without fuel: fixed $/kW-month for dispatch rights over someone else's battery. The owner guarantees availability (typically ~95%+) and round-trip efficiency; the buyer decides every charge and discharge, so market risk sits entirely on the buyer's desk — which is the point, for a load that wants to shape its own supply. In a <span class="gterm" data-term="Hybrid PPA (Solar + Storage)">hybrid PPA</span> the battery instead rides inside the generator's offer: one contract, an energy price plus a storage adder or separate capacity payment. The clauses that get negotiated are the charging rules — whether the battery may charge from the grid or only from the paired solar, which drives both tax treatment and whose clean-energy claim the stored energy carries — plus degradation schedules and availability guarantees.</p>
+        <p>A storage toll is the same idea without fuel: fixed $/kW-month for dispatch rights over someone else's battery. The owner guarantees availability (typically ~95%+) and round-trip efficiency; the buyer decides every charge and discharge, so market risk sits entirely on the buyer's desk — which is the point, for a load that wants to shape its own supply. In a <span class="gterm" data-term="Hybrid PPA (Solar + Storage)">hybrid PPA</span> the battery instead rides inside the generator's offer: one contract, an energy price plus a storage adder or separate capacity payment. The clauses that get negotiated are the charging rules — whether the battery may charge from the grid or only from the paired solar, which drives both tax treatment and which generation attributes can be assigned to the stored output — plus degradation schedules and availability guarantees.</p>
 
         <h3>Nuclear — buying the block</h3>
-        <p>An existing-fleet nuclear PPA is the simplest shape in the table — a flat around-the-clock block at one price for 17–20 years — and the hardest to price. The buyer pays a premium over prevailing hub power for firmness and the carbon-free claim (deal prices are undisclosed, but every disclosed structure is long-tenor and full-output). Scale check: announced hyperscaler nuclear agreements total up to ~13 GW, split roughly evenly between PPAs and direct partnerships — and even if all of it materializes, it covers less than 20% of projected data-center demand growth through 2035. New plants have historically taken 10–15 years from planning to commissioning, which is why the near-term deals contract <em>existing</em> plants — raising the additionality question from the Scope 2 chain in <button class="nav-link-btn" data-view="foundations">Learn</button>: the grid gains no new carbon-free MWh when an operating plant changes offtaker. An <span class="gterm" data-term="Uprate">uprate</span> PPA is the exception: Google's Oct 2026 Constellation deal pays for 890 MW of new output at operating reactors (case studies, above). And a flat block is unit-contingent unless the contract says who buys replacement energy while a reactor is down for refueling. When you compare these prices, <span class="gterm" data-term="Levelized Cost of Energy (LCOE)">LCOE</span> ignores firmness: compare cost per matched hour, not cost per MWh.</p>
+        <p>A nuclear PPA can buy an operating plant's output, support a restart, or fund an <span class="gterm" data-term="Uprate">uprate</span>. Those contracts have different capital costs and approval risks. The Clinton case covers continued operation; Crane covers a restart; the Google × Constellation case covers incremental output at operating reactors. An agreement for existing output does not add the plant's entire capacity to the grid. Nor does a nuclear label guarantee a flat delivered block: check planned outages, volume commitments and who buys replacement energy. Prices in these announcements are undisclosed. Compare contract price, delivery shape and outage exposure; <span class="gterm" data-term="Levelized Cost of Energy (LCOE)">LCOE</span> alone does not price those obligations.</p>
         <p class="src"><a href="https://www.eia.gov/todayinenergy/includes/sparkspread_explain.php">EIA — heat rates &amp; spark spreads</a> · <a href="https://www.eia.gov/tools/glossary/index.php?id=T">EIA glossary — tolling arrangement</a> · <a href="https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities">Carnegie Endowment (June 2026) — nuclear commitments vs. delivery</a></p>
       </div><!-- /data-level="2" tolling-mechanics -->
 
@@ -1573,7 +1573,7 @@
           <fieldset>
             <legend>Strategy preset</legend>
             <div class="scenario-row" id="st-presets">
-              <button type="button" class="scenario-btn" data-preset="solar" aria-pressed="false">Solar-only mirage</button>
+              <button type="button" class="scenario-btn" data-preset="solar" aria-pressed="false">Solar only</button>
               <button type="button" class="scenario-btn" data-preset="renstor" aria-pressed="false">Renewables + storage</button>
               <button type="button" class="scenario-btn" data-preset="anchored" aria-pressed="true">Anchored stack</button>
             </div>
@@ -1628,9 +1628,9 @@
               <div class="k-sub">of 24, without buying from the grid</div>
             </div>
             <div class="kpi">
-              <div class="k-label">Carbon-free share</div>
+              <div class="k-label">Nuclear, solar &amp; wind share</div>
               <div class="k-val mono" id="st-cfe">—</div>
-              <div class="k-sub">of consumption, hourly-matched</div>
+              <div class="k-sub">of load, including their stored output</div>
             </div>
             <div class="kpi">
               <div class="k-label">Open position</div>
@@ -1638,7 +1638,7 @@
               <div class="k-sub">MWh/day bought at spot — unhedged</div>
             </div>
             <div class="kpi">
-              <div class="k-label">Clean surplus</div>
+              <div class="k-label">Supply surplus</div>
               <div class="k-val mono" id="st-surplus">—</div>
               <div class="k-sub">MWh/day beyond load &amp; battery — sold</div>
             </div>
@@ -1656,7 +1656,7 @@
             </div>
           </div>
 
-          <p class="hint">One representative clear day, flat load. Dispatch order: nuclear → solar → wind → battery → gas toll → grid, with the battery scheduled into the deepest deficit hours. Duration means delivery: a 4-hour battery discharges four full-power hours, charging only from clean surplus and absorbing ~22% more than it returns at 82% round-trip efficiency — the US fleet average round-trip efficiency. Clear-day shapes flatter solar and wind; annual capacity factors are lower (solar ~25%, onshore wind ~34%), so a real year needs <em>more</em> of everything. An illustration of portfolio mechanics, not a production-cost model. <a href="https://www.eia.gov/todayinenergy/detail.php?id=46756">EIA — battery round-trip efficiency</a> · <a href="https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_6_07_b">EIA — capacity factors</a></p>
+          <p class="hint">One representative clear day, flat load. Dispatch order: nuclear → solar → wind → battery → gas toll → grid, with the battery scheduled into the deepest deficit hours. Duration means delivery: a 4-hour battery discharges four full-power hours, charging only from nuclear, solar and wind surplus and absorbing ~22% more than it returns at 82% round-trip efficiency — the US fleet average round-trip efficiency. Clear-day shapes flatter solar and wind; annual capacity factors are lower (solar ~25%, onshore wind ~34%), so a real year needs <em>more</em> of everything. An illustration of portfolio mechanics, not a production-cost model. <a href="https://www.eia.gov/todayinenergy/detail.php?id=46756">EIA — battery round-trip efficiency</a> · <a href="https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_6_07_b">EIA — capacity factors</a></p>
         </div>
       </div>
 
@@ -1672,7 +1672,7 @@
         <h3>The wholesale/retail fork</h3>
         <p>Behind every one of these dockets is one legal question: is connecting a large load to the transmission grid a wholesale matter for FERC or a retail one for the state? FERC regulates transmission and wholesale sales; states regulate retail service, including who is served first when supply runs short. That is why, on Oct 9, 2026, FERC accepted PJM's large-load definition and 50 MW registry but rejected its Interim Resource Adequacy Service and <span class="gterm" data-term="Bring-Your-Own-New-Capacity (BYONC)">bring-your-own-new-capacity</span> rules (ER26-3515): they set retail curtailment order and a retail rate, which belong to the states.</p>
 
-        <h3>The large-load ESA — terms an energy lead actually negotiates</h3>
+        <h3>Large-load ESA terms</h3>
         <p>Where supply is a regulated utility (the DTE deals in the table below), the contract is the regulated variant of an <span class="gterm" data-term="Energy Supply Agreement (ESA)">ESA</span>, defined once in <button class="nav-link-btn" data-view="examples">Drafting → Utility contract types</button>: a large-load service agreement under a tariff. Its terms exist to answer one regulatory question: if this load never shows up, who eats the cost of the wires and plants built for it? The utility's answer is: not the existing ratepayers.</p>
         <div class="table-wrap">
           <table class="coverage" style="width:100%;table-layout:auto">
@@ -1751,7 +1751,7 @@
       <div data-level="2">
         <hr class="rule">
         <h2 id="gigawatt-playbook">The gigawatt playbook — running it as one program <span class="pill outline" style="font-size:10px;vertical-align:middle;margin-left:6px">Practitioner</span></h2>
-        <p>Every piece is now on the table: the contract per technology, the stack that serves the load, the queue, the ESA. What the chief executive actually buys when they hire an energy lead is the ability to run all of it as one program against an energization date. Four disciplines separate that person from a deal-by-deal originator.</p>
+        <p>An energy lead coordinates supply contracts, interconnection and the ESA against the campus energization date. Four disciplines separate that person from a deal-by-deal originator.</p>
 
         <h3 style="margin-top:14px">1 · Sequence against the date</h3>
         <div class="table-wrap">
@@ -1791,7 +1791,7 @@
               </tr>
               <tr>
                 <td class="mono">T−6 → 0 →</td>
-                <td>Energize per the ESA ramp; measure hourly CFE against claims; recontract as the load grows.</td>
+                <td>Energize per the ESA ramp; reconcile hourly supply, certificates and invoices; recontract as the load grows.</td>
                 <td>The portfolio is never finished — every new building reopens it.</td>
               </tr>
             </tbody>
@@ -1856,9 +1856,9 @@
 
     <!-- ============ COVERAGE ============ -->
     <section class="view" id="view-coverage" role="tabpanel" aria-labelledby="tab-coverage" hidden>
-      <p class="section-label">Honest scope</p>
+      <p class="section-label">Coverage status</p>
       <h1>Coverage &amp; sources</h1>
-      <p class="lede">This tool only teaches what the research actually verified. Five domain passes cover contracts, markets, data-center deals, expert perspectives, and the 2026 energy-lead role. A separate curriculum benchmark against U.S. Commerce, DOE, and Open University material shaped the contract-choice table, signing sequence, and case exercises. Items still open are marked as gaps.</p>
+      <p class="lede">The table separates sourced content from research gaps. Five domain passes cover contracts, markets, data-center deals, expert perspectives, and the 2026 energy-lead role. A separate curriculum benchmark against U.S. Commerce, DOE, and Open University material shaped the contract-choice table, signing sequence, and case exercises. Items still open are marked as gaps.</p>
 
       <h2>Verified — primary / government sources</h2>
       <table class="coverage">
@@ -1986,9 +1986,9 @@
   </footer>
 
   <!-- per-tab scripts (simulator, draft, projfin, stack) load on first visit: VIEW_SCRIPTS in app.js -->
-  <script src="assets/js/quiz-banks.js?v=20261106b" defer></script>
-  <script src="assets/js/quiz.js?v=20261106b" defer></script>
-  <script src="assets/js/app.js?v=20261106b" defer></script>
-  <script src="assets/js/content.js?v=20261106b" defer></script>
+  <script src="assets/js/quiz-banks.js?v=20261106c" defer></script>
+  <script src="assets/js/quiz.js?v=20261106c" defer></script>
+  <script src="assets/js/app.js?v=20261106c" defer></script>
+  <script src="assets/js/content.js?v=20261106c" defer></script>
 </body>
 </html>

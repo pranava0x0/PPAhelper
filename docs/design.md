@@ -4,7 +4,7 @@
 > (Lives in `docs/` because the macOS filesystem is case-insensitive — a root `design.md` would clobber `DESIGN.md`.)
 
 ## Identity in one line
-**A clean-energy markets & finance workbench** — the calm precision of a fintech dashboard, the live numbers of a trading desk. *(Re-skinned 2026-07-05 from the earlier "editorial broadsheet on warm paper" identity — see history below.)*
+**A power markets & finance workbench** — the calm precision of a fintech dashboard, the live numbers of a trading desk. *(Re-skinned 2026-07-05 from the earlier "editorial broadsheet on warm paper" identity — see history below.)*
 
 - **Reference point:** a modern analytics product (Linear/Stripe-era clarity) crossed with a trading desk. Cool surfaces, soft elevation, one confident accent, a monospace data tape.
 - **Subject-anchored palette:** cool near-white surfaces (`--bg`/`--surface`) with **electric blue** as the single brand accent — the charge in the wire. Directional money flows keep their own semantic green/red, used only on real settlement numbers.
@@ -25,3 +25,5 @@
 - **Every number cites a source** or is clearly a user-entered input/simulation. Verified facts link to the primary source; the simulator is labeled as an illustration, not market data.
 - **Coverage honesty:** a visible scorecard separates `verified` content from `needs-research` gaps (mirrors [research-us-ppa.md](research-us-ppa.md)). Never present a gap as settled.
 - **Voice:** plain and specific. No "comprehensive", "robust", "seamless", "unlock". Lead with the number or the name.
+
+- **Teaching voice:** explain delivery, cost, financing and risk allocation. Attribute reported viewpoints and distinguish contract requirements from procurement preferences.

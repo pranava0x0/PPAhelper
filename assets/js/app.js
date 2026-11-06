@@ -9,12 +9,12 @@
      reference views, not course stops. */
   var COURSE = [
     { view: "foundations",  label: "Learn",                teaser: "PPAs from scratch: the grid, the market, the settlement mechanic." },
-    { view: "simulator",    label: "Settlement simulator", teaser: "Feel the cash flows: strike vs LMP, month by month." },
+    { view: "simulator",    label: "Settlement simulator", teaser: "Calculate monthly payments from strike, market price and volume." },
     { view: "examples",     label: "Drafting",             teaser: "How real contracts encode it: clauses, pricing structures, risk." },
     { view: "ppadraft",     label: "Draft PPA",            teaser: "Generate a full VPPA draft from terms you choose." },
-    { view: "projfin",      label: "Project finance",      teaser: "Size the debt, see the equity return — the number the deal is really about." },
-    { view: "datacenter",   label: "Data centers",         teaser: "The demand shock reshaping who signs PPAs and why." },
-    { view: "perspectives", label: "Perspectives",         teaser: "What the people who do this all day disagree about." }
+    { view: "projfin",      label: "Project finance",      teaser: "Estimate debt capacity and equity returns from project and PPA inputs." },
+    { view: "datacenter",   label: "Data centers",         teaser: "Compare supply contracts, utility terms and large-load case studies." },
+    { view: "perspectives", label: "Perspectives",         teaser: "Compare attributed views on procurement and project financing." }
   ];
 
   /* Deep sections scattered across tabs — the expert fast lane (level 2 only).

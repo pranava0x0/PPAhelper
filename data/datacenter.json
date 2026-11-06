@@ -13,7 +13,7 @@
       "name": "Existing-plant nuclear restart / uprate",
       "level": 1,
       "what": "Contract the output of a recommissioned or up-rated existing nuclear unit under a long-term (often ~20-year) PPA.",
-      "whyClever": "Delivers large, firm, carbon-free baseload that already has an interconnection — far faster than building new generation. Long tenor underwrites the restart capex.",
+      "whyClever": "Delivers large blocks of nuclear output that already has an interconnection — far faster than building new generation. Long tenor underwrites the restart capex.",
       "tradeoffs": "Limited to the few restartable sites; needs NRC approval; multi-year lead time; can draw scrutiny over keeping the plant off the public grid.",
       "glossaryRefs": [
         "Commercial Operation Date (COD)",
@@ -59,7 +59,7 @@
       "name": "Small modular reactors (SMRs)",
       "level": 1,
       "what": "Sign an offtake for the output of yet-to-be-built small modular reactors, often as a fleet across multiple units.",
-      "whyClever": "Firm 24/7 carbon-free power that can scale in increments; the corporate offtake gives the developer the demand certainty to build first-of-a-kind units.",
+      "whyClever": "Nuclear output from modular units that can be added in increments; the corporate offtake gives the developer the demand certainty to build first-of-a-kind units.",
       "tradeoffs": "First units are ~2030+; first-of-a-kind cost and schedule risk; needs NRC licensing.",
       "glossaryRefs": [
         "Small Modular Reactor (SMR)",
@@ -75,7 +75,7 @@
       "name": "Enhanced geothermal",
       "level": 1,
       "what": "Offtake firm power from next-generation (enhanced) geothermal projects that engineer heat reservoirs in non-traditional locations.",
-      "whyClever": "Dispatchable, 24/7 carbon-free power that complements variable solar/wind — fills the firmness gap without nuclear lead times.",
+      "whyClever": "Geothermal generation can complement solar and wind output. Delivery depends on resource performance, permits and construction.",
       "tradeoffs": "Still scaling; geographically constrained; newer technology risk.",
       "glossaryRefs": [
         "Enhanced Geothermal",
@@ -92,7 +92,7 @@
       "level": 1,
       "what": "Build dedicated on-site generation — typically gas turbines, sometimes fuel cells — to energize the campus directly, ahead of or instead of a grid connection.",
       "whyClever": "The fastest route to firm megawatts when the interconnection queue is multi-year. Common among neoclouds racing to deploy GPUs.",
-      "tradeoffs": "Carbon and air-permit exposure; not carbon-free unless paired with capture or clean fuel; capital and O&M sit with the developer.",
+      "tradeoffs": "Fuel and air-permit exposure; the emissions profile depends on fuel and plant equipment; capital and O&M sit with the developer.",
       "glossaryRefs": [
         "Bring-Your-Own-Power (BYOP)",
         "Behind-the-Meter (BTM)",
@@ -104,16 +104,16 @@
     },
     {
       "id": "247-cfe",
-      "name": "24/7 hourly carbon-free matching",
+      "name": "Hourly supply matching",
       "level": 2,
-      "what": "Procure clean energy so that carbon-free supply matches consumption every hour in every region, rather than netting it out across a year (annual/volumetric matching).",
-      "whyClever": "A far more rigorous clean-energy claim than annual RECs — it forces procurement of firm and storage resources, not just cheap midday solar.",
-      "tradeoffs": "Harder and more expensive; some analyses find hourly matching is not always the most cost-effective way to cut system-wide emissions versus targeting dirtier grids.",
+      "what": "Compare each hour of consumption with contracted generation in the same grid region. A technology-specific matching target is a buyer requirement, separate from the site's physical electricity service.",
+      "whyClever": "Hourly matching exposes night-time and seasonal shortfalls that an annual MWh total can hide.",
+      "tradeoffs": "Hourly requirements can cost more than annual matching. Evaluate cost, supply availability and the buyer's stated reporting criteria before choosing a target.",
       "glossaryRefs": [
         "24/7 Carbon-Free Energy (CFE)",
         "Renewable Energy Certificate (REC)"
       ],
-      "example": "Google — 24/7 CFE by 2030 goal",
+      "example": "Google — hourly generation-matching program",
       "source": "DOE — Clean Energy Resources to Meet Data Center Demand",
       "url": "https://www.energy.gov/oe/clean-energy-resources-meet-data-center-electricity-demand"
     },
@@ -153,7 +153,7 @@
       "name": "Frontier offtake (fusion)",
       "level": 2,
       "what": "Sign an early offtake for a not-yet-commercial technology to help finance its first plant.",
-      "whyClever": "Signals demand and de-risks first-of-a-kind capital; positions the buyer for firm clean power if the technology matures.",
+      "whyClever": "Signals demand and de-risks first-of-a-kind capital; positions the buyer for additional supply if the technology matures.",
       "tradeoffs": "High technology risk; long and uncertain timelines; mostly a strategic bet, not near-term supply.",
       "glossaryRefs": [
         "Commercial Operation Date (COD)"
@@ -279,7 +279,7 @@
       "tnd": "Grid-connected — the opposite answer to Susquehanna. By selling into PJM and matching Microsoft's regional load, the deal avoids the co-location fight entirely; the T&D work is reactivating the plant's interconnection, not litigating a new configuration.",
       "agreement": "A 20-year, single-buyer PPA for the full output of one unit — price undisclosed. The tenor is the financing: two decades of investment-grade offtake is what makes a nine-figure restart bankable.",
       "unique": "Most PPAs finance new construction; this one finances un-retirement. Full-output single-buyer nuclear at 20 years is an outlier against the 12–15-year solar VPPA norm — and there is no CfD mechanic to study, because the point is the block and the balance sheet, not a hub settlement.",
-      "brief": "Need: a large, round-the-clock carbon-free block for regional data-center demand. Constraint: restarting an existing plant requires long-term revenue, licensing, capital, and a credible delivery date.",
+      "brief": "Need: a large, round-the-clock supply block for regional data-center demand. Constraint: restarting an existing plant requires long-term revenue, licensing, capital, and a credible delivery date.",
       "decisions": [
         "Match a 24/7 load with an existing nuclear unit rather than an intermittent project of the same nameplate size.",
         "Use grid delivery across PJM instead of tying the plant to one campus.",
@@ -316,7 +316,7 @@
       ],
       "lesson": "A long-tenor offtake can resurrect firm capacity faster than anything can be built new. When you can't co-locate, buy the block and let the grid deliver it.",
       "glossaryRefs": [
-        "Clean Firm Power",
+        "Firm Power",
         "Bankability",
         "Commercial Operation Date (COD)"
       ],
@@ -353,7 +353,7 @@
       "tnd": "Front of the meter. The reactors stay connected to the PJM grid and no data center sits beside them, so the co-location questions in the AWS × Talen case do not come up.",
       "agreement": "A 20-year PPA for the 890 MW of uprate output, plus a separate 15-year agreement for about 2,700 MW of existing output (about 3,590 MW in all, per one analysis). Price undisclosed. Comparator: Amazon × Constellation, Calvert Cliffs (Sep 30, 2026): 690 MW for 20 years, about 190 MW of it an uprate due 2030–32, tied to a 20-year license renewal and paired with a PJM retail supply agreement.",
       "unique": "The buyer pays for megawatts that did not exist. Crane is a restart and Talen sells existing output; here the 20-year contract funds new capacity at plants already running, so the additionality objection to existing-nuclear deals mostly falls away. In exchange the buyer carries the construction and licensing schedule.",
-      "brief": "Need: new carbon-free megawatts in PJM within this decade, where a new reactor takes 10–15 years from planning to power. Constraint: buying an operating plant's output adds no supply and invites the additionality objection.",
+      "brief": "Need: incremental generating capacity in PJM within this decade, where a new reactor takes 10–15 years from planning to power. Constraint: buying an operating plant's existing output changes its customer without adding capacity.",
       "decisions": [
         "Look for megawatts inside the existing fleet: upgrades at operating reactors add output without a new site.",
         "Sign 20 years on the 890 MW of uprate output, so the contract revenue backs more than $4.3B of plant investment.",
@@ -389,7 +389,7 @@
         "Uprate",
         "License Renewal",
         "Additionality",
-        "Clean Firm Power"
+        "Firm Power"
       ],
       "sources": [
         {
@@ -542,7 +542,7 @@
         "Use ownership, equipment, EPC, land, tenant, interconnection, and joint-venture contracts rather than one PPA."
       ],
       "failureTest": "The campus misses its date if the grid ramp and on-site plant both slip, or if fuel, air permits, turbine delivery, and tenant obligations are not managed as one critical path.",
-      "yourTurn": "Draw the contract stack and put one accountable owner beside each interface: grid, turbines, fuel, site, tenants, and clean-energy supply.",
+      "yourTurn": "Draw the contract stack and put one accountable owner beside each interface: grid, turbines, fuel, site, tenants, and contracted supply.",
       "history": [
         {
           "date": "Jun 2024",
@@ -607,7 +607,7 @@
     },
     {
       "id": "xai-memphis",
-      "title": "xAI — Colossus, Memphis: speed vs. social license",
+      "title": "xAI — Colossus, Memphis: generation and air permits",
       "level": 2,
       "capturedAt": "2026-10-22",
       "market": "TVA territory · Memphis, TN (federal utility — outside FERC rate jurisdiction)",
@@ -805,10 +805,10 @@
       "gen": "Enhanced geothermal: horizontal wells drilled into hot dry rock feed binary-cycle plants that run around the clock. Cape Station's first ~100 MW phase (three 33 MW GeoBlocks) reached first power on Sep 24, 2026 and declared its first block in commercial operation on Sep 30, 2026. Fervo is extending the GeoCluster with repeatable GeoBlocks beyond that phase and the earlier SCE and Shell contracts; Google's 396 MW is expected online in 2028.",
       "tnd": "Front of meter: Cape Station interconnects into the Utah grid and the output is scheduled to Google's load, the conventional offsite route. Utah's 2025 SB132 lets a large customer contract directly with a generator subject to regulatory approval, which Fervo names as a possible path.",
       "agreement": "A 396 MW PPA signed Sep 1, 2026, price and tenor undisclosed (trade coverage reports 15 years delivered in four 99 MW tranches from Q3 2028), plus an option for Google to add about 600 MW by June 2030, taking the total to nearly 1 GW. The deal lifts Fervo's portfolio past 1 GW of binding PPAs.",
-      "unique": "This is the closest case to a textbook PPA — one buyer, one project, a fixed block — but it buys clean-firm output rather than shaped solar, and the headline term is an option: a right, not an obligation, to more than double the block as the campus and the resource prove out. The buyer pays for flexibility instead of carrying basis.",
-      "brief": "Need: a firm, carbon-free block for a Utah campus that may or may not be built at full size. Constraint: enhanced geothermal is new at scale, so the buyer wants exposure to the resource without committing the whole campus up front.",
+      "unique": "This is the closest case to a textbook PPA — one buyer, one project, a fixed block — but it buys geothermal output rather than shaped solar, and the headline term is an option: a right, not an obligation, to more than double the block as the campus and the resource prove out. The buyer pays for flexibility instead of carrying basis.",
+      "brief": "Need: a firm supply block for a Utah campus that may or may not be built at full size. Constraint: enhanced geothermal is new at scale, so the buyer wants exposure to the resource without committing the whole campus up front.",
       "decisions": [
-        "Pick a clean-firm resource that runs around the clock instead of a larger intermittent nameplate that leaves night-time holes.",
+        "Pick a resource with an around-the-clock delivery profile instead of a larger intermittent nameplate that leaves night-time holes.",
         "Buy from a developer with an operating record — Project Red in Nevada since 2023 and the 115 MW NV Energy tariff deal — before committing 396 MW.",
         "Size the firm commitment to the 2028 tranche and hold a ~600 MW option to June 2030 rather than contracting the full gigawatt now.",
         "Keep delivery front of meter through the utility grid, with Utah's direct-to-load statute as a fallback route."
@@ -837,10 +837,10 @@
           "event": "First 33 MW GeoBlock declared in commercial operation ahead of schedule; further GeoBlocks follow toward the 2028 deliveries."
         }
       ],
-      "lesson": "When the resource is new, buy the proven tranche and option the rest. A clean-firm PPA with a dated expansion right turns a technology bet into a staged commitment both sides can finance.",
+      "lesson": "When the resource is new, buy the proven tranche and option the rest. A firm-delivery PPA with a dated expansion right turns a technology bet into a staged commitment both sides can finance.",
       "glossaryRefs": [
         "Enhanced Geothermal",
-        "Clean Firm Power",
+        "Firm Power",
         "Commercial Operation Date (COD)",
         "Front-of-Meter / Offsite PPA"
       ],
@@ -960,7 +960,7 @@
       "tnd": "Front of the meter: DTE serves the campus as a retail customer on its own system, and the resources Google pays for join DTE's fleet instead of connecting to the campus.",
       "agreement": "A 20-year primary supply agreement (the standard large-customer term is 5 years) plus the clean capacity accelerator agreement. The MPSC approved both unanimously, with conditions, on Oct 1, 2026: Michigan's first hyperscale contracts approved through a contested case. Rates undisclosed.",
       "unique": "The customer pays for specific new resources, but the utility builds and owns them. Google signs no contract with a generator, and this is not plain tariff service either: the resources sit inside a regulated supply agreement, so the commission, not a market, checks that the term and exit terms cover the stranded-cost risk.",
-      "brief": "Need: serve a hyperscale campus in a vertically integrated state and add clean capacity for it. Constraint: resources built for one customer must not land on other customers if that customer leaves early.",
+      "brief": "Need: serve a hyperscale campus in a vertically integrated state and fund additional supply for it. Constraint: resources built for one customer must not land on other customers if that customer leaves early.",
       "decisions": [
         "Bring the contracts to the MPSC as a contested case, so intervenors, the Attorney General among them, could challenge the terms on the record.",
         "Set the supply term at 20 years, four times the 5-year standard for large customers, so it covers more of the new resources' cost recovery.",
@@ -1090,7 +1090,7 @@
       "tnd": "Front of the meter: the plant stays on the grid and We Energies serves the campus at retail. The subscription changes who pays for a slice of the utility's supply contract, not how the power flows.",
       "agreement": "A new We Energies–Point Beach PPA running to 2050/2053 (the current one ends 2030/2033) for about 86% of the plant's output; Oracle subscribes to a share of it. The utility projects about $300M of customer savings over about five years; Oracle frames the savings as 2027–33. Announced in early October 2026; needs Wisconsin PSC approval.",
       "unique": "The customer signs with no generator and the utility builds nothing. Oracle borrows a contract the utility needed anyway and pays for part of it, so the savings to other customers exist only if the commission accepts how the cost is split.",
-      "brief": "Need: firm, carbon-free supply for a large campus without waiting for new plant. Constraint: the nuclear PPA serves every We Energies customer, so giving one customer a slice needs a cost allocation the commission will approve.",
+      "brief": "Need: firm supply for a large campus without waiting for new plant. Constraint: the nuclear PPA serves every We Energies customer, so giving one customer a slice needs a cost allocation the commission will approve.",
       "decisions": [
         "Extend the utility's Point Beach purchase to 2050/2053, decades before the current contract ends in 2030/2033.",
         "Let Oracle subscribe to a share of that output instead of signing its own PPA with the plant.",
@@ -1118,7 +1118,7 @@
         "Subscription to a Utility PPA",
         "Utility",
         "Additionality",
-        "Clean Firm Power"
+        "Firm Power"
       ],
       "sources": [
         {
@@ -1510,7 +1510,7 @@
       "tenor": "—",
       "announced": "2025–2026",
       "structure": "Firm geothermal PPAs (Texas, New Mexico) for baseload data-center power",
-      "note": "Complements Meta's 12+ GW of renewables with dispatchable clean power.",
+      "note": "Complements Meta's 12+ GW of renewables with dispatchable generation.",
       "source": "Power Engineering",
       "url": "https://www.power-eng.com/nuclear/meta-seeks-up-to-4-gw-of-new-nuclear-to-power-its-data-centers-ai/"
     },
@@ -1597,13 +1597,13 @@
       "buyerType": "Hyperscaler",
       "seller": "Brookfield Renewable",
       "tech": "Hydropower",
-      "capacity": "up to 3,000 MW",
+      "capacity": "670 MW signed; up to 3,000 MW framework",
       "tenor": "framework",
       "announced": "2025",
-      "structure": "First-of-its-kind hydro framework — firm, dispatchable carbon-free power",
-      "note": "Adds large-scale firm hydro to Google's clean-firm mix alongside nuclear and geothermal.",
-      "source": "Power Technology",
-      "url": "https://www.power-technology.com/news/google-brookfield-hydroelectric-power/"
+      "structure": "Hydro framework; first two PPAs financially settled",
+      "note": "First signed PPAs: 670 MW for 20 years; up to 3,000 MW is the framework ceiling.",
+      "source": "Brookfield — Jul 15, 2025",
+      "url": "https://www.globenewswire.com/news-release/2025/07/15/3115427/0/en/brookfield-and-google-sign-hydro-framework-agreement-to-deliver-up-to-3-000-mw-of-homegrown-energy-in-the-united-states.html"
     },
     {
       "buyer": "Meta",
@@ -1613,7 +1613,7 @@
       "capacity": "600 MW",
       "tenor": "—",
       "announced": "2025",
-      "structure": "Solar PPA in Texas — Meta was 2025's largest corporate clean-energy offtaker (10+ GW)",
+      "structure": "Solar PPA in Texas — Meta reported more than 10 GW of contracted renewable capacity in 2025",
       "note": "Variable renewables still anchor the portfolio alongside new nuclear and geothermal.",
       "source": "Data Center Dynamics",
       "url": "https://www.datacenterdynamics.com/en/news/meta-signs-600mw-solar-ppa-with-engie-in-texas/"
@@ -1653,7 +1653,7 @@
       "tenor": "long-term (25 yrs)",
       "announced": "2025–2026",
       "structure": "Corporate PPA for new geothermal plants supporting Nevada data centers",
-      "note": "Firm 24/7 carbon-free supply from new-build geothermal in Nevada, extending Google's clean-firm portfolio beyond the Fervo pilot.",
+      "note": "Geothermal supply from a Nevada project; compare its delivery schedule with the earlier Fervo pilot.",
       "source": "ESG Today",
       "url": "https://www.esgtoday.com/google-ormat-sign-deal-to-power-data-centers-from-new-geothermal-projects/"
     },
@@ -1666,7 +1666,7 @@
       "tenor": "15 years",
       "announced": "2025",
       "structure": "Utility PPAs from Cape Station (Utah) — the world's largest geothermal PPA",
-      "note": "Brought Fervo's contracted Cape Station capacity to 373 MW as of 2025, before the 396 MW Google PPA; shows utility (not just hyperscaler) demand for clean firm power.",
+      "note": "Brought Fervo's contracted Cape Station capacity to 373 MW as of 2025, before the 396 MW Google PPA; shows utility (not just hyperscaler) demand for firm delivery.",
       "source": "Fervo Energy",
       "url": "https://fervoenergy.com/fervo-energy-announces-320-mw-power-purchase-agreements-with-southern-california-edison/"
     },
@@ -1691,7 +1691,7 @@
       "capacity": "396 MW (+~600 MW option)",
       "tenor": "Undisclosed (reported 15 yrs)",
       "announced": "Sep 2026",
-      "structure": "Front-of-meter clean-firm PPA with an expansion option",
+      "structure": "Front-of-meter geothermal PPA with an expansion option",
       "note": "Cape Station, Utah; option to reach nearly 1 GW by June 2030; first GeoBlock in commercial operation Sep 30, 2026.",
       "source": "Fervo Energy",
       "url": "https://fervoenergy.com/fervo-energy-and-google-sign-396-mw-ppa/"

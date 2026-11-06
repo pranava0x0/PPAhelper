@@ -85,7 +85,7 @@
       {
         prompt: "What should a buyer prepare before asking developers for PPA bids?",
         opts: [
-          { t: "A load brief with interval use, growth, location, target date, and clean-energy goal", correct: true },
+          { t: "A load brief with interval use, growth, location, target date, and procurement requirements", correct: true },
           { t: "A finished long-form PPA with no open terms" },
           { t: "Only its annual electricity bill" },
           { t: "A final board approval for an unnamed project" }
@@ -340,7 +340,7 @@
           { t: "The buyer's transmission charges" },
           { t: "A discount for charging at negative prices" }
         ],
-        explain: "The battery doesn't generate — it shifts. So hybrid PPAs price it as availability: a storage adder on the energy price or a separate capacity payment, backed by availability and round-trip-efficiency guarantees. The negotiated clauses are the charging rules (grid vs. solar-only, which drives tax treatment and whose clean-energy claim the stored energy carries) and degradation over the term."
+        explain: "The battery doesn't generate — it shifts. So hybrid PPAs price it as availability: a storage adder on the energy price or a separate capacity payment, backed by availability and round-trip-efficiency guarantees. The negotiated clauses are the charging rules (grid vs. solar-only, which drives tax treatment and which generation attributes can be assigned to stored output) and degradation over the term."
       },
       {
         prompt: "Why do utilities demand minimum-take charges, collateral, and exit fees in large-load ESAs?",
@@ -360,7 +360,7 @@
           { t: "All daytime needs, and the RECs cover the night hours" },
           { t: "Nothing usable — solar can't serve data centers" }
         ],
-        explain: "Utility-scale solar runs at ~25% annual capacity factor (EIA), concentrated in daylight hours, while the campus draws flat 24/7. RECs transfer a clean-energy claim, not electricity at night. This mismatch is why gigawatt buyers assemble stacks — an anchor firm block, shaped renewables, storage, a dispatchable toll — instead of one contract. The 'Serve the load' builder on this tab lets you feel it."
+        explain: "Utility-scale solar runs at ~25% annual capacity factor (EIA), concentrated in daylight hours, while the campus draws flat 24/7. RECs transfer generation attributes; they do not deliver electricity at night. This mismatch is why gigawatt buyers assemble stacks — an anchor firm block, shaped renewables, storage, a dispatchable toll — instead of one contract. The 'Serve the load' builder models the resulting open position."
       },
       {
         prompt: "Why does a gigawatt buyer lock the firm anchor block (existing nuclear, geothermal) before sizing its batteries?",
@@ -380,7 +380,7 @@
           { t: "It only counts nuclear power" },
           { t: "It's cheaper because midday solar is abundant" }
         ],
-        explain: "Hourly matching is a far more rigorous claim than annual RECs — it forces procurement of firm and storage resources, not just cheap midday solar. It's also harder and more expensive; some analyses find it isn't always the most cost-effective way to cut system-wide emissions."
+        explain: "Hourly matching checks the specified generation mix against consumption in each hour and region. Annual REC matching checks an annual MWh total. The hourly requirement exposes delivery gaps and can increase procurement costs; it does not itself establish physical delivery."
       },
       {
         prompt: "In the NIPSCO × Amazon special contract (IURC Cause 46322, June 2026), who builds the new gas and battery capacity and how does it reach the data center?",
@@ -395,12 +395,12 @@
       {
         prompt: "Google's Oct 2026 Constellation deal pays for 890 MW of reactor uprates. Why does that answer the additionality objection to existing-nuclear PPAs?",
         opts: [
-          { t: "It pays for megawatts that did not exist, so the grid gains new carbon-free output", correct: true },
+          { t: "It funds incremental output at operating reactors, rather than just changing the buyer of existing output", correct: true },
           { t: "An uprated reactor earns two RECs for every MWh it produced before the upgrade" },
           { t: "PJM treats any nuclear PPA longer than 15 years as additional under its rules" },
           { t: "The plant's existing output is retired, so Google's purchase replaces it 1:1" }
         ],
-        explain: "Additionality asks whether your money caused new clean supply. Buying an operating plant's output adds none: the grid gains no new carbon-free MWh when a plant changes offtaker. An uprate adds output at a reactor already running, so the 890 MW is new. The trade is schedule risk: Google now waits on construction and licensing, from first output in 2028 to the end of 2032."
+        explain: "An uprate increases a reactor's generating capacity. Changing the buyer of existing output alone does not. The contracted 890 MW in this case refers to planned additional capacity, subject to the required approvals and work. The trade is schedule risk: Google now waits on construction and licensing, from first output in 2028 to the end of 2032."
       },
       {
         prompt: "In a customer-funded utility build (DTE × Google, Black Hills × Google), which terms keep other ratepayers from paying if the data center leaves early?",
