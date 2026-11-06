@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22",
+  "updated": "2026-11-06",
   "note": "Single source of truth for terms. Feeds the glossary view and inline tooltips. Every entry is from a research finding (see docs/research-us-ppa.md). status: 'verified' = cited primary/government source; 'secondary' = cited but non-primary (e.g. job postings for the originator role); 'needs-research' = placeholder.",
   "terms": [
     {
@@ -189,7 +189,7 @@
     {
       "term": "Investment Tax Credit (ITC)",
       "category": "Tax",
-      "def": "A federal tax credit worth a percentage of a clean-energy project's qualified investment (base 6%, rising with prevailing-wage/apprenticeship compliance plus domestic-content and energy-community adders). Lowers the developer's net cost, which lowers the achievable PPA price. The July 2025 budget law (OBBBA) phases the credit out for wind and solar: a project must begin construction by Jul 4, 2026 or be placed in service by Dec 31, 2027. Storage, nuclear and geothermal keep full value for construction starting through 2033, then 75%, 50% and 0. Prohibited-foreign-entity limits apply to construction beginning after Dec 31, 2025 (as of Oct 2026).",
+      "def": "A federal tax credit worth a percentage of an eligible project's qualified investment (base 6%, rising with prevailing-wage/apprenticeship compliance plus domestic-content and energy-community adders). Lowers the developer's net cost, which lowers the achievable PPA price. The July 2025 budget law (OBBBA) phases the credit out for wind and solar: a project must begin construction by Jul 4, 2026 or be placed in service by Dec 31, 2027. Storage, nuclear and geothermal keep full value for construction starting through 2033, then 75%, 50% and 0. Prohibited-foreign-entity limits apply to construction beginning after Dec 31, 2025 (as of Oct 2026).",
       "status": "verified",
       "source": "IRS; Orrick on the 2025 beginning-of-construction rules",
       "url": "https://www.irs.gov/credits-deductions/clean-electricity-investment-credit"
@@ -309,7 +309,7 @@
     {
       "term": "24/7 Carbon-Free Energy (CFE)",
       "category": "Data centers",
-      "def": "Matching electricity use with carbon-free generation every hour in every grid region, rather than netting it out across a year (annual/volumetric matching). A stricter clean-energy claim that forces procurement of firm and storage resources, not just cheap midday solar.",
+      "def": "A procurement metric matching electricity consumption to generation without direct carbon emissions in each hour and grid region. It measures a different thing from annual certificate matching; neither metric establishes the physical delivery path to a site.",
       "status": "verified",
       "source": "DOE",
       "url": "https://www.energy.gov/oe/clean-energy-resources-meet-data-center-electricity-demand"
@@ -325,7 +325,7 @@
     {
       "term": "Small Modular Reactor (SMR)",
       "category": "Data centers",
-      "def": "A factory-built nuclear reactor, typically under ~300 MW, deployed in increments. Offers firm 24/7 carbon-free power that scales with load; first US units backed by corporate offtake are targeted around 2030.",
+      "def": "A nuclear reactor design generally rated at 300 MW or less per module. Procurement must distinguish a development agreement from a licensed, financed project with a delivery commitment.",
       "status": "verified",
       "source": "Google / Kairos Power",
       "url": "https://blog.google/company-news/outreach-and-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/"
@@ -333,7 +333,7 @@
     {
       "term": "Enhanced Geothermal",
       "category": "Data centers",
-      "def": "Next-generation geothermal that engineers heat reservoirs in places without natural hydrothermal resources, providing firm, dispatchable, carbon-free power that complements variable renewables.",
+      "def": "Geothermal systems that create or improve underground fluid pathways to recover heat. Assess resource performance, drilling risk and the contracted delivery profile separately from nameplate capacity.",
       "status": "verified",
       "source": "Carbon Credits",
       "url": "https://carboncredits.com/google-taps-earths-heat-in-150mw-geothermal-deal-with-ormat-technologies-to-power-data-centers/"
@@ -371,12 +371,12 @@
       "url": "https://www.utilitydive.com/news/hyperscaler-data-center-power-companies-grid-utilities/820568/"
     },
     {
-      "term": "Clean Firm Power",
+      "term": "Firm Power",
       "category": "Data centers",
-      "def": "Carbon-free generation available on demand around the clock — advanced nuclear, enhanced geothermal, hydro, long-duration storage, or gas with carbon capture. The 'missing middle' that large buyers fund to reach 24/7 carbon-free energy.",
+      "def": "Power or capacity committed to be available throughout the agreed delivery period, including adverse conditions. Check the contract for permitted interruptions, outage treatment and replacement-power obligations; a technology label alone does not establish firm delivery.",
       "status": "verified",
-      "source": "Utility Dive",
-      "url": "https://www.utilitydive.com/news/google-firm-peaking-clean-energy-geothermal-nuclear-ccs-hydrogen/693787/"
+      "source": "EIA — firm power",
+      "url": "https://www.eia.gov/tools/glossary/index.php?id=Firm+power"
     },
     {
       "term": "Curtailment-Enabled Headroom",
@@ -573,7 +573,7 @@
     {
       "term": "Scope 2 (Market-Based)",
       "category": "RECs",
-      "def": "One of the two accounting methods in the GHG Protocol Scope 2 Guidance for emissions from purchased electricity. The location-based method uses the grid average; the market-based method reflects the buyer's contractual instruments — RECs, a VPPA, a green tariff. Retiring the RECs from a matched MWh lets the buyer report zero market-based emissions for that MWh, which is why a VPPA's REC conveyance is what makes the clean-energy claim.",
+      "def": "An accounting method under the GHG Protocol for emissions associated with purchased electricity. It uses eligible contractual instruments, including certificates and supplier contracts, subject to the Scope 2 Quality Criteria. A VPPA payment alone does not establish certificate ownership or compliance with those criteria.",
       "status": "verified",
       "source": "GHG Protocol — Scope 2 Guidance",
       "url": "https://ghgprotocol.org/scope-2-guidance"
@@ -581,7 +581,7 @@
     {
       "term": "Additionality",
       "category": "RECs",
-      "def": "Whether a purchase actually causes new renewable capacity that would not otherwise have been built. A long-term PPA with a new-build project scores high — the offtake is what financed it. Buying unbundled RECs from an existing plant scores low. The stricter buyers (and 24/7 CFE programs) weigh additionality, not just the REC count.",
+      "def": "Whether a purchase causes generation or investment beyond what would otherwise occur. Assess the project counterfactual and financing evidence separately from certificate ownership; owning a REC does not by itself establish additionality.",
       "status": "verified",
       "source": "EPA — Green Power Markets",
       "url": "https://www.epa.gov/green-power-markets/green-power-partnership-additionality"
@@ -589,7 +589,7 @@
     {
       "term": "Unbundled REC",
       "category": "RECs",
-      "def": "A REC sold on its own, separate from the electricity that produced it, so a buyer can make a renewable claim without any delivery or price relationship to a specific project. Cheaper and more liquid than a bundled PPA, but weak on additionality — a common critique of relying on them for a Scope 2 claim.",
+      "def": "A renewable energy certificate sold separately from its associated electricity. It transfers the specified generation attributes, but does not supply power to a site or hedge the buyer's electricity price.",
       "status": "verified",
       "source": "EPA — Renewable Energy Certificates",
       "url": "https://www.epa.gov/green-power-markets/renewable-energy-certificates-recs"

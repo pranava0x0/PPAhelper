@@ -1,4 +1,4 @@
-/* PPA Helper — a clean-energy markets & finance workbench.
+/* PPA Helper — a power markets & finance workbench.
    Identity: cool near-white surfaces, electric-blue accent, grotesque-sans
    display type, monospace data spine, soft elevation on cards.
    See docs/design.md. System fonts only; no web fonts, no frameworks. */
@@ -360,6 +360,8 @@ main { max-width: 1180px; margin: 0 auto; padding: 28px 22px 80px; }
 .case-history li { margin: 3px 0; }
 .case-date { color: var(--text-muted); font-size: 12px; white-space: nowrap; margin-right: 4px; }
 .case-meta { margin: 0 0 8px; }
+.case-study .src a { display: inline-flex; align-items: center; min-height: 44px; }
+.result-jump { min-height: 44px; }
 .case-participants { font-size: 13.5px; color: var(--text-muted); max-width: none; }
 .case-decisions { margin: 0 0 14px; padding-left: 22px; font-size: 14px; }
 .case-decisions li { margin: 5px 0; padding-left: 3px; }
@@ -461,12 +463,12 @@ table.coverage th { font-size: 11px; text-transform: uppercase; letter-spacing: 
 .toc-link::before { content: counter(toc); color: var(--accent); font-weight: 700; margin-right: 5px; font-feature-settings: "tnum" 1; }
 .toc-link:hover, .toc-link:focus-visible { color: var(--text); border-bottom-color: var(--accent); }
 .toc-link.active { color: var(--text); border-bottom-style: solid; border-bottom-color: var(--accent); }
-h2[id], .case-study { scroll-margin-top: 112px; } /* clears the ~99-111px sticky masthead */
+h2[id], .case-study, #pf-results, #st-results, #pf-controls, #st-controls, #draft-output { scroll-margin-top: 112px; } /* clears the ~99-111px sticky masthead */
 
 /* on wide screens the contents bar sticks just under the masthead (scroll-spy highlights the section) */
 @media (min-width: 900px) {
   .toc { position: sticky; top: 96px; z-index: 20; background: var(--bg); padding: 8px 0; border-bottom: 1px solid var(--border); }
-  h2[id], .case-study { scroll-margin-top: 150px; }
+  h2[id], .case-study, #pf-results, #st-results, #pf-controls, #st-controls, #draft-output { scroll-margin-top: 150px; }
 }
 
 /* inline glossary tooltip terms */
@@ -771,10 +773,16 @@ ol.steps li::before { content: counter(step); position: absolute; left: 0; top: 
 .palette-list { list-style: none; margin: 0; padding: 6px; max-height: 46vh; overflow-y: auto; }
 .palette-list li[role="option"] {
   display: flex; gap: 10px; align-items: baseline; justify-content: space-between;
-  padding: 9px 10px; border-radius: 8px; cursor: pointer; min-height: 40px;
+  padding: 9px 10px; border-radius: 8px; cursor: pointer; min-height: 44px;
+  flex-wrap: wrap;
 }
 .palette-list li[aria-selected="true"] { background: var(--accent-soft); }
 .pal-label { font-size: 14px; font-weight: 600; }
 .pal-ctx { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; flex-shrink: 0; }
 .palette-empty { padding: 14px 12px; font-size: 13px; color: var(--text-muted); }
+.palette-status { padding: 8px 16px; margin: 0; font-size: 13px; color: var(--text-muted); }
 
+/* Initial Learn navigation is in HTML so deferred scripts do not move the page. */
+html[data-experience="1"] [data-level="2"],
+html[data-experience="2"] [data-level-only="1"],
+html[data-chooser-done="1"] #path-chooser { display: none; }

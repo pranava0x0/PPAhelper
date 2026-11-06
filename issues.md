@@ -163,3 +163,19 @@ Reviewed the whole tool as a demanding PPA approver/originator would. Findings a
 - REC shortfall / replacement mechanics for the buyer's clean-energy claim. *(low)*
 - ToD / hourly pricing and 24/7 CFE matching remain clause-level research gaps (already tracked).
 - CRR/FTR mechanics worked example; SPP/SERC per-region depth. *(low)*
+
+## 2026-11-06 — measured navigation UAT
+
+- **Search omitted individual cases and the finance workbench.** *(code bug — Fixed)* Expected a case name or the existing practitioner-index label to reach its target. Search indexed only headings and glossary entries, so neither target type appeared. Cases now use a shared, versioned, retriable request; practitioner-index targets without headings are included. Next time, test named leaf destinations from a cold visit, including mode changes. Covered by `test/search.test.js` and `test/uat.cjs`.
+- **Desktop contents bar covered opened case summaries.** *(code bug — Fixed)* Expected a jump to leave the summary visible. The fixed margin allowed for the masthead but not the wrapping sticky contents bar. Jumps now measure both sticky surfaces and move focus to the target. Next time, assert the summary's viewport position against the live sticky edge, not just that the details element is open.
+- **Finance, supply and draft results required avoidable scrolling.** *(flow — Fixed)* Finance took four manual gestures on a phone after choosing a preset. Added explicit result/input jumps for finance and supply; generation focuses the draft output. The browser runner measures gestures separately from automatic jumps.
+- **The first interaction counter counted an internal mode change as a user click.** *(test bug — Fixed)* Expected two clicks for search and selection; measured three for practitioner cases. The level switch calls a control programmatically. Count trusted browser click events and record mode changes separately.
+
+### Review follow-ups (2026-11-06)
+
+- **Search retry and exclusive-mode targets.** *(code bugs — Fixed)* Expected Enter on the retry button to retry, and a newcomer-only result to become visible from Practitioner. The dialog handled all Enter keys as result selection; index entries carried minimum levels but no exclusive-mode requirement. Limit selection keys to the input and retain the exclusive mode in each entry. Browser regressions now exercise both paths.
+- **Mixed capture dates in the overview.** *(content bug — Fixed)* Expected each status to retain its evidence date. A single October header would also apply to November additions. Each overview status now carries its case's capture date. Keep capture dates with individual records when extending the collection.
+
+- **Slow-network first-paint shift.** *(performance bug — Fixed, review round two)* Expected the first painted Learn layout to stay in place. With 4× CPU slowdown and 150 ms latency, deferred insertion of navigation moved visible content, producing 0.463 layout shift. Initial Learn contents, practitioner links and chooser now ship in HTML; saved presentation applies before paint. The same run measures 0.005 for fresh and saved-Practitioner visits. Next time, include a throttled first paint and persisted-mode visit; the acceptance runner now enforces a 0.1 ceiling.
+
+- **PR-description update through the installed GitHub CLI.** *(tooling — worked around, 2026-11-06)* Expected `gh pr edit --body-file` to update the description. Its GraphQL request included the removed classic-projects field and failed. The REST pull-request update succeeded with the same body file. Next time, use the REST endpoint if the CLI reports `repository.pullRequest.projectCards` deprecation.

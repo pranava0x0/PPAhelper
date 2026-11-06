@@ -1,5 +1,13 @@
 # Backlog — PPA Helper
 
+## November 2026 improvements
+
+- ✅ Two additional contract cases: Google × Brookfield hydro and Meta × Clinton, with primary sources and dated limits.
+- ✅ **Direct case lookup and document access.** Search includes case names, contract facts and practitioner targets; lessons and documents lead the case.
+- ✅ **Measured UAT and copy pass.** Added a repeatable browser runner and three-width measurements; revised the teaching copy around delivery, cost and contract requirements.
+
+Spec: `docs/nov-2026-improvements.md`.
+
 ## October 2026 pass (2026-10-22)
 
 Research sweep (dockets, deals, policy, discourse, x.com), a twelve-chair content review, and a measured UX/perf audit. Spec: `docs/oct-2026-pass-spec.md`. Shipped items are ticked in the spec's tables once the PR merges; the review items below were deliberately deferred.

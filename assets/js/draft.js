@@ -720,6 +720,7 @@
       output.textContent = text;
       if (copyBtn) copyBtn.disabled = false;
       if (dlBtn)   dlBtn.disabled   = false;
+      if (window.PPA) window.PPA.jumpTo("draft-output");
     }
 
     genBtn.addEventListener("click", generate);

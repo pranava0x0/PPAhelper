@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-01",
+  "updated": "2026-11-06",
   "note": "Annotated term sheets for learning. The first three are realistic composites grounded in docs/research-us-ppa.md; the two marked 'Real:' annotate actual executed contracts filed publicly with the SEC (linked in realDocs). Each clause's glossaryRefs must match a term in glossary.json exactly so the UI can link them.",
   "examples": [
     {
@@ -82,7 +82,7 @@
           "label": "Environmental attributes",
           "value": "100% of RECs conveyed to Buyer",
           "party": "buyer",
-          "annotation": "The RECs are what the fixed price really buys — they back the buyer's clean-energy claim. One REC per MWh generated.",
+          "annotation": "The contract transfers the RECs as well as settling the price hedge. One REC represents one MWh of eligible renewable generation; certificate ownership is separate from physical delivery.",
           "glossaryRefs": [
             "Renewable Energy Certificate (REC)"
           ]
@@ -292,9 +292,9 @@
         },
         {
           "label": "Environmental attributes",
-          "value": "Carbon-free attributes to Buyer",
+          "value": "Specified generation attributes to Buyer",
           "party": "buyer",
-          "annotation": "Nuclear output is carbon-free, supporting the buyer's clean-energy and 24/7 CFE goals.",
+          "annotation": "Specify which nuclear generation attributes transfer, how they are tracked and which reporting method accepts them. Nuclear generation does not produce renewable energy certificates.",
           "glossaryRefs": [
             "24/7 Carbon-Free Energy (CFE)"
           ]

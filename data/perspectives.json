@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-02",
+  "updated": "2026-11-06",
   "note": "Expert perspectives and further-learning resources. Viewpoints are summarized from each person's well-documented public work and attributed with a source; they are paraphrases, not direct quotes. 'level': 1=newcomer, 2=practitioner.",
   "voices": [
     {
@@ -7,7 +7,7 @@
       "role": "Founder, SunEdison; former Director, DOE Loan Programs Office",
       "level": 1,
       "angle": "The PPA business model itself was the innovation.",
-      "view": "At SunEdison (2003) Shah pioneered the 'no-money-down' solar PPA: the customer buys the power, not the panels, paying a predictable price over a long contract while a financier owns the system. That shifted solar from a capital purchase to a service and unlocked a multi-billion-dollar market. Running DOE's Loan Programs Office (2021–25), he applied the same logic to first-of-a-kind clean tech — finance is the lever that turns a technology into deployment.",
+      "view": "Shah's SunEdison model separated ownership from use: a financier owned the solar system and the customer bought its output under a long-term PPA. His later DOE work applied project financing to technologies seeking their first commercial deployments.",
       "takeaway": "A PPA is a financing instrument first. The contract exists to make a project bankable.",
       "source": "Canary Media / Wikipedia",
       "url": "https://www.canarymedia.com/articles/climatetech-finance/solar-finance-pioneer-jigar-shah-to-lead-40-billion-doe-loan-programs-office"
@@ -26,8 +26,8 @@
       "name": "Lucia Tian",
       "role": "Google, Head of Advanced Energy Technologies",
       "level": 2,
-      "angle": "Buyers must fund the 'missing middle' of clean firm power.",
-      "view": "Tian leads Google's push beyond annual renewable matching toward 24/7 carbon-free energy, using offtake and investment to scale clean firm technologies — advanced nuclear (Kairos), enhanced geothermal (Fervo), carbon capture, and long-duration storage. Her thesis: large buyers should use demand to bridge the gap between a working pilot and a bankable, scalable product.",
+      "angle": "Long-term buyers can help finance early commercial projects.",
+      "view": "Tian describes using offtake agreements and investment for advanced nuclear, geothermal, carbon capture and long-duration storage. The procurement question is which risks a buyer accepts while a developer moves from pilot to commercial scale.",
       "takeaway": "An offtake agreement can be a deliberate tool to commercialize a new technology, not just buy cheap power.",
       "source": "Latitude Media / Utility Dive",
       "url": "https://www.utilitydive.com/news/google-firm-peaking-clean-energy-geothermal-nuclear-ccs-hydrogen/693787/"
@@ -37,8 +37,8 @@
       "role": "CEO, Clean Energy Buyers Association (CEBA)",
       "level": 1,
       "angle": "Corporate buyers now shape what gets built.",
-      "view": "Powell represents 375+ corporate buyers. Their procurement set records in 2025 (~27 GW), and the mix broadened from solar and wind into clean firm power — nuclear, geothermal, hydro, fusion, and gas with carbon capture. He argues buyers are now a primary driver of new generation and a force pushing for permitting and interconnection reform.",
-      "takeaway": "Aggregate corporate demand, not regulation, is increasingly steering the US generation mix.",
+      "view": "Powell represents corporate electricity buyers seeking generation across solar, wind, nuclear, geothermal and other technologies. He argues that procurement demand makes permitting and interconnection constraints a priority for buyers.",
+      "takeaway": "Corporate procurement affects project financing, but delivery still depends on permits, interconnection and construction.",
       "source": "Utility Dive / CEBA",
       "url": "https://www.utilitydive.com/news/corporate-clean-energy-demand-remains-strong-ceba-ceo-rich-powell-2025-26-procurement-trends/819987/"
     }
