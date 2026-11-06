@@ -461,12 +461,12 @@ table.coverage th { font-size: 11px; text-transform: uppercase; letter-spacing: 
 .toc-link::before { content: counter(toc); color: var(--accent); font-weight: 700; margin-right: 5px; font-feature-settings: "tnum" 1; }
 .toc-link:hover, .toc-link:focus-visible { color: var(--text); border-bottom-color: var(--accent); }
 .toc-link.active { color: var(--text); border-bottom-style: solid; border-bottom-color: var(--accent); }
-h2[id], .case-study { scroll-margin-top: 112px; } /* clears the ~99-111px sticky masthead */
+h2[id], .case-study, #pf-results, #st-results, #pf-controls, #st-controls, #draft-output { scroll-margin-top: 112px; } /* clears the ~99-111px sticky masthead */
 
 /* on wide screens the contents bar sticks just under the masthead (scroll-spy highlights the section) */
 @media (min-width: 900px) {
   .toc { position: sticky; top: 96px; z-index: 20; background: var(--bg); padding: 8px 0; border-bottom: 1px solid var(--border); }
-  h2[id], .case-study { scroll-margin-top: 150px; }
+  h2[id], .case-study, #pf-results, #st-results, #pf-controls, #st-controls, #draft-output { scroll-margin-top: 150px; }
 }
 
 /* inline glossary tooltip terms */
@@ -771,10 +771,12 @@ ol.steps li::before { content: counter(step); position: absolute; left: 0; top: 
 .palette-list { list-style: none; margin: 0; padding: 6px; max-height: 46vh; overflow-y: auto; }
 .palette-list li[role="option"] {
   display: flex; gap: 10px; align-items: baseline; justify-content: space-between;
-  padding: 9px 10px; border-radius: 8px; cursor: pointer; min-height: 40px;
+  padding: 9px 10px; border-radius: 8px; cursor: pointer; min-height: 44px;
+  flex-wrap: wrap;
 }
 .palette-list li[aria-selected="true"] { background: var(--accent-soft); }
 .pal-label { font-size: 14px; font-weight: 600; }
 .pal-ctx { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; flex-shrink: 0; }
 .palette-empty { padding: 14px 12px; font-size: 13px; color: var(--text-muted); }
+.palette-status { padding: 8px 16px; margin: 0; font-size: 13px; color: var(--text-muted); }
 

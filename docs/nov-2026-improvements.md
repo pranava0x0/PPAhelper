@@ -23,3 +23,5 @@ Run all dependency-free Node tests. Use Chrome at 375×812, 768×1024 and 1440×
 Open a pull request after validation. Round one checks source facts, settlement and risk direction, and loader/search failures. Round two checks the final diff, accessibility, course flow and the meaning of the measured results. Address findings, rerun affected checks and merge after both rounds pass.
 
 Case checkpoint: all seven Node test files passed. Live Chrome at all three widths rendered the two new cases without script errors or document overflow; the Clinton lesson and both source links appeared within the initial opened-case viewport. JSON diff adds two records and updates the file date; older records remain intact.
+
+Navigation checkpoint: all eight Node test files and the Chrome acceptance runner pass. Each of seventeen case destinations is reachable at all three widths; loading failures recover through Retry, with a single shared successful data request. Explicit result links replace finance/supply result scrolling; draft generation focuses the output. Live screenshots caught the sticky-contents offset issue, now asserted in the runner.

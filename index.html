@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
-  <link rel="preload" href="data/glossary.json?v=20261106a" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261106a">
+  <link rel="preload" href="data/glossary.json?v=20261106b" as="fetch" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261106b">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -1286,6 +1286,7 @@
               <button type="button" class="scenario-btn" data-preset="wind">Onshore wind</button>
               <button type="button" class="scenario-btn" data-preset="storage">Solar + storage</button>
             </div>
+            <button type="button" class="nav-link-btn" data-scroll-to="pf-results">View finance results ↓</button>
           </fieldset>
 
           <fieldset>
@@ -1351,9 +1352,10 @@
         </form>
 
         <div class="readout">
+          <button type="button" class="nav-link-btn" data-scroll-to="pf-controls">Edit finance inputs ↑</button>
           <div class="direction-banner" id="pf-banner" role="status" aria-live="polite">—</div>
 
-          <div class="kpis">
+          <div class="kpis" id="pf-results">
             <div class="kpi">
               <div class="k-label">Annual PPA revenue</div>
               <div class="k-val mono" id="pf-revenue">—</div>
@@ -1575,6 +1577,7 @@
               <button type="button" class="scenario-btn" data-preset="renstor" aria-pressed="false">Renewables + storage</button>
               <button type="button" class="scenario-btn" data-preset="anchored" aria-pressed="true">Anchored stack</button>
             </div>
+            <button type="button" class="nav-link-btn" data-scroll-to="st-results">View supply results ↓</button>
           </fieldset>
 
           <fieldset>
@@ -1615,9 +1618,10 @@
         </form>
 
         <div class="readout">
+          <button type="button" class="nav-link-btn" data-scroll-to="st-controls">Edit supply inputs ↑</button>
           <div class="direction-banner" id="st-banner" role="status" aria-live="polite">—</div>
 
-          <div class="kpis">
+          <div class="kpis" id="st-results">
             <div class="kpi">
               <div class="k-label">Hours fully covered</div>
               <div class="k-val mono" id="st-covered">—</div>
@@ -1982,9 +1986,9 @@
   </footer>
 
   <!-- per-tab scripts (simulator, draft, projfin, stack) load on first visit: VIEW_SCRIPTS in app.js -->
-  <script src="assets/js/quiz-banks.js?v=20261106a" defer></script>
-  <script src="assets/js/quiz.js?v=20261106a" defer></script>
-  <script src="assets/js/app.js?v=20261106a" defer></script>
-  <script src="assets/js/content.js?v=20261106a" defer></script>
+  <script src="assets/js/quiz-banks.js?v=20261106b" defer></script>
+  <script src="assets/js/quiz.js?v=20261106b" defer></script>
+  <script src="assets/js/app.js?v=20261106b" defer></script>
+  <script src="assets/js/content.js?v=20261106b" defer></script>
 </body>
 </html>

@@ -299,7 +299,6 @@
 
       var src = el("p", "src");
       src.setAttribute("style", "margin-top:10px");
-      src.appendChild(el("strong", null, "Documents & sources: "));
       (c.sources || []).forEach(function (s, i) {
         if (i) src.appendChild(document.createTextNode(" · "));
         var a = document.createElement("a");
@@ -392,6 +391,7 @@
   }
 
   function openCase(detailsId) {
+    if (window.PPA) { window.PPA.jumpTo(detailsId); return; }
     var det = document.getElementById(detailsId);
     if (!det) return;
     det.open = true;
@@ -402,7 +402,8 @@
   }
 
   function loadDatacenter() {
-    return getJson("data/datacenter.json").then(renderDatacenter)
+    var data = window.PPA ? window.PPA.loadCaseData() : getJson("data/datacenter.json");
+    return data.then(renderDatacenter)
       .catch(function (e) {
         var w = document.getElementById("dc-why");
         if (w) w.textContent = "Could not load data-center deals (" + e.message + "). Serve over http (see README).";

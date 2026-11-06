@@ -492,6 +492,10 @@
         wireGlossarySearch();
         autoTagAcronyms();
         wireTooltips();
+        if (pal && !pal.backdrop.hidden) {
+          pal.items = buildPaletteIndex();
+          renderPalette(pal.input.value);
+        }
       })
       .catch(function (err) {
         var list = document.getElementById("glossary-list");
@@ -888,8 +892,20 @@
     requestAnimationFrame(function () {
       var t = document.getElementById(id);
       if (!t) return;
+      if (t.tagName === "DETAILS") t.open = true;
+      var header = document.querySelector(".masthead");
+      var view = t.closest(".view");
+      var toc = view && view.querySelector(".toc");
+      var offset = header ? header.getBoundingClientRect().height : 0;
+      if (toc && getComputedStyle(toc).position === "sticky") offset += toc.getBoundingClientRect().height;
+      t.style.scrollMarginTop = (offset + 12) + "px";
       var smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       t.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+      var focus = t.tagName === "DETAILS" ? t.querySelector("summary") : t;
+      if (focus) {
+        if (focus.tagName !== "SUMMARY") focus.setAttribute("tabindex", "-1");
+        focus.focus({ preventScroll: true });
+      }
     });
   }
 
@@ -982,6 +998,28 @@
      Built on first open; the index is rebuilt per open so it respects the
      current level filter. Course tabs, every visible h2, every glossary term. */
   var pal = null;
+  var caseData = null;
+  var caseDataLoad = null;
+
+  // Shared with the view renderer: one versioned request, retriable on failure.
+  function loadCaseData() {
+    if (!caseDataLoad) {
+      caseDataLoad = fetch(dataUrl("data/datacenter.json"))
+        .then(function (r) {
+          if (!r.ok) throw new Error("Case studies: HTTP " + r.status);
+          return r.json();
+        })
+        .then(function (data) {
+          if (!Array.isArray(data.caseStudies) || !Array.isArray(data.vppCases)) {
+            throw new Error("Case studies: invalid data");
+          }
+          caseData = data;
+          return data;
+        })
+        .catch(function (e) { caseDataLoad = null; throw e; });
+    }
+    return caseDataLoad;
+  }
 
   function paletteCtx(name) {
     var stop = COURSE.filter(function (s) { return s.view === name; })[0];
@@ -1000,13 +1038,27 @@
       var view = document.getElementById("view-" + name);
       if (!view) return;
       view.querySelectorAll("h2").forEach(function (h, hi) {
-        if (h.closest(".lvl-hidden")) return;
         if (!h.id) h.id = name + "-x" + (hi + 1);
+        var gated = h.closest("[data-level]");
         var clean = h.cloneNode(true);
         clean.querySelectorAll(".pill, .stage-n").forEach(function (x) { x.remove(); });
-        items.push({ label: clean.textContent.replace(/\s+/g, " ").trim(), ctx: paletteCtx(name), view: name, id: h.id });
+        items.push({ label: clean.textContent.replace(/\s+/g, " ").trim(), ctx: paletteCtx(name), view: name, id: h.id,
+          level: gated ? Number(gated.dataset.level) : 1 });
       });
     });
+    PRAC_INDEX.forEach(function (entry) {
+      if (!document.getElementById(entry.target) || items.some(function (it) { return it.id === entry.target; })) return;
+      items.push({ label: entry.label, ctx: paletteCtx(entry.view), view: entry.view, id: entry.target, level: 2 });
+    });
+    if (caseData) {
+      ["caseStudies", "vppCases"].forEach(function (group) {
+        caseData[group].forEach(function (c) {
+          items.push({ label: c.title, ctx: c.level === 2 ? "Case · Practitioner" : "Case study",
+            view: "datacenter", id: (group === "caseStudies" ? "dc-cases-" : "vpp-cases-") + c.id,
+            level: c.level, keywords: [c.market].concat(Object.values(c.glance || {})).join(" ") });
+        });
+      });
+    }
     glossary.forEach(function (t) {
       items.push({ label: t.term, ctx: "Glossary", term: t.term });
     });
@@ -1023,6 +1075,7 @@
       if (l.indexOf(q) === 0) s = 0;
       else if (l.indexOf(" " + q) !== -1 || l.indexOf("(" + q) !== -1) s = 1;
       else if (l.indexOf(q) !== -1) s = 2;
+      else if ((it.keywords || "").toLowerCase().indexOf(q) !== -1) s = 3;
       else return;
       scored.push({ s: s, it: it });
     });
@@ -1033,8 +1086,11 @@
   function paletteGo(item) {
     closePalette();
     if (item.term) { showGlossaryTerm(item.term); return; }
+    if (item.level > Number(currentLevel)) setLevelViaFilter(String(item.level));
     var ready = showView(item.view, !item.id);
-    if (item.id) ready.then(function () { scrollToId(item.id); });
+    if (item.id) ready.then(function () {
+      if (currentView === item.view) scrollToId(item.id);
+    });
   }
 
   function buildPaletteDom() {
@@ -1045,10 +1101,11 @@
     box.className = "palette";
     box.setAttribute("role", "dialog");
     box.setAttribute("aria-modal", "true");
-    box.setAttribute("aria-label", "Search sections and glossary");
+    box.setAttribute("aria-label", "Search sections, cases and glossary");
     var input = document.createElement("input");
     input.type = "text";
-    input.placeholder = "Jump to a section or glossary term…";
+    input.placeholder = "Search sections, cases or terms…";
+    input.setAttribute("aria-label", "Search sections, cases or glossary terms");
     input.setAttribute("role", "combobox");
     input.setAttribute("aria-expanded", "true");
     input.setAttribute("aria-controls", "palette-list");
@@ -1057,6 +1114,17 @@
     list.id = "palette-list";
     list.setAttribute("role", "listbox");
     box.appendChild(input);
+    var status = document.createElement("p");
+    status.className = "palette-status";
+    status.setAttribute("role", "status");
+    status.hidden = true;
+    var retry = document.createElement("button");
+    retry.type = "button";
+    retry.className = "nav-link-btn";
+    retry.textContent = "Retry case search";
+    retry.hidden = true;
+    retry.addEventListener("click", loadPaletteCases);
+    box.append(status, retry);
     box.appendChild(list);
     backdrop.appendChild(box);
     document.body.appendChild(backdrop);
@@ -1066,6 +1134,11 @@
     });
     backdrop.addEventListener("keydown", function (e) {
       if (e.key === "Escape") { e.preventDefault(); closePalette(); }
+      else if (e.key === "Tab") {
+        e.preventDefault();
+        if (retry.hidden) input.focus();
+        else (document.activeElement === input ? retry : input).focus();
+      }
       else if (e.key === "ArrowDown") { e.preventDefault(); movePalette(1); }
       else if (e.key === "ArrowUp") { e.preventDefault(); movePalette(-1); }
       else if (e.key === "Enter") {
@@ -1076,7 +1149,8 @@
     });
     input.addEventListener("input", function () { renderPalette(input.value); });
 
-    pal = { backdrop: backdrop, input: input, list: list, rows: [], active: 0, opener: null, items: [] };
+    pal = { backdrop: backdrop, input: input, list: list, status: status, retry: retry,
+      rows: [], active: 0, opener: null, items: [] };
   }
 
   function renderPalette(q) {
@@ -1084,6 +1158,7 @@
     pal.rows = [];
     while (pal.list.firstChild) pal.list.removeChild(pal.list.firstChild);
     if (!ranked.length) {
+      pal.input.removeAttribute("aria-activedescendant");
       var empty = document.createElement("li");
       empty.className = "palette-empty";
       empty.textContent = "No matches.";
@@ -1099,10 +1174,11 @@
       lab.textContent = item.label;
       var ctx = document.createElement("span");
       ctx.className = "pal-ctx";
-      ctx.textContent = item.ctx || "";
+      ctx.textContent = (item.ctx || "") + (item.level === 2 && item.ctx !== "Case · Practitioner" ? " · Practitioner" : "");
       li.appendChild(lab);
       li.appendChild(ctx);
-      li.addEventListener("pointerdown", function (e) { e.preventDefault(); paletteGo(item); });
+      li.addEventListener("pointerdown", function (e) { e.preventDefault(); });
+      li.addEventListener("click", function () { paletteGo(item); });
       li.addEventListener("mouseenter", function () { setPaletteActive(i); });
       pal.list.appendChild(li);
       pal.rows.push({ el: li, item: item });
@@ -1133,6 +1209,25 @@
     pal.input.value = "";
     renderPalette("");
     pal.input.focus();
+    loadPaletteCases();
+  }
+
+  function loadPaletteCases() {
+    pal.retry.hidden = true;
+    pal.status.hidden = !!caseData;
+    pal.status.textContent = "Loading case studies…";
+    loadCaseData().then(function () {
+      if (pal.backdrop.hidden) return;
+      pal.items = buildPaletteIndex();
+      pal.status.hidden = true;
+      renderPalette(pal.input.value);
+    }).catch(function (e) {
+      if (pal.backdrop.hidden) return;
+      pal.status.hidden = false;
+      pal.status.textContent = "Case search unavailable. Sections and glossary still work.";
+      pal.retry.hidden = false;
+      console.error(e);
+    });
   }
 
   function closePalette() {
@@ -1185,6 +1280,8 @@
     showView: showView,
     ensureView: ensureView,
     onViewLoad: onViewLoad,
+    loadCaseData: loadCaseData,
+    jumpTo: scrollToId,
     currentView: function () { return currentView; },
     showGlossaryTerm: showGlossaryTerm,
     reapplyLevel: function () { applyLevel(currentLevel); },
@@ -1246,10 +1343,7 @@
   function wireScrollLinks() {
     document.querySelectorAll("[data-scroll-to]").forEach(function (b) {
       b.addEventListener("click", function () {
-        var t = document.getElementById(b.dataset.scrollTo);
-        if (!t) return;
-        var smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        t.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+        scrollToId(b.dataset.scrollTo);
       });
     });
   }

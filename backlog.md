@@ -3,7 +3,7 @@
 ## November 2026 improvements
 
 - ✅ Two additional contract cases: Google × Brookfield hydro and Meta × Clinton, with primary sources and dated limits.
-- **Direct case lookup and document access.** Extend Search to case names and contract facts; keep lessons and documents near the summary. *Priority: high; in progress.*
+- ✅ **Direct case lookup and document access.** Search includes case names, contract facts and practitioner targets; lessons and documents lead the case.
 - **Measured UAT and copy pass.** Record performance and interaction costs across phone, tablet and desktop; tighten teaching copy. *Priority: high; in progress.*
 
 Spec: `docs/nov-2026-improvements.md`.

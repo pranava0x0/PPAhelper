@@ -163,3 +163,10 @@ Reviewed the whole tool as a demanding PPA approver/originator would. Findings a
 - REC shortfall / replacement mechanics for the buyer's clean-energy claim. *(low)*
 - ToD / hourly pricing and 24/7 CFE matching remain clause-level research gaps (already tracked).
 - CRR/FTR mechanics worked example; SPP/SERC per-region depth. *(low)*
+
+## 2026-11-06 — measured navigation UAT
+
+- **Search omitted individual cases and the finance workbench.** *(code bug — Fixed)* Expected a case name or the existing practitioner-index label to reach its target. Search indexed only headings and glossary entries, so neither target type appeared. Cases now use a shared, versioned, retriable request; practitioner-index targets without headings are included. Next time, test named leaf destinations from a cold visit, including mode changes. Covered by `test/search.test.js` and `test/uat.cjs`.
+- **Desktop contents bar covered opened case summaries.** *(code bug — Fixed)* Expected a jump to leave the summary visible. The fixed margin allowed for the masthead but not the wrapping sticky contents bar. Jumps now measure both sticky surfaces and move focus to the target. Next time, assert the summary's viewport position against the live sticky edge, not just that the details element is open.
+- **Finance, supply and draft results required avoidable scrolling.** *(flow — Fixed)* Finance took four manual gestures on a phone after choosing a preset. Added explicit result/input jumps for finance and supply; generation focuses the draft output. The browser runner measures gestures separately from automatic jumps.
+- **The first interaction counter counted an internal mode change as a user click.** *(test bug — Fixed)* Expected two clicks for search and selection; measured three for practitioner cases. The level switch calls a control programmatically. Count trusted browser click events and record mode changes separately.
