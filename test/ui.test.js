@@ -143,6 +143,21 @@ test("case-study glance table host sits above the accordions and is rendered", (
   assert.ok(glanceFn.length > 200 && !/innerHTML/.test(glanceFn), "renderCaseGlance must build the table with createElement, not innerHTML");
 });
 
+test("initial presentation preferences run before paint and tolerate null progress", () => {
+  const vm = require("node:vm");
+  const inline = html.match(/<script>([\s\S]*?)<\/script>/)[1];
+  function run(saved) {
+    const dataset = { experience: "1", theme: "light" };
+    vm.runInNewContext(inline, { document: { documentElement: { dataset } },
+      localStorage: { getItem: key => saved[key] || null }, matchMedia: () => ({ matches: false }) });
+    return dataset;
+  }
+  assert.strictEqual(run({}).experience, "1");
+  const saved = run({ "ppa-level": "2", "ppa-progress": "null", "ppa-theme": "dark", "ppa-chooser-done": "1" });
+  assert.deepStrictEqual(saved, { experience: "2", theme: "dark", chooserDone: "1" });
+  assert.strictEqual(run({ "ppa-level": "all" }).experience, "2");
+});
+
 test("browser scripts remain valid JavaScript", () => {
   const vm = require("node:vm");
   ["assets/js/app.js", "assets/js/content.js", "assets/js/quiz-banks.js", "assets/js/quiz.js"].forEach((file) => {

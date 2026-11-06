@@ -47,6 +47,21 @@ test("path chooser and practitioner index slots exist (index is level-2 gated)",
   assert.ok(/data-level="2"/.test(prac[0]), '#prac-index must carry data-level="2"');
 });
 
+test("initial Learn contents and practitioner links match their source lists", () => {
+  const learn = html.slice(html.indexOf('id="view-foundations"'), html.indexOf('id="view-examples"'));
+  const toc = learn.match(/<nav class="toc"[\s\S]*?<\/nav>/);
+  assert.ok(toc, "Learn contents must exist before deferred JavaScript");
+  const targets = [...toc[0].matchAll(/data-scroll-to="([^"]+)"/g)].map(m => m[1]);
+  const headings = [...learn.matchAll(/<h2\b[^>]*id="([^"]+)"/g)].map(m => m[1]);
+  assert.deepStrictEqual(targets, headings, "static contents drifted from Learn headings");
+  const block = appJs.match(/var PRAC_INDEX = \[([\s\S]*?)\];/)[1];
+  const entries = [...block.matchAll(/view: "([^"]+)"[^\n]*target: "([^"]+)"[^\n]*label: "([^"]+)"/g)]
+    .map(m => [m[1], m[2], m[3]]);
+  const links = [...learn.matchAll(/data-prac-view="([^"]+)" data-prac-target="([^"]+)">([^<]+)<\/button>/g)]
+    .map(m => [m[1], m[2], m[3].replace(/&amp;/g, "&")]);
+  assert.deepStrictEqual(links, entries, "static practitioner links drifted from PRAC_INDEX");
+});
+
 test("from-scratch path includes contract choice and signature sequence", () => {
   assert.ok(html.includes('id="choose-contract"'), "load/generation contract-choice section missing");
   assert.ok(html.includes('id="need-to-signature"'), "need-to-signature section missing");

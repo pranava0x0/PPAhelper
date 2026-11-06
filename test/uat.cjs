@@ -253,23 +253,31 @@ async function main() {
     // Optional lab stress run: the same machine and browser, simulated slower
     // CPU/network. This does not emulate a particular physical phone.
     if (process.env.PPA_UAT_STRESS === "1") {
-      const slow = await browser.newContext({ viewport: { width: 375, height: 812 } });
-      await instrument(slow);
-      const page = await slow.newPage();
-      const session = await slow.newCDPSession(page);
-      await session.send("Network.enable");
-      await session.send("Network.emulateNetworkConditions", {
-        offline: false, latency: 150, downloadThroughput: 200000, uploadThroughput: 75000
-      });
-      await session.send("Emulation.setCPUThrottlingRate", { rate: 4 });
-      await reset(page);
-      await page.waitForTimeout(300);
-      report.throttled = await page.evaluate(() => ({
-        domMs: performance.getEntriesByType("navigation")[0].domContentLoadedEventEnd,
-        fcpMs: performance.getEntriesByName("first-contentful-paint")[0]?.startTime,
-        lcpMs: window.lab.lcp, cls: window.lab.cls, longTasks: window.lab.longTasks
-      }));
-      await slow.close();
+      for (const savedMode of [false, true]) {
+        const slow = await browser.newContext({ viewport: { width: 375, height: 812 } });
+        await instrument(slow);
+        if (savedMode) await slow.addInitScript(() => {
+          localStorage.setItem("ppa-level", "2");
+          localStorage.setItem("ppa-chooser-done", "1");
+        });
+        const page = await slow.newPage();
+        const session = await slow.newCDPSession(page);
+        await session.send("Network.enable");
+        await session.send("Network.emulateNetworkConditions", {
+          offline: false, latency: 150, downloadThroughput: 200000, uploadThroughput: 75000
+        });
+        await session.send("Emulation.setCPUThrottlingRate", { rate: 4 });
+        await reset(page);
+        await page.waitForTimeout(300);
+        const timing = await page.evaluate(() => ({
+          domMs: performance.getEntriesByType("navigation")[0].domContentLoadedEventEnd,
+          fcpMs: performance.getEntriesByName("first-contentful-paint")[0]?.startTime,
+          lcpMs: window.lab.lcp, cls: window.lab.cls, longTasks: window.lab.longTasks
+        }));
+        report[savedMode ? "throttledPractitioner" : "throttled"] = timing;
+        assert.ok(timing.cls < 0.1, "initial navigation caused layout shift under throttling");
+        await slow.close();
+      }
     }
     fs.writeFileSync(path.join(out, "report.json"), JSON.stringify(report, null, 2) + "\n");
     console.log("Saved .sessions/uat/report.json");

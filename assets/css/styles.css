@@ -782,3 +782,7 @@ ol.steps li::before { content: counter(step); position: absolute; left: 0; top: 
 .palette-empty { padding: 14px 12px; font-size: 13px; color: var(--text-muted); }
 .palette-status { padding: 8px 16px; margin: 0; font-size: 13px; color: var(--text-muted); }
 
+/* Initial Learn navigation is in HTML so deferred scripts do not move the page. */
+html[data-experience="1"] [data-level="2"],
+html[data-experience="2"] [data-level-only="1"],
+html[data-chooser-done="1"] #path-chooser { display: none; }

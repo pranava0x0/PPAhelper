@@ -108,8 +108,7 @@
       "<p>" + esc(c.annotation) + "</p>" +
       glossaryChips(c.glossaryRefs);
     wireChips(d);
-    // On a stacked (mobile) layout the detail sits below a long clause list —
-    // bring it into view so a tap doesn't strand the reader at the top.
+    // Keep the selected explanation visible and focused at every width.
     if (userScroll && window.PPA) window.PPA.jumpTo("clause-detail");
   }
 

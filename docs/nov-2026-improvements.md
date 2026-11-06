@@ -33,3 +33,12 @@ Copy checkpoint: revised definitions, exercises and summaries together. The nucl
 Reviewed the source announcements and transaction counsel's hydro description against each new case field, then read the search/loader and view changes as a diff. The hydro hedge is financially settled, the 3,000 MW framework is not an executed PPA for that full quantity, and the Clinton start remains a future milestone. Corrected the Clinton timeline order and put capture dates in overview rows instead of applying the earlier date to every case.
 
 Code findings addressed: Enter on Retry now invokes the button rather than selecting a search result; newcomer-only results switch back from Practitioner; ungated workbench targets no longer force Practitioner. Source links and result controls meet the 44 px target. Filed-PPA clause selection now uses the same measured jump and focus behavior as other destinations. The browser runner covers both keyboard regressions, all views, and a ninth measured journey for a filed clause. It can reproduce the slow-CPU/network check with `PPA_UAT_STRESS=1`.
+
+
+## Review round two
+
+Reviewed the final code and content diff, then checked the measured learning paths, light/dark screenshots, contrast and focus. The slow-network run found a real first-paint shift (0.463): deferred JavaScript inserted the chooser and contents ahead of already-visible material. The initial Learn contents and practitioner index now ship in HTML, with stored presentation applied before paint. Native parity tests compare their targets and labels to the canonical lists. The stress runner checks fresh and saved Practitioner visits and rejects shifts of 0.1 or more; both finish at 0.005. No additional dependency or build step was introduced.
+
+Final validation: all eight native suites pass; Chrome covers nine views, seventeen case destinations and nine measured journeys at each of three widths, including keyboard retry, both directions of mode switching, source/input/result focus and failure recovery. Source announcements and counsel's description support the new cases; undisclosed commercial terms remain unknown. The remaining simulator/draft scroll costs and lab-versus-field limits are recorded in `uat.md`. No unresolved blocker from either review remains.
+
+A final smoke test also exercised the static chooser and practitioner chip, finance result/input focus, and normal-motion case jumps at all three widths.

@@ -521,6 +521,7 @@
   var currentLevel = "1";
   function applyLevel(level) {
     currentLevel = level;
+    document.documentElement.dataset.experience = level;
     try { localStorage.setItem("ppa-level", level); } catch (e) {}
     document.querySelectorAll("[data-level]").forEach(function (el) {
       var lv = parseInt(el.getAttribute("data-level"), 10);
@@ -919,7 +920,7 @@
     if (!box) return;
     var seen = null;
     try { seen = localStorage.getItem("ppa-chooser-done"); } catch (e) {}
-    if (seen || progress.doneCount() > 0) return;
+    if (seen || progress.doneCount() > 0) { box.hidden = true; return; }
     box.hidden = false;
     function dismiss() {
       box.hidden = true;
@@ -936,41 +937,11 @@
 
   /* ---------- practitioner index (expert fast lane, level 2 only) ---------- */
   function buildPracIndex() {
-    var box = document.getElementById("prac-index");
-    if (!box) return;
-    var indexLabel = document.createElement("p");
-    indexLabel.className = "section-label";
-    indexLabel.textContent = "Practitioner index · jump straight to the deep sections";
-    box.appendChild(indexLabel);
-    var groups = {};
-    var wrap = document.createElement("div");
-    wrap.className = "prac-groups";
-    PRAC_INDEX.forEach(function (item) {
-      if (!groups[item.view]) {
-        var g = document.createElement("div");
-        g.className = "prac-group";
-        var lab = document.createElement("span");
-        lab.className = "prac-group-label";
-        var stop = COURSE.filter(function (s) { return s.view === item.view; })[0];
-        lab.textContent = stop ? stop.label : item.view;
-        g.appendChild(lab);
-        var chips = document.createElement("div");
-        chips.className = "chips prac-chips";
-        g.appendChild(chips);
-        groups[item.view] = chips;
-        wrap.appendChild(g);
-      }
-      var chip = document.createElement("button");
-      chip.type = "button";
-      chip.className = "chip prac-chip";
-      chip.textContent = item.label;
+    document.querySelectorAll("#prac-index [data-prac-target]").forEach(function (chip) {
       chip.addEventListener("click", function () {
-        // after the tab's lazy scripts/data render, so the target doesn't move under the scroll
-        showView(item.view).then(function () { scrollToId(item.target); });
+        showView(chip.dataset.pracView).then(function () { scrollToId(chip.dataset.pracTarget); });
       });
-      groups[item.view].appendChild(chip);
     });
-    box.appendChild(wrap);
   }
 
   /* ---------- TOC scroll-spy (one observer, re-scoped per view) ---------- */
@@ -1313,6 +1284,7 @@
     VIEWS.forEach(function (name) {
       var view = document.getElementById("view-" + name);
       if (!view) return;
+      if (view.querySelector(".toc")) return;
       var h2s = Array.prototype.slice.call(view.querySelectorAll("h2"));
       if (h2s.length < 4) return;
       var nav = document.createElement("nav");

@@ -1,12 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" data-experience="1">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PPA Helper — learn US power purchase agreements</title>
   <meta name="description" content="A hands-on tool for learning to originate, negotiate, and approve US power purchase agreements. Built around a virtual-PPA settlement simulator.">
-  <link rel="preload" href="data/glossary.json?v=20261106e" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261106e">
+  <script>
+    // Apply stored presentation before paint; controls are wired by app.js.
+    (function () {
+      try {
+        var root = document.documentElement;
+        var level = localStorage.getItem("ppa-level");
+        root.dataset.experience = level === "2" || level === "all" ? "2" : "1";
+        var progress = JSON.parse(localStorage.getItem("ppa-progress") || "{}") || {};
+        if (localStorage.getItem("ppa-chooser-done") || Object.keys(progress.done || {}).length) {
+          root.dataset.chooserDone = "1";
+        }
+        var theme = localStorage.getItem("ppa-theme");
+        if (theme === "light" || theme === "dark") root.dataset.theme = theme;
+        else if (matchMedia("(prefers-color-scheme: dark)").matches) root.dataset.theme = "dark";
+      } catch (e) {} // Storage may be unavailable; keep the default presentation.
+    })();
+  </script>
+  <link rel="preload" href="data/glossary.json?v=20261106g" as="fetch" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261106g">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -45,7 +62,7 @@
       <h1>Power purchase agreements, from scratch</h1>
       <p class="lede">A PPA sets the price, term and obligations for buying a generator's output or settling its market value. Start with the delivery route, work through the cash flows, then compare contract terms.</p>
 
-      <div id="path-chooser" class="chooser" hidden>
+      <div id="path-chooser" class="chooser">
         <div class="chooser-choices">
           <button type="button" class="chooser-opt" id="chooser-new">
             <strong>New to power markets?</strong>
@@ -59,7 +76,43 @@
         <button type="button" class="chooser-dismiss" aria-label="Dismiss">&times;</button>
       </div>
 
-      <div id="prac-index" data-level="2"></div>
+      <div id="prac-index" data-level="2"><p class="section-label">Practitioner index · jump straight to the deep sections</p><div class="prac-groups"><div class="prac-group"><span class="prac-group-label">Learn</span><div class="chips prac-chips"><button type="button" class="chip prac-chip" data-prac-view="foundations" data-prac-target="basis-risk">Basis risk</button>
+            <button type="button" class="chip prac-chip" data-prac-view="foundations" data-prac-target="iso-rto-markets">ISO/RTO market-by-market</button>
+            <button type="button" class="chip prac-chip" data-prac-view="foundations" data-prac-target="scope-2-chain">REC → Scope 2 chain</button>
+            <button type="button" class="chip prac-chip" data-prac-view="foundations" data-prac-target="whos-who">Who's who behind a deal</button>
+            <button type="button" class="chip prac-chip" data-prac-view="foundations" data-prac-target="bankable">What bankable means</button></div></div>
+        <div class="prac-group"><span class="prac-group-label">Drafting</span><div class="chips prac-chips"><button type="button" class="chip prac-chip" data-prac-view="examples" data-prac-target="pricing-structures">Pricing structures</button>
+            <button type="button" class="chip prac-chip" data-prac-view="examples" data-prac-target="risk-allocation">Risk allocation matrix</button>
+            <button type="button" class="chip prac-chip" data-prac-view="examples" data-prac-target="deal-lifecycle">Deal lifecycle</button>
+            <button type="button" class="chip prac-chip" data-prac-view="examples" data-prac-target="getting-to-signature">Getting to signature</button>
+            <button type="button" class="chip prac-chip" data-prac-view="examples" data-prac-target="annotated-examples">Annotated real PPAs (SEC-filed)</button></div></div>
+        <div class="prac-group"><span class="prac-group-label">Project finance</span><div class="chips prac-chips"><button type="button" class="chip prac-chip" data-prac-view="projfin" data-prac-target="pf-workbench">Debt-sizing workbench</button>
+            <button type="button" class="chip prac-chip" data-prac-view="projfin" data-prac-target="tax-equity-flip">Tax equity &amp; the flip</button></div></div>
+        <div class="prac-group"><span class="prac-group-label">Data centers</span><div class="chips prac-chips"><button type="button" class="chip prac-chip" data-prac-view="datacenter" data-prac-target="case-studies">Load/gen/wires case studies</button>
+            <button type="button" class="chip prac-chip" data-prac-view="datacenter" data-prac-target="vpp-ppas">VPP examples</button>
+            <button type="button" class="chip prac-chip" data-prac-view="datacenter" data-prac-target="tech-contracts">Technology → contract map</button>
+            <button type="button" class="chip prac-chip" data-prac-view="datacenter" data-prac-target="serve-the-load">Gigawatt stack builder</button>
+            <button type="button" class="chip prac-chip" data-prac-view="datacenter" data-prac-target="large-load">Large-load queue &amp; ESA terms</button>
+            <button type="button" class="chip prac-chip" data-prac-view="datacenter" data-prac-target="gigawatt-playbook">Gigawatt playbook</button>
+            <button type="button" class="chip prac-chip" data-prac-view="datacenter" data-prac-target="recent-deals">Hyperscaler deals table</button></div></div></div></div>
+      <nav class="toc" aria-label="On this page"><ol>
+        <li data-level-only="1"><button type="button" class="toc-link" data-scroll-to="stage-1">Electricity from scratch</button></li>
+        <li><button type="button" class="toc-link" data-scroll-to="stage-2">How power is bought &amp; sold</button></li>
+        <li><button type="button" class="toc-link" data-scroll-to="stage-3">Why PPAs exist</button></li>
+        <li><button type="button" class="toc-link" data-scroll-to="stage-4">How a PPA works — electrons, or just money?</button></li>
+        <li><button type="button" class="toc-link" data-scroll-to="foundations-s5">The VPPA settlement mechanic</button></li>
+        <li data-level="2"><button type="button" class="toc-link" data-scroll-to="basis-risk">Basis risk — the #1 structural risk to understand</button></li>
+        <li data-level="2"><button type="button" class="toc-link" data-scroll-to="iso-rto-markets">The US wholesale markets — ISO/RTO by ISO/RTO</button></li>
+        <li><button type="button" class="toc-link" data-scroll-to="foundations-s8">RECs — ownership and retirement</button></li>
+        <li data-level="2"><button type="button" class="toc-link" data-scroll-to="scope-2-chain">From REC to carbon claim — the Scope 2 chain</button></li>
+        <li><button type="button" class="toc-link" data-scroll-to="choose-contract">Choose a contract from the load and the generator</button></li>
+        <li data-level="2"><button type="button" class="toc-link" data-scroll-to="whos-who">Who's who — the parties behind every deal</button></li>
+        <li data-level="2"><button type="button" class="toc-link" data-scroll-to="bankable">What lenders require</button></li>
+        <li><button type="button" class="toc-link" data-scroll-to="foundations-s13">A deal from start to first settlement</button></li>
+        <li><button type="button" class="toc-link" data-scroll-to="need-to-signature">From an energy need to a signed PPA</button></li>
+        <li><button type="button" class="toc-link" data-scroll-to="checkpoint-learn">Checkpoint</button></li>
+
+      </ol></nav>
 
       <hr class="rule">
 
@@ -153,7 +206,7 @@
 
       <hr class="rule">
 
-      <h2>The VPPA settlement mechanic</h2>
+      <h2 id="foundations-s5">The VPPA settlement mechanic</h2>
       <p>A VPPA is a <strong>fixed-for-floating swap</strong>. Each month, compare the buyer's fixed <span class="gterm" data-term="Strike Price (Fixed Price)">strike price</span> against the floating market price (<span class="gterm" data-term="Locational Marginal Price (LMP)">LMP</span>):</p>
       <div class="grid cols-2">
         <div class="card">
@@ -253,7 +306,7 @@
 
       <hr class="rule">
 
-      <h2>RECs — ownership and retirement</h2>
+      <h2 id="foundations-s8">RECs — ownership and retirement</h2>
       <p>A <span class="gterm" data-term="Renewable Energy Certificate (REC)">renewable energy certificate</span> represents the environmental attributes of renewable generation — one REC per MWh delivered to the grid. A VPPA can bundle certificate conveyance with a financial price hedge; read the agreement to see which attributes transfer. Certificate ownership and retirement determine who may report the associated renewable-electricity use; the VPPA does not deliver electricity to the buyer's meter.</p>
       <p class="src"><a href="https://www.epa.gov/green-power-markets/renewable-energy-certificates-recs">EPA — Renewable Energy Certificates</a></p>
 
@@ -442,7 +495,7 @@
 
       <hr class="rule">
 
-      <h2>A deal from start to first settlement</h2>
+      <h2 id="foundations-s13">A deal from start to first settlement</h2>
       <p>All the pieces above — buyer, developer, settlement mechanic, basis risk — in one concrete story. A 100 MW ERCOT solar VPPA, agreed at $43/MWh, with three months of settlement math including one month where a congestion event nearly zeros the developer's economics.</p>
 
       <div class="card" style="margin-bottom:16px">
@@ -1986,9 +2039,9 @@
   </footer>
 
   <!-- per-tab scripts (simulator, draft, projfin, stack) load on first visit: VIEW_SCRIPTS in app.js -->
-  <script src="assets/js/quiz-banks.js?v=20261106e" defer></script>
-  <script src="assets/js/quiz.js?v=20261106e" defer></script>
-  <script src="assets/js/app.js?v=20261106e" defer></script>
-  <script src="assets/js/content.js?v=20261106e" defer></script>
+  <script src="assets/js/quiz-banks.js?v=20261106g" defer></script>
+  <script src="assets/js/quiz.js?v=20261106g" defer></script>
+  <script src="assets/js/app.js?v=20261106g" defer></script>
+  <script src="assets/js/content.js?v=20261106g" defer></script>
 </body>
 </html>
