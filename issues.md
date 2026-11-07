@@ -4,6 +4,8 @@ Living audit trail. Each: date · area · description · root cause (**content b
 
 ## 2026-11-07 — Case and tool follow-up
 
+- **Draft fields missed the shared input styling.** *(UI bug — Fixed, review round one)* Expected text inputs and selects to match the number controls and provide 44 px targets. The shared rule covered only number inputs, leaving text fields and selects at browser-default sizes. Scoped the existing colors, padding and 44 px minimum to all draft fields. The browser runner now checks every field's actual dimensions at all three widths.
+
 - **Undisclosed contract terms inferred from project purpose.** *(content bug — Fixed)* Expected case analysis to distinguish published terms from diligence questions. The Crane case inferred no financial settlement mechanism and Fervo's option was described as replacing basis exposure; neither followed from the announcements. Removed those inferences. Next time, check settlement point and risk allocation independently of technology, term and expansion rights.
 - **Uncited simulator benchmarks and storage guarantees.** *(content bug — Fixed)* Expected illustrative controls to describe their assumptions. Market-price and basis ranges had no dated supporting source, and the storage paragraph presented a general availability percentage as a guarantee. Removed the ranges and stated the model assumptions and contract-specific performance limits. Next time, require a dated source for a market benchmark and an actual contract for a guarantee.
 

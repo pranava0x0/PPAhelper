@@ -179,6 +179,9 @@ async function main() {
         await p.screenshot({ path: path.join(shots, `${runDate}_${width}-${output.slice(1)}.png`) });
         if (output === "#draft-output") {
           assert.equal(await p.locator(output).evaluate(el => el === document.activeElement), true);
+          assert.deepEqual(await p.locator("#draft-form input, #draft-form select").evaluateAll(els =>
+            els.filter(el => el.getBoundingClientRect().height < 44 || el.getBoundingClientRect().width < 44).map(el => el.id)
+          ), [], "draft fields must provide 44px targets");
           await p.locator('[data-scroll-to="draft-form"]').click();
           await pause(p);
           await reach(p, p.locator("#d-buyer"));
@@ -189,6 +192,7 @@ async function main() {
           await p.locator("#draft-generate").click();
           await pause(p);
           assert.ok((await p.locator(output).textContent()).includes("Example Buyer LLC"));
+          assert.ok((await p.locator(output).textContent()).includes("Texas"));
           const pending = p.waitForEvent("download");
           await p.locator("#draft-download").click();
           const download = await pending;

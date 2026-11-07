@@ -722,6 +722,11 @@ ol.steps li::before { content: counter(step); position: absolute; left: 0; top: 
 }
 .draft-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
 .draft-actions button { font-size: 13px; font-weight: 600; padding: 9px 16px; border-radius: 8px; cursor: pointer; min-height: 44px; }
+#draft-form input, #draft-form select {
+  width: 100%; min-height: 44px; padding: 8px 10px;
+  font-size: 16px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface-2); color: var(--text);
+}
 .draft-create {
   position: sticky; top: calc(var(--masthead-height, 112px) + 8px); z-index: 10;
   margin-top: 0; padding: 8px 0; background: var(--surface);
