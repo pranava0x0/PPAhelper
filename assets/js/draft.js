@@ -693,6 +693,13 @@
     var output    = document.getElementById("draft-output");
     if (!genBtn || !output) return;
 
+    var masthead = document.querySelector(".masthead");
+    if (masthead && "ResizeObserver" in window) {
+      new ResizeObserver(function () {
+        document.documentElement.style.setProperty("--masthead-height", masthead.getBoundingClientRect().height + "px");
+      }).observe(masthead);
+    }
+
     function readForm() {
       var input = {};
       Object.keys(FORM_FIELDS).forEach(function (k) {
@@ -720,7 +727,13 @@
       output.textContent = text;
       if (copyBtn) copyBtn.disabled = false;
       if (dlBtn)   dlBtn.disabled   = false;
-      if (window.PPA) window.PPA.jumpTo("draft-output");
+      if (window.PPA) {
+        window.PPA.jumpTo("draft-result");
+        requestAnimationFrame(function () {
+          output.setAttribute("tabindex", "-1");
+          output.focus({ preventScroll: true });
+        });
+      }
     }
 
     genBtn.addEventListener("click", generate);

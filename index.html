@@ -22,8 +22,8 @@
       } catch (e) {} // Storage may be unavailable; keep the default presentation.
     })();
   </script>
-  <link rel="preload" href="data/glossary.json?v=20261107a" as="fetch" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261107a">
+  <link rel="preload" href="data/glossary.json?v=20261107b" as="fetch" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261107b">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -1095,6 +1095,10 @@
 
       <div class="draft-layout">
         <form class="controls" id="draft-form" aria-label="PPA inputs" onsubmit="return false">
+          <div class="draft-actions draft-create">
+            <button type="button" id="draft-generate" class="btn-primary">Generate PPA</button>
+          </div>
+          <p class="caption">Blank fields stay bracketed in the draft.</p>
           <fieldset>
             <legend>Parties</legend>
             <div class="field">
@@ -1186,15 +1190,13 @@
             </div>
           </fieldset>
 
-          <div class="draft-actions">
-            <button type="button" id="draft-generate" class="btn-primary">Generate PPA</button>
-          </div>
         </form>
 
-        <div>
+        <div id="draft-result">
           <div class="draft-actions" style="margin-top:0;margin-bottom:10px">
             <button type="button" id="draft-copy" class="btn-secondary" disabled>Copy text</button>
             <button type="button" id="draft-download" class="btn-secondary" disabled>Download .txt</button>
+            <button type="button" class="btn-secondary" data-scroll-to="draft-form">Edit inputs ↑</button>
           </div>
           <pre class="draft-output" id="draft-output" aria-live="polite" aria-label="Generated PPA draft"></pre>
           <p class="caption hint" style="margin-top:8px">Sign convention: the draft writes the Settlement Payment from Seller's side, (Fixed − Floating), so positive means Buyer pays Seller. The <button class="nav-link-btn" data-view="simulator">settlement simulator</button> writes the same cash flow from Buyer's side, (Floating − Fixed), so positive there means Seller pays Buyer. Same money, opposite sign.</p>
@@ -1217,6 +1219,17 @@
       <div class="sim-layout sim-settle">
         <form class="controls sim-ctl-contract" id="sim-controls" aria-label="Simulator inputs">
           <fieldset>
+            <legend>Market scenario (12 months of LMP)</legend>
+            <div class="scenario-row" id="scenarios">
+              <button type="button" class="scenario-btn" data-scenario="calm" aria-pressed="true">Calm market</button>
+              <button type="button" class="scenario-btn" data-scenario="rising">Rising prices</button>
+              <button type="button" class="scenario-btn" data-scenario="falling">Falling prices</button>
+              <button type="button" class="scenario-btn" data-scenario="spike">Summer spike</button>
+            </div>
+            <p class="hint" style="margin:10px 0 0">Average LMP this scenario: <span class="mono" id="avg-lmp">—</span>. Edit any month in the table below to build a custom curve.</p>
+            <button type="button" class="nav-link-btn result-jump" data-scroll-to="sim-results">View settlement results ↓</button>
+          </fieldset>
+          <fieldset>
             <legend>Contract</legend>
             <div class="field">
               <label for="strike">Strike price <span class="hint">$/MWh</span></label>
@@ -1238,14 +1251,7 @@
 
         <div class="controls sim-ctl-market" role="group" aria-label="Market and basis inputs">
           <fieldset>
-            <legend>Market scenario (12 months of LMP)</legend>
-            <div class="scenario-row" id="scenarios">
-              <button type="button" class="scenario-btn" data-scenario="calm" aria-pressed="true">Calm market</button>
-              <button type="button" class="scenario-btn" data-scenario="rising">Rising prices</button>
-              <button type="button" class="scenario-btn" data-scenario="falling">Falling prices</button>
-              <button type="button" class="scenario-btn" data-scenario="spike">Summer spike</button>
-            </div>
-            <p class="hint" style="margin:10px 0 0">Average LMP this scenario: <span class="mono" id="avg-lmp">—</span>. Edit any month in the table below to build a custom curve.</p>
+            <legend>Reading the scenarios</legend>
             <p class="hint" style="margin:8px 0 0"><strong>Real-world grounding:</strong> ERCOT North Hub has averaged roughly $40–50/MWh in recent years, so a $43/MWh strike sits near the money. Try "Calm market" + strike $43 to model that deal.</p>
             <p class="hint" style="margin:6px 0 0"><strong>Discount-to-market:</strong> One common corporate structure prices the deal at hub LMP minus a spread (e.g. hub − $8/MWh) with a floor. This simulator cannot reproduce it: above the floor the buyer's gain is capped at the spread, which no flat strike imitates. See Drafting → Pricing structures.</p>
           </fieldset>
@@ -1266,7 +1272,7 @@
         <div class="readout">
           <div class="direction-banner" id="banner" role="status" aria-live="polite">—</div>
 
-          <div class="kpis">
+          <div class="kpis" id="sim-results">
             <div class="kpi">
               <div class="k-label">Net annual settlement</div>
               <div class="k-val" id="kpi-net">—</div>
@@ -1288,6 +1294,7 @@
               <div class="k-sub">$/MWh at the node (= strike − spread)</div>
             </div>
           </div>
+          <button type="button" class="nav-link-btn result-jump" data-scroll-to="sim-controls">Edit simulator inputs ↑</button>
 
           <div class="chart-wrap">
             <svg id="chart" viewBox="0 0 720 260" role="img" aria-label="LMP versus strike price over 12 months"></svg>
@@ -2039,9 +2046,9 @@
   </footer>
 
   <!-- per-tab scripts (simulator, draft, projfin, stack) load on first visit: VIEW_SCRIPTS in app.js -->
-  <script src="assets/js/quiz-banks.js?v=20261107a" defer></script>
-  <script src="assets/js/quiz.js?v=20261107a" defer></script>
-  <script src="assets/js/app.js?v=20261107a" defer></script>
-  <script src="assets/js/content.js?v=20261107a" defer></script>
+  <script src="assets/js/quiz-banks.js?v=20261107b" defer></script>
+  <script src="assets/js/quiz.js?v=20261107b" defer></script>
+  <script src="assets/js/app.js?v=20261107b" defer></script>
+  <script src="assets/js/content.js?v=20261107b" defer></script>
 </body>
 </html>

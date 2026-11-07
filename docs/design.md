@@ -27,3 +27,5 @@
 - **Voice:** plain and specific. No "comprehensive", "robust", "seamless", "unlock". Lead with the number or the name.
 
 - **Teaching voice:** explain delivery, cost, financing and risk allocation. Attribute reported viewpoints and distinguish contract requirements from procurement preferences.
+
+- **Tool actions:** put Generate before the draft inputs and keep it below the measured masthead while editing. Result jumps expose the output toolbar and restore a route to the inputs. Scenario selection precedes contract inputs; settlement results have an explicit jump.

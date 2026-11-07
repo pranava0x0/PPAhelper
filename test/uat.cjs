@@ -161,17 +161,39 @@ async function main() {
         await p.locator(action).waitFor({ state: "visible" });
         let wheels = await reach(p, p.locator(action));
         await p.locator(action).click();
+        await pause(p); // result jumps are scheduled on the next animation frame
         assert.notEqual((await p.locator(output).textContent()).trim(), "—");
         assert.ok((await p.locator(output).textContent()).trim().length);
-        if (output === "#pf-debt" || output === "#st-open") {
-          const jump = p.locator(output === "#pf-debt" ? '[data-scroll-to="pf-results"]' : '[data-scroll-to="st-results"]');
+        const resultTarget = { "#kpi-net": "sim-results", "#pf-debt": "pf-results", "#st-open": "st-results" }[output];
+        if (resultTarget) {
+          const jump = p.locator('[data-scroll-to="' + resultTarget + '"]');
           wheels += await reach(p, jump);
           await jump.click();
           await pause(p);
         }
         wheels += await reach(p, p.locator(output));
+        if (output === "#kpi-net" || output === "#draft-output") {
+          assert.equal(wheels, 0, name + ": avoidable manual scrolling returned");
+        }
         journeys.push(await snapshot(p, name, wheels, start));
         await p.screenshot({ path: path.join(shots, `${runDate}_${width}-${output.slice(1)}.png`) });
+        if (output === "#draft-output") {
+          assert.equal(await p.locator(output).evaluate(el => el === document.activeElement), true);
+          await p.locator('[data-scroll-to="draft-form"]').click();
+          await pause(p);
+          await reach(p, p.locator("#d-buyer"));
+          await p.locator("#d-buyer").fill("Example Buyer LLC");
+          await reach(p, p.locator("#d-gov-law"));
+          await p.locator("#d-gov-law").fill("Texas");
+          assert.equal(await reach(p, p.locator("#draft-generate")), 0, "Generate must stay reachable after editing the last field");
+          await p.locator("#draft-generate").click();
+          await pause(p);
+          assert.ok((await p.locator(output).textContent()).includes("Example Buyer LLC"));
+          const pending = p.waitForEvent("download");
+          await p.locator("#draft-download").click();
+          const download = await pending;
+          assert.equal(fs.readFileSync(await download.path(), "utf8"), await p.locator(output).textContent());
+        }
       }
       await reset(p); let start = performance.now();
       await search(p, "Letter of Credit", "Letter of Credit");
