@@ -1088,7 +1088,7 @@
     <section class="view" id="view-ppadraft" role="tabpanel" aria-labelledby="tab-ppadraft" hidden>
       <p class="section-label">Generator · practice template</p>
       <h1>Draft a Virtual PPA</h1>
-      <p class="lede">Fill in the commercial terms and get a full VPPA draft in seconds. Every negotiable position is marked <span class="mono">[IN BRACKETS]</span> so you know exactly what to fill in.</p>
+      <p class="lede">Enter commercial terms or generate a template with blanks marked <span class="mono">[IN BRACKETS]</span>. Read the clauses, then change the inputs and regenerate to compare terms.</p>
       <div class="card" style="border-left:3px solid var(--warn);margin-bottom:20px">
         <p style="margin:0;font-size:13.5px"><strong>Practice template only.</strong> This generator is for learning and as a starting-point draft. Do not sign or rely on this output for a real transaction without review by a qualified energy attorney.</p>
       </div>
@@ -1252,7 +1252,7 @@
         <div class="controls sim-ctl-market" role="group" aria-label="Market and basis inputs">
           <fieldset>
             <legend>Reading the scenarios</legend>
-            <p class="hint" style="margin:8px 0 0"><strong>Real-world grounding:</strong> ERCOT North Hub has averaged roughly $40–50/MWh in recent years, so a $43/MWh strike sits near the money. Try "Calm market" + strike $43 to model that deal.</p>
+            <p class="hint" style="margin:8px 0 0">These are invented price paths, not a market forecast or a quoted PPA offer. Change the strike or edit a month to see how the settlement responds.</p>
             <p class="hint" style="margin:6px 0 0"><strong>Discount-to-market:</strong> One common corporate structure prices the deal at hub LMP minus a spread (e.g. hub − $8/MWh) with a floor. This simulator cannot reproduce it: above the floor the buyer's gain is capped at the spread, which no flat strike imitates. See Drafting → Pricing structures.</p>
           </fieldset>
 
@@ -1264,7 +1264,7 @@
                 <input type="range" id="basis-spread" min="0" max="30" value="0" step="1" style="flex:1;accent-color:var(--accent)">
                 <span class="mono" id="basis-spread-val" style="min-width:60px;text-align:right">$0 /MWh</span>
               </div>
-              <p class="hint" style="margin:6px 0 0;font-size:12.5px">Node LMP = Hub LMP − spread. The VPPA swap settles at the hub; the developer earns only the node price for actual energy sales. A $5–8/MWh spread is typical in ERCOT; a congestion event can hit $40+.</p>
+              <p class="hint" style="margin:6px 0 0;font-size:12.5px">Node LMP = Hub LMP − spread. This model settles the swap at the hub and sells the generator's energy at the node. The slider applies one spread to every month; actual basis varies by location and time.</p>
             </div>
           </fieldset>
         </div>
@@ -1616,7 +1616,7 @@
         <p>A <span class="gterm" data-term="Tolling Agreement">tolling agreement</span> splits a gas plant into two businesses. The owner gets a fixed toll — a $/kW-month capacity payment that covers capex and fixed O&amp;M — plus variable O&amp;M and start charges when dispatched. The buyer procures the fuel (which means firm gas transport, its own contract), schedules the plant, and takes the power. The contract's core promise is the <span class="gterm" data-term="Heat Rate">heat rate</span>: burn no more than X Btu per kWh. At a guaranteed 7,000 Btu/kWh and $3.50/MMBtu gas, a MWh costs $24.50 in fuel; if power is worth $45, the <span class="gterm" data-term="Spark Spread">spark spread</span> — $20.50 — belongs to the buyer, and so does the loss when gas spikes. A fixed-price ESA flips that: the seller embeds the fuel hedge and charges for it. Neoclouds building <span class="gterm" data-term="Bring-Your-Own-Power (BYOP)">BYOP</span> campuses (Crusoe at Abilene, the Stargate microgrid) take the same economics one step further and own the machine outright.</p>
 
         <h3>Batteries — renting the box</h3>
-        <p>A storage toll is the same idea without fuel: fixed $/kW-month for dispatch rights over someone else's battery. The owner guarantees availability (typically ~95%+) and round-trip efficiency; the buyer decides every charge and discharge, so market risk sits entirely on the buyer's desk — which is the point, for a load that wants to shape its own supply. In a <span class="gterm" data-term="Hybrid PPA (Solar + Storage)">hybrid PPA</span> the battery instead rides inside the generator's offer: one contract, an energy price plus a storage adder or separate capacity payment. The clauses that get negotiated are the charging rules — whether the battery may charge from the grid or only from the paired solar, which drives both tax treatment and which generation attributes can be assigned to the stored output — plus degradation schedules and availability guarantees.</p>
+        <p>A storage toll exchanges a capacity payment for dispatch rights over a battery. The contract sets availability and efficiency obligations, operating limits, and remedies for missed performance. The dispatch-rights holder takes the trading gains and losses within those limits; check who pays for charging energy and losses. In a <span class="gterm" data-term="Hybrid PPA (Solar + Storage)">hybrid PPA</span>, generation and storage are contracted together, with an energy price plus a storage adder or a separate capacity payment. Check grid-charging permissions, attribute accounting, degradation and augmentation duties. A battery's MW rating describes power; its MWh rating limits how long it can deliver that power. The Sierra Estrella case applies this distinction to a published battery toll.</p>
 
         <h3>Nuclear — buying the block</h3>
         <p>A nuclear PPA can buy an operating plant's output, support a restart, or fund an <span class="gterm" data-term="Uprate">uprate</span>. Those contracts have different capital costs and approval risks. The Clinton case covers continued operation; Crane covers a restart; the Google × Constellation case covers incremental output at operating reactors. An agreement for existing output does not add the plant's entire capacity to the grid. Nor does a nuclear label guarantee a flat delivered block: check planned outages, volume commitments and who buys replacement energy. Prices in these announcements are undisclosed. Compare contract price, delivery shape and outage exposure; <span class="gterm" data-term="Levelized Cost of Energy (LCOE)">LCOE</span> alone does not price those obligations.</p>

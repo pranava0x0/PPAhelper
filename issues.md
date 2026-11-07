@@ -2,6 +2,11 @@
 
 Living audit trail. Each: date · area · description · root cause (**content bug** / **code bug** / **test bug**) · status.
 
+## 2026-11-07 — Case and tool follow-up
+
+- **Undisclosed contract terms inferred from project purpose.** *(content bug — Fixed)* Expected case analysis to distinguish published terms from diligence questions. The Crane case inferred no financial settlement mechanism and Fervo's option was described as replacing basis exposure; neither followed from the announcements. Removed those inferences. Next time, check settlement point and risk allocation independently of technology, term and expansion rights.
+- **Uncited simulator benchmarks and storage guarantees.** *(content bug — Fixed)* Expected illustrative controls to describe their assumptions. Market-price and basis ranges had no dated supporting source, and the storage paragraph presented a general availability percentage as a guarantee. Removed the ranges and stated the model assumptions and contract-specific performance limits. Next time, require a dated source for a market benchmark and an actual contract for a guarantee.
+
 ## 2026-10-22 — October pass: twelve-chair content review + geometry audit
 
 Static persona review (nine expert chairs, three newcomer chairs) over index.html, the JSON data, the quiz banks and the draft generator, with every flagged line re-read before it went on this list. Fixes ship in PR for branch `claude/oct-2026-pass`; see `docs/oct-2026-pass-spec.md` § 2c for the full list.
