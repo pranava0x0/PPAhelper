@@ -2,9 +2,9 @@
 
 ## November 7 follow-up (PR #14)
 
-- **Two contract cases:** Sierra Estrella battery toll and the cancelled UAMPS / NuScale development project. *User-requested; in progress.*
-- **Remaining measured scroll costs:** Generate at the start of the draft form; simulator scenario/result access without manual scrolling. *Priority: high; in progress.*
-- **Repeat source, copy and browser review:** three widths, performance and interaction counts; two review rounds before merge. Spec: `docs/nov-2026-round-2.md`.
+- ✅ **Two contract cases:** Sierra Estrella battery toll and the cancelled UAMPS / NuScale development project, with primary sources and explicit undisclosed-term limits.
+- ✅ **Remaining measured scroll costs:** Generate at the start of the draft form; simulator scenario/result access without manual scrolling at three widths.
+- ✅ **Repeat source, copy and browser review:** two review rounds, three-width UAT, interaction counts, throttled performance and accessibility checks. Fixed draft-field sizing and placeholder contrast. Spec: `docs/nov-2026-round-2.md`.
 
 ## November 2026 improvements
 
@@ -28,8 +28,8 @@ Research sweep (dockets, deals, policy, discourse, x.com), a twelve-chair conten
 - **Nuclear-restart workbench preset** with a government-loan layer and a 20-year full-output offtake (the Crane case). *Priority: low.*
 - **Flexible-connection term sheet with numbers.** The pass adds the terms list; the ranges (notice, event length, annual-hours cap) need a primary source such as a filed non-firm tariff. *Priority: low.*
 - **Community-and-cost case** with recorded outcomes (water, tax abatement, moratorium, bill impact). The xAI case is the only backlash example. *Priority: low.*
-- **SMR structure card**: cancelled-project precedent, fuel supply, per-design licensing status; label announced vs contracted capacity. *Priority: low.*
-- **Case-study filter by contract form** on the glance table (now 13 rows). *Priority: medium (was low).*
+- **SMR structure card**: fuel supply and per-design licensing status; label announced vs contracted capacity. The UAMPS / NuScale cancellation precedent is covered in the November 7 cases. *Priority: low.*
+- **Case-study filter by contract form** on the glance table (now 17 rows). *Priority: medium (was low).*
 - **Content-hash cache-bust.** Replace the hand-bumped `?v=` string with a `tools/bump.py` that writes a short hash of each asset into index.html; the same-string scar has now bitten four times (2026-07-12 twice, 2026-08-08, 2026-10-22). *Priority: high.*
 
 ### Dated follow-ups

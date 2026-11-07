@@ -4,6 +4,10 @@ Living audit trail. Each: date · area · description · root cause (**content b
 
 ## 2026-11-07 — Case and tool follow-up
 
+- **Paint metrics sampled before delivery.** *(test bug — Fixed, review round two)* Expected the cold-load report to contain FCP and observed LCP. One run reached the fixed 100 ms wait before paint observers delivered, yielding missing FCP and a zero LCP. Wait for both observations before collecting timings. Next time, fail a missing metric instead of interpreting an unobserved paint as a fast paint.
+
+- **Draft placeholder contrast below 4.5:1.** *(UI bug — Fixed, review round two)* Expected placeholder examples to remain legible on the field surface. The browser's default placeholder gray measured 4.07:1 in light mode. Set the existing muted-text token and explicit opacity; verify the pseudo-element color as well as the entered-text color in both themes next time.
+
 - **Draft fields missed the shared input styling.** *(UI bug — Fixed, review round one)* Expected text inputs and selects to match the number controls and provide 44 px targets. The shared rule covered only number inputs, leaving text fields and selects at browser-default sizes. Scoped the existing colors, padding and 44 px minimum to all draft fields. The browser runner now checks every field's actual dimensions at all three widths.
 
 - **Undisclosed contract terms inferred from project purpose.** *(content bug — Fixed)* Expected case analysis to distinguish published terms from diligence questions. The Crane case inferred no financial settlement mechanism and Fervo's option was described as replacing basis exposure; neither followed from the announcements. Removed those inferences. Next time, check settlement point and risk allocation independently of technology, term and expansion rights.

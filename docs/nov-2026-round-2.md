@@ -29,3 +29,13 @@ Copy checkpoint: replaced unsupported market-price and basis ranges with the sim
 Read the PR diff and checked both new cases against the developer overview, slide 3 of the legislative presentation, UAMPS's archive and the SEC settlement recitals. Confirmed 250 MW / 1,000 MWh, June 2024 operation, the 20-year toll classification, six proposed modules / 462 MWe, insufficient subscription and the distinct November 7/8 dates. The new exercises do not claim unpublished guarantees or reimbursement amounts. Reconciled settlement direction with `settle-core.js` and checked the draft's opposite signed convention remains explicit.
 
 Finding: draft text inputs and selects retained browser-default sizes because only number inputs matched the shared rule. Applied the existing field treatment to every draft input/select with a 44 px minimum, and added browser dimension checks. Regeneration now verifies both the buyer and final governing-law input in the resulting download.
+
+## Review round two
+
+Re-read the final HTML, controller, style and measurement diffs. Checked result-return targets, next-frame focus, sticky offsets, single Generate binding and lazy-load behavior. Normal-motion case and draft jumps pass at all three widths; touch selection passes at 375 and 768 px. Clipboard contents match the draft, keyboard Tab reaches the buyer field with a visible 2 px outline, and all draft controls have 44 px targets. Inspected the form and output in both themes.
+
+Finding: browser-default placeholder gray measured 4.07:1 in light mode. Applied the existing muted-text token with full opacity. Rechecking entered text, placeholder text, selects and actions in both themes gives a minimum 5.16:1. This pass checks pseudo-element text as well as the input's main text color.
+
+Measurement finding: one cold sample had missing FCP and a zero observed LCP because the fixed wait expired before the observers delivered. The runner now waits for both paint observations in cold and throttled contexts; it cannot silently report an unobserved paint as zero. Repeated the complete browser run after the correction.
+
+The automated GitHub review of the initial implementation completed without findings. Both local review rounds and their fixes are recorded here; final timings and remaining costs are in `uat.md`. Screenshots and raw local reports are ignored artifacts in `uat-screenshots/` and `.sessions/uat/`. The additional normal-motion/touch/contrast/clipboard smoke report is `.sessions/uat/access-round14.json`. These are Chrome lab checks, not physical-device, Safari or full screen-reader certification.

@@ -727,6 +727,7 @@ ol.steps li::before { content: counter(step); position: absolute; left: 0; top: 
   font-size: 16px; border: 1px solid var(--border); border-radius: 8px;
   background: var(--surface-2); color: var(--text);
 }
+#draft-form input::placeholder { color: var(--text-muted); opacity: 1; }
 .draft-create {
   position: sticky; top: calc(var(--masthead-height, 112px) + 8px); z-index: 10;
   margin-top: 0; padding: 8px 0; background: var(--surface);

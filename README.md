@@ -20,10 +20,12 @@ No dependencies — plain Node, no install.
 
 ```bash
 node test/settle.test.js   # VPPA settlement math (11 cases)
-node test/stack.test.js    # supply-stack math: dispatch, battery conservation (10 cases)
+node test/stack.test.js    # supply-stack math: dispatch, battery conservation (11 cases)
 node test/data.test.js     # glossary single-source-of-truth integrity
 node test/ui.test.js       # index.html / app.js / glossary cross-file integrity
 node test/flow.test.js     # course flow: nav order, practitioner-index anchors, quiz banks
+# All native suites, including draft, search and lazy-loading checks:
+for file in test/*.test.js; do node "$file" || exit 1; done
 ```
 
 ## Deploy to GitHub Pages
@@ -35,8 +37,8 @@ node test/flow.test.js     # course flow: nav order, practitioner-index anchors,
 ## Layout
 
 ```
-index.html               # masthead, view-switcher, the six views
-assets/css/styles.css    # copper-on-paper terminal/broadsheet identity (see docs/design.md)
+index.html               # masthead, view-switcher, nine views
+assets/css/styles.css    # power-market workbench identity (see docs/design.md)
 assets/js/settle-core.js # pure VPPA settlement math (shared by browser + tests)
 assets/js/simulator.js   # simulator UI: scenarios, SVG chart, editable table
 assets/js/stack-core.js  # pure supply-stack math for a flat load (shared by browser + tests)

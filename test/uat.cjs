@@ -104,6 +104,7 @@ async function main() {
       const errors = [];
       p.on("pageerror", e => errors.push(e.message));
       await reset(p);
+      await p.waitForFunction(() => performance.getEntriesByName("first-contentful-paint").length > 0 && window.lab.lcp > 0);
       await pause(p);
       const cold = await p.evaluate(() => {
         const resources = performance.getEntriesByType("resource").filter(r => !r.name.endsWith("favicon.ico"));
@@ -297,6 +298,7 @@ async function main() {
         });
         await session.send("Emulation.setCPUThrottlingRate", { rate: 4 });
         await reset(page);
+        await page.waitForFunction(() => performance.getEntriesByName("first-contentful-paint").length > 0 && window.lab.lcp > 0);
         await page.waitForTimeout(300);
         const timing = await page.evaluate(() => ({
           domMs: performance.getEntriesByType("navigation")[0].domContentLoadedEventEnd,
