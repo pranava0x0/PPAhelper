@@ -1,5 +1,11 @@
 # Backlog — PPA Helper
 
+## November 7 follow-up (PR #14)
+
+- **Two contract cases:** Sierra Estrella battery toll and the cancelled UAMPS / NuScale development project. *User-requested; in progress.*
+- **Remaining measured scroll costs:** Generate at the start of the draft form; simulator scenario/result access without manual scrolling. *Priority: high; in progress.*
+- **Repeat source, copy and browser review:** three widths, performance and interaction counts; two review rounds before merge. Spec: `docs/nov-2026-round-2.md`.
+
 ## November 2026 improvements
 
 - ✅ Two additional contract cases: Google × Brookfield hydro and Meta × Clinton, with primary sources and dated limits.

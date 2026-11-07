@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-06",
+  "updated": "2026-11-07",
   "note": "Data-center & generation PPAs. Earlier deal statuses were captured in October 2026; new case studies carry individual capture dates. Facts will age — treat them as worked examples of structures, not a live deal tracker. Each carries a primary or reputable-trade source. 'level': 1=newcomer, 2=practitioner.",
   "demand": {
     "stat": "US data-center electricity demand more than doubled (2.3x) from 2018 to 2024 and could reach 325–580 TWh by 2028 — up to roughly 12% of US electricity.",
@@ -1338,6 +1338,122 @@
         "supply": "1,121 MW contracted output; 30 MW uprate announced",
         "contract": "20-year PPA supporting continued operation and relicensing",
         "status": "Announced Jun 2025; delivery starts Jun 2027; price undisclosed"
+      }
+    },
+    {
+      "id": "srp-sierra-estrella",
+      "title": "SRP × Plus Power — Sierra Estrella: the battery toll",
+      "level": 1,
+      "capturedAt": "2026-11-07",
+      "market": "Arizona · SRP service territory · Avondale",
+      "participants": "Salt River Project (utility counterparty) · Plus Power (developer and owner) · Sierra Estrella Energy Storage (project)",
+      "load": "SRP system demand, including peak hours. This is a utility portfolio resource, not a dedicated contract for one campus.",
+      "gen": "A 250 MW / 1,000 MWh battery. Dividing energy capacity by power gives four hours at rated power; it must recharge and does not generate new energy.",
+      "tnd": "The project connects beside SRP's Rudd substation. A grid connection and sufficient stored energy are both needed for dispatch.",
+      "agreement": "Plus Power's September 2023 legislative presentation identifies a 20-year toll. The project site records commercial operation in June 2024. These sources do not publish the toll rate, efficiency guarantee, augmentation schedule or outage remedies.",
+      "unique": "A storage toll contracts access to storage capability rather than an as-generated stream of energy. The useful product depends on both MW and usable MWh.",
+      "brief": "Need: move available energy into hours when SRP needs it. Constraint: finite duration, charging requirements and battery performance over a long term.",
+      "decisions": [
+        "Distinguish the 250 MW discharge rating from the 1,000 MWh energy capacity before comparing offers.",
+        "Use the developer's published contract classification: a 20-year toll, rather than assuming a solar-style energy price.",
+        "Check the interconnection and operating milestone separately from contract execution; the facility entered operation in June 2024.",
+        "For diligence, request charging-cost allocation, dispatch rights, usable-capacity tests and augmentation obligations; these terms are not disclosed in the cited sources."
+      ],
+      "failureTest": "Teaching scenario: the evening need lasts six hours, or degradation reduces usable energy. Test whether the contracted capability covers the required hours, and ask which party pays for charging losses and capacity restoration.",
+      "yourTurn": "At 250 MW, how many MWh would a six-hour delivery require? Compare that with the stated 1,000 MWh capacity. List the extra supply or storage needed before assuming the toll covers that obligation.",
+      "history": [
+        {
+          "date": "Dec 2021",
+          "event": "The project site records City of Avondale approval of the conditional-use permit."
+        },
+        {
+          "date": "Sep 1, 2023",
+          "event": "Plus Power's New Mexico legislative presentation lists Sierra Estrella as 250 MW / 1,000 MWh under a 20-year toll."
+        },
+        {
+          "date": "Jun 2024",
+          "event": "The developer's project site records the start of commercial operation."
+        }
+      ],
+      "lesson": "Price storage against a delivery duration and an operating obligation. A four-hour battery does not cover a six-hour requirement at the same MW rating.",
+      "glossaryRefs": [
+        "Tolling Agreement",
+        "Hybrid PPA (Solar + Storage)",
+        "Commercial Operation Date (COD)"
+      ],
+      "sources": [
+        {
+          "label": "Plus Power — Sierra Estrella project overview",
+          "url": "https://www.sierraestrellaenergystorage.com/about"
+        },
+        {
+          "label": "Plus Power — legislative presentation, Sep 1, 2023, slide 3",
+          "url": "https://www.nmlegis.gov/handouts/STTC%20083123%20Item%209%20Plus%20Power%20NM%20Lege%20-%20Aug%202023.pdf"
+        }
+      ],
+      "glance": {
+        "load": "SRP system demand; peak-hour storage resource",
+        "supply": "250 MW / 1,000 MWh battery; four hours at rated power",
+        "contract": "20-year storage toll; rate and detailed performance terms undisclosed",
+        "status": "Commercial operation began Jun 2024, per developer project site"
+      }
+    },
+    {
+      "id": "uamps-nuscale-cancellation",
+      "title": "UAMPS × NuScale — Idaho: a project cancelled before delivery",
+      "level": 1,
+      "capturedAt": "2026-11-07",
+      "market": "Idaho National Laboratory site · planned municipal supply project",
+      "participants": "UAMPS (municipal power agency) · wholly owned CFPP LLC (project company) · NuScale Power (technology developer) · US Department of Energy (site and cost-share program)",
+      "load": "Prospective municipal subscriptions. UAMPS states that the project was unlikely to obtain enough subscription to remain viable.",
+      "gen": "A planned six-module, 462 MWe nuclear project. These were proposed units, not operating capacity delivered to subscribers.",
+      "tnd": "The development site was at Idaho National Laboratory. A planned site and a developed license application did not establish an operating resource or delivery to a member utility.",
+      "agreement": "The SEC-filed settlement, effective November 7, 2023, addresses development-cost and long-lead-material reimbursement agreements and project wind-down. UAMPS announced termination on November 8. This document is not an operating-plant energy PPA.",
+      "unique": "The public record includes a termination and release agreement. It shows why a development commitment, subscriptions and completed electricity delivery must be tracked separately.",
+      "brief": "Need: assemble enough municipal demand to support a new generating project. Constraint: the project did not reach the subscription level needed to continue.",
+      "decisions": [
+        "Identify the contracts already in force: development-cost and long-lead-material reimbursement agreements.",
+        "Check subscription viability before treating planned reactor capacity as secured supply.",
+        "Distinguish the planned combined-license application from an authorization to construct and operate the site.",
+        "When the project ends, read the actual settlement for reimbursement, releases and asset disposition rather than assuming every development cost is automatically refundable."
+      ],
+      "failureTest": "Recorded outcome: the project was terminated because sufficient subscription was unlikely, according to UAMPS. Teaching diligence: which payments, credit support and ownership rights survive a similar cancellation?",
+      "yourTurn": "Prepare two columns for a proposed project: obligations already signed and approvals or subscriptions still required. Then identify which cancellation-cost questions require the settlement agreement rather than a PPA price comparison.",
+      "history": [
+        {
+          "date": "Dec 31, 2020",
+          "event": "The later settlement identifies this date for the development-cost reimbursement agreement."
+        },
+        {
+          "date": "Feb 28, 2023",
+          "event": "The settlement identifies an amendment to that agreement and a long-lead-material reimbursement agreement."
+        },
+        {
+          "date": "Nov 7–8, 2023",
+          "event": "The settlement takes effect November 7; UAMPS announces mutual project termination on November 8."
+        }
+      ],
+      "lesson": "A planned project can fail after development contracts are signed. Track subscription gates and cancellation obligations before counting its megawatts in a supply portfolio.",
+      "glossaryRefs": [
+        "Small Modular Reactor (SMR)",
+        "Conditions Precedent (CP)",
+        "Credit Support"
+      ],
+      "sources": [
+        {
+          "label": "UAMPS — project termination and archive",
+          "url": "https://www.uamps.com/carbon-free"
+        },
+        {
+          "label": "SEC exhibit 10.27 — CFPP / NuScale settlement and release, Nov 7, 2023",
+          "url": "https://www.sec.gov/Archives/edgar/data/1822966/000182296624000039/ex1027cfppnuscalesettlem.htm"
+        }
+      ],
+      "glance": {
+        "load": "Prospective municipal subscriptions; sufficient subscription not secured",
+        "supply": "Planned six-module, 462 MWe project; no operating output",
+        "contract": "Development/reimbursement contracts; settlement and release on termination",
+        "status": "Cancelled Nov 2023; capacity must not be counted as delivered supply"
       }
     }
   ],

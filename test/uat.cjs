@@ -11,6 +11,7 @@ const shots = path.resolve("uat-screenshots");
 fs.mkdirSync(out, { recursive: true });
 fs.mkdirSync(shots, { recursive: true });
 const cases = require("../data/datacenter.json");
+const runDate = process.env.PPA_UAT_DATE || new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(new Date());
 const caseCount = cases.caseStudies.length + cases.vppCases.length;
 const pause = p => p.waitForTimeout(100); // let scroll and paint observers deliver
 
@@ -115,10 +116,12 @@ async function main() {
       });
       assert.equal(cold.width, width); assert.equal(cold.hidden, false);
       assert.ok(!cold.resources.includes("/data/datacenter.json"), "case data loaded before search");
-      await p.screenshot({ path: path.join(shots, `2026-11-06_${width}-home.png`) });
+      await p.screenshot({ path: path.join(shots, `${runDate}_${width}-home.png`) });
       const journeys = [];
       for (const [name, query, label, id] of [
         ["Hydro lesson and document link", "Brookfield", "Pennsylvania hydro", "dc-cases-google-brookfield-hydro"],
+        ["Battery toll case", "Sierra Estrella", "battery toll", "dc-cases-srp-sierra-estrella"],
+        ["Cancelled development case", "UAMPS", "UAMPS", "dc-cases-uamps-nuscale-cancellation"],
         ["Practitioner case from Newcomer", "NIPSCO", "Indiana", "dc-cases-nipsco-amazon"],
         ["VPP example", "CalReady", "CalReady", "vpp-cases-sunrun-calready"]
       ]) {
@@ -144,7 +147,7 @@ async function main() {
         const result = await snapshot(p, name, 0, start);
         assert.equal(result.clicks, 2); assert.equal(result.inputs, 1); assert.equal(result.viewChanges, 1);
         journeys.push(result);
-        await p.screenshot({ path: path.join(shots, `2026-11-06_${width}-${id}.png`) });
+        await p.screenshot({ path: path.join(shots, `${runDate}_${width}-${id}.png`) });
       }
 
       for (const [name, query, label, action, output] of [
@@ -168,7 +171,7 @@ async function main() {
         }
         wheels += await reach(p, p.locator(output));
         journeys.push(await snapshot(p, name, wheels, start));
-        await p.screenshot({ path: path.join(shots, `2026-11-06_${width}-${output.slice(1)}.png`) });
+        await p.screenshot({ path: path.join(shots, `${runDate}_${width}-${output.slice(1)}.png`) });
       }
       await reset(p); let start = performance.now();
       await search(p, "Letter of Credit", "Letter of Credit");
@@ -226,7 +229,7 @@ async function main() {
       }
       await p.locator("#theme-toggle").click();
       assert.equal(await p.locator("html").getAttribute("data-theme"), "dark");
-      await p.screenshot({ path: path.join(shots, `2026-11-06_${width}-dark.png`) });
+      await p.screenshot({ path: path.join(shots, `${runDate}_${width}-dark.png`) });
       report.viewports.push({ width, height, cold, journeys, casesTested: caseCount, viewsTested: views.length, errors });
       assert.deepEqual(errors, []);
       await context.close();
