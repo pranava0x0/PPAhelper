@@ -11,6 +11,7 @@ const shots = path.resolve("uat-screenshots");
 fs.mkdirSync(out, { recursive: true });
 fs.mkdirSync(shots, { recursive: true });
 const cases = require("../data/datacenter.json");
+const runDate = process.env.PPA_UAT_DATE || new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(new Date());
 const caseCount = cases.caseStudies.length + cases.vppCases.length;
 const pause = p => p.waitForTimeout(100); // let scroll and paint observers deliver
 
@@ -103,6 +104,7 @@ async function main() {
       const errors = [];
       p.on("pageerror", e => errors.push(e.message));
       await reset(p);
+      await p.waitForFunction(() => performance.getEntriesByName("first-contentful-paint").length > 0 && window.lab.lcp > 0);
       await pause(p);
       const cold = await p.evaluate(() => {
         const resources = performance.getEntriesByType("resource").filter(r => !r.name.endsWith("favicon.ico"));
@@ -115,10 +117,12 @@ async function main() {
       });
       assert.equal(cold.width, width); assert.equal(cold.hidden, false);
       assert.ok(!cold.resources.includes("/data/datacenter.json"), "case data loaded before search");
-      await p.screenshot({ path: path.join(shots, `2026-11-06_${width}-home.png`) });
+      await p.screenshot({ path: path.join(shots, `${runDate}_${width}-home.png`) });
       const journeys = [];
       for (const [name, query, label, id] of [
         ["Hydro lesson and document link", "Brookfield", "Pennsylvania hydro", "dc-cases-google-brookfield-hydro"],
+        ["Battery toll case", "Sierra Estrella", "battery toll", "dc-cases-srp-sierra-estrella"],
+        ["Cancelled development case", "UAMPS", "UAMPS", "dc-cases-uamps-nuscale-cancellation"],
         ["Practitioner case from Newcomer", "NIPSCO", "Indiana", "dc-cases-nipsco-amazon"],
         ["VPP example", "CalReady", "CalReady", "vpp-cases-sunrun-calready"]
       ]) {
@@ -144,7 +148,7 @@ async function main() {
         const result = await snapshot(p, name, 0, start);
         assert.equal(result.clicks, 2); assert.equal(result.inputs, 1); assert.equal(result.viewChanges, 1);
         journeys.push(result);
-        await p.screenshot({ path: path.join(shots, `2026-11-06_${width}-${id}.png`) });
+        await p.screenshot({ path: path.join(shots, `${runDate}_${width}-${id}.png`) });
       }
 
       for (const [name, query, label, action, output] of [
@@ -158,17 +162,43 @@ async function main() {
         await p.locator(action).waitFor({ state: "visible" });
         let wheels = await reach(p, p.locator(action));
         await p.locator(action).click();
+        await pause(p); // result jumps are scheduled on the next animation frame
         assert.notEqual((await p.locator(output).textContent()).trim(), "—");
         assert.ok((await p.locator(output).textContent()).trim().length);
-        if (output === "#pf-debt" || output === "#st-open") {
-          const jump = p.locator(output === "#pf-debt" ? '[data-scroll-to="pf-results"]' : '[data-scroll-to="st-results"]');
+        const resultTarget = { "#kpi-net": "sim-results", "#pf-debt": "pf-results", "#st-open": "st-results" }[output];
+        if (resultTarget) {
+          const jump = p.locator('[data-scroll-to="' + resultTarget + '"]');
           wheels += await reach(p, jump);
           await jump.click();
           await pause(p);
         }
         wheels += await reach(p, p.locator(output));
+        if (output === "#kpi-net" || output === "#draft-output") {
+          assert.equal(wheels, 0, name + ": avoidable manual scrolling returned");
+        }
         journeys.push(await snapshot(p, name, wheels, start));
-        await p.screenshot({ path: path.join(shots, `2026-11-06_${width}-${output.slice(1)}.png`) });
+        await p.screenshot({ path: path.join(shots, `${runDate}_${width}-${output.slice(1)}.png`) });
+        if (output === "#draft-output") {
+          assert.equal(await p.locator(output).evaluate(el => el === document.activeElement), true);
+          assert.deepEqual(await p.locator("#draft-form input, #draft-form select").evaluateAll(els =>
+            els.filter(el => el.getBoundingClientRect().height < 44 || el.getBoundingClientRect().width < 44).map(el => el.id)
+          ), [], "draft fields must provide 44px targets");
+          await p.locator('[data-scroll-to="draft-form"]').click();
+          await pause(p);
+          await reach(p, p.locator("#d-buyer"));
+          await p.locator("#d-buyer").fill("Example Buyer LLC");
+          await reach(p, p.locator("#d-gov-law"));
+          await p.locator("#d-gov-law").fill("Texas");
+          assert.equal(await reach(p, p.locator("#draft-generate")), 0, "Generate must stay reachable after editing the last field");
+          await p.locator("#draft-generate").click();
+          await pause(p);
+          assert.ok((await p.locator(output).textContent()).includes("Example Buyer LLC"));
+          assert.ok((await p.locator(output).textContent()).includes("Texas"));
+          const pending = p.waitForEvent("download");
+          await p.locator("#draft-download").click();
+          const download = await pending;
+          assert.equal(fs.readFileSync(await download.path(), "utf8"), await p.locator(output).textContent());
+        }
       }
       await reset(p); let start = performance.now();
       await search(p, "Letter of Credit", "Letter of Credit");
@@ -226,7 +256,7 @@ async function main() {
       }
       await p.locator("#theme-toggle").click();
       assert.equal(await p.locator("html").getAttribute("data-theme"), "dark");
-      await p.screenshot({ path: path.join(shots, `2026-11-06_${width}-dark.png`) });
+      await p.screenshot({ path: path.join(shots, `${runDate}_${width}-dark.png`) });
       report.viewports.push({ width, height, cold, journeys, casesTested: caseCount, viewsTested: views.length, errors });
       assert.deepEqual(errors, []);
       await context.close();
@@ -268,6 +298,7 @@ async function main() {
         });
         await session.send("Emulation.setCPUThrottlingRate", { rate: 4 });
         await reset(page);
+        await page.waitForFunction(() => performance.getEntriesByName("first-contentful-paint").length > 0 && window.lab.lcp > 0);
         await page.waitForTimeout(300);
         const timing = await page.evaluate(() => ({
           domMs: performance.getEntriesByType("navigation")[0].domContentLoadedEventEnd,

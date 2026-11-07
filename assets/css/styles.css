@@ -296,7 +296,8 @@ main { max-width: 1180px; margin: 0 auto; padding: 28px 22px 80px; }
   .sim-settle .sim-ctl-contract { order: 1; }
   .sim-settle .readout > .direction-banner { order: 2; }
   .sim-settle .readout > .kpis { order: 3; }
-  .sim-settle .sim-ctl-market { order: 4; }
+  .sim-settle .readout > .result-jump { order: 4; }
+  .sim-settle .sim-ctl-market { order: 5; }
   .sim-settle .sim-ctl-contract fieldset { margin-bottom: 0; }
 }
 
@@ -720,7 +721,18 @@ ol.steps li::before { content: counter(step); position: absolute; left: 0; top: 
   color: var(--text-muted); font-style: italic;
 }
 .draft-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-.draft-actions button { font-size: 13px; font-weight: 600; padding: 9px 16px; border-radius: 8px; cursor: pointer; min-height: 40px; }
+.draft-actions button { font-size: 13px; font-weight: 600; padding: 9px 16px; border-radius: 8px; cursor: pointer; min-height: 44px; }
+#draft-form input, #draft-form select {
+  width: 100%; min-height: 44px; padding: 8px 10px;
+  font-size: 16px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface-2); color: var(--text);
+}
+#draft-form input::placeholder { color: var(--text-muted); opacity: 1; }
+.draft-create {
+  position: sticky; top: calc(var(--masthead-height, 112px) + 8px); z-index: 10;
+  margin-top: 0; padding: 8px 0; background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
 .btn-primary { background: var(--accent); color: var(--accent-ink); border: none; }
 .btn-primary:hover { opacity: 0.9; }
 .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }

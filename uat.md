@@ -1,6 +1,6 @@
-# UAT baseline — PPA Helper
+# UAT results — PPA Helper
 
-Created and last run: November 6, 2026.
+Created November 6, 2026. Last run November 7, 2026. The November 6 results below remain the PR #13 baseline; the follow-up section records PR #14.
 
 Static HTML/CSS/JavaScript. Serve with `python3 -m http.server 8000` and open `http://localhost:8000`. Nine views, seven course stops. No package installation is needed.
 
@@ -8,16 +8,16 @@ Static HTML/CSS/JavaScript. Serve with `python3 -m http.server 8000` and open `h
 
 Run the native suite with `for file in test/*.test.js; do node "$file" || exit 1; done`.
 
-Run `PPA_PLAYWRIGHT_PATH=/absolute/path/to/playwright node test/uat.cjs` using an existing Playwright installation and Chrome. `PPA_UAT_URL` overrides localhost. Add `PPA_UAT_STRESS=1` to repeat the throttled check for first visits and saved Practitioner mode. The optional runner writes `.sessions/uat/report.json` and `uat-screenshots/2026-11-06_*.png`, both ignored by Git.
+Run `PPA_PLAYWRIGHT_PATH=/absolute/path/to/playwright node test/uat.cjs` using an existing Playwright installation and Chrome. `PPA_UAT_URL` overrides localhost. Add `PPA_UAT_STRESS=1` to repeat the throttled check for first visits and saved Practitioner mode. The optional runner writes `.sessions/uat/report.json` and dated screenshots in `uat-screenshots/`, both ignored by Git. `PPA_UAT_DATE` overrides the screenshot date.
 
 ## Critical flows
 
-- Search from a fresh Learn visit → case → lesson and first document link. Check all fifteen cases and both VPP examples.
+- Search from a fresh Learn visit → case → lesson and first document link. Check all seventeen cases and both VPP examples, including Sierra Estrella and UAMPS / NuScale.
 - Search a practitioner case from Newcomer → automatic mode change → expanded case with summary focused.
-- Search → simulator → Summer spike → settlement result.
+- Search → simulator → Summer spike → View settlement results → settlement result. Return with Edit simulator inputs.
 - Search → debt workbench → Onshore wind → View finance results → debt amount. Return with Edit finance inputs.
 - Search → stack builder → solar preset → View supply results → open position. Return with Edit supply inputs.
-- Search → Draft PPA → Generate → output visible and focused.
+- Search → Draft PPA → Generate → output visible and focused. Return to inputs, edit buyer and final field, regenerate and compare the downloaded text with the displayed text. Every draft field provides a 44 px target.
 - Search → Letter of Credit → exactly one glossary definition.
 - No matches, keyboard selection, Tab containment, Escape return focus, and HTTP 503 → retry → case.
 
@@ -44,7 +44,7 @@ The first revised run reached case lessons and document links in two clicks and 
 | Search and glossary | 2026-11-06 | Empty state, keyboard and retry covered |
 | Mobile/tablet/desktop, light/dark | 2026-11-06 | Screenshots inspected; no document overflow |
 
-## Final results
+## November 6 results (PR #13)
 
 Chrome 157.0.8103.38, local HTTP. All eight native test files pass. All nine views and seventeen case destinations pass at each width; nine journeys per width are measured below. All journeys include one text-entry action and one app-view navigation. Counts end at the named information, before any external document navigation.
 
@@ -74,4 +74,40 @@ The second review caught a layout shift of **0.463** under 4× CPU slowdown, 150
 
 Touch case selection passes at 375 and 768 px. Sampled palette text, muted text and links exceed 4.5:1 against their surfaces in both themes (lowest ratio: 5.17:1); keyboard focus is visible. New result controls, palette rows and case source links have 44 px minimum targets. Native parity checks keep the initial contents and practitioner links aligned with their canonical targets.
 
-Remaining measured cost: reaching Generate still takes 2 / 1 / 2 gestures from the top of its form, and the simulator scenario/result path takes 1 / 2 / 0. Those counts are retained in the baseline for the next pass. Full screen-reader testing and physical-device/Safari testing were not performed.
+At PR #13, reaching Generate still took 2 / 1 / 2 gestures from the top of its form, and the simulator scenario/result path took 1 / 2 / 0. Those counts are retained as the historical baseline. Full screen-reader testing and physical-device/Safari testing were not performed.
+
+## November 7 follow-up (PR #14)
+
+All eight native suites pass. Chrome 157.0.8103.38 reaches nineteen cases (seventeen main cases plus two VPPs) and all nine views at each width. Eleven measured journeys per width pass, including both new cases. Each journey below includes one query input and one app-view navigation; clicks stop before following an external document. Following a source adds a click and an external navigation.
+
+| Destination | Clicks | Manual wheel gestures: phone / tablet / desktop |
+| --- | ---: | ---: |
+| Hydro lesson and document link | 2 | 0 / 0 / 0 |
+| Sierra Estrella battery toll | 2 | 0 / 0 / 0 |
+| UAMPS / NuScale cancellation | 2 | 0 / 0 / 0 |
+| Practitioner case from Newcomer | 2 | 0 / 0 / 0 |
+| VPP example | 2 | 0 / 0 / 0 |
+| Settlement scenario and result | 4 | 0 / 0 / 0 |
+| Finance preset and debt result | 4 | 0 / 0 / 0 |
+| Stack preset and open position | 4 | 0 / 0 / 0 |
+| Generate draft and read output | 3 | 0 / 0 / 0 |
+| Glossary definition | 2 | 0 / 0 / 0 |
+| Filed PPA clause explanation | 4 | 1 / 0 / 0 |
+
+The simulator adds an explicit result-jump click in exchange for removing manual scrolling. Generate is first in the draft form and stays available while editing. Additional checks, outside the measured journeys, return to the form, edit the buyer and final governing-law field, regenerate and compare the downloaded file byte-for-byte with the displayed output. All draft fields are at least 44 px in both dimensions. HTTP 503 recovery, empty search, keyboard selection, mode changes and console errors remain covered.
+
+Two review rounds checked source accuracy, settlement/risk direction, the final diff and learning flow. Review one fixed browser-default field sizing. Review two fixed placeholder contrast from 4.07:1 to at least 5.16:1 across sampled field/action text in both themes. Normal-motion jumps, touch selection at 375/768 px, clipboard equality and visible 2 px keyboard focus pass. Screenshots of new cases, output views and draft fields were inspected.
+
+The long document still moves automatically. These distances and the horizontal tab-bar movement remain recorded separately from manual gestures; a zero gesture count does not mean a zero-distance jump. The filed-clause path retains one manual gesture on phones. Full screen-reader and physical-device/Safari testing remain outside this run.
+
+The Sierra Estrella jump moves 5,826 / 3,465 / 2,281 px automatically; the stack journey moves 16,505 / 10,302 / 7,121 px. The tab bar moves 303 / 57 / 0 px on those paths. These are traversal distances, not document heights or manual interaction counts.
+
+| Final local cold-load observation | Phone | Tablet | Desktop |
+| --- | ---: | ---: | ---: |
+| DOM ready (ms) | 81 | 43 | 36 |
+| FCP / observed LCP (ms) | 748 | 76 | 60 |
+| Observed layout shift | 0.000 | 0.000 | 0.000 |
+
+Six initial subresources total 207,639 uncompressed bytes, plus the 193,686-byte HTML document. The added cases remain lazy-loaded, as do simulator, finance, stack and draft controllers. No cold-load long tasks or uncaught script errors were observed. These are single local lab samples; first-browser paint varied between runs. The runner now waits for actual FCP and LCP observations instead of assuming a fixed delay is sufficient.
+
+With 4× CPU slowdown, 150 ms latency and 1.6 Mbps download, the final fresh visit measured FCP **1.112 s**, observed LCP **1.328 s**, DOM ready **2.392 s** and layout shift **0.005**, with no long tasks. Saved Practitioner mode measured **1.188 / 1.396 / 2.417 s** and **0.005** shift, with one 56 ms long task. Both pass the enforced 0.1 shift ceiling. The request count is unchanged; this run does not establish a field performance improvement. Raw reports: `.sessions/uat/pr14-local-final.json` and `.sessions/uat/access-round14.json`.
